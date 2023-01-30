@@ -1,0 +1,52 @@
+﻿@model ASPNetCore6_Demo.Models.UMSModel
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">
+            <span class="me-2"><i class="fa fa-search"></i></span> Search
+            <small></small>
+        </h3>
+        <div class="card-toolbar">
+            <button class="btn btn-sm btn-success js-stkModal-btn"
+                    data-form-id="formAdd_UMS"
+                    data-url='@Url.Action("_AddEdit","UMS", new {Area=""})'
+                    data-modal-size="lg">
+                <i class="la la-plus"></i> Add New
+            </button>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <form id="filterForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
+              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+              asp-action="_SearchResult" asp-controller="UMS" novalidate="novalidate">
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="">First Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_FirstName" class="form-control" placeholder="Enter First Name" />
+                        </div>
+                        @Html.ValidationMessageFor(m => m.F_FirstName, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="">Last Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_LastName" class="form-control" placeholder="Enter Last Name" />
+                        </div>
+                        @Html.ValidationMessageFor(m => m.F_LastName, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            <input type="submit" value="Submit" class="btn btn-success btn-sm" />
+        </form>
+    </div>
+</div>

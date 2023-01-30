@@ -1,0 +1,16 @@
+﻿<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="MenuList">Fetch Data from DB</a></li>
+            <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="RDLCReport">RDLC Report</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Menu Item</a></li>
+        </ul>
+    </li>
+</ul>
