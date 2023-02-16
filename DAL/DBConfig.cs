@@ -2,6 +2,7 @@
 
 using ProgrammingCode.DAL.MST.MST_ProgrammingLanqauge;
 using ProgrammingCode.DAL.MST.MST_Topic;
+using ProgrammingCode.DAL.PRO.PRO_Program;
 
 namespace ProgrammingCode.DAL
 {
@@ -10,5 +11,6 @@ namespace ProgrammingCode.DAL
         public static MST_ProgrammingLangaugeDAL LangaugeMST = new MST_ProgrammingLangaugeDAL();
         public static PRO_ProgramTopic LevelMST = new PRO_ProgramTopic();
         public static MST_TopicDAL TopicMST = new MST_TopicDAL();
+        public static PRO_ProgramDAL ProgramPRO=new PRO_ProgramDAL();
     }
 }

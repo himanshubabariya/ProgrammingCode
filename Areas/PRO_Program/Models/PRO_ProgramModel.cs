@@ -20,7 +20,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         /*******************************************************************
          *	ADDEDIT FORM
          *******************************************************************/
-        [Required, Display(Name = "ProgrammingID")]
+        [Required, Display(Name = "ProgramID")]
         public int ProgramID { get; set; }
 
         [Required, Display(Name = "LevelID")]
@@ -35,7 +35,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
 
 
         [Required, Display(Name = "ProgramDescription")]
-        public string? ProgramDescription { get; set; }
+        public string? ProgramDesecription { get; set; }
 
 
         [Required, Display(Name = "Algoritham")]
@@ -54,7 +54,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public int UserID { get; set; }
 
         [Required, Display(Name = "UserName")]
-        public String? UserName { get; set; }
+        public string? UserName { get; set; }
 
 
         [Required, Display(Name = "View")]

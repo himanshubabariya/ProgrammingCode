@@ -1,0 +1,36 @@
+﻿@model ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">
+            <span class="me-2"><i class="fa fa-search"></i></span> Search
+            <small></small>
+        </h3>
+ 
+    </div>
+    <div class="card-body">
+        <form id="filterForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
+              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+              asp-action="_SearchResult" asp-controller="PRO_Program" novalidate="novalidate" asp-area="PRO_Program">
+            @Html.AntiForgeryToken()
+
+            <div class="row">
+ 
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="">Program</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_Defination" class="form-control" placeholder="Enter Program Defination " />
+                        </div>
+                        @Html.ValidationMessageFor(m => m.F_Defination,"", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+            
+            <input type="submit" value="Submit" class="btn btn-success btn-sm" />
+        </form>
+    </div>
+</div>
