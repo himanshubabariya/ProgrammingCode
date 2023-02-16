@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ProgrammingCode.Areas.Dashboard.Controllers
+namespace ProgrammingCode.Areas.PRO_Program.Controllers
 {
-    [Area("Dashboard")]
-    public class DashboardController : Controller
+    public class PRO_ProgramController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
+
+
     }
 }

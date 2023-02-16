@@ -1,4 +1,4 @@
-﻿@model ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel
+﻿@model ProgrammingCode.Areas.MST_Level.Models.PRO_ProgramTopic
 
 <div class="card shadow-sm">
     <div class="card-header">
@@ -11,19 +11,19 @@
     <div class="card-body">
         <form id="filterForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
               data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-              asp-action="_SearchResult" asp-controller="MST_ProgrammingLangauge" novalidate="novalidate" asp-area="MST_ProgrammingLangauge" >
+              asp-action="_SearchResult" asp-controller="MST_Level" novalidate="novalidate" asp-area="MST_Level" >
             @Html.AntiForgeryToken()
 
             <div class="row">
  
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="">Langauge</label>
+                        <label class="">Level</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            <input type="text" asp-for="L_ProgrammingLangaugeName" class="form-control" placeholder="Enter Langauge " />
+                            <input type="text" asp-for="F_LevelName" class="form-control" placeholder="Enter level " />
                         </div>
-                        @Html.ValidationMessageFor(m => m.L_ProgrammingLangaugeName, "", new { @class = "form-text text-danger" })
+                        @Html.ValidationMessageFor(m => m.F_LevelName, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
             </div>

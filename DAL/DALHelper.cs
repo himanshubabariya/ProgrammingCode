@@ -11,7 +11,7 @@ namespace ProgrammingCode
     public class DALHelper
     {
         #region Database Connection String
-        public static string myConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetConnectionString("myConnectionString");
+        public static string myConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetConnectionString("DUOfficeConnectionString");
         #endregion
 
 
