@@ -86,7 +86,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Insert");
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.LevelID);
-                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.Int, objProgram.ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.VarChar, objProgram.ProgramNumber);
                 sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.VarChar, objProgram.Defination);
                 sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.VarChar, objProgram.ProgramDesecription);
                 sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.VarChar, objProgram.Algoritham);
@@ -128,7 +128,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Update");
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.ProgramID);
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.LevelID);
-                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.Int, objProgram.ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.VarChar, objProgram.ProgramNumber);
                 sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.VarChar, objProgram.Defination);
                 sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.VarChar, objProgram.ProgramDesecription);
                 sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.VarChar, objProgram.Algoritham);
@@ -169,7 +169,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public int ProgramID { get; set; }
             
         public int LevelID { get; set; }
-        public int ProgramNumber { get; set; }
+        public string? ProgramNumber { get; set; }
         public string? Defination { get; set; }
 
         public string? ProgramDesecription { get; set; }
@@ -254,7 +254,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public int ProgramID { get; set; }
 
         public int LevelID { get; set; }
-        public int ProgramNumber { get; set; }
+        public string? ProgramNumber { get; set; }
         public string? Defination { get; set; }
 
         public string? ProgramDesecription { get; set; }

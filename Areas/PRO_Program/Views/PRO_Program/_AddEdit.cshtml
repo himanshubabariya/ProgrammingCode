@@ -30,6 +30,14 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-md-4 col-form-label p-4 "> Program Number</label>
+            <div class="col-md-5">
+
+                <textarea type="text" asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number"></textarea>
+                @Html.ValidationMessageFor(m => m.ProgramNumber, "", new { @class = "form-text text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-md-4 col-form-label p-4"> Program Description</label>
             <div class="col-md-5">
                 <textarea type="text" asp-for="ProgramDesecription" class="form-control" placeholder="Enter Program Description" ></textarea>
