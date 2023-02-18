@@ -5,7 +5,7 @@ using System.Data.Common;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
-    public class PRO_ProgramDALCase:DALHelper
+    public class PRO_ProgramDALBase:DALHelper
     {
         #region Method:SelectALL
         public List<SelectAll_Result> SelectAll()
@@ -78,7 +78,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method: Insert
-        public decimal? Insert(PRO_ProgramModel objProgram)
+        public decimal? Insert(PRO_ProgramSolutionModel objProgram)
 
         {
             try
@@ -119,14 +119,14 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method: Update
-        public bool? Update(PRO_ProgramModel objProgram)
+        public bool? Update(PRO_ProgramSolutionModel objProgram)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Update");
-                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.ProgramID);
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, objProgram.ProgramID);
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.LevelID);
                 sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.VarChar, objProgram.ProgramNumber);
                 sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.VarChar, objProgram.Defination);

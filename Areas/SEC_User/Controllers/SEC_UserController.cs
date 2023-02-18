@@ -9,7 +9,7 @@ using System.Data;
 namespace ProgrammingCode.Areas.SEC_User.Controllers
 {
     [Area("SEC_User")]
-    public class SEC_UserController : Controller
+    public class PRO_ProgramSolutionController : Controller
     {
         #region Index 
         public IActionResult Index()

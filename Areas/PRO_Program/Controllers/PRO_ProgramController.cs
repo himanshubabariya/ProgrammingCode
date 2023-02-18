@@ -21,7 +21,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramModel objProgram)
+        public IActionResult _SearchResult(PRO_ProgramSolutionModel objProgram)
         {
             var vModel = DBConfig.ProgramPRO.SelectAll().ToList();
             return PartialView("_List", vModel);
@@ -46,8 +46,8 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
 
                 var objProgram = DBConfig.ProgramPRO.SelectPk(ProgramID).SingleOrDefault();
 
-                Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramModel>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramModel>(objProgram);
+                Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramSolutionModel>());
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramSolutionModel>(objProgram);
 
                 return PartialView(vModel);
             }
@@ -57,7 +57,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(PRO_ProgramModel objProgram)
+        public IActionResult _Save(PRO_ProgramSolutionModel objProgram)
         {
             if (objProgram.ProgramID == 0)
             {
@@ -65,7 +65,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
             }
             else
             {
-                DBConfig.ProgramPRO.Update(objProgram);
+                var vReturn= DBConfig.ProgramPRO.Update(objProgram);
             }
             return Content(null);
         }

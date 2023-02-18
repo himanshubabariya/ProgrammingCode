@@ -95,7 +95,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
         public string? MetaOgType { get; set; }
 
 
-        
+        public IFormFile File { get; set; }
 
 
         public DateTime Created { get; set; }

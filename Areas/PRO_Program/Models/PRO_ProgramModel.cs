@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace ProgrammingCode.Areas.PRO_Program.Models
 {
-    public class PRO_ProgramModel
+    public class PRO_ProgramSolutionModel
     {
 
         // ModelName: PRO_ProgramModel
@@ -27,7 +27,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public int LevelID { get; set; }
 
         [Required, Display(Name = "ProgramNumber")]
-        public int ProgramNumber { get; set; }
+        public string? ProgramNumber { get; set; }
 
 
         [Required, Display(Name = "Defination")]

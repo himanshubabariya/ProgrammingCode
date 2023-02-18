@@ -94,6 +94,34 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
             }
         }
         #endregion
+
+        #region Method: SelectAll
+        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(string? L_ProgrammingLangaugeName)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.VarChar, L_ProgrammingLangaugeName);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectByProgrammingLangaugeName_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+
+
         #region Method: SelectPk
         public List<SelectPk_Result> SelectPk(int? ProgrammingLangaugeID)
         {
@@ -170,6 +198,92 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
 
 
     #region All Entities
+    #region Entity: SelectByProgrammingLangaugeName_Result
+    public partial class SelectByProgrammingLangaugeName_Result : DALHelper
+    {
+        #region Properties
+
+        public int ProgrammingLangaugeID { get; set; }
+
+
+
+        public string? ProgrammingLangaugeName { get; set; }
+
+
+
+        public string? ProgrammingLangaugeShortDescription { get; set; }
+
+
+        public string? ProgrammingLangaugeDetailedDescription { get; set; }
+
+
+
+        public string? ProgrammingLangaugeLogo { get; set; }
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
+
+        public int ProgrammingLangaugeView { get; set; }
+
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+
+
+        public string? MetaOgType { get; set; }
+
+        public string? UserName { get; set; }
+
+
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
 
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper
