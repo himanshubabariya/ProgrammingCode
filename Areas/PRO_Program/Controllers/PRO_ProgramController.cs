@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
 using ProgrammingCode.Areas.PRO_Program.Models;
+using ProgrammingCode.Areas.SEC_User.Models;
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.PRO.PRO_Program;
 using System.Data;

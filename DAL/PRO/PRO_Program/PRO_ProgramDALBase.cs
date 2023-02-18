@@ -5,7 +5,7 @@ using System.Data.Common;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
-    public class PRO_ProgramDALBase:DALHelper
+    public class PRO_ProgramDALCase:DALHelper
     {
         #region Method:SelectALL
         public List<SelectAll_Result> SelectAll()

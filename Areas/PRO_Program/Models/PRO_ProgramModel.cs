@@ -27,7 +27,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public int LevelID { get; set; }
 
         [Required, Display(Name = "ProgramNumber")]
-        public string? ProgramNumber { get; set; }
+        public int ProgramNumber { get; set; }
 
 
         [Required, Display(Name = "Defination")]
