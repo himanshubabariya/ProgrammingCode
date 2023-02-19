@@ -21,7 +21,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(PRO_ProgramSolutionModel objSolution)
         {
-            var vModel = DBConfig.SolutionPRO.SelectAll().ToList();
+            var vModel = DBConfig.SolutionPRO.SelectBySolutionName(objSolution.F_Defination, objSolution.F_UserName, objSolution.F_ProgramNumber, objSolution.F_ProgrammingLangaugeName).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

@@ -9,7 +9,7 @@ using System.Data;
 namespace ProgrammingCode.Areas.SEC_User.Controllers
 {
     [Area("SEC_User")]
-    public class PRO_ProgramSolutionController : Controller
+    public class SEC_UserController : Controller
     {
         #region Index 
         public IActionResult Index()
@@ -22,7 +22,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(SEC_UserModel objUser)
         {
-            var vModel = DBConfig.UserSEC.SelectAll().ToList();
+            var vModel = DBConfig.UserSEC.SelectByUserName(objUser.F_UserName).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

@@ -31,6 +31,33 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
             }
         }
         #endregion
+
+        #region Method:SelectByUserName
+        public List<SelectAll_Result> SelectByUserName(string? F_UserName)
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_SEC_User_SelectForSearch");
+                sqlDB.AddInParameter(dbMST, "UserName", SqlDbType.VarChar, F_UserName);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<SelectAll_Result>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method:Delete
         public bool? Delete(int UserID)
         {
@@ -114,7 +141,7 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
               try
               {
                   SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                  DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Update");
+                  DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_sEC_User_Update");
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, objUser.UserID);
                 sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, objUser.UserName);
                 sqlDB.AddInParameter(dbCMD, "Password", SqlDbType.VarChar, objUser.Password);

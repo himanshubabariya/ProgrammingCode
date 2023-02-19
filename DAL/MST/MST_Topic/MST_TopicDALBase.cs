@@ -91,6 +91,33 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
             }
         }
         #endregion
+        #region Method: SelectByTopicName
+        public List<SelectForSearch_Result> SelectByTopicName(string? F_TopicName,string? F_UserName)
+        { 
+       
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_SelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.VarChar, F_TopicName);
+                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, F_UserName);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method: SelectPk
         public List<SelectPk_Result> SelectPk(int? TopicID)
         {
@@ -166,6 +193,92 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
 
 
     #region All Entities
+    #region Entity: SSelectForSearch_Result
+    public partial class SelectForSearch_Result : DALHelper
+    {
+        #region Properties
+
+        public int TopicID { get; set; }
+
+
+
+        public string? TopicName { get; set; }
+
+
+
+        public string? TopicDescription { get; set; }
+
+
+
+
+
+
+
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
+
+        public int TopicView { get; set; }
+
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+
+
+        public string? MetaOgType { get; set; }
+
+        public string? UserName { get; set; }
+
+
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
 
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper

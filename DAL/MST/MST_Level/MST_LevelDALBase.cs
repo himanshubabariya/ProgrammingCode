@@ -9,7 +9,7 @@ namespace ProgrammingCode.DAL.MST.MST_Level
     public class PRO_ProgramTopicDALBase:DALHelper
     {
         #region Method: SelectAll
-        public List<SelectAll_Result> SelectAll()
+        public List<SelectForSearch_Result> SelectAll()
         {
             try
             {
@@ -20,9 +20,34 @@ namespace ProgrammingCode.DAL.MST.MST_Level
                 {
                     dt.Load(dr);
                 }
-                return ConvertDataTableToEntity<SelectAll_Result>(dt);
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
             }
             catch(Exception ex) {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region Method: SelectByLevelName
+        public List<SelectForSearch_Result> SelectByLevelName(string? F_LevelName,string? F_UserName)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_SelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.VarChar, F_LevelName);
+                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, F_UserName);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
                 var vExceptionHandler = ExceptionHandler(ex);
                 if (vExceptionHandler.IsToThrowAnyException)
                     throw vExceptionHandler.ExceptionToThrow;
@@ -53,7 +78,7 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         #endregion
 
         #region Method: Insert
-        public decimal? Insert(Areas.MST_Level.Models.PRO_ProgramTopic objLevel)
+        public decimal? Insert(MST_LevelModel objLevel)
 
         {
             try
@@ -109,7 +134,7 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         #endregion
 
         #region Method: Update
-        public bool? Update(Areas.MST_Level.Models.PRO_ProgramTopic objLevel)
+        public bool? Update(MST_LevelModel objLevel)
         {
             try
             {
@@ -136,6 +161,51 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         #endregion
     }
     #region All Entities
+    #region Entity: SelectForSearch_Result
+    public partial class SelectForSearch_Result : DALHelper
+    {
+        #region Properties
+
+        public int LevelID { get; set; }
+
+
+
+        public string? LevelName { get; set; }
+
+
+
+        public string? LevelDescription { get; set; }
+
+
+
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
+
+        public string? UserName { get; set; }
+
+
+        public string? Description { get; set; }
+
+
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
 
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper

@@ -51,6 +51,35 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
             }
         }
         #endregion
+        #region Method: SelectBySolutionName
+        public List<SelectForSearch_Result> SelectBySolutionName(string? F_Defination, string? F_UserName, string? F_ProgramNumber, string? F_ProgrammingLangaugeName)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.VarChar, F_Defination);
+                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, F_UserName);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.VarChar, F_ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.VarChar, F_ProgrammingLangaugeName);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+    
         #region Method: SelectPk
         public List<SelectPk_Result> SelectPk(int? ProgramSolutionID)
         {
@@ -138,6 +167,40 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
     }
 
     #region All Entities
+    #region Entity: electForSearch_Result
+    public partial class SelectForSearch_Result : DALHelper
+    {
+        #region Properties
+
+        public int ProgramSolutionID { get; set; }
+
+        public string? ProgramSolution { get; set; }
+        public string? Defination { get; set; }
+
+        public string? UserName { get; set; }
+        public string? ProgrammingLangaugeName { get; set; }
+
+
+
+        public int ProgramID { get; set; }
+        public int ProgrammingLangaugeID { get; set; }
+
+        public int UserID { get; set; }
+
+        public string? Description { get; set; }
+
+      
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
 
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper

@@ -13,6 +13,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
         public string? F_TopicID { get; set; }
 
         public string? F_TopicName { get; set; }
+        public string? F_UserName { get; set; }
 
 
 

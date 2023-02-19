@@ -11,12 +11,12 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Models
         /*******************************************************************
          *	FILTERS
          *******************************************************************/
-        public int F_ProgramSolutionID { get; set; }
-
-        public int F_ProgramID { get; set; }
+   
 
         public string? F_Defination { get; set; }
         public string? F_UserName { get; set; }
+        public string? F_ProgramNumber { get; set; }
+        public string? F_ProgrammingLangaugeName { get; set; }
 
 
 
@@ -34,8 +34,13 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Models
 
         [Required, Display(Name = "ProgrammingLangaugeID")]
         public int ProgrammingLangaugeID { get; set; }
+        [Required, Display(Name = "ProgrammingLangaugeName")]
+        public string? ProgrammingLangaugeName { get; set; }
 
-        [Required, Display(Name = "User")]
+        [Required, Display(Name = "UesrName")]
+        public string? UserName { get; set; }
+
+        [Required, Display(Name = "UserID")]
         public int UserID { get; set; }
 
         [Required, Display(Name = "Description")]

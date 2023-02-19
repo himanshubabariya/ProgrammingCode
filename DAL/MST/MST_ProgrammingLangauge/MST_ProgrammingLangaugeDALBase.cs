@@ -95,7 +95,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         }
         #endregion
 
-        #region Method: SelectAll
+        #region Method: SelectByProgrammingLangaugeName
         public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(string? L_ProgrammingLangaugeName)
         {
             try

@@ -26,6 +26,16 @@
                         @Html.ValidationMessageFor(m => m.F_TopicName, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="">user</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_UserName" class="form-control" placeholder="Enter Topic " />
+                        </div>
+                        @Html.ValidationMessageFor(m => m.F_UserName, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
             </div>
 
             <hr />

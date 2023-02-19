@@ -1,4 +1,4 @@
-﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramSolution.SelectAll_Result>
+﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramSolution.SelectForSearch_Result>
 
 <div class="card bg-light shadow-sm mt-5">
     <div class="card-header">
@@ -24,10 +24,10 @@
                     <th class="text-right">ProgramSolutionID</th>
                     <th class="">ProgramSolution</th>
                     <th class="">Defination</th>
+                    <th class="">Langauge</th>
                     <th class="">ProgramID </th>
-                    <th class="">ProgrammingLangaugeID </th>
                     <th class="">Description</th>
-                    <th class="">UserID</th>
+                    <th class="">User</th>
                     
                     <th class="text-center">Actions</th>
                 </tr>
@@ -44,10 +44,11 @@
                         <td class="text-right">@item.ProgramSolutionID</td>
                         <td class="">@item.ProgramSolution</td>
                         <td class="">@item.Defination</td>
+                        <td class="">@item.ProgrammingLangaugeName</td>
                         <td class="">@item.ProgramID</td>
-                        <td class="">@item.ProgrammingLangaugeID</td>
+                    
                         <td class="">@item.Description</td>
-                        <td class="">@item.UserID</td>
+                        <td class="">@item.UserName</td>
                      
                         <td class="text-center">
 
@@ -62,9 +63,9 @@
 
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
                               data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-                              asp-area="SEC_User" asp-action="_Delete" asp-controller="SEC_User" style="display: inline;">
+                              asp-area="PRO_ProgramSolution" asp-action="_Delete" asp-controller="PRO_ProgramSolution" style="display: inline;">
                                 @Html.AntiForgeryToken()
-                                <input type="hidden" name="UserID" value="@item.ProgramSolutionID" />
+                                <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>

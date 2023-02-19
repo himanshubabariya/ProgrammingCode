@@ -95,6 +95,14 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-md-4 col-form-label p-4">Meta Og Title</label>
+            <div class="col-md-5">
+                 
+                <input type="text" asp-for="MetaOgTitle" class="form-control" />
+                @Html.ValidationMessageFor(m => m.MetaOgTitle, "", new { @class = "form-text text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-md-4 col-form-label p-4">Meta Og type</label>
             <div class="col-md-5">
 

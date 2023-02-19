@@ -3,9 +3,9 @@ using System.Xml.Linq;
 
 namespace ProgrammingCode.Areas.MST_Level.Models
 {
-    public class PRO_ProgramTopic
+    public class MST_LevelModel
     {
-        // ModelName: MST_ProgrammingLangaugeModel
+        // ModelName: MST_LevelModel
 
         /*******************************************************************
          *	FILTERS
@@ -13,6 +13,8 @@ namespace ProgrammingCode.Areas.MST_Level.Models
         public string? F_LevelID { get; set; }
 
         public string? F_LevelName { get; set; }
+
+        public string? F_UserName { get; set; }
 
 
 

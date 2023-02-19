@@ -21,9 +21,9 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(Models.PRO_ProgramTopic ObjLevel)
+        public IActionResult _SearchResult(MST_LevelModel ObjLevel)
         {
-            var vModel = DBConfig.LevelMST.SelectAll().ToList();
+            var vModel = DBConfig.LevelMST.SelectByLevelName(ObjLevel.F_LevelName,ObjLevel.F_UserName).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -41,7 +41,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(Models.PRO_ProgramTopic objLevel)
+        public IActionResult _Save(MST_LevelModel objLevel)
         {
             if (objLevel.LevelID == 0)
             {
@@ -66,8 +66,8 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
 
                 var objLevel = DBConfig.LevelMST.SelectPk(LevelID).SingleOrDefault();
 
-                Mapper.Initialize(config => config.CreateMap<SelectPk_Result, Models.PRO_ProgramTopic>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, Models.PRO_ProgramTopic>(objLevel);
+                Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_LevelModel>());
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_LevelModel>(objLevel);
 
                 return PartialView(vModel);
             }
