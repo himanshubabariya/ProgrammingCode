@@ -3,11 +3,45 @@ using ProgrammingCode.Areas.MST_Level.Models;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
 using System.Data;
 using System.Data.Common;
+using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 
 namespace ProgrammingCode.DAL.MST.MST_Level
 {
     public class PRO_ProgramTopicDALBase:DALHelper
     {
+        #region Method:SelectComboBoxLevel
+        public List<MST_LevelComboboxModel> SelectComboBoxLevel()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_SelectComboBox");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                List<MST_LevelComboboxModel> list = new List<MST_LevelComboboxModel>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    MST_LevelComboboxModel vlst = new MST_LevelComboboxModel();
+                    vlst.LevelID = Convert.ToInt32(dr["LevelID"]);
+                    vlst.LevelName = dr["LevelName"].ToString();
+                    list.Add(vlst);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method: SelectAll
         public List<SelectForSearch_Result> SelectAll()
         {
@@ -31,14 +65,14 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         }
         #endregion
         #region Method: SelectByLevelName
-        public List<SelectForSearch_Result> SelectByLevelName(string? F_LevelName,string? F_UserName)
+        public List<SelectForSearch_Result> SelectByLevelName(string? F_LevelName,int UserID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.VarChar, F_LevelName);
-                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, F_UserName);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

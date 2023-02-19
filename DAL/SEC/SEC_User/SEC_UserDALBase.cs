@@ -2,13 +2,49 @@
 using ProgrammingCode.Areas.SEC_User.Models;
 using System.Data;
 using System.Data.Common;
+using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
+using static ProgrammingCode.Areas.SEC_User.Models.SEC_UserModel;
 
 namespace ProgrammingCode.DAL.SEC.SEC_User
 {
     public class SEC_UserDALBase : DALHelper
     {
-        #region Method:SelectALL
-        public List<SelectAll_Result> SelectAll()
+       
+            #region Method:SelectComboBoxUser
+            public List<SEC_UserComboboxModel> SelectComboBoxUser()
+            {
+
+                try
+                {
+                    SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                    DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_SEC_User_SelectComboBox");
+                    DataTable dt = new DataTable();
+                    using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                    {
+                        dt.Load(dr);
+                    }
+                    List<SEC_UserComboboxModel> list = new List<SEC_UserComboboxModel>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        SEC_UserComboboxModel vlst = new SEC_UserComboboxModel();
+                        vlst.UserID = Convert.ToInt32(dr["UserID"]);
+                        vlst.UserName = dr["UserName"].ToString();
+                        list.Add(vlst);
+                    }
+                    return list;
+
+                }
+                catch (Exception ex)
+                {
+                    var vExceptionHandler = ExceptionHandler(ex);
+                    if (vExceptionHandler.IsToThrowAnyException)
+                        throw vExceptionHandler.ExceptionToThrow;
+                    return null;
+                }
+            }
+            #endregion
+            #region Method:SelectALL
+            public List<SelectAll_Result> SelectAll()
         {
 
             try
@@ -33,14 +69,14 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
         #endregion
 
         #region Method:SelectByUserName
-        public List<SelectAll_Result> SelectByUserName(string? F_UserName)
+        public List<SelectAll_Result> SelectByUserID(int UserID)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_SEC_User_SelectForSearch");
-                sqlDB.AddInParameter(dbMST, "UserName", SqlDbType.VarChar, F_UserName);
+                sqlDB.AddInParameter(dbMST, "UserID", SqlDbType.Int, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {

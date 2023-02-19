@@ -12,6 +12,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         #region Index
         public IActionResult Index()
         {
+            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -21,7 +22,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_ProgrammingLangaugeModel objProgrammingLangauge)
         {
-            var vModel = DBConfig.LangaugeMST.SelectByProgrammingLangaugeName(objProgrammingLangauge.L_ProgrammingLangaugeName).ToList();
+            var vModel = DBConfig.LangaugeMST.SelectByProgrammingLangaugeName(objProgrammingLangauge.L_ProgrammingLangaugeName, objProgrammingLangauge.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

@@ -14,6 +14,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         #region index
         public IActionResult Index()
         {
+            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -23,7 +24,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_LevelModel ObjLevel)
         {
-            var vModel = DBConfig.LevelMST.SelectByLevelName(ObjLevel.F_LevelName,ObjLevel.F_UserName).ToList();
+            var vModel = DBConfig.LevelMST.SelectByLevelName(ObjLevel.F_LevelName,ObjLevel.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

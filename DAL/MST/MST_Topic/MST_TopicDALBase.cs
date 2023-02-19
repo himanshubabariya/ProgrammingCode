@@ -3,11 +3,46 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.MST_Topic.Models;
+using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
+using static ProgrammingCode.Areas.MST_Topic.Models.MST_TopicModel;
 
 namespace ProgrammingCode.DAL.MST.MST_Topic
 {
     public abstract class MST_TopicDALBase : DALHelper
     {
+        #region Method:SelectComboBoxTopic
+        public List<MST_TopicComboboxModel> SelectComboBoxTopic()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_SelectComboBox");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                List<MST_TopicComboboxModel> list = new List<MST_TopicComboboxModel>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    MST_TopicComboboxModel vlst = new MST_TopicComboboxModel();
+                    vlst.TopicID = Convert.ToInt32(dr["TopicID"]);
+                    vlst.TopicName = dr["TopicName"].ToString();
+                    list.Add(vlst);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
 
         # region Method: Delete
         public bool? Delete(int? TopicID)
@@ -92,15 +127,14 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
         }
         #endregion
         #region Method: SelectByTopicName
-        public List<SelectForSearch_Result> SelectByTopicName(string? F_TopicName,string? F_UserName)
-        { 
+        public List<SelectForSearch_Result> SelectByTopicName(string? F_TopicName,int UserID) { 
        
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.VarChar, F_TopicName);
-                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, F_UserName);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.VarChar, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

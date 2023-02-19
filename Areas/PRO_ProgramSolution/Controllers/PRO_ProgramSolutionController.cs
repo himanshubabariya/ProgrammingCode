@@ -13,6 +13,8 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         #region Index 
         public IActionResult Index()
         {
+            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
+            ViewBag.ProgrammingLangaugecomboList = DBConfig.LangaugeMST.SelectComboBoxProgrammingLangauge().ToList();
             return View();
         }
         #endregion
@@ -21,7 +23,8 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(PRO_ProgramSolutionModel objSolution)
         {
-            var vModel = DBConfig.SolutionPRO.SelectBySolutionName(objSolution.F_Defination, objSolution.F_UserName, objSolution.F_ProgramNumber, objSolution.F_ProgrammingLangaugeName).ToList();
+            
+            var vModel = DBConfig.SolutionPRO.SelectBySolutionName(objSolution.F_Defination, objSolution.UserID, objSolution.F_ProgramNumber, objSolution.ProgrammingLangaugeID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -37,6 +40,8 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         public IActionResult _AddEdit(int? ProgramSolutionID)
         {
             ViewBag.Action = "Add";
+            ViewBag.ProgramcomboList = DBConfig.ProgramPRO.SelectComboBoxProgram().ToList();
+            ViewBag.ProgrammingLangaugecomboList = DBConfig.LangaugeMST.SelectComboBoxProgrammingLangauge().ToList(); 
 
             if (ProgramSolutionID != null)
             {

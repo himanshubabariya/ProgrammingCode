@@ -57,5 +57,11 @@ namespace ProgrammingCode.Areas.SEC_User.Models
 
 
         public DateTime Modified { get; set; }
+
+        public class SEC_UserComboboxModel
+        {
+            public int UserID { get; set; }
+            public string? UserName { get; set; }
+        }
     }
 }

@@ -17,15 +17,18 @@
             <label class="col-md-4 col-form-label ">Progarm Solution</label>
             <div class="col-md-5">
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="ProgramSolution" class="form-control" placeholder="Enter User" />
+                <input type="text" asp-for="ProgramSolution" class="form-control" placeholder="Enter Solution" />
                 @Html.ValidationMessageFor(m => m.ProgramSolution, "", new { @class = "form-text text-danger" })
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 "> Program ID</label>
+            <label class="col-md-4 col-form-label p-4 "> Program </label>
             <div class="col-md-5">
                 
-                <textarea type="text" asp-for="ProgramID" class="form-control" placeholder="Enter Password"></textarea>
+               
+                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program">
+                    <option>select Program</option>
+            </select>
                 @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -33,7 +36,11 @@
             <label class="col-md-4 col-form-label p-4 ">Programming Langauge </label>
             <div class="col-md-5">
 
-                <textarea type="text" asp-for="ProgrammingLangaugeID" class="form-control" placeholder="Enter Email	"></textarea>
+                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgrammingLangaugeID" asp-items="@(new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"))" data-control="select2" data-placeholder="Select Programming Langauge">
+                    <option>select Langauge</option>
+                </select>
+
+            </select>
                 @Html.ValidationMessageFor(m => m.ProgrammingLangaugeID, "", new { @class = "form-text text-danger" })
             </div>
         </div>

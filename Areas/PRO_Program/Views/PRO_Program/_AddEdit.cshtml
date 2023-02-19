@@ -1,4 +1,4 @@
-﻿@model ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramSolutionModel                        
+﻿@model ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel                        
 <div class="modal-header">
     <h4 class="modal-title">@ViewBag.Action Page</h4>
     <button type="button" class="btn btn-danger btn-elevate btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
@@ -14,12 +14,16 @@
         @Html.HiddenFor(m => m.ProgramID) 
 
         <div class="form-group row">
-            <label class="col-md-4 col-form-label ">Level ID</label>
-            <div class="col-md-5">
-                @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="LevelID" class="form-control" placeholder="select Level " />
+            <label class="col-md-4 col-form-label "> Level</label>
+        <div class="col-md-5">
+
+                <select class="form-select form-select-sm form-select-solid" asp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level">
+            <option>select Level</option>
+
+            </select>
                 @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
-            </div>
+        </div>
+          
         </div>
         <div class="form-group row">
             <label class="col-md-4 col-form-label p-4 "> Defination</label>

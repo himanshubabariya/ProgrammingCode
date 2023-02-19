@@ -14,6 +14,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         #region Index 
         public IActionResult Index()
         {
+            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -22,7 +23,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(SEC_UserModel objUser)
         {
-            var vModel = DBConfig.UserSEC.SelectByUserName(objUser.F_UserName).ToList();
+            var vModel = DBConfig.UserSEC.SelectByUserID(objUser.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

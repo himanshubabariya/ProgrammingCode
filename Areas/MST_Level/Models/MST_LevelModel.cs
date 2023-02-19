@@ -50,5 +50,14 @@ namespace ProgrammingCode.Areas.MST_Level.Models
 
 
         public DateTime Modified { get; set; }
+
+        /***************************************************/
+        /*COMOBOX MODLE*/
+        /****************************************************/
+        public class MST_LevelComboboxModel
+        {
+            public int LevelID { get; set; }
+            public string? LevelName { get; set; }
+        }
     }
 }

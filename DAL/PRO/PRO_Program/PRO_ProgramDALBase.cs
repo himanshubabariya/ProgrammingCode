@@ -2,11 +2,48 @@
 using ProgrammingCode.Areas.PRO_Program.Models;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
+using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
+using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
     public class PRO_ProgramDALBase:DALHelper
     {
+       
+        #region Method:SelectComboBoxProgram
+        public List<PRO_ProgramComboboxModel> SelectComboBoxProgram()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectComboBox");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                List<PRO_ProgramComboboxModel> list = new List<PRO_ProgramComboboxModel>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    PRO_ProgramComboboxModel vlst = new PRO_ProgramComboboxModel();
+                    vlst.ProgramID = Convert.ToInt32(dr["ProgramID"]);
+                    vlst.Defination = dr["Defination"].ToString();
+                    list.Add(vlst);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method:SelectALL
         public List<SelectAll_Result> SelectAll()
         {
@@ -78,7 +115,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method: Insert
-        public decimal? Insert(PRO_ProgramSolutionModel objProgram)
+        public decimal? Insert(PRO_ProgramModel objProgram)
 
         {
             try
@@ -119,7 +156,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method: Update
-        public bool? Update(PRO_ProgramSolutionModel objProgram)
+        public bool? Update(PRO_ProgramModel objProgram)
 
         {
             try

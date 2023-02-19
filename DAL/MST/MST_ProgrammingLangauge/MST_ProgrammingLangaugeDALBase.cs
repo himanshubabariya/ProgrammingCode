@@ -4,13 +4,47 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
+using static ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel;
 
 namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
 {
     public abstract class MST_ProgrammingLangaugeDALBae : DALHelper
     {
+        #region Method:SelectComboBoxLangauge
+        public List<PRO_ProgrammingLangaugeComboBoxModel> SelectComboBoxProgrammingLangauge()
+        {
 
-        # region Method: Delete
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectComboBox");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                List<PRO_ProgrammingLangaugeComboBoxModel> list = new List<PRO_ProgrammingLangaugeComboBoxModel>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    PRO_ProgrammingLangaugeComboBoxModel vlst = new PRO_ProgrammingLangaugeComboBoxModel();
+                    vlst.ProgrammingLangaugeID = Convert.ToInt32(dr["ProgrammingLangaugeID"]);
+                    vlst.ProgrammingLangaugeName = dr["ProgrammingLangaugeName"].ToString();
+                    list.Add(vlst);
+                }
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+
+        #region Method: Delete
         public bool? Delete(int? ProgrammingLangaugeID)
         {
             try
@@ -96,13 +130,14 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         #endregion
 
         #region Method: SelectByProgrammingLangaugeName
-        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(string? L_ProgrammingLangaugeName)
+        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(string? L_ProgrammingLangaugeName,int UserID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.VarChar, L_ProgrammingLangaugeName);
+                     sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.VarChar, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

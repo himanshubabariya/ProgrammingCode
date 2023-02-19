@@ -18,12 +18,13 @@
  
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="">User</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            <input type="text" asp-for="F_UserName" class="form-control" placeholder="Enter User Name " />
+                        <label class="col-md-4 col-form-label "> User</label>
+                        <div class="col-md">
+                            <select class="form-select form-select-sm " data-allow-clear="true"  tabindex="-1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.SelectUser,"UserID","UserName"))" data-control="select2" data-placeholder="Select User">
+                                <option>select User</option>
+                            </select>
+                            @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "form-text text-danger" })
                         </div>
-                        @Html.ValidationMessageFor(m => m.F_UserName,"", new { @class = "form-text text-danger" })
                     </div>
                 </div>
             </div>

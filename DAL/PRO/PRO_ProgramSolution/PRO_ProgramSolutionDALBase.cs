@@ -2,11 +2,19 @@
 using ProgrammingCode.Areas.PRO_ProgramSolution.Models;
 using System.Data;
 using System.Data.Common;
+using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
+using static ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel;
+using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
 
 namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
 {
     public class PRO_ProgramSolutionDALBase:DALHelper
+
+  
     {
+       
+       
+
         #region Method:SelectALL
         public List<SelectAll_Result> SelectAll()
         {
@@ -52,16 +60,16 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         }
         #endregion
         #region Method: SelectBySolutionName
-        public List<SelectForSearch_Result> SelectBySolutionName(string? F_Defination, string? F_UserName, string? F_ProgramNumber, string? F_ProgrammingLangaugeName)
+        public List<SelectForSearch_Result> SelectBySolutionName(string? F_Defination, int UserID, string? F_ProgramNumber, int ProgrammingLangaugeID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.VarChar, F_Defination);
-                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, F_UserName);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
                 sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.VarChar, F_ProgramNumber);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.VarChar, F_ProgrammingLangaugeName);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

@@ -12,6 +12,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         #region Index
         public IActionResult Index()
         {
+            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -21,7 +22,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_TopicModel objTopic)
         {
-            var vModel = DBConfig.TopicMST.SelectByTopicName(objTopic.F_TopicName, objTopic.F_UserName).ToList();
+            var vModel = DBConfig.TopicMST.SelectByTopicName(objTopic.F_TopicName, objTopic.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

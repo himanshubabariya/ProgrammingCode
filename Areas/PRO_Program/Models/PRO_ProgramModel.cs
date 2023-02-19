@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace ProgrammingCode.Areas.PRO_Program.Models
 {
-    public class PRO_ProgramSolutionModel
+    public class PRO_ProgramModel
     {
 
         // ModelName: PRO_ProgramModel
@@ -108,5 +108,15 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
 
 
         public DateTime Modified { get; set; }
+
+        /*******************************************************************
+        *	combobox
+        *******************************************************************/
+        public class PRO_ProgramComboboxModel
+        {
+            public int ProgramID { get; set; }
+            public string? Defination { get; set; }
+        }
+
     }
 }

@@ -102,5 +102,11 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
 
 
         public DateTime Modified { get; set; }
+
+        public class PRO_ProgrammingLangaugeComboBoxModel
+        {
+            public int ProgrammingLangaugeID { get; set; }
+            public string? ProgrammingLangaugeName { get; set; }
+        }
     }
 }

@@ -1,17 +1,21 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
+
+
 using ProgrammingCode.Areas.PRO_Program.Models;
-using ProgrammingCode.Areas.SEC_User.Models;
+
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.PRO.PRO_Program;
 using System.Data;
+using System.Data.SqlClient;
+using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 
 namespace ProgrammingCode.Areas.PRO_Program.Controllers
 {
     [Area("PRO_Program")]
     public class PRO_ProgramController : Controller
     {
+       
         #region Index 
         public IActionResult Index()
         {
@@ -21,7 +25,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramSolutionModel objProgram)
+        public IActionResult _SearchResult(PRO_ProgramModel objProgram)
         {
             var vModel = DBConfig.ProgramPRO.SelectAll().ToList();
             return PartialView("_List", vModel);
@@ -40,14 +44,17 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         {
             ViewBag.Action = "Add";
 
+            
+            ViewBag.levelcomboList = DBConfig.LevelMST.SelectComboBoxLevel().ToList(); ;
+
             if (ProgramID != null)
             {
                 ViewBag.Action = "Edit";
 
                 var objProgram = DBConfig.ProgramPRO.SelectPk(ProgramID).SingleOrDefault();
 
-                Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramSolutionModel>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramSolutionModel>(objProgram);
+                Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramModel>());
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramModel>(objProgram);
 
                 return PartialView(vModel);
             }
@@ -57,7 +64,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(PRO_ProgramSolutionModel objProgram)
+        public IActionResult _Save(PRO_ProgramModel objProgram)
         {
             if (objProgram.ProgramID == 0)
             {
@@ -65,11 +72,13 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
             }
             else
             {
-                var vReturn= DBConfig.ProgramPRO.Update(objProgram);
+                DBConfig.ProgramPRO.Update(objProgram);
             }
             return Content(null);
         }
         #endregion
+
+
         
     }
 }

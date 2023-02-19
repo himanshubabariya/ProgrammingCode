@@ -94,5 +94,11 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
 
 
         public DateTime Modified { get; set; }
+
+        public class MST_TopicComboboxModel
+        {
+            public int TopicID { get; set; }
+            public string? TopicName { get; set; }
+        }
     }
 }
