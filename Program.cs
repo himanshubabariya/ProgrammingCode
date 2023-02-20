@@ -22,6 +22,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=SEC_User}/{action=LoginP}/{id?}");
 
 app.Run();

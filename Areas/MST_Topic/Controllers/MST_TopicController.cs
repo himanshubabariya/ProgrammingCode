@@ -12,7 +12,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         #region Index
         public IActionResult Index()
         {
-            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
+            ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -22,7 +22,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_TopicModel objTopic)
         {
-            var vModel = DBConfig.TopicMST.SelectByTopicName(objTopic.F_TopicName, objTopic.UserID).ToList();
+            var vModel = DBConfig.dbTopic.SelectByTopicName(objTopic.F_TopicName, objTopic.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -36,7 +36,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objTopic = DBConfig.TopicMST.SelectPk(TopicID).SingleOrDefault();
+                var objTopic = DBConfig.dbTopic.SelectPk(TopicID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_TopicModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_TopicModel>(objTopic);
@@ -54,11 +54,11 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         {
             if (objTopic.TopicID == 0)
             {
-                var vReturn = DBConfig.TopicMST.Insert(objTopic);
+                var vReturn = DBConfig.dbTopic.Insert(objTopic);
             }
             else
             {
-                DBConfig.TopicMST.Update(objTopic);
+                DBConfig.dbTopic.Update(objTopic);
             }
             return Content(null);
         }
@@ -69,7 +69,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Delete(int TopicID)
         {
-            DBConfig.TopicMST.Delete(TopicID);
+            DBConfig.dbTopic.Delete(TopicID);
             return Content(null);
         }
         #endregion

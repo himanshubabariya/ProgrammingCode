@@ -11,10 +11,16 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
     [Area("SEC_User")]
     public class SEC_UserController : Controller
     {
+        #region LoginP 
+        public IActionResult LoginP()
+        {
+            return View("_Login");
+        }
+        #endregion
         #region Index 
         public IActionResult Index()
         {
-            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
+            ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -23,7 +29,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(SEC_UserModel objUser)
         {
-            var vModel = DBConfig.UserSEC.SelectByUserID(objUser.UserID).ToList();
+            var vModel = DBConfig.dbUser.SelectByUserID(objUser.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -32,7 +38,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Delete(int UserID)
         {
-            DBConfig.UserSEC.Delete(UserID); return Content(null);
+            DBConfig.dbUser.Delete(UserID); return Content(null);
         }
         #endregion
         #region _AddEdit
@@ -44,7 +50,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objUser = DBConfig.UserSEC.SelectPk(UserID).SingleOrDefault();
+                var objUser = DBConfig.dbUser.SelectPk(UserID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, SEC_UserModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, SEC_UserModel>(objUser);
@@ -61,11 +67,11 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         {
             if (objUser.UserID == 0)
             {
-                var vReturn = DBConfig.UserSEC.Insert(objUser);
+                var vReturn = DBConfig.dbUser.Insert(objUser);
             }
             else
             {
-                DBConfig.UserSEC.Update(objUser);
+                DBConfig.dbUser.Update(objUser);
             }
             return Content(null);
         }

@@ -14,7 +14,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         #region index
         public IActionResult Index()
         {
-            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
+            ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -24,7 +24,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_LevelModel ObjLevel)
         {
-            var vModel = DBConfig.LevelMST.SelectByLevelName(ObjLevel.F_LevelName,ObjLevel.UserID).ToList();
+            var vModel = DBConfig.dbLevel.SelectByLevelName(ObjLevel.F_LevelName,ObjLevel.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -34,7 +34,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Delete(int LevelID)
         {
-            DBConfig.LevelMST.Delete(LevelID);
+            DBConfig.dbLevel.Delete(LevelID);
             return Content(null);
         }
         #endregion
@@ -46,11 +46,11 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         {
             if (objLevel.LevelID == 0)
             {
-                var vReturn = DBConfig.LevelMST.Insert(objLevel);
+                var vReturn = DBConfig.dbLevel.Insert(objLevel);
             }
             else
             {
-                DBConfig.LevelMST.Update(objLevel);
+                DBConfig.dbLevel.Update(objLevel);
             }
             return Content(null);
         }
@@ -65,7 +65,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
             {
                 /*ViewBag.Action = "Edit";*/
 
-                var objLevel = DBConfig.LevelMST.SelectPk(LevelID).SingleOrDefault();
+                var objLevel = DBConfig.dbLevel.SelectPk(LevelID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_LevelModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_LevelModel>(objLevel);

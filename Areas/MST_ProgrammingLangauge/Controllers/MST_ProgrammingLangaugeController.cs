@@ -12,7 +12,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         #region Index
         public IActionResult Index()
         {
-            ViewBag.SelectUser = DBConfig.UserSEC.SelectComboBoxUser().ToList();
+            ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
             return View();
         }
         #endregion
@@ -22,7 +22,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_ProgrammingLangaugeModel objProgrammingLangauge)
         {
-            var vModel = DBConfig.LangaugeMST.SelectByProgrammingLangaugeName(objProgrammingLangauge.L_ProgrammingLangaugeName, objProgrammingLangauge.UserID).ToList();
+            var vModel = DBConfig.dbLangauge.SelectByProgrammingLangaugeName(objProgrammingLangauge.L_ProgrammingLangaugeName, objProgrammingLangauge.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -36,7 +36,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objProgrammingLangauge = DBConfig.LangaugeMST.SelectPk(ProgrammingLangaugeID).SingleOrDefault();
+                var objProgrammingLangauge = DBConfig.dbLangauge.SelectPk(ProgrammingLangaugeID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_ProgrammingLangaugeModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_ProgrammingLangaugeModel>(objProgrammingLangauge);
@@ -54,11 +54,11 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         {
             if (objProgrammingLangauge.ProgrammingLangaugeID == 0)
             {
-                var vReturn = DBConfig.LangaugeMST.Insert(objProgrammingLangauge);
+                var vReturn = DBConfig.dbLangauge.Insert(objProgrammingLangauge);
             }
             else
             {
-                DBConfig.LangaugeMST.Update(objProgrammingLangauge);
+                DBConfig.dbLangauge.Update(objProgrammingLangauge);
             }
             return Content(null);
         }
@@ -69,7 +69,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Delete(int ProgrammingLangaugeID)
         {
-            DBConfig.LangaugeMST.Delete(ProgrammingLangaugeID);
+            DBConfig.dbLangauge.Delete(ProgrammingLangaugeID);
             return Content(null);
         }
         #endregion

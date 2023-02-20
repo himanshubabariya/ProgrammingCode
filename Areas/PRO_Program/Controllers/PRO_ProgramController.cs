@@ -27,7 +27,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(PRO_ProgramModel objProgram)
         {
-            var vModel = DBConfig.ProgramPRO.SelectAll().ToList();
+            var vModel = DBConfig.dbProgram.SelectAll().ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -36,7 +36,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Delete(int ProgramID)
         {
-            DBConfig.ProgramPRO.Delete(ProgramID); return Content(null);
+            DBConfig.dbProgram.Delete(ProgramID); return Content(null);
         }
         #endregion
         #region _AddEdit
@@ -45,13 +45,13 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
             ViewBag.Action = "Add";
 
             
-            ViewBag.levelcomboList = DBConfig.LevelMST.SelectComboBoxLevel().ToList(); ;
+            ViewBag.levelcomboList = DBConfig.dbLevel.SelectComboBoxLevel().ToList(); ;
 
             if (ProgramID != null)
             {
                 ViewBag.Action = "Edit";
 
-                var objProgram = DBConfig.ProgramPRO.SelectPk(ProgramID).SingleOrDefault();
+                var objProgram = DBConfig.dbProgram.SelectPk(ProgramID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramModel>(objProgram);
@@ -68,11 +68,11 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         {
             if (objProgram.ProgramID == 0)
             {
-                var vReturn = DBConfig.ProgramPRO.Insert(objProgram);
+                var vReturn = DBConfig.dbProgram.Insert(objProgram);
             }
             else
             {
-                DBConfig.ProgramPRO.Update(objProgram);
+                DBConfig.dbProgram.Update(objProgram);
             }
             return Content(null);
         }

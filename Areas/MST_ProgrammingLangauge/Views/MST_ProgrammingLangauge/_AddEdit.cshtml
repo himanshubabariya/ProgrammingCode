@@ -5,7 +5,12 @@
         <i class="fa fa-close"></i>
     </button>
 </div>
-
+<script src="~/https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#textOne").focus();
+    });;
+</script>
 <div class="modal-body">
     <form id="formAddEditSave_UMS" data-ajax="true" data-ajax-method="post"
           data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
@@ -17,7 +22,7 @@
             <label class="col-md-4 col-form-label ">Langauge Name</label>
             <div class="col-md-5">
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="ProgrammingLangaugeName" class="form-control" placeholder="Enter Programming Langauge Name" />
+                <input type="text" id="textOne" asp-for="ProgrammingLangaugeName" class="form-control" placeholder="Enter Programming Langauge Name" />
                 @Html.ValidationMessageFor(m => m.ProgrammingLangaugeName, "", new { @class = "form-text text-danger" })
             </div>
         </div>
