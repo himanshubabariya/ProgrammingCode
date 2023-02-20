@@ -11,12 +11,6 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
     [Area("SEC_User")]
     public class SEC_UserController : Controller
     {
-        #region LoginP 
-        public IActionResult LoginP()
-        {
-            return View("_Login");
-        }
-        #endregion
         #region Index 
         public IActionResult Index()
         {
