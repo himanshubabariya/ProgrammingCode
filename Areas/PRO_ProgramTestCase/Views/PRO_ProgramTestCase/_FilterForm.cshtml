@@ -1,4 +1,4 @@
-﻿@model ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel
+﻿@model ProgrammingCode.Areas.PRO_ProgramTestCase.Models.PRO_ProgramTestCaseModel
 
 <div class="card shadow-sm">
     <div class="card-header">
@@ -11,21 +11,20 @@
     <div class="card-body">
         <form id="filterForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
               data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-              asp-action="_SearchResult" asp-controller="MST_Level" novalidate="novalidate" asp-area="MST_Level" >
+              asp-action="_SearchResult" asp-controller="PRO_ProgramTestCase" novalidate="novalidate" asp-area="PRO_ProgramTestCase">
             @Html.AntiForgeryToken()
 
             <div class="row">
-               
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="">Level</label>
-                        <div class="input-group">
-                                <select class="form-select form-select-sm" data-allow-clear="true" tabindex="-1" asp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level">
-                                <option>select Level</option>
 
-                                </select>
-                        </div>
-                        @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
+                <div class="col-md-4">
+                    <label class="">Program</label>
+                    <div class="input-group">
+
+                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program">
+                            <option>select Program</option>
+                        </select>
+
+                        @Html.ValidationMessageFor(m => m.ProgramID,"", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="col-md-4">

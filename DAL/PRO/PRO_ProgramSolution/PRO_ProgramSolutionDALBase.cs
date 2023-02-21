@@ -60,15 +60,15 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         }
         #endregion
         #region Method: SelectBySolutionName
-        public List<SelectForSearch_Result> SelectBySolutionName(string? F_Defination, int UserID, string? F_ProgramNumber, int ProgrammingLangaugeID)
+        public List<SelectForSearch_Result> SelectBySolutionName(int ProgramID, int UserID, int ProgrammingLangaugeID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, F_Defination);
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int,ProgramID);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
-                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, F_ProgramNumber);
+               
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
@@ -115,19 +115,19 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         }
         #endregion
         #region Method: Insert
-        public decimal? Insert(PRO_ProgramSolutionModel objSolution)
+        public decimal? Insert(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_Insert");
-                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, objSolution.ProgramSolution);
-                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, objSolution.ProgramID);
+                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.ProgramSolution);
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgramID);
 
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, objSolution.ProgrammingLangaugeID);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgrammingLangaugeID);
        
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objSolution.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -145,20 +145,20 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         }
         #endregion
         #region Method: Update
-        public bool? Update(PRO_ProgramSolutionModel objSolution)
+        public bool? Update(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_Update");
-                sqlDB.AddInParameter(dbCMD, "ProgramSolutionID", SqlDbType.Int, objSolution.ProgramSolutionID);
-                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, objSolution.ProgramSolution);
-                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, objSolution.ProgramID);
+                sqlDB.AddInParameter(dbCMD, "ProgramSolutionID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgramSolutionID);
+                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.ProgramSolution);
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgramID);
 
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, objSolution.ProgrammingLangaugeID);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgrammingLangaugeID);
 
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objSolution.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

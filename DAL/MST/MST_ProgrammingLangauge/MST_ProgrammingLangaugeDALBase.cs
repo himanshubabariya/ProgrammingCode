@@ -65,28 +65,28 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         }
         #endregion
         #region Method: Insert
-        public decimal? Insert(MST_ProgrammingLangaugeModel objProgrammingLangauge)
+        public decimal? Insert(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_Insert");
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeName);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeShortDescription", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeShortDescription);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeDetailedDescription", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeDetailedDescription);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeLogo);
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgrammingLangauge.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, objProgrammingLangauge.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, objProgrammingLangauge.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, objProgrammingLangauge.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, objProgrammingLangauge.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objProgrammingLangauge.Description);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeName);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeShortDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeShortDescription);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeDetailedDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeDetailedDescription);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo);
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaKeywords);
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaAuthor);
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgImage);
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgType);
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgUrl);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -130,13 +130,13 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         #endregion
 
         #region Method: SelectByProgrammingLangaugeName
-        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(string? L_ProgrammingLangaugeName,int UserID)
+        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(int ProgrammingLangaugeID,int UserID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.NVarChar, L_ProgrammingLangaugeName);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
                      sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.NVarChar, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
@@ -184,28 +184,28 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         }
         #endregion
         #region Method: Update
-        public bool? Update(MST_ProgrammingLangaugeModel objProgrammingLangauge)
+        public bool? Update(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_Update");
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, objProgrammingLangauge.ProgrammingLangaugeID);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeName);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeShortDescription", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeShortDescription);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeDetailedDescription", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeDetailedDescription);
-                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar, objProgrammingLangauge.ProgrammingLangaugeLogo);
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgrammingLangauge.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, objProgrammingLangauge.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, objProgrammingLangauge.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, objProgrammingLangauge.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, objProgrammingLangauge.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, objProgrammingLangauge.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objProgrammingLangauge.Description);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeName", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeName);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeShortDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeShortDescription);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeDetailedDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeDetailedDescription);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo);
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaKeywords);
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaAuthor);
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgImage);
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgType);
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.MetaOgUrl);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_ProgrammingLangauge.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);

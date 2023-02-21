@@ -20,9 +20,9 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(MST_TopicModel objTopic)
+        public IActionResult _SearchResult(MST_TopicModel Obj_MST_Topic)
         {
-            var vModel = DBConfig.dbTopic.SelectByTopicName(objTopic.F_TopicName, objTopic.UserID).ToList();
+            var vModel = DBConfig.dbTopic.SelectByTopicName(Obj_MST_Topic.F_TopicName, Obj_MST_Topic.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -36,10 +36,10 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objTopic = DBConfig.dbTopic.SelectPk(TopicID).SingleOrDefault();
+                var Obj_MST_Topic = DBConfig.dbTopic.SelectPk(TopicID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_TopicModel>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_TopicModel>(objTopic);
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_TopicModel>(Obj_MST_Topic);
 
                 return PartialView(vModel);
             }
@@ -50,15 +50,15 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(MST_TopicModel objTopic)
+        public IActionResult _Save(MST_TopicModel Obj_MST_Topic)
         {
-            if (objTopic.TopicID == 0)
+            if (Obj_MST_Topic.TopicID == 0)
             {
-                var vReturn = DBConfig.dbTopic.Insert(objTopic);
+                var vReturn = DBConfig.dbTopic.Insert(Obj_MST_Topic);
             }
             else
             {
-                DBConfig.dbTopic.Update(objTopic);
+                DBConfig.dbTopic.Update(Obj_MST_Topic);
             }
             return Content(null);
         }

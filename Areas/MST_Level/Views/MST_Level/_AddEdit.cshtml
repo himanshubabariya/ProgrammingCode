@@ -14,7 +14,7 @@
         @Html.HiddenFor(m => m.LevelID) 
 
         <div class="form-group row">
-            <label class="col-md-4 col-form-label ">Level Name</label>
+            <label class="required col-md-4 col-form-label ">Level Name</label>
             <div class="col-md-5">
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
                 <input type="text" asp-for="LevelName" class="form-control" placeholder="Enter Level Name" />

@@ -15,23 +15,25 @@
             @Html.AntiForgeryToken()
 
             <div class="row">
- 
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="">Langauge</label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            <input type="text" asp-for="L_ProgrammingLangaugeName" class="form-control" placeholder="Enter Langauge " />
+
+                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgrammingLangaugeID" asp-items="@(new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"))" data-control="select2" data-placeholder="Select Programming Langauge">
+                                <option>select Langauge</option>
+                            </select>
                         </div>
-                        @Html.ValidationMessageFor(m => m.L_ProgrammingLangaugeName, "", new { @class = "form-text text-danger" })
+
                     </div>
-                </div>
+                    </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="">User</label>
                         <div class="input-group">
 
-                            <select class="form-select form-select " data-allow-clear="true" tabindex="-1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.SelectUser,"UserID","UserName"))" data-control="select2" data-placeholder="Select User">
+                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.SelectUser,"UserID","UserName"))" data-control="select2" data-placeholder="Select User">
                                 <option>select User</option>
                             </select>
                         </div>

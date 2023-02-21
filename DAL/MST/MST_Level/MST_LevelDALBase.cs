@@ -7,7 +7,7 @@ using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 
 namespace ProgrammingCode.DAL.MST.MST_Level
 {
-    public class PRO_ProgramTopicDALBase:DALHelper
+    public class MST_LevelDALBase:DALHelper
     {
         #region Method:SelectComboBoxLevel
         public List<MST_LevelComboboxModel> SelectComboBoxLevel()
@@ -65,13 +65,13 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         }
         #endregion
         #region Method: SelectByLevelName
-        public List<SelectForSearch_Result> SelectByLevelName(string? F_LevelName,int UserID)
+        public List<SelectForSearch_Result> SelectByLevelName(int LevelID,int UserID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, F_LevelName);
+                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int,LevelID);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
@@ -112,17 +112,17 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         #endregion
 
         #region Method: Insert
-        public decimal? Insert(MST_LevelModel objLevel)
+        public decimal? Insert(MST_LevelModel Obj_MST_Level)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_Insert");
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, objLevel.LevelName);
-                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, objLevel.LevelDescription);
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objLevel.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objLevel.Description);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, Obj_MST_Level.LevelName);
+                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, Obj_MST_Level.LevelDescription);
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Level.Sequence);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_Level.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -168,17 +168,17 @@ namespace ProgrammingCode.DAL.MST.MST_Level
         #endregion
 
         #region Method: Update
-        public bool? Update(MST_LevelModel objLevel)
+        public bool? Update(MST_LevelModel Obj_MST_Level)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_Update");
-                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objLevel.LevelID);
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, objLevel.LevelName);
-                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, objLevel.LevelDescription);
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objLevel.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objLevel.Description);
+                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, Obj_MST_Level.LevelID);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, Obj_MST_Level.LevelName);
+                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, Obj_MST_Level.LevelDescription);
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Level.Sequence);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_Level.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);

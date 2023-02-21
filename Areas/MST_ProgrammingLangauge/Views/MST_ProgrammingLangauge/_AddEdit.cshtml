@@ -5,15 +5,10 @@
         <i class="fa fa-close"></i>
     </button>
 </div>
-<script src="~/https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#textOne").focus();
-    });;
-</script>
+
 <div class="modal-body">
     <form id="formAddEditSave_UMS" data-ajax="true" data-ajax-method="post"
-          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+          data-ajax-success="OnSuccess(this.id,data, status, xhr);" enctype="multipart/form-data" data-ajax-failure="OnFailure(xhr, status, error);"
           asp-area="MST_ProgrammingLangauge" asp-action="_Save" asp-controller="MST_ProgrammingLangauge">
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.ProgrammingLangaugeID) 
@@ -45,7 +40,7 @@
             <label class="col-md-4 col-form-label p-4 pt-1"> Logo For Langauge</label>
             <div class="col-md-5">
 
-                <input type="file" asp-for="ProgrammingLangaugeLogo" class="form-control" placeholder="uplod Logo " />
+                <input type="file" asp-for="File" class="form-control" placeholder="uplod Logo " />
                 @Html.ValidationMessageFor(m => m.ProgrammingLangaugeLogo, "", new { @class = "form-text text-danger" })
             </div>
         </div>

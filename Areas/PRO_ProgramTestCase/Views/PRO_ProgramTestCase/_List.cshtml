@@ -1,16 +1,15 @@
-﻿@model List<ProgrammingCode.DAL.MST.MST_ProgrammingLangauge.SelectByProgrammingLangaugeName_Result>
+﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramTestCase.SelectForSearch_Result>
 
 <div class="card bg-light shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title">
-            <i class="bi bi-filetype-java fs-3"></i>
-            &nbsp; Programming Langauge
-        </h3>
+        <h3 class="card-title bold">
+            <i class="bi bi-water fs-3"></i>
+            &nbsp; Test Case</h3>
         <div class="card-toolbar">
 
             <button class="btn btn-sm btn-success js-stkModal-btn ms-1"
                     data-form-id="formAdd_UMS"
-                    data-url='@Url.Action("_AddEdit", "MST_ProgrammingLangauge", new {Area = "MST_ProgrammingLangauge"})'
+                    data-url='@Url.Action("_AddEdit", "PRO_ProgramTestCase", new {Area = "PRO_ProgramTestCase"})'
                     data-modal-size="lg">
                 <i class="la la-plus"></i> Add New
             </button>
@@ -21,15 +20,9 @@
             <thead class="bg-gray-300">
                 <tr>
                     <th class="text-center">Sr.</th>
-                    <th class="text-right">ProgrammingLangaugeID</th>
-                    <th class="">ProgrammingLangauge Name </th>
-                    <th class="">Short Description </th>
-                    <th class="">Detailed Description </th>
-                    <th class="">LOGO</th>
-                    <th class="">Description</th>
-                    <th class="">Uesr</th>
-                    <th class="">Sequence</th>
-                    <th class="text-center">Actions</th>
+                    <th class="text-right">TastCaseDescription</th>
+                    <th class="">IsPositive</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -41,22 +34,16 @@
                     i++;
                     <tr>
                         <td class="text-center"><span data-toggle="kt-tooltip" data-placement="right" data-original-title="">@i</span></td>
-                        <td class="text-right">@item.ProgrammingLangaugeID</td>
-                        <td class="">@item.ProgrammingLangaugeName</td>
-                        <td class="">@item.ProgrammingLangaugeShortDescription</td>
-                        <td class="">@item.ProgrammingLangaugeDetailedDescription</td>
-                        <td><img src="@Url.Content(@item.ProgrammingLangaugeLogo)" alt="hb" style="height:50px;width:50px" /></td>
-                        <td class="">@item.Description</td>
-                        <td class="">@item.UserName</td>
-
-                        <td class="">@item.Sequence</td>
+                        <td class="text-right">@item.TastCaseDescription</td>
+                        <td class="text-right">@item.IsPositive</td>
+                       
 
                         <td class="text-center">
 
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <button class="btn btn-primary btn-icon btn-elevate btn-sm js-stkModal-btn"
                                     data-form-id="formEdit_UMS"
-                                    data-url='@Url.Action("_AddEdit", "MST_ProgrammingLangauge", new {Area = "MST_ProgrammingLangauge", ProgrammingLangaugeID = item.ProgrammingLangaugeID})'
+                                    data-url='@Url.Action("_AddEdit", "PRO_ProgramTestCase", new {Area = "PRO_ProgramTestCase", ProgramTestCaseID = item.ProgramTestCaseID})'
                                     data-modal-size="lg">
                                     <i class="la la-edit"></i>
                                 </button>
@@ -64,9 +51,9 @@
 
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
                               data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-                              asp-area="MST_ProgrammingLangauge" asp-action="_Delete" asp-controller="MST_ProgrammingLangauge" style="display: inline;">
+                              asp-area="PRO_ProgramTestCase" asp-action="_Delete" asp-controller="PRO_ProgramTestCase" style="display: inline;">
                                 @Html.AntiForgeryToken()
-                                <input type="hidden" name="ProgrammingLangaugeID" value="@item.ProgrammingLangaugeID" />
+                                <input type="hidden" name="ProgramTestCaseID" value="@item.ProgramTestCaseID" />
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>

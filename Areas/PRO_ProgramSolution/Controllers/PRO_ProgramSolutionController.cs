@@ -13,6 +13,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         #region Index 
         public IActionResult Index()
         {
+            ViewBag.ProgramcomboList = DBConfig.dbProgram.SelectComboBoxProgram().ToList();
             ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
             ViewBag.ProgrammingLangaugecomboList = DBConfig.dbLangauge.SelectComboBoxProgrammingLangauge().ToList();
             return View();
@@ -21,10 +22,10 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramSolutionModel objSolution)
+        public IActionResult _SearchResult(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
         {
             
-            var vModel = DBConfig.dbSolution.SelectBySolutionName(objSolution.F_Defination, objSolution.UserID, objSolution.F_ProgramNumber, objSolution.ProgrammingLangaugeID).ToList();
+            var vModel = DBConfig.dbSolution.SelectBySolutionName(Obj_PRO_ProgramSolution.ProgramID, Obj_PRO_ProgramSolution.UserID,Obj_PRO_ProgramSolution.ProgrammingLangaugeID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -47,10 +48,10 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objSolution = DBConfig.dbSolution.SelectPk(ProgramSolutionID).SingleOrDefault();
+                var Obj_PRO_ProgramSolution = DBConfig.dbSolution.SelectPk(ProgramSolutionID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramSolutionModel>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramSolutionModel>(objSolution);
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramSolutionModel>(Obj_PRO_ProgramSolution);
 
                 return PartialView(vModel);
             }
@@ -60,15 +61,15 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(PRO_ProgramSolutionModel objSolution)
+        public IActionResult _Save(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
         {
-            if (objSolution.ProgramSolutionID == 0)
+            if (Obj_PRO_ProgramSolution.ProgramSolutionID == 0)
             {
-                var vReturn = DBConfig.dbSolution.Insert(objSolution);
+                var vReturn = DBConfig.dbSolution.Insert(Obj_PRO_ProgramSolution);
             }
             else
             {
-                DBConfig.dbSolution.Update(objSolution);
+                DBConfig.dbSolution.Update(Obj_PRO_ProgramSolution);
             }
             return Content(null);
         }

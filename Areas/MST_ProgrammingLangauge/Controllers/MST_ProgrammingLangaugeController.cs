@@ -12,6 +12,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         #region Index
         public IActionResult Index()
         {
+            ViewBag.ProgrammingLangaugecomboList = DBConfig.dbLangauge.SelectComboBoxProgrammingLangauge().ToList();
             ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
             return View();
         }
@@ -20,9 +21,9 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(MST_ProgrammingLangaugeModel objProgrammingLangauge)
+        public IActionResult _SearchResult(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
         {
-            var vModel = DBConfig.dbLangauge.SelectByProgrammingLangaugeName(objProgrammingLangauge.L_ProgrammingLangaugeName, objProgrammingLangauge.UserID).ToList();
+            var vModel = DBConfig.dbLangauge.SelectByProgrammingLangaugeName(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID, Obj_MST_ProgrammingLangauge.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -36,10 +37,10 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objProgrammingLangauge = DBConfig.dbLangauge.SelectPk(ProgrammingLangaugeID).SingleOrDefault();
+                var Obj_MST_ProgrammingLangauge = DBConfig.dbLangauge.SelectPk(ProgrammingLangaugeID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_ProgrammingLangaugeModel>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_ProgrammingLangaugeModel>(objProgrammingLangauge);
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_ProgrammingLangaugeModel>(Obj_MST_ProgrammingLangauge);
 
                 return PartialView(vModel);
             }
@@ -50,15 +51,34 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(MST_ProgrammingLangaugeModel objProgrammingLangauge)
+        public IActionResult _Save(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
         {
-            if (objProgrammingLangauge.ProgrammingLangaugeID == 0)
+            #region PhotoPath
+            if (Obj_MST_ProgrammingLangauge.File != null)
             {
-                var vReturn = DBConfig.dbLangauge.Insert(objProgrammingLangauge);
+                string FilePath = "wwwroot\\Upload";
+                string path = Path.Combine(Directory.GetCurrentDirectory(), FilePath);
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string fileNameWithPath = Path.Combine(path, Obj_MST_ProgrammingLangauge.File.FileName);
+                Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo = "~" + FilePath.Replace("wwwroot\\", "/") + "/" + Obj_MST_ProgrammingLangauge.File.FileName;
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    Obj_MST_ProgrammingLangauge.File.CopyTo(stream);
+                }
+
+            }
+            #endregion
+            if (Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID == 0)
+            {
+                var vReturn = DBConfig.dbLangauge.Insert(Obj_MST_ProgrammingLangauge);                                                
             }
             else
             {
-                DBConfig.dbLangauge.Update(objProgrammingLangauge);
+                DBConfig.dbLangauge.Update(Obj_MST_ProgrammingLangauge);
             }
             return Content(null);
         }
@@ -73,5 +93,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
             return Content(null);
         }
         #endregion
+
+       
     }
 }

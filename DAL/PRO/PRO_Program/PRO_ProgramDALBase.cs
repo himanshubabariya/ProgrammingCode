@@ -115,30 +115,30 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method: Insert
-        public decimal? Insert(PRO_ProgramModel objProgram)
+        public decimal? Insert(PRO_ProgramModel Obj_PRO_Program)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Insert");
-                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.LevelID);
-                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, objProgram.ProgramNumber);
-                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, objProgram.Defination);
-                sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.NVarChar, objProgram.ProgramDesecription);
-                sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.NVarChar, objProgram.Algoritham);
-                sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar, objProgram.ProgramUrl);
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgram.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, objProgram.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, objProgram.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, objProgram.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, objProgram.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, objProgram.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, objProgram.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, objProgram.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, objProgram.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, objProgram.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objProgram.Description);
+                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, Obj_PRO_Program.LevelID);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, Obj_PRO_Program.ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, Obj_PRO_Program.Defination);
+                sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.NVarChar, Obj_PRO_Program.ProgramDesecription);
+                sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.NVarChar, Obj_PRO_Program.Algoritham);
+                sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar, Obj_PRO_Program.ProgramUrl);
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_PRO_Program.Sequence);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, Obj_PRO_Program.MetaTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, Obj_PRO_Program.MetaKeywords);
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, Obj_PRO_Program.MetaDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, Obj_PRO_Program.MetaAuthor);
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgImage);
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgType);
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgUrl);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_PRO_Program.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -156,31 +156,31 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method: Update
-        public bool? Update(PRO_ProgramModel objProgram)
+        public bool? Update(PRO_ProgramModel Obj_PRO_Program)
 
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Update");
-                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, objProgram.ProgramID);
-                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objProgram.LevelID);
-                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, objProgram.ProgramNumber);
-                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, objProgram.Defination);
-                sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.NVarChar, objProgram.ProgramDesecription);
-                sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.NVarChar, objProgram.Algoritham);
-                sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar, objProgram.ProgramUrl);
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgram.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, objProgram.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, objProgram.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, objProgram.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, objProgram.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, objProgram.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, objProgram.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, objProgram.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, objProgram.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, objProgram.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objProgram.Description);
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, Obj_PRO_Program.ProgramID);
+                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, Obj_PRO_Program.LevelID);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, Obj_PRO_Program.ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, Obj_PRO_Program.Defination);
+                sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.NVarChar, Obj_PRO_Program.ProgramDesecription);
+                sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.NVarChar, Obj_PRO_Program.Algoritham);
+                sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar, Obj_PRO_Program.ProgramUrl);
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_PRO_Program.Sequence);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, Obj_PRO_Program.MetaTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, Obj_PRO_Program.MetaKeywords);
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, Obj_PRO_Program.MetaDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, Obj_PRO_Program.MetaAuthor);
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgImage);
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgType);
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, Obj_PRO_Program.MetaOgUrl);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_PRO_Program.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

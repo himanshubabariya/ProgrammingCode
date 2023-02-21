@@ -25,7 +25,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramModel objProgram)
+        public IActionResult _SearchResult(PRO_ProgramModel Obj_PRO_Program)
         {
             var vModel = DBConfig.dbProgram.SelectAll().ToList();
             return PartialView("_List", vModel);
@@ -64,15 +64,15 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(PRO_ProgramModel objProgram)
+        public IActionResult _Save(PRO_ProgramModel Obj_PRO_Program)
         {
-            if (objProgram.ProgramID == 0)
+            if (Obj_PRO_Program.ProgramID == 0)
             {
-                var vReturn = DBConfig.dbProgram.Insert(objProgram);
+                var vReturn = DBConfig.dbProgram.Insert(Obj_PRO_Program);
             }
             else
             {
-                DBConfig.dbProgram.Update(objProgram);
+                DBConfig.dbProgram.Update(Obj_PRO_Program);
             }
             return Content(null);
         }

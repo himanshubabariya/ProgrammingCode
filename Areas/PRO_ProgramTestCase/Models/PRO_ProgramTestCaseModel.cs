@@ -1,48 +1,44 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace ProgrammingCode.Areas.MST_Level.Models
+namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Models
 {
-    public class MST_LevelModel
+    public class PRO_ProgramTestCaseModel
     {
         // ModelName: MST_LevelModel
 
         /*******************************************************************
          *	FILTERS
          *******************************************************************/
-        public string? F_LevelID { get; set; }
+        public int? F_ProgramTestCaseID { get; set; }
 
-        public string? F_LevelName { get; set; }
-
-        public string? F_UserName { get; set; }
-
-
+        public string? F_TastCaseDescription { get; set; }
 
         /*******************************************************************
          *	ADDEDIT FORM
          *******************************************************************/
-        [Required, Display(Name = "LevelID")]
-        public int LevelID { get; set; }
+        [Required, Display(Name = "ProgramTestCaseID")]
+        public int ProgramTestCaseID { get; set; }
 
 
-        [Required, Display(Name = "LevelName")]
-        public string? LevelName { get; set; }
+        [Required, Display(Name = "ProgramID")]
+        public int ProgramID { get; set; }
 
 
-        
-        public string? LevelDescription { get; set; }
+        [Required, Display(Name = "TastCaseDescription")]
+        public string? TastCaseDescription { get; set; }
 
+        [Required, Display(Name = "IsPositive")]
+        public int IsPositive { get; set; }
 
-       
+        [Required, Display(Name = "Sequence")]
         public decimal Sequence { get; set; }
 
+        [Required, Display(Name = "Description")]
         public string? Description { get; set; }
 
-        [Required, Display(Name = "User")]
+        [Required, Display(Name = "UserID")]
         public int UserID { get; set; }
-
-        [Required, Display(Name = "UserName")]
-        public String? UserName { get; set; }
 
 
         public DateTime Created { get; set; }
@@ -53,10 +49,6 @@ namespace ProgrammingCode.Areas.MST_Level.Models
         /***************************************************/
         /*COMOBOX MODLE*/
         /****************************************************/
-        public class MST_LevelComboboxModel
-        {
-            public int LevelID { get; set; }
-            public string? LevelName { get; set; }
-        }
+        
     }
 }

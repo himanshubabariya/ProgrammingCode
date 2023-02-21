@@ -21,9 +21,9 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(SEC_UserModel objUser)
+        public IActionResult _SearchResult(SEC_UserModel Obj_SEC_User)
         {
-            var vModel = DBConfig.dbUser.SelectByUserID(objUser.UserID).ToList();
+            var vModel = DBConfig.dbUser.SelectByUserID(Obj_SEC_User.UserID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
@@ -44,10 +44,10 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objUser = DBConfig.dbUser.SelectPk(UserID).SingleOrDefault();
+                var Obj_SEC_User = DBConfig.dbUser.SelectPk(UserID).SingleOrDefault();
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, SEC_UserModel>());
-                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, SEC_UserModel>(objUser);
+                var vModel = AutoMapper.Mapper.Map<SelectPk_Result, SEC_UserModel>(Obj_SEC_User);
 
                 return PartialView(vModel);
             }
@@ -57,15 +57,15 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
         #region _Save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _Save(SEC_UserModel objUser)
+        public IActionResult _Save(SEC_UserModel Obj_SEC_User)
         {
-            if (objUser.UserID == 0)
+            if (Obj_SEC_User.UserID == 0)
             {
-                var vReturn = DBConfig.dbUser.Insert(objUser);
+                var vReturn = DBConfig.dbUser.Insert(Obj_SEC_User);
             }
             else
             {
-                DBConfig.dbUser.Update(objUser);
+                DBConfig.dbUser.Update(Obj_SEC_User);
             }
             return Content(null);
         }
