@@ -148,12 +148,12 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
               {
                   SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                   DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_SEC_User_Insert");
-                  sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, objUser.UserName);
-                  sqlDB.AddInParameter(dbCMD, "Password", SqlDbType.VarChar, objUser.Password);
-                  sqlDB.AddInParameter(dbCMD, "Email", SqlDbType.VarChar, objUser.Email);
-                sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.VarChar, objUser.MobileNo);
-                sqlDB.AddInParameter(dbCMD, "DisplayName", SqlDbType.VarChar, objUser.DisplayName);
-                  sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.VarChar, objUser.Description);
+                  sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.NVarChar, objUser.UserName);
+                  sqlDB.AddInParameter(dbCMD, "Password", SqlDbType.NVarChar, objUser.Password);
+                  sqlDB.AddInParameter(dbCMD, "Email", SqlDbType.NVarChar, objUser.Email);
+                sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.NVarChar, objUser.MobileNo);
+                sqlDB.AddInParameter(dbCMD, "DisplayName", SqlDbType.NVarChar, objUser.DisplayName);
+                  sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objUser.Description);
                   sqlDB.AddInParameter(dbCMD, "CreatedUserID", SqlDbType.Int, 1);
                   var vResult = sqlDB.ExecuteScalar(dbCMD);
                   if (vResult == null)
@@ -179,12 +179,12 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
                   SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                   DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_sEC_User_Update");
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, objUser.UserID);
-                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.VarChar, objUser.UserName);
-                sqlDB.AddInParameter(dbCMD, "Password", SqlDbType.VarChar, objUser.Password);
-                sqlDB.AddInParameter(dbCMD, "Email", SqlDbType.VarChar, objUser.Email);
-                sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.VarChar, objUser.MobileNo);
-                sqlDB.AddInParameter(dbCMD, "DisplayName", SqlDbType.VarChar, objUser.DisplayName);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.VarChar, objUser.Description);
+                sqlDB.AddInParameter(dbCMD, "UserName", SqlDbType.NVarChar, objUser.UserName);
+                sqlDB.AddInParameter(dbCMD, "Password", SqlDbType.NVarChar, objUser.Password);
+                sqlDB.AddInParameter(dbCMD, "Email", SqlDbType.NVarChar, objUser.Email);
+                sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.NVarChar, objUser.MobileNo);
+                sqlDB.AddInParameter(dbCMD, "DisplayName", SqlDbType.NVarChar, objUser.DisplayName);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objUser.Description);
                 sqlDB.AddInParameter(dbCMD, "CreatedUserID", SqlDbType.Int, 1);
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                   return vReturnValue == -1 ? false : true;

@@ -72,19 +72,19 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_Insert");
-                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.VarChar, objTopic.TopicName);
-                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.VarChar, objTopic.TopicDescription);
+                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, objTopic.TopicName);
+                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, objTopic.TopicDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objTopic.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.VarChar, objTopic.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.VarChar, objTopic.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.VarChar, objTopic.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.VarChar, objTopic.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.VarChar, objTopic.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.VarChar, objTopic.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.VarChar, objTopic.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.VarChar, objTopic.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.VarChar, objTopic.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.VarChar, objTopic.Description);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, objTopic.MetaTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, objTopic.MetaKeywords);
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, objTopic.MetaDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, objTopic.MetaAuthor);
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, objTopic.MetaOgTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, objTopic.MetaOgImage);
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, objTopic.MetaOgType);
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, objTopic.MetaOgDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, objTopic.MetaOgUrl);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objTopic.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -133,8 +133,8 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.VarChar, F_TopicName);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.VarChar, UserID);
+                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, F_TopicName);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.NVarChar, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {
@@ -186,20 +186,20 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_Update");
                 sqlDB.AddInParameter(dbCMD, "TopicID", SqlDbType.Int, objTopic.TopicID);
-                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.VarChar, objTopic.TopicName);
-                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.VarChar, objTopic.TopicDescription);
+                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, objTopic.TopicName);
+                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, objTopic.TopicDescription);
                
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objTopic.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.VarChar, objTopic.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.VarChar, objTopic.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.VarChar, objTopic.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.VarChar, objTopic.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.VarChar, objTopic.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.VarChar, objTopic.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.VarChar, objTopic.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.VarChar, objTopic.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.VarChar, objTopic.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.VarChar, objTopic.Description);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, objTopic.MetaTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, objTopic.MetaKeywords);
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, objTopic.MetaDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, objTopic.MetaAuthor);
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, objTopic.MetaOgTitle);
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, objTopic.MetaOgImage);
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, objTopic.MetaOgType);
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, objTopic.MetaOgDescription);
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, objTopic.MetaOgUrl);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objTopic.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);

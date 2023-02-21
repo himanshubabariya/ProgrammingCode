@@ -71,7 +71,7 @@ namespace ProgrammingCode.DAL.MST.MST_Level
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.VarChar, F_LevelName);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, F_LevelName);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
@@ -119,10 +119,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_Insert");
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.VarChar, objLevel.LevelName);
-                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.VarChar, objLevel.LevelDescription);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, objLevel.LevelName);
+                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, objLevel.LevelDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objLevel.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.VarChar, objLevel.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objLevel.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -175,10 +175,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_Update");
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, objLevel.LevelID);
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.VarChar, objLevel.LevelName);
-                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.VarChar, objLevel.LevelDescription);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, objLevel.LevelName);
+                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, objLevel.LevelDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objLevel.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.VarChar, objLevel.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objLevel.Description);
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
