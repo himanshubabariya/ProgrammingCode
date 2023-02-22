@@ -72,20 +72,20 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_Insert");
-                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, Obj_MST_Topic.TopicName);
-                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, Obj_MST_Topic.TopicDescription);
+                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicName) ? null : Obj_MST_Topic.TopicName.Trim());
+                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicDescription) ? null : Obj_MST_Topic.TopicDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Topic.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, Obj_MST_Topic.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, Obj_MST_Topic.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, Obj_MST_Topic.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, Obj_MST_Topic.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_Topic.Description);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaTitle) ? null : Obj_MST_Topic.MetaTitle.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaKeywords) ? null : Obj_MST_Topic.MetaKeywords.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaDescription) ? null : Obj_MST_Topic.MetaDescription.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaAuthor) ? null : Obj_MST_Topic.MetaAuthor.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgTitle) ? null : Obj_MST_Topic.MetaOgTitle.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgImage) ? null : Obj_MST_Topic.MetaOgImage.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgType) ? null : Obj_MST_Topic.MetaOgType.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgDescription) ? null : Obj_MST_Topic.MetaOgDescription.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgUrl) ? null : Obj_MST_Topic.MetaOgUrl.Trim());
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.Description) ? null : Obj_MST_Topic.Description.Trim());
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
                     return null;
@@ -186,20 +186,19 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_Update");
                 sqlDB.AddInParameter(dbCMD, "TopicID", SqlDbType.Int, Obj_MST_Topic.TopicID);
-                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, Obj_MST_Topic.TopicName);
-                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, Obj_MST_Topic.TopicDescription);
-               
+                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicName) ? null : Obj_MST_Topic.TopicName.Trim());
+                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicDescription) ? null : Obj_MST_Topic.TopicDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Topic.Sequence);
-                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, Obj_MST_Topic.MetaTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, Obj_MST_Topic.MetaKeywords);
-                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, Obj_MST_Topic.MetaDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, Obj_MST_Topic.MetaAuthor);
-                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgTitle);
-                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgImage);
-                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgType);
-                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgDescription);
-                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, Obj_MST_Topic.MetaOgUrl);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_Topic.Description);
+                sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaTitle) ? null : Obj_MST_Topic.MetaTitle.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaKeywords) ? null : Obj_MST_Topic.MetaKeywords.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaDescription) ? null : Obj_MST_Topic.MetaDescription.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaAuthor) ? null : Obj_MST_Topic.MetaAuthor.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgTitle) ? null : Obj_MST_Topic.MetaOgTitle.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgImage", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgImage) ? null : Obj_MST_Topic.MetaOgImage.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgType", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgType) ? null : Obj_MST_Topic.MetaOgType.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgDescription) ? null : Obj_MST_Topic.MetaOgDescription.Trim());
+                sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgUrl) ? null : Obj_MST_Topic.MetaOgUrl.Trim());
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.Description) ? null : Obj_MST_Topic.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);

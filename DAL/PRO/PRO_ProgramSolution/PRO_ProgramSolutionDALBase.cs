@@ -122,12 +122,12 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_Insert");
-                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.ProgramSolution);
+                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_ProgramSolution.ProgramSolution) ? null:  Obj_PRO_ProgramSolution.ProgramSolution.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgramID);
 
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgrammingLangaugeID);
        
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace( Obj_PRO_ProgramSolution.Description) ? null : Obj_PRO_ProgramSolution.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -153,12 +153,12 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_Update");
                 sqlDB.AddInParameter(dbCMD, "ProgramSolutionID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgramSolutionID);
-                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.ProgramSolution);
+                sqlDB.AddInParameter(dbCMD, "ProgramSolution", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_ProgramSolution.ProgramSolution) ? null : Obj_PRO_ProgramSolution.ProgramSolution.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgramID);
 
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgrammingLangaugeID);
 
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_PRO_ProgramSolution.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_ProgramSolution.Description) ? null : Obj_PRO_ProgramSolution.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

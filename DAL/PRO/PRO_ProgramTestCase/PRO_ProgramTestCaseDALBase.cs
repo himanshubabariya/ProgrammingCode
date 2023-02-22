@@ -118,10 +118,10 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_Insert");
               
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, objProgramTestCaseModel.ProgramID);
-                sqlDB.AddInParameter(dbCMD, "TastCaseDescription", SqlDbType.NVarChar, objProgramTestCaseModel.TastCaseDescription);
+                sqlDB.AddInParameter(dbCMD, "TastCaseDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(objProgramTestCaseModel.TastCaseDescription) ? null: objProgramTestCaseModel.TastCaseDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "IsPositive", SqlDbType.Bit, objProgramTestCaseModel.IsPositive);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgramTestCaseModel.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objProgramTestCaseModel.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(objProgramTestCaseModel.Description) ? null: objProgramTestCaseModel.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
 
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
@@ -149,11 +149,11 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PRO_ProgramTestCase_Update");
                 sqlDB.AddInParameter(dbCMD, "ProgramTestCaseID", SqlDbType.Int, objProgramTestCaseModel.ProgramTestCaseID);
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, objProgramTestCaseModel.ProgramID);
-                sqlDB.AddInParameter(dbCMD, "TastCaseDescription", SqlDbType.NVarChar, objProgramTestCaseModel.TastCaseDescription);
+                sqlDB.AddInParameter(dbCMD, "TastCaseDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(objProgramTestCaseModel.TastCaseDescription) ? null : objProgramTestCaseModel.TastCaseDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "IsPositive", SqlDbType.Bit, objProgramTestCaseModel.IsPositive);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgramTestCaseModel.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, objProgramTestCaseModel.Description);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(objProgramTestCaseModel.Description) ? null : objProgramTestCaseModel.Description.Trim());
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

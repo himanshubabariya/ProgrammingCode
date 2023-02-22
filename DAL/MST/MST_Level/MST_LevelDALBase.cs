@@ -119,10 +119,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_Insert");
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, Obj_MST_Level.LevelName);
-                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, Obj_MST_Level.LevelDescription);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.LevelName) ? null:  Obj_MST_Level.LevelName.Trim());
+                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_Level.LevelDescription) ? null:  Obj_MST_Level.LevelDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Level.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_Level.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.Description) ? null: Obj_MST_Level.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -175,10 +175,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_Update");
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, Obj_MST_Level.LevelID);
-                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, Obj_MST_Level.LevelName);
-                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, Obj_MST_Level.LevelDescription);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.LevelName) ? null : Obj_MST_Level.LevelName.Trim());
+                sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.LevelDescription) ? null : Obj_MST_Level.LevelDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Level.Sequence);
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_MST_Level.Description);
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.Description) ? null : Obj_MST_Level.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
