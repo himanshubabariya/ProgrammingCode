@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.MST_Level.Models;
-
 using ProgrammingCode.DAL;
+using ProgrammingCode.BAL;
 using ProgrammingCode.DAL.MST.MST_Level;
 
 namespace ProgrammingCode.Areas.MST_Level.Controllers
 {
+    [CheckAccess]
     [Area("MST_Level")]
     public class MST_LevelController : Controller
     {

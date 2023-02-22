@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
+using ProgrammingCode.BAL;
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.MST.MST_ProgrammingLangauge;
 
 namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
 {
+    [CheckAccess]
+
     [Area("MST_ProgrammingLangauge")]
     public class MST_ProgrammingLangaugeController : Controller
     {

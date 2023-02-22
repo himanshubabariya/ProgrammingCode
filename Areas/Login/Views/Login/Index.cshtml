@@ -7,10 +7,8 @@
 <div>
 <form id="formAddEditSave_UMS" data-ajax="true" data-ajax-method="post"
       data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-      asp-area="SEC_User" asp-action="_Signin" asp-controller="SEC_User">
-    @Html.AntiForgeryToken()
+          asp-area="Login" asp-action="Login" asp-controller="Login">
     
-
     <div class="form-group row">
             <label class="col-md-4 col-form-label ">id</label>
             <div class="col-md-5">

@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.PRO_ProgramSolution.Models;
 using ProgrammingCode.DAL;
+using ProgrammingCode.BAL;
 using ProgrammingCode.DAL.PRO.PRO_ProgramSolution;
 using System.Data;
 
 namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
 {
+    [CheckAccess]
     [Area("PRO_ProgramSolution")]
     public class PRO_ProgramSolutionController : Controller
     {

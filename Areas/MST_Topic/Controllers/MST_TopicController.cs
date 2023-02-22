@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.MST_Topic.Models;
 using ProgrammingCode.DAL;
+using ProgrammingCode.BAL;
 using ProgrammingCode.DAL.MST.MST_Topic;
 
 namespace ProgrammingCode.Areas.MST_Topic.Controllers
 {
+    [CheckAccess]
     [Area("MST_Topic")]
     public class MST_TopicController : Controller
     {

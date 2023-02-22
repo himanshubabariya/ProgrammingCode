@@ -197,7 +197,34 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
                   return null;
               }
           }
-          #endregion*/
+        #endregion*/
+        #region Method: SelectPk
+        public DataTable SelectByUserNamePassword(string? Email, string? Password)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_SEC_User_SelectByUserNamePassword");
+                sqlDB.AddInParameter(dbMST, "Email", SqlDbType.NVarChar, Email);
+                sqlDB.AddInParameter(dbMST, "Password", SqlDbType.NVarChar, Password);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
     }
 
     #region All Entities 

@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.PRO_ProgramTestCase.Models;
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.PRO.PRO_ProgramTestCase;
+using ProgrammingCode.BAL;
 
 namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
 {
+    [CheckAccess]
     [Area("PRO_ProgramTestCase")]
     public class PRO_ProgramTestCase : Controller
     {

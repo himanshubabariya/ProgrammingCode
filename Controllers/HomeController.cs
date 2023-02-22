@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Models;
 using System.Diagnostics;
+using ProgrammingCode.BAL;
 
 namespace ProgrammingCode.Controllers
 {
+    [CheckAccess]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

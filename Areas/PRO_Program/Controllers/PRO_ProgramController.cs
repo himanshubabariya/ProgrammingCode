@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-
-
+using ProgrammingCode.BAL;
 using ProgrammingCode.Areas.PRO_Program.Models;
-
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.PRO.PRO_Program;
 using System.Data;
@@ -12,6 +10,7 @@ using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 
 namespace ProgrammingCode.Areas.PRO_Program.Controllers
 {
+    [CheckAccess]
     [Area("PRO_Program")]
     public class PRO_ProgramController : Controller
     {

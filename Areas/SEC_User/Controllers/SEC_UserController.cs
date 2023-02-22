@@ -8,6 +8,7 @@ using System.Data;
 
 namespace ProgrammingCode.Areas.SEC_User.Controllers
 {
+  
     [Area("SEC_User")]
     public class SEC_UserController : Controller
     {
@@ -70,6 +71,7 @@ namespace ProgrammingCode.Areas.SEC_User.Controllers
             return Content(null);
         }
         #endregion*/
-        
+
+
     }
 }
