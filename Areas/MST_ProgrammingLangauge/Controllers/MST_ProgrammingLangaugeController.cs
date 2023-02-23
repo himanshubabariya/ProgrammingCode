@@ -7,7 +7,7 @@ using ProgrammingCode.DAL.MST.MST_ProgrammingLangauge;
 
 namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
 {
-    [CheckAccess]
+    //[CheckAccess]
 
     [Area("MST_ProgrammingLangauge")]
     public class MST_ProgrammingLangaugeController : Controller
@@ -26,13 +26,13 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
         {
-            var vModel = DBConfig.dbLangauge.SelectByProgrammingLangaugeName(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID, Obj_MST_ProgrammingLangauge.UserID).ToList();
+            var vModel = DBConfig.dbLangauge.SelectByProgrammingLangaugeName(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion
         
         #region _AddEdit
-        public IActionResult _AddEdit(int? ProgrammingLangaugeID)
+        public IActionResult AddEdit(int? ProgrammingLangaugeID)
         {
             ViewBag.Action = "Add";
 
@@ -45,9 +45,9 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, MST_ProgrammingLangaugeModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, MST_ProgrammingLangaugeModel>(Obj_MST_ProgrammingLangauge);
 
-                return PartialView(vModel);
+                return View("AddEdit", vModel);
             }
-            return PartialView();
+            return View("AddEdit");
         }
         #endregion
 
@@ -75,6 +75,25 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
 
             }
             #endregion
+            #region PhotoPath2 meta og Image
+            if (Obj_MST_ProgrammingLangauge.File2 != null)
+            {
+                string FilePath = "wwwroot\\Upload";
+                string path = Path.Combine(Directory.GetCurrentDirectory(), FilePath);
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string fileNameWithPath = Path.Combine(path, Obj_MST_ProgrammingLangauge.File2.FileName);
+                Obj_MST_ProgrammingLangauge.MetaOgImage = "~" + FilePath.Replace("wwwroot\\", "/") + "/" + Obj_MST_ProgrammingLangauge.File2.FileName;
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    Obj_MST_ProgrammingLangauge.File2.CopyTo(stream);
+                }
+
+            }
+            #endregion
             if (Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID == 0)
             {
                 var vReturn = DBConfig.dbLangauge.Insert(Obj_MST_ProgrammingLangauge);                                                
@@ -83,7 +102,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
             {
                 DBConfig.dbLangauge.Update(Obj_MST_ProgrammingLangauge);
             }
-            return Content(null);
+            return RedirectToAction("Index");
         }
         #endregion        
         

@@ -11,7 +11,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
     {
 
         #region Method: SelectByTestCase
-        public List<SelectForSearch_Result> SelectByTestCase(int ProgramID, int UserID)
+        public List<SelectForSearch_Result> SelectByTestCase(int ProgramID)
         {
 
             try
@@ -19,7 +19,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, ProgramID);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
+               
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {
@@ -180,7 +180,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
 
         public int ProgramID { get; set; }
         public string? TastCaseDescription { get; set; }
-        public int? IsPositive { get; set; }
+        public bool? IsPositive { get; set; }
         public decimal Sequence { get; set; }
 
         public string? Description { get; set; }
@@ -209,7 +209,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
 
         public int ProgramID { get; set; }
         public string? TastCaseDescription { get; set; }
-        public int? IsPositive { get; set; }
+        public bool? IsPositive { get; set; }
         public decimal Sequence { get; set; }
 
         public string? Description { get; set; }
@@ -237,7 +237,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
 
         public int ProgramID { get; set; }
         public string? TastCaseDescription { get; set; }
-        public int? IsPositive { get; set; }
+        public bool? IsPositive { get; set; }
         public decimal Sequence { get; set; }
 
         public string? Description { get; set; }

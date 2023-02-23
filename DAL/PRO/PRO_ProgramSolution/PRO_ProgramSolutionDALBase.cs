@@ -60,14 +60,14 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         }
         #endregion
         #region Method: SelectBySolutionName
-        public List<SelectForSearch_Result> SelectBySolutionName(int ProgramID, int UserID, int ProgrammingLangaugeID)
+        public List<SelectForSearch_Result> SelectBySolutionName(int ProgramID, int ProgrammingLangaugeID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int,ProgramID);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, UserID);
+              
                
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
                 DataTable dt = new DataTable();

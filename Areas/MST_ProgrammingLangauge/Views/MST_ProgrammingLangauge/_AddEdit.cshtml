@@ -102,7 +102,7 @@
             <label class="col-md-4 col-form-label p-4">Meta Og Image</label>
             <div class="col-md-5">
 
-                <input type="text" asp-for="MetaOgImage" class="form-control" />
+                <input type="file" asp-for="File2" class="form-control" placeholder="uplod Logo " />
                 @Html.ValidationMessageFor(m => m.MetaOgImage, "", new { @class = "form-text text-danger" })
             </div>
         </div>

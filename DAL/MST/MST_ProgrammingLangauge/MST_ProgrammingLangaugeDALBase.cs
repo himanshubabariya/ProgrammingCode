@@ -130,14 +130,14 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         #endregion
 
         #region Method: SelectByProgrammingLangaugeName
-        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(int ProgrammingLangaugeID,int UserID)
+        public List<SelectByProgrammingLangaugeName_Result> SelectByProgrammingLangaugeName(int ProgrammingLangaugeID)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
-                     sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.NVarChar, UserID);
+                
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

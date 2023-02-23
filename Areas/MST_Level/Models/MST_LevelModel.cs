@@ -41,7 +41,7 @@ namespace ProgrammingCode.Areas.MST_Level.Models
         [Required, Display(Name = "User")]
         public int UserID { get; set; }
 
-        [Required, Display(Name = "UserName")]
+
         public String? UserName { get; set; }
 
 

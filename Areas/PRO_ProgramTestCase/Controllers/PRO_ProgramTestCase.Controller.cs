@@ -7,7 +7,7 @@ using ProgrammingCode.BAL;
 
 namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
 {
-    [CheckAccess]
+    //[CheckAccess]
     [Area("PRO_ProgramTestCase")]
     public class PRO_ProgramTestCase : Controller
     {
@@ -16,7 +16,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
         public IActionResult Index()
         {
             ViewBag.ProgramcomboList = DBConfig.dbProgram.SelectComboBoxProgram().ToList();
-            ViewBag.SelectUser = DBConfig.dbUser.SelectComboBoxUser().ToList();
+           
             return View();
         }
         #endregion
@@ -26,7 +26,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(PRO_ProgramTestCaseModel ObjProgramTestCase)
         {
-            var vModel = DBConfig.dbProgramTestCase.SelectByTestCase(ObjProgramTestCase.ProgramID,ObjProgramTestCase.UserID).ToList();
+            var vModel = DBConfig.dbProgramTestCase.SelectByTestCase(ObjProgramTestCase.ProgramID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

@@ -8,7 +8,7 @@ using System.Data;
 
 namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
 {
-    [CheckAccess]
+    //[CheckAccess]
     [Area("PRO_ProgramSolution")]
     public class PRO_ProgramSolutionController : Controller
     {
@@ -27,7 +27,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         public IActionResult _SearchResult(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
         {
             
-            var vModel = DBConfig.dbSolution.SelectBySolutionName(Obj_PRO_ProgramSolution.ProgramID, Obj_PRO_ProgramSolution.UserID,Obj_PRO_ProgramSolution.ProgrammingLangaugeID).ToList();
+            var vModel = DBConfig.dbSolution.SelectBySolutionName(Obj_PRO_ProgramSolution.ProgramID,Obj_PRO_ProgramSolution.ProgrammingLangaugeID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

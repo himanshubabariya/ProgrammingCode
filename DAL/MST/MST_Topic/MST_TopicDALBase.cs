@@ -127,14 +127,14 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
         }
         #endregion
         #region Method: SelectByTopicName
-        public List<SelectForSearch_Result> SelectByTopicName(string? F_TopicName,int UserID) { 
+        public List<SelectForSearch_Result> SelectByTopicName(int TopicID) { 
        
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, F_TopicName);
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.NVarChar, UserID);
+                sqlDB.AddInParameter(dbCMD, "TopicID", SqlDbType.Int, TopicID);
+   
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

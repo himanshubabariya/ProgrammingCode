@@ -27,18 +27,7 @@
                         @Html.ValidationMessageFor(m => m.ProgramID,"", new { @class = "form-text text-danger" })
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="">User</label>
-                        <div class="input-group">
-
-                           <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.SelectUser,"UserID","UserName"))" data-control="select2" data-placeholder="Select User">
-                    <option>select User</option>
-                </select>
-                        </div>
-                        @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
+               
             </div>
             
             <hr />

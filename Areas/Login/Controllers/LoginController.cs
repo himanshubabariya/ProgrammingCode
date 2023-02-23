@@ -5,22 +5,21 @@ using System.Data;
 
 namespace ProgrammingCode.Areas.Login.Controllers
 {
+    [Area("Login")]
     public class LoginController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-
-        [HttpPost]
-        public IActionResult Login(SEC_UserModel modelSEC_User)
+        public IActionResult Login(string? Email,string? Password)
         {
             string error = null;
-            if (modelSEC_User.UserName == null)
+            if (Email == null)
             {
                 error += "User Name is required";
             }
-            if (modelSEC_User.Password == null)
+            if (Password == null)
             {
                 error += "<br/>Password is required";
             }
@@ -32,13 +31,13 @@ namespace ProgrammingCode.Areas.Login.Controllers
             }
             else
             {
-                DataTable dt = DBConfig.dbUser.SelectByUserNamePassword(modelSEC_User.UserName, modelSEC_User.Password);
+                DataTable dt = DBConfig.dbUser.SelectByUserNamePassword(Email,Password);
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dt.Rows)
                     {
-                        HttpContext.Session.SetString("UserName", dr["UserName"].ToString());
                         HttpContext.Session.SetString("UserID", dr["UserID"].ToString());
+                        HttpContext.Session.SetString("UserName", dr["UserName"].ToString());
                         HttpContext.Session.SetString("DisplayName", dr["DisplayName"].ToString());
                         break;
                     }
@@ -48,12 +47,12 @@ namespace ProgrammingCode.Areas.Login.Controllers
                     TempData["Error"] = "User Name or Password is invalid!";
                     return RedirectToAction("Index");
                 }
-                if (HttpContext.Session.GetString("UserName") != null && HttpContext.Session.GetString("Password") != null)
+                if (HttpContext.Session.GetString("Email") != null && HttpContext.Session.GetString("Password") != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index","Login" );
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Dashboard", new { Area = "Dashboard" });
         }
 
         public IActionResult Logout()

@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.BAL;
 
-namespace ProgrammingCode.Areas.Dashboard.Controllers
+namespace ProgrammingCode.Areas.Dashboard.Controllers7
 {
     [CheckAccess]
     [Area("Dashboard")]
-    [Route("Dashboard")]
     public class DashboardController : Controller
     {
         public IActionResult Index()

@@ -17,11 +17,11 @@
             <div class="row">
  
                 <div class="col-md-4">
-                    <label class="">Program</label>
+                    <label class=""><i class="fa fa-search"></i> Program</label>
                     <div class="input-group">
 
                         <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program">
-                            <option>select Program</option>
+                            <option> Select Program</option>
                         </select>
 
                         @Html.ValidationMessageFor(m => m.ProgramID,"", new { @class = "form-text text-danger" })
@@ -29,11 +29,11 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="">Langauge</label>
+                        <label class=""><i class="fa fa-search"></i> Langauge</label>
                         <div class="input-group">
 
                             <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgrammingLangaugeID" asp-items="@(new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"))" data-control="select2" data-placeholder="Select Programming Langauge">
-                                <option>select Langauge</option>
+                                <option>Select Langauge</option>
                             </select>
                         </div>
                         
@@ -49,18 +49,7 @@
                         @Html.ValidationMessageFor(m => m.F_ProgramNumber,"", new { @class = "form-text text-danger" })
                     </div>
                 </div>*@
-                <div class="col-md-4">
-                    <div class="form-group">
-                         <label class="">User</label>
-                        <div class="input-group">
-
-                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.SelectUser,"UserID","UserName"))" data-control="select2" data-placeholder="Select User">
-                                <option>select User</option>
-                            </select>
-                        </div>
-                      
-                    </div>
-                </div>
+               
             </div>
 
             <hr />

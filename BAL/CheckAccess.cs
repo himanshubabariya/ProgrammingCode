@@ -14,7 +14,7 @@ namespace ProgrammingCode.BAL
 
             if (filterContext.HttpContext.Session.GetString("UserID") == null )
             {
-                filterContext.Result = new RedirectResult("~/Login/Login/Index");
+                filterContext.Result = new RedirectResult("~/Login/Login/");
             }
         }
 

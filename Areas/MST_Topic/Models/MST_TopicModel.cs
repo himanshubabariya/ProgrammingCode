@@ -10,7 +10,6 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
         /*******************************************************************
          *	FILTERS
          *******************************************************************/
-        public string? F_TopicID { get; set; }
 
         public string? F_TopicName { get; set; }
         public string? F_UserName { get; set; }

@@ -1,0 +1,147 @@
+﻿@model ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel
+@{
+    ViewBag.Header = "Programming Langauge -" + ViewBag.Action;
+    Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
+   
+}
+
+<div class="card  shadow-sm mt-5">
+    <div class="card-header">
+        <h3 class="card-title fw-bolder">@ViewBag.Action Programming Langauge</h3>
+        <div class="card-toolbar">
+        </div>
+    </div>
+    <div class="card-body">
+        <h4 class="title text-danger fw-bolder">Langauge Details</h4>
+        <div class="">
+            <form id="formAddEditSave_UMS" data-method="post" enctype="multipart/form-data"
+                  asp-area="MST_ProgrammingLangauge" asp-action="_Save" asp-controller="MST_ProgrammingLangauge">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.ProgrammingLangaugeID)
+
+                <div class="form-group row">
+                    <label class="required col-md-4 col-form-label ">Langauge Name</label>
+                    <div class="col-md-5">
+                     
+                        <input type="text" id="textOne" asp-for="ProgrammingLangaugeName" class="form-control" placeholder="Enter Programming Langauge Name" />
+                        @Html.ValidationMessageFor(m => m.ProgrammingLangaugeName, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 "> Short Description</label>
+                    <div class="col-md-5">
+
+                        <textarea type="text" asp-for="ProgrammingLangaugeShortDescription" class="form-control" placeholder="Enter short Description"></textarea>
+                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4"> Detailed Description</label>
+                    <div class="col-md-5">
+                        <textarea type="text" asp-for="ProgrammingLangaugeDetailedDescription" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 pt-1"> Logo For Langauge</label>
+                    <div class="col-md-5">
+
+                        <input type="file" asp-for="File" class="form-control" placeholder="uplod Logo " />
+                        
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Sequence</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4"> Description</label>
+                    <div class="col-md-5">
+
+                        <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                      
+                    </div>
+                </div>
+
+               
+                <h4 class="title text-danger fw-bolder">Meta Details</h4>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Meta Title</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaTitle" class="form-control" placeholder="Meta Title" />
+                        
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 ">Meta Keywords</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaKeywords" class="form-control" placeholder="Meta Keywords"/>
+                      
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Meta Description</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaDescription" class="form-control" placeholder="Meta Decription" />
+                        
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4" placeholder="Meta Author">Meta Author</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaAuthor" class="form-control" placeholder="Meta Author" />
+                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4" placeholder="Meta Og Title">Meta Og Image</label>
+                    <div class="col-md-5">
+
+                        <input type="file" asp-for="File2" class="form-control" placeholder="uplod Logo " />
+                       
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Meta Og Description</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaOgDescription" class="form-control" placeholder="Meta Og Description" />
+                    
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Meta Og Url</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaOgUrl" class="form-control" placeholder="Meta Og Url" />
+                        
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Meta Og type</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaOgType" class="form-control" placeholder="Meta Og Type" />
+                       
+                    </div>
+                </div>
+                <hr class="form-button-divider" />
+                <div class="row">
+                    <div class="offset-md-4 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-form-submit" />
+                        <button type="button" class="btn btn-light btn-sm">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

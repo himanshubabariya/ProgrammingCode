@@ -26,7 +26,7 @@ namespace ProgrammingCode.Areas.MST_Level.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_LevelModel Obj_MST_Level)
         {
-            var vModel = DBConfig.dbLevel.SelectByLevelName(Obj_MST_Level.LevelID,Obj_MST_Level.UserID).ToList();
+            var vModel = DBConfig.dbLevel.SelectByLevelName(Obj_MST_Level.LevelID).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

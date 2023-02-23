@@ -28,75 +28,75 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
         public string? ProgrammingLangaugeName { get; set; }
 
 
-        [Required, Display(Name = "ProgrammingLangaugeShortDescription")]
+        [Display(Name = "ProgrammingLangaugeShortDescription")]
         public string? ProgrammingLangaugeShortDescription { get; set; }
 
 
-        [Required, Display(Name = "ProgrammingLangaugeDetailedDescription")]
+        [Display(Name = "ProgrammingLangaugeDetailedDescription")]
         public string? ProgrammingLangaugeDetailedDescription { get; set; }
 
 
-        [Required, Display(Name = "ProgrammingLangaugeLogo")]
+        [Display(Name = "ProgrammingLangaugeLogo")]
         public string? ProgrammingLangaugeLogo { get; set; }
 
 
-        [Required, Display(Name = "Sequence")]
+        [ Display(Name = "Sequence")]
         public decimal Sequence { get; set; }
 
 
-        [Required, Display(Name = "User")]
+        [Display(Name = "User")]
         public int UserID { get; set; }
 
-        [Required, Display(Name = "UserName")]
+        [ Display(Name = "UserName")]
         public String? UserName { get; set; }
 
 
-        [Required, Display(Name = "View")]
+        [ Display(Name = "View")]
         public int ProgrammingLangaugeView { get; set; }
 
 
-        [Required, Display(Name = "Description")]
+        [ Display(Name = "Description")]
         public string? Description { get; set; }
 
 
-        [Required, Display(Name = "MetaTitle")]
+        [ Display(Name = "MetaTitle")]
         public string? MetaTitle { get; set; }
 
 
-        [Required, Display(Name = "MetaKeywords")]
+        [ Display(Name = "MetaKeywords")]
         public string? MetaKeywords { get; set; }
 
 
-        [Required, Display(Name = "MetaDescription")]
+        [ Display(Name = "MetaDescription")]
         public string? MetaDescription { get; set; }
 
 
-        [Required, Display(Name = "MetaAuthor")]
+        [ Display(Name = "MetaAuthor")]
         public string? MetaAuthor { get; set; }
 
 
-        [Required, Display(Name = "MetaOgTitle")]
+        [ Display(Name = "MetaOgTitle")]
         public string? MetaOgTitle { get; set; }
 
 
-        [Required, Display(Name = "MetaOgImage")]
+        [ Display(Name = "MetaOgImage")]
         public string? MetaOgImage { get; set; }
 
 
-        [Required, Display(Name = "MetaOgDescription")]
+        [Display(Name = "MetaOgDescription")]
         public string? MetaOgDescription { get; set; }
 
 
-        [Required, Display(Name = "MetaOgUrl")]
+        [ Display(Name = "MetaOgUrl")]
         public string? MetaOgUrl { get; set; }
 
 
-        [Required, Display(Name = "MetaOgType")]
+        [ Display(Name = "MetaOgType")]
         public string? MetaOgType { get; set; }
 
 
         public IFormFile File { get; set; }
-
+        public IFormFile File2 { get; set; }
 
         public DateTime Created { get; set; }
 
