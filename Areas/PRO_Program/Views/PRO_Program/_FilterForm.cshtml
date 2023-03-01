@@ -2,7 +2,7 @@
 
 <div class="card shadow-sm">
     <div class="card-header">
-        <h3 class="card-title">
+        <h3 class="card-title fw-bolder">
             <span class="me-2"><i class="fa fa-search"></i></span> Search
             <small></small>
         </h3>
@@ -18,10 +18,10 @@
  
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="">Program</label>
+                        <label class="fw-bolder"><i class="fa fa-search"></i>&nbsp;Program</label>
                         <div class="input-group">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            <input type="text" asp-for="F_Defination" class="form-control" placeholder="Enter Program Defination " />
+                          
+                            <input type="text" asp-for="F_Defination" class="form-control" placeholder="Enter Program Defination " autofocus />
                         </div>
                         @Html.ValidationMessageFor(m => m.F_Defination,"", new { @class = "form-text text-danger" })
                     </div>

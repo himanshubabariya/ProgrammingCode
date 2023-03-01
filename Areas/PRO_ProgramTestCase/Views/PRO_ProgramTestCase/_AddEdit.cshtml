@@ -1,6 +1,6 @@
 ﻿@model ProgrammingCode.Areas.PRO_ProgramTestCase.Models.PRO_ProgramTestCaseModel
 <div class="modal-header">
-    <h4 class="modal-title">Add/Edit Page</h4>
+    <h4 class="modal-title">@ViewBag.Action Page</h4>
     <button type="button" class="btn btn-danger btn-elevate btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
         <i class="fa fa-close"></i>
     </button>
@@ -10,42 +10,42 @@
     <form id="formAddEditSave_UMS" data-ajax="true" data-ajax-method="post"
           data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
           asp-area="PRO_ProgramTestCase" asp-action="_Save" asp-controller="PRO_ProgramTestCase">
+          
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.ProgramTestCaseID)
+        <div class="form-group row">
+            <label class="required col-md-4 col-form-label p-4 "> Program </label>
+            <div class="col-md-5">
 
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label ">Test Case Description</label>
-            <div class="col-md-5">
-                @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="TastCaseDescription" class="form-control" placeholder="Test Case Description" />
-                @Html.ValidationMessageFor(m => m.TastCaseDescription, "", new { @class = "form-text text-danger" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 "> Program id </label>
-            <div class="col-md-5">
-                
-                 <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program">
+                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program" autofocus/>
                     <option>select Program</option>
-            </select>
+                </select>
                 @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
             </div>
         </div>
+        <div class="form-group row">
+            <label class="required col-md-4 col-form-label ">Test Case Description</label>
+            <div class="col-md-5">
+                @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
+                <textarea id="editor" asp-for="TastCaseDescription" class="form-control" placeholder="Test Case Description"></textarea>
+                @Html.ValidationMessageFor(m => m.TastCaseDescription, "", new { @class = "form-text text-danger" })
+            </div>
+        </div>
+        
 
          <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 ">IsPositive</label>
+            <label class=" col-md-4 col-form-label">IS Positive</label>
+            <!--begin::Label-->
             <div class="col-md-5">
-                
-                <input type="text" asp-for="IsPositive" class="form-control" placeholder="Enter Is Positive">
-                @Html.ValidationMessageFor(m => m.IsPositive, "", new { @class = "form-text text-danger" })
-            </div>
+                <input type="radio" asp-for="IsPositive" value="1" />positive
+                <input type="radio" asp-for="IsPositive" value="0" />Nagative
         </div>
 
         <div class="form-group row">
             <label class="col-md-4 col-form-label p-4 ">Sequence</label>
             <div class="col-md-5">
 
-                <input type="text" asp-for="Sequence" class="form-control" placeholder="Enter Is Sequence">
+                <input type="text" asp-for="Sequence" class="form-control" placeholder="Enter  Sequence">
                 @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -54,12 +54,12 @@
             <label class="col-md-4 col-form-label p-4 ">Description</label>
             <div class="col-md-5">
 
-                <input type="text" asp-for="Description" class="form-control" placeholder="Enter Is Description">
+                <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
             </div>
         </div>
         
-       
+      
        
         <hr class="form-button-divider" />
         <div class="row">
@@ -68,5 +68,18 @@
                 <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
             </div>
         </div>
-    </form>
+
+        </form>
+
 </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

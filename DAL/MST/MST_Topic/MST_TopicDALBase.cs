@@ -43,7 +43,6 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
             }
         }
         #endregion
-
         # region Method: Delete
         public bool? Delete(int? TopicID)
         {

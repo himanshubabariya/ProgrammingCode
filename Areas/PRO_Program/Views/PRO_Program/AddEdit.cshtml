@@ -1,62 +1,91 @@
-﻿@model ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel
+﻿@model ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel
 @{
-    ViewBag.Header = "Programming Langauge -" + ViewBag.Action;
+    ViewBag.Header = "Program -" + ViewBag.Action;
     Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
    
 }
+<style>
+    #editor {
+        width: 100%;
+        height: 300px;
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+</style>
+
 
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title fw-bolder">@ViewBag.Action Programming Langauge</h3>
+        <h3 class="card-title fw-bolder">@ViewBag.Action Program</h3>
         <div class="card-toolbar">
         </div>
     </div>
     <div class="card-body">
-        <h4 class="title text-danger fw-bolder">Langauge Details</h4>
+        <h4 class="title text-danger fw-bolder">Program Details</h4>
         <div class="">
             <form id="formAddEditSave_UMS" data-method="post" enctype="multipart/form-data"
-                  asp-area="MST_ProgrammingLangauge" asp-action="_Save" asp-controller="MST_ProgrammingLangauge">
+                  asp-area="PRO_Program" asp-action="_Save" asp-controller="PRO_Program">
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.ProgrammingLangaugeID)
+                @Html.HiddenFor(m => m.ProgramID)
 
                 <div class="form-group row">
-                    <label class="required col-md-4 col-form-label ">Langauge Name</label>
-                    <div class="col-md-5">
-                     
-                        <input type="text" id="textOne" asp-for="ProgrammingLangaugeName" class="form-control" placeholder="Enter Programming Langauge Name" autofocus" />
-                        @Html.ValidationMessageFor(m => m.ProgrammingLangaugeName, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 "> Short Description</label>
+                    <label class=" required  col-md-4 col-form-label "> Level</label>
                     <div class="col-md-5">
 
-                        <textarea type="text" asp-for="ProgrammingLangaugeShortDescription" class="form-control" placeholder="Enter short Description"></textarea>
-                       
+                        <select class="form-select form-select-sm form-select-solid" asp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level" autofocus>
+                            <option>select Level</option>
+
+                        </select>
+                        @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
                     </div>
+
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4"> Detailed Description</label>
+                <div class=" form-group row">
+                    <label class="required col-md-4 col-form-label p-4 "> Defination</label>
                     <div class="col-md-5">
-                        <textarea type="text" asp-for="ProgrammingLangaugeDetailedDescription" class="form-control" placeholder="Enter Detailed Description"></textarea>
-                       
+                        <textarea id="editor" asp-for="Defination" class="form-control" placeholder="Enter Defination" autofocus"></textarea>
+                        @Html.ValidationMessageFor(m => m.Defination, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 pt-1"> Logo For Langauge</label>
+                    <label class="col-md-4 col-form-label p-4 "> Program Number</label>
                     <div class="col-md-5">
 
-                        <input type="file" asp-for="File" class="form-control" placeholder="uplod Logo " />
-                        
+                        <textarea type="text" asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number"></textarea>
+                        @Html.ValidationMessageFor(m => m.ProgramNumber, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
-                <br />
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4"> Program Description</label>
+                    <div class="col-md-5">
+                        <textarea type="text" asp-for="ProgramDesecription" class="form-control" placeholder="Enter Program Description"></textarea>
+                        @Html.ValidationMessageFor(m => m.ProgramDesecription , "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 pt-1"> Algoritham  </label>
+                    <div class="col-md-5">
+                        <textarea id="editor" asp-for="Algoritham" class="form-control" placeholder="Algoritham"></textarea>
+                        @Html.ValidationMessageFor(m => m.Algoritham, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 pt-1"> Program url  </label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="ProgramUrl" class="form-control" placeholder="ProgramUrl   " />
+                        @Html.ValidationMessageFor(m => m.ProgramUrl, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Sequence</label>
                     <div class="col-md-5">
 
                         <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
-                       
+                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
@@ -145,3 +174,14 @@
     </div>
 </div>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

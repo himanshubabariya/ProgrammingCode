@@ -2,7 +2,7 @@
 
 <div class="card bg-light shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title">
+        <h3 class="card-title fw-bolder">
             <i class="bi bi-filetype-java fs-3"></i>
             &nbsp; Programming Langauge
         </h3>
@@ -16,15 +16,14 @@
     </div>
     <div class="card-body">
         <table class="table table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
-            <thead class="bg-gray-300">
+            <thead class="bg-gray-300 fw-bolder">
                 <tr>
                     <th class="text-center">Sr.</th>
-                    
+                 
                     <th class="">ProgrammingLangauge </th>
                     <th class="">Short Description </th>
                     <th class="">Detailed Description </th>
                     <th class="">LOGO</th>
-                    <th class="">Uesr</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -37,12 +36,13 @@
                     i++;
                     <tr>
                         <td class="text-center"><span data-toggle="kt-tooltip" data-placement="right" data-original-title="">@i</span></td>
+                        
                         <td class="text-left">@item.ProgrammingLangaugeName</td>
                         <td class="text-left">@item.ProgrammingLangaugeShortDescription</td>
                         <td class="text-left">@item.ProgrammingLangaugeDetailedDescription</td>
                         <td><img src="@Url.Content(@item.ProgrammingLangaugeLogo)" alt="hb" style="height:40px;width:40px" /></td>
                       
-                        <td class="text-left">@item.UserName</td>
+                       
 
                         
 

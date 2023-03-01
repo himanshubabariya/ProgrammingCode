@@ -17,7 +17,7 @@
             <label class="col-md-4 col-form-label "> Level</label>
         <div class="col-md-5">
 
-                <select class="form-select form-select-sm form-select-solid" asp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level">
+                <select class="form-select form-select-sm form-select-solid" asp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level" autofocus>
             <option>select Level</option>
 
             </select>

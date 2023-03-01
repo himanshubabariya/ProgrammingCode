@@ -17,7 +17,7 @@
             <label class="col-md-4 col-form-label ">Topic Name</label>
             <div class="col-md-5">
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="TopicName" class="form-control" placeholder="Enter Topic Name" />
+                <input type="text" asp-for="TopicName" class="form-control" placeholder="Enter Topic Name" autofocus />
                 @Html.ValidationMessageFor(m => m.TopicName, "", new { @class = "form-text text-danger" })
             </div>
         </div>

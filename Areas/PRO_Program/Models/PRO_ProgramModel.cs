@@ -101,7 +101,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public string? MetaOgType { get; set; }
 
 
-
+        public IFormFile File2 { get; set; }    
 
 
         public DateTime Created { get; set; }

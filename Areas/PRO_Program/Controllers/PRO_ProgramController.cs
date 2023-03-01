@@ -39,7 +39,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         }
         #endregion
         #region _AddEdit
-        public IActionResult _AddEdit(int? ProgramID)
+        public IActionResult AddEdit(int? ProgramID)
         {
             ViewBag.Action = "Add";
 
@@ -65,6 +65,25 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Save(PRO_ProgramModel Obj_PRO_Program)
         {
+            #region PhotoPath2 meta og Image
+            if (Obj_PRO_Program.File2 != null)
+            {
+                string FilePath = "wwwroot\\Upload";
+                string path = Path.Combine(Directory.GetCurrentDirectory(), FilePath);
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string fileNameWithPath = Path.Combine(path, Obj_PRO_Program.File2.FileName);
+                Obj_PRO_Program.MetaOgImage = "~" + FilePath.Replace("wwwroot\\", "/") + "/" + Obj_PRO_Program.File2.FileName;
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    Obj_PRO_Program.File2.CopyTo(stream);
+                }
+
+            }
+            #endregion
             if (Obj_PRO_Program.ProgramID == 0)
             {
                 var vReturn = DBConfig.dbProgram.Insert(Obj_PRO_Program);
@@ -73,7 +92,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
             {
                 DBConfig.dbProgram.Update(Obj_PRO_Program);
             }
-            return Content(null);
+            return RedirectToAction("Index");
         }
         #endregion
 

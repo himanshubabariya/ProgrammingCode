@@ -2,7 +2,7 @@
 
 <div class="card shadow-sm">
     <div class="card-header">
-        <h3 class="card-title">
+        <h3 class="card-title ">
             <span class="me-2"><i class="fa fa-search"></i></span> Search
             <small></small>
         </h3>
@@ -17,10 +17,10 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <label class="">Program</label>
+                    <label class="fw-bolder"><i class="fa fa-search"></i>&nbsp;Program</label>
                     <div class="input-group">
 
-                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program">
+                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program"autofocus>
                             <option>select Program</option>
                         </select>
 

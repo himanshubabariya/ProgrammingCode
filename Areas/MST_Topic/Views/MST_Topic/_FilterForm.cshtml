@@ -18,10 +18,10 @@
  
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class=""><i class="fa fa-search"></i> Topic</label>
+                        <label class="fw-bolder"><i class="fa fa-search"></i> Topic</label>
                         <div class="input-group">
 
-                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="TopicID" asp-items="@(new SelectList(ViewBag.TopiccomboList,"TopicID","TopicName"))" data-control="select2" data-placeholder="Select Topic">
+                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="TopicID" asp-items="@(new SelectList(ViewBag.TopiccomboList,"TopicID","TopicName"))" data-control="select2" data-placeholder="Select Topic" autofocus>
                                 <option>select Topic</option>
                             </select>
                         </div>

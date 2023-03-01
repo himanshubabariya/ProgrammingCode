@@ -17,7 +17,7 @@
             <label class="required  col-md-4 col-form-label ">Level Name</label>
             <div class="col-md-5">
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="LevelName" class="form-control" placeholder="Enter Level Name" />
+                <input type="text" asp-for="LevelName" class="form-control" placeholder="Enter Level Name" autofocus/>
                 @Html.ValidationMessageFor(m => m.LevelName, "", new { @class = "form-text text-danger" })
             </div>
         </div>

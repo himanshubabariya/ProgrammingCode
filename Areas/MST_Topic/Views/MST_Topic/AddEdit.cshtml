@@ -1,62 +1,48 @@
-﻿@model ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel
+﻿@model ProgrammingCode.Areas.MST_Topic.Models.MST_TopicModel
 @{
-    ViewBag.Header = "Programming Langauge -" + ViewBag.Action;
+    ViewBag.Header = "Topic -" + ViewBag.Action;
     Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
    
 }
 
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title fw-bolder">@ViewBag.Action Programming Langauge</h3>
+        <h3 class="card-title fw-bolder">@ViewBag.Action Topic</h3>
         <div class="card-toolbar">
         </div>
     </div>
     <div class="card-body">
-        <h4 class="title text-danger fw-bolder">Langauge Details</h4>
+        <h4 class="title text-danger fw-bolder">Topic Details</h4>
         <div class="">
             <form id="formAddEditSave_UMS" data-method="post" enctype="multipart/form-data"
-                  asp-area="MST_ProgrammingLangauge" asp-action="_Save" asp-controller="MST_ProgrammingLangauge">
+                  asp-area="MST_Topic" asp-action="_Save" asp-controller="MST_Topic">
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.ProgrammingLangaugeID)
+                @Html.HiddenFor(m => m.TopicID)
 
                 <div class="form-group row">
-                    <label class="required col-md-4 col-form-label ">Langauge Name</label>
+                    <label class="required col-md-4 col-form-label  ">Topic Name</label>
                     <div class="col-md-5">
                      
-                        <input type="text" id="textOne" asp-for="ProgrammingLangaugeName" class="form-control" placeholder="Enter Programming Langauge Name" autofocus" />
-                        @Html.ValidationMessageFor(m => m.ProgrammingLangaugeName, "", new { @class = "form-text text-danger" })
+                        <input type="text" id="textOne" asp-for="TopicName" class="form-control" placeholder="Enter Topic Name" autofocus/>
+                        @Html.ValidationMessageFor(m => m.TopicName, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 "> Short Description</label>
-                    <div class="col-md-5">
-
-                        <textarea type="text" asp-for="ProgrammingLangaugeShortDescription" class="form-control" placeholder="Enter short Description"></textarea>
-                       
-                    </div>
-                </div>
+               
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4"> Detailed Description</label>
                     <div class="col-md-5">
-                        <textarea type="text" asp-for="ProgrammingLangaugeDetailedDescription" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                        <textarea type="text" asp-for="TopicDescription" class="form-control" placeholder="Enter Topic Description"></textarea>
                        
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 pt-1"> Logo For Langauge</label>
-                    <div class="col-md-5">
-
-                        <input type="file" asp-for="File" class="form-control" placeholder="uplod Logo " />
-                        
-                    </div>
-                </div>
+            
                 <br />
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Sequence</label>
                     <div class="col-md-5">
 
                         <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
-                       
+                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
@@ -105,7 +91,7 @@
                     <label class="col-md-4 col-form-label p-4" placeholder="Meta Og Title">Meta Og Image</label>
                     <div class="col-md-5">
 
-                            <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image " />
+                        <input type="file" asp-for="File2" class="form-control" placeholder="uplod Logo " />
                        
                     </div>
                 </div>

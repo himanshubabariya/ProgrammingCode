@@ -5,6 +5,7 @@ using ProgrammingCode.DAL;
 using ProgrammingCode.BAL;
 using ProgrammingCode.DAL.MST.MST_Topic;
 
+
 namespace ProgrammingCode.Areas.MST_Topic.Controllers
 {
    // [CheckAccess]
@@ -30,7 +31,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         #endregion
 
         #region _AddEdit
-        public IActionResult _AddEdit(int? TopicID)
+        public IActionResult AddEdit(int? TopicID)
         {
             ViewBag.Action = "Add";
 
@@ -54,6 +55,25 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _Save(MST_TopicModel Obj_MST_Topic)
         {
+            #region PhotoPath2 meta og Image
+            if (Obj_MST_Topic.File2 != null)
+            {
+                string FilePath = "wwwroot\\Upload";
+                string path = Path.Combine(Directory.GetCurrentDirectory(), FilePath);
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                string fileNameWithPath = Path.Combine(path, Obj_MST_Topic.File2.FileName);
+                Obj_MST_Topic.MetaOgImage = "~" + FilePath.Replace("wwwroot\\", "/") + "/" + Obj_MST_Topic.File2.FileName;
+
+                using (var stream = new FileStream(fileNameWithPath, FileMode.Create))
+                {
+                    Obj_MST_Topic.File2.CopyTo(stream);
+                }
+
+            }
+            #endregion
             if (Obj_MST_Topic.TopicID == 0)
             {
                 var vReturn = DBConfig.dbTopic.Insert(Obj_MST_Topic);
