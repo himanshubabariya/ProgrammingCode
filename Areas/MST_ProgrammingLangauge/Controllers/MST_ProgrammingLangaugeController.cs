@@ -26,7 +26,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
         {
-            var vModel = DBConfig.dbLangauge.SelectByProgrammingLangaugeName(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID).ToList();
+            var vModel = DBConfig.dbLangauge.SelectForSearch(Obj_MST_ProgrammingLangauge.L_ProgrammingLangaugeName).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

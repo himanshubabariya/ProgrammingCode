@@ -25,7 +25,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(MST_TopicModel Obj_MST_Topic)
         {
-            var vModel = DBConfig.dbTopic.SelectByTopicName(Obj_MST_Topic.TopicID).ToList();
+            var vModel = DBConfig.dbTopic.SelectForSearch(Obj_MST_Topic.F_TopicName).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

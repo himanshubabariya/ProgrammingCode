@@ -17,7 +17,7 @@
             <label class="required col-md-4 col-form-label p-4 "> Program </label>
             <div class="col-md-5">
 
-                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program" autofocus/>
+                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program" autofocus>
                     <option>select Program</option>
                 </select>
                 @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })

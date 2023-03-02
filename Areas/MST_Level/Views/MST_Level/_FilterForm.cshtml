@@ -18,21 +18,19 @@
                
                 <div class="col-md-4">
                     <div class="form-group" >
-                        <label class="text-dark fw-bolder"><i class="fa fa-search"></i> Level</label>
+                        <label class="text-dark">Level</label>
                         <div class="input-group">
-                            <select class="form-select form-select-sm" data-allow-clear="true" tabindex="-1" autofocusasp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level">
-                                <option class="text-black-50">Select Level</option>
-
-                                </select>
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_LevelName" class="form-control" placeholder="Enter Level Name " autofocus />
                         </div>
-                        @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
+                        @Html.ValidationMessageFor(m => m.F_LevelName, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 </div>
             
             <hr />
             
-            <input type="submit" value="Submit" class="btn btn-success btn-sm" />
+            <input type="submit" value="Search" class="btn btn-success btn-sm" />
         </form>
     </div>
 </div>

@@ -1,10 +1,9 @@
 ﻿@model List<ProgrammingCode.DAL.MST.MST_Level.SelectForSearch_Result>
 
-<div class="card bg-light shadow-sm mt-5">
+<div class="card shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title fw-bolder bold">
-            <i class="bi bi-water  fs-3"></i>
-            &nbsp; Level</h3>
+        <h3 class="card-title  bold">
+            Search Result</h3>
         <div class="card-toolbar">
 
             <button class="btn btn-sm btn-success js-stkModal-btn ms-1"
@@ -16,10 +15,10 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
-            <thead class="bg-gray-300 fw-bolder  text-dark">
+        <table class="table table-bordered table-hover" id="tblList" cellspacing="0" >
+            <thead class="bg-gray-300 text-dark">
                 <tr  >
-                    <th class="text-center">Sr.</th>
+                    
                    
                     <th class="">Level Name </th>
                     <th class="">Level Description </th>
@@ -36,15 +35,13 @@
                 @foreach (var item in Model)
                 {
                     i++;
-                    <tr>
-                        <td class="text-center"><span data-toggle="kt-tooltip" data-placement="right" data-original-title="">@i</span></td>
+                    <tr >
+                        
                      
                         <td class="text-Left">@item.LevelName</td>
                         <td class="text-Left">@item.LevelDescription</td>
                         
-                       
-                      
-
+                     
                         <td class="text-center">
 
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">

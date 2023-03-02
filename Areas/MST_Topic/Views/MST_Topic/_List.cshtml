@@ -1,10 +1,10 @@
 ﻿@model List<ProgrammingCode.DAL.MST.MST_Topic.SelectForSearch_Result>
 
-<div class="card bg-light shadow-sm mt-5">
+<div class="card shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title fw-bolder">
-            <i class="bi bi-box fs-3"></i>
-            &nbsp; Topic
+        <h3 class="card-title">
+            
+           Search Result
         </h3>
         <div class="card-toolbar">
 
@@ -18,10 +18,10 @@
         <table class="table table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
             <thead class="bg-gray-300 fw-bolder">
                 <tr>
-                    <th class="text-center">Sr.</th>
+                   
                     <th class="">Topic Name </th>
                     <th class="">Topic Description </th>
-                    
+                    <th>Sequence</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -33,10 +33,10 @@
                 {
                     i++;
                     <tr>
-                        <td class="text-center"><span data-toggle="kt-tooltip" data-placement="right" data-original-title="">@i</span></td>
-          
+                       
                         <td class="">@item.TopicName</td>
                         <td class="">@item.TopicDescription</td>
+                        <td class="">@item.Sequence</td>
          
                        
                         

@@ -64,14 +64,14 @@ namespace ProgrammingCode.DAL.MST.MST_Level
             }
         }
         #endregion
-        #region Method: SelectByLevelName
-        public List<SelectForSearch_Result> SelectByLevelName(int LevelID)
+        #region Method: SelectForSearch
+        public List<SelectForSearch_Result> SelectForSearch(string? F_LevelName)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Level_SelectForSearch");
-                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int,LevelID);
+                sqlDB.AddInParameter(dbCMD, "LevelName", SqlDbType.NVarChar, F_LevelName);
                
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
