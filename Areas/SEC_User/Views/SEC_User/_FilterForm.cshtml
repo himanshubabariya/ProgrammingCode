@@ -2,7 +2,7 @@
 
 <div class="card shadow-sm">
     <div class="card-header">
-        <h3 class="card-title fw-bolder">
+        <h3 class="card-title ">
             <span class="me-2"><i class="fa fa-search"></i></span> Search
             <small></small>
         </h3>
@@ -15,23 +15,23 @@
             @Html.AntiForgeryToken()
 
             <div class="row">
- 
+
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="col-md-4 col-form-label fw-bolder "><i class="fa fa-search"></i>&nbsp; User</label>
-                        <div class="col-md">
-                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="UserID" asp-items="@(new SelectList(ViewBag.SelectUser,"UserID","UserName"))" data-control="select2" data-placeholder="Select User" autofocus>
-                                <option>select User</option>
-                            </select>
-                            @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "form-text text-danger" })
+                        <label class=""> User</label>
+                        <div class="input-group">
+
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_UserName" class="form-control" placeholder="Enter Topic Name " autofocus />
                         </div>
+
                     </div>
                 </div>
             </div>
 
             <hr />
             
-            <input type="submit" value="Submit" class="btn btn-success btn-sm" />
+            <input type="submit" value="Search" class="btn btn-success btn-sm" />
         </form>
     </div>
 </div>

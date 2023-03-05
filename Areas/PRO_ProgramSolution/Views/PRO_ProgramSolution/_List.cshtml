@@ -1,10 +1,9 @@
 ﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramSolution.SelectForSearch_Result>
 
-<div class="card bg-light shadow-sm mt-5">
+<div class="card  shadow-sm mt-5">
     <div class="card-header">
-        <h3 class="card-title fw-bolder">
-            <i class="bi bi-braces fs-3"></i>
-            &nbsp; Solution
+        <h3 class="card-title">
+            Search Result
         </h3>
         <div class="card-toolbar">
 
@@ -18,12 +17,10 @@
     </div>
     <div class="card-body">
         <table class="table table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
-            <thead class="bg-gray-300 fw-bolder">
+            <thead class="bg-gray-300">
                 <tr>
-                    <th class="text-center">Sr.</th>
-                    
-                   
-                    <th class="">Defination</th>
+               
+                    <th class="">&nbsp;Defination</th>
                     <th class="">ProgramSolution</th>
                     <th class="">Langauge</th>
                   
@@ -41,10 +38,9 @@
                 {
                     i++;
                     <tr>
-                        <td class="text-center"><span data-toggle="kt-tooltip" data-placement="right" data-original-title="">@i</span></td>
                        
                         
-                        <td class="">@item.Defination</td>
+                        <td class="">&nbsp;@item.Defination</td>
                         <td class="">@item.ProgramSolution</td>
                         <td class="">@item.ProgrammingLangaugeName</td>
                        

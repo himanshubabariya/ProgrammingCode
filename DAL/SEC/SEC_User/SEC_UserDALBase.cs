@@ -69,14 +69,14 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
         #endregion
 
         #region Method:SelectByUserName
-        public List<SelectAll_Result> SelectByUserID(int UserID)
+        public List<SelectAll_Result> SelectForSearch(string? F_UserName)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_SEC_User_SelectForSearch");
-                sqlDB.AddInParameter(dbMST, "UserID", SqlDbType.Int, UserID);
+                sqlDB.AddInParameter(dbMST, "UserName", SqlDbType.NVarChar, F_UserName);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
