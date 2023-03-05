@@ -14,49 +14,42 @@
         @Html.HiddenFor(m => m.UserID) 
 
         <div class=" form-group row">
-            <label class="col-md-4 required col-form-label ">User Name</label>
-            <div class="col-md-5">
+            <div class="col-md-4">
+            <label class="required col-form-label ">User Name</label>
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
                 <input type="text" asp-for="UserName" class="form-control" placeholder="Enter User" autofocus/>
                 @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "form-text text-danger" })
             </div>
-        </div>
-        <div class="form-group row ">
-            <label class="col-md-4 required col-form-label p-4 "> Password</label>
-            <div class="col-md-5">
-                
-                <input type="text" asp-for="Password" class="form-control" placeholder="Enter Password"></input>
-                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "form-text text-danger" })
-            </div>
-        </div>
-        <div class="form-group row ">
-            <label class="col-md-4 required col-form-label p-4 "> Email</label>
-            <div class="col-md-5">
-
+            <div class="col-md-4">
+            <label class="required col-form-label"> Email</label>
                 <input type="text" asp-for="Email" class="form-control" placeholder="Enter Email	"></input>
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "form-text text-danger" })
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4">Mobile no</label>
-            <div class="col-md-5">
+            <div class="col-md-4">
+            <label class="col-form-label">Mobile no</label>
                 <input type="text" asp-for="MobileNo" class="form-control" placeholder="Enter MobileNo"></input>
                 @Html.ValidationMessageFor(m => m.MobileNo , "", new { @class = "form-text text-danger" })
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 pt-1"> DisplayName  </label>
-            <div class="col-md-5">
+            <div class="col-md-6">
+            <label class="col-form-label"> DisplayName  </label>
+            
 
                 <input type="text" asp-for="DisplayName" class="form-control" placeholder="DisplayName   " />
                 @Html.ValidationMessageFor(m => m.DisplayName, "", new { @class = "form-text text-danger" })
             </div>
+            <div class="col-md-6">
+                <label class="required col-form-label"> Password</label>
+                <input type="text" asp-for="Password" class="form-control" placeholder="Enter Password"></input>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "form-text text-danger" })
+            </div>
         </div>
   
         <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4"> Description</label>
-            <div class="col-md-5">
-
+           
+            <div class="col-md-12">
+                <label class="col-form-label "> Description</label>
                 <textarea type="text" asp-for="Description" class="form-control" ></textarea>
                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
             </div>

@@ -52,6 +52,7 @@ namespace ProgrammingCode.Areas.Login.Controllers
                     return RedirectToAction("Index","Login" );
                 }
             }
+            @TempData["Message"] = HttpContext.Session.GetString("DisplayName");
             return RedirectToAction("Index", "Dashboard", new { Area = "Dashboard" });
         }
 

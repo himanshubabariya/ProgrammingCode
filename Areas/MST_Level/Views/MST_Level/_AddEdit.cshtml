@@ -14,37 +14,32 @@
         @Html.HiddenFor(m => m.LevelID) 
 
         <div class=" form-group row">
-            <label class="required  col-md-4 col-form-label ">Level Name</label>
-            <div class="col-md-5">
+            
+            <div class="col-md-6">
+                <label class="required  col-form-label ">Level Name</label>
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
                 <input type="text" asp-for="LevelName" class="form-control" placeholder="Enter Level Name" autofocus/>
                 @Html.ValidationMessageFor(m => m.LevelName, "", new { @class = "form-text text-danger" })
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 "> Level Description</label>
-            <div class="col-md-5">
-                
-                <textarea type="text" asp-for="LevelDescription" class="form-control" placeholder="Enter Level Description"></textarea>
-                @Html.ValidationMessageFor(m => m.LevelDescription, "", new { @class = "form-text text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4">Sequence</label>
-            <div class="col-md-5">
-
+            <div class="col-md-6">
+                <label class="col-form-label">Sequence</label>
                 <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
                 @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
             </div>
         </div>
+
+        <div class="form-group row">
+            <div class="col-md-12">
+                <label class="col-form-label"> Level Description</label>
+                <textarea type="text" asp-for="LevelDescription" class="form-control" placeholder="Enter Level Description"></textarea>
+                @Html.ValidationMessageFor(m => m.LevelDescription, "", new { @class = "form-text text-danger" })
+            </div>
+        </div>
       
         <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4"> Description</label>
-            <div class="col-md-5">
-
-                <textarea type="text" asp-for="Description" class="form-control" ></textarea>
+            <div class="col-md-12">
+            <label class="col-form-label "> Description</label>
+               <textarea type="text" asp-for="Description" class="form-control" ></textarea>
                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
             </div>
         </div>

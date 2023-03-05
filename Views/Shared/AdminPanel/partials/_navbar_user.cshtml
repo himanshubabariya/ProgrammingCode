@@ -17,7 +17,12 @@
                 <!--begin::Username-->
                 <div class="d-flex flex-column">
                     <div class="fw-bold d-flex align-items-center fs-5">
-                        Jay Dhamsaniya
+                        @{
+                            if (TempData.Peek("Message") != null)
+                            {
+                                @TempData.Peek("Message")
+                            }
+                        }
                     </div>
                     <span class="fw-semibold text-primary fs-7">#J00012</span>
                 </div>
