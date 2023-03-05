@@ -110,7 +110,7 @@
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4 pt-1"> Algoritham  </label>
                     <div class="col-md-5">
-                        <textarea id="editor" asp-for="Algoritham" class="form-control" placeholder="Algoritham"></textarea>
+                        <textarea id="editor2" asp-for="Algoritham" class="form-control" placeholder="Algoritham"></textarea>
                         @Html.ValidationMessageFor(m => m.Algoritham, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
@@ -220,6 +220,16 @@
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor2'), {
             toolbar: ['heading', '|', 'bold', 'italic', 'link'],
             language: 'en'
         })

@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace ProgrammingCode.Areas.MST_Level.Models
@@ -27,13 +29,9 @@ namespace ProgrammingCode.Areas.MST_Level.Models
 
         [Required, Display(Name = "LevelName")]
         public string? LevelName { get; set; }
-
-
-        
+    
         public string? LevelDescription { get; set; }
 
-
-       
         public decimal Sequence { get; set; }
 
         public string? Description { get; set; }
