@@ -5,7 +5,6 @@
         <i class="fa fa-close"></i>
     </button>
 </div>
-
 <div class="modal-body">
     <form id="formAddEditSave_UMS" data-ajax="true" data-ajax-method="post"
           data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
@@ -31,14 +30,11 @@
                 @Html.ValidationMessageFor(m => m.TastCaseDescription, "", new { @class = "form-text text-danger" })
             </div>
         </div>
-        
-
          <div class="form-group row">
             <label class=" col-md-4 col-form-label">IS Positive</label>
-            <!--begin::Label-->
             <div class="col-md-5">
-                <input type="radio" asp-for="IsPositive" value="1" />positive
-                <input type="radio" asp-for="IsPositive" value="0" />Nagative
+                <input type="radio" asp-for="IsPositive" value="1" /><label>Positive</label>
+                <input type="radio" asp-for="IsPositive" value="0" /><label>Nagative</label>
         </div>
 
         <div class="form-group row">
