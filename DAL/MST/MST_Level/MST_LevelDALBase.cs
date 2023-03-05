@@ -227,7 +227,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
 
         public string? Description { get; set; }
 
+        public DateTime Created { get; set; }
 
+
+        public DateTime Modified { get; set; }
 
 
         #endregion
@@ -273,7 +276,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
 
         public string? Description { get; set; }
 
+        public DateTime Created { get; set; }
 
+
+        public DateTime Modified { get; set; }
 
 
         #endregion
@@ -317,6 +323,10 @@ namespace ProgrammingCode.DAL.MST.MST_Level
 
 
         public string? Description { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
         #endregion
 
         #region Convert Entity to String

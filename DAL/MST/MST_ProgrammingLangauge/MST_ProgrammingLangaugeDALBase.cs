@@ -305,7 +305,10 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public string? MetaOgType { get; set; }
 
         public string? UserName { get; set; }
+        public DateTime Created { get; set; }
 
+
+        public DateTime Modified { get; set; }
 
 
 
@@ -392,6 +395,10 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public string? MetaOgType { get; set; }
 
         public string? UserName { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
 
 
 
@@ -476,6 +483,11 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public string? UserName { get; set; }
 
         public string? MetaOgType { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
         #endregion
 
         #region Convert Entity to String

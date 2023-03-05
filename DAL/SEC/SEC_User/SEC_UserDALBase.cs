@@ -257,6 +257,11 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
 
 
         public string? Description { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
 
 
         #endregion
@@ -298,6 +303,11 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
 
 
         public string? Description { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
 
         #endregion
 

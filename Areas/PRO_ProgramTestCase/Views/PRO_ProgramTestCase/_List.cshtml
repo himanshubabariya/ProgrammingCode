@@ -16,17 +16,13 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
+        <table class="secondary table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
             <thead class="bg-gray-300 ">
                 <tr>
-                
-
-                  
-
-                    <th class="">TastCaseDescription</th>
-
-                    <th class="">Type</th>
-
+                    <th class="text-center">Tast-Case</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Created</th>
+                    <th class="text-center">Modified</th>
                     <th class="text-center">Actions</th>
 
                 </tr>
@@ -41,12 +37,11 @@
                     <tr>
                       
           
-                        <td class="text-left">@item.TastCaseDescription</td>
-                        <td class="text-left">@item.IsPositive</td>
-                       
-
+                        <td class="text-center">@item.TastCaseDescription</td>
+                        <td class="text-center">@item.IsPositive</td>
+                        <td class="text-center">@item.Created</td>
+                        <td class="text-center">@item.Modified</td>
                         <td class="text-center">
-
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <button class="btn btn-primary btn-icon btn-elevate btn-sm js-stkModal-btn"
                                     data-form-id="formEdit_UMS"
@@ -55,7 +50,6 @@
                                     <i class="la la-edit"></i>
                                 </button>
                             </span>
-
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
                               data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                               asp-area="PRO_ProgramTestCase" asp-action="_Delete" asp-controller="PRO_ProgramTestCase" style="display: inline;">
