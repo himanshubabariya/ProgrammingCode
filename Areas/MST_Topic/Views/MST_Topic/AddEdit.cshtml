@@ -19,8 +19,7 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.TopicID)
 
-                <div class="form-group row">
-                    
+                <div class="form-group row">                    
                     <div class="col-md-6">
                         <label class="required col-form-label">Topic Name</label>
                         <input type="text" id="textOne" asp-for="TopicName" class="form-control" placeholder="Enter Topic Name" autofocus/>
@@ -31,27 +30,19 @@
                         <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
                         @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
                     </div>
-                    
-                </div>
-               
+                </div>               
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label class="col-form-label"> Detailed Description</label>
-                        <textarea type="text" asp-for="TopicDescription" class="form-control" placeholder="Enter Topic Description"></textarea>
-                       
+                        <label class="col-form-label">Topic Description</label>
+                        <textarea type="text" id="editor1" asp-for="TopicDescription" class="form-control" placeholder="Enter Topic Description"></textarea>                       
                     </div>
                 </div>
-
-                <div class="form-group row">
-                  
+                <div class="form-group row">                
                     <div class="col-md-12">
-                        <label class="col-form-label"> Description</label>
-                        <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
-                      
+                        <label class="col-form-label">Description</label>
+                        <textarea type="text" id="editor2" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
                     </div>
                 </div>
-
-
                 <h4 class="title text-danger fw-bolder">Meta Details</h4>
                 <div class="form-group row">
                     <div class="col-md-4">
@@ -61,15 +52,12 @@
                     <div class="col-md-4">
                         <label class="col-md-4 col-form-label">Meta Keywords</label>
                         <input type="text" asp-for="MetaKeywords" class="form-control" placeholder="Meta Keywords" />
-
                     </div>
                     <div class="col-md-4">
                         <label class="col-form-label" placeholder="Meta Author">Meta Author</label>
                         <input type="text" asp-for="MetaAuthor" class="form-control" placeholder="Meta Author" />
-
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <div class="col-md-6">
                         <label class="col-form-label">Meta Description</label>
@@ -77,37 +65,35 @@
                     </div>
                     <div class="col-md-6">
                         <label class=" col-form-label" placeholder="Meta Og Title">Meta Og Image</label>
-                        <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image " />
-
+                        <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12">
+                     <div class="col-md-6">
+                        <label class="col-form-label">Meta Og Title</label>
+                        <input type="text" asp-for="MetaOgTitle" class="form-control" placeholder="Meta Og Type"/>
+                    </div>
+                    <div class="col-md-6">
                         <label class="col-form-label">Meta Og type</label>
-                        <input type="text" asp-for="MetaOgType" class="form-control" placeholder="Meta Og Type" />
-
+                        <input type="text" asp-for="MetaOgType" class="form-control" placeholder="Meta Og Type"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <label class="col-form-label">Meta Og Url</label>
-                        <input type="text" asp-for="MetaOgUrl" class="form-control" placeholder="Meta Og Url" />
-
+                        <input type="text" asp-for="MetaOgUrl" class="form-control" placeholder="Meta Og Url"/>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label class="col-form-label">Meta Og Description</label>
-                            <textarea type="text" asp-for="MetaOgDescription" class="form-control" placeholder="Meta Og Description"> </textarea>
-
+                            <textarea type="text" asp-for="MetaOgDescription" class="form-control" placeholder="Meta Og Description"></textarea>
                         </div>
                     </div>
-
                 </div>
-
-                <hr class="form-button-divider" />
+                <hr class="form-button-divider"/>
                 <div class="row">
                     <div class="offset-md-4 col-md-8">
-                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-form-submit" />
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-form-submit"/>
                         <button type="button" class="btn btn-light btn-sm">Cancel</button>
                     </div>
                 </div>
@@ -115,3 +101,24 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor1'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor2'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

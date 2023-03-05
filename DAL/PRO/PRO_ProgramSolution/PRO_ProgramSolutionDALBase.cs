@@ -196,8 +196,12 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         public int UserID { get; set; }
 
         public string? Description { get; set; }
+        public DateTime Created { get; set; }
 
-      
+
+        public DateTime Modified { get; set; }
+
+
 
         #endregion
 
@@ -226,7 +230,10 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         public string? Description { get; set; }
 
         public string? Defination { get; set; }
+        public DateTime Created { get; set; }
 
+
+        public DateTime Modified { get; set; }
         #endregion
 
         #region Convert Entity to String
@@ -253,6 +260,10 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         public string? Description { get; set; }
 
         public string? Defination { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
         #endregion
 
         #region Convert Entity to String

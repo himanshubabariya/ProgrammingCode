@@ -272,6 +272,11 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public string? MetaOgType { get; set; }
 
 
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+     
 
 
         #endregion
@@ -355,6 +360,11 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public string? UserName { get; set; }
 
         public string? MetaOgType { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
         #endregion
 
         #region Convert Entity to String

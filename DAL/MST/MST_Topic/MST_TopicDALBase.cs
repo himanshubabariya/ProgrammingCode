@@ -72,7 +72,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_Insert");
                 sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicName) ? null : Obj_MST_Topic.TopicName.Trim());
-                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicDescription) ? null : Obj_MST_Topic.TopicDescription.Trim());
+                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar,Obj_MST_Topic.TopicDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Topic.Sequence);
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaTitle) ? null : Obj_MST_Topic.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaKeywords) ? null : Obj_MST_Topic.MetaKeywords.Trim());
@@ -186,7 +186,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_Update");
                 sqlDB.AddInParameter(dbCMD, "TopicID", SqlDbType.Int, Obj_MST_Topic.TopicID);
                 sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicName) ? null : Obj_MST_Topic.TopicName.Trim());
-                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicDescription) ? null : Obj_MST_Topic.TopicDescription.Trim());
+                sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, Obj_MST_Topic.TopicDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Topic.Sequence);
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaTitle) ? null : Obj_MST_Topic.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaKeywords) ? null : Obj_MST_Topic.MetaKeywords.Trim());

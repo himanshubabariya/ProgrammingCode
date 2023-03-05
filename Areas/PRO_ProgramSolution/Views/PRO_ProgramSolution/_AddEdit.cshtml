@@ -40,7 +40,7 @@
         <div class="form-group row">
             <label class="required col-md-4 col-form-label ">Progarm Solution</label>
             <div class="col-md-5">
-                <textarea id="editor" asp-for="ProgramSolution" class="form-control" placeholder="Enter Solution"></textarea>
+                <textarea id="editor1" asp-for="ProgramSolution" class="form-control" placeholder="Enter Solution"></textarea>
 
                 @Html.ValidationMessageFor(m => m.ProgramSolution, "", new { @class = "form-text text-danger" })
             </div>
@@ -74,7 +74,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create(document.querySelector('#editor'), {
+        .create(document.querySelector('#editor1'), {
             toolbar: ['heading', '|', 'bold', 'italic', 'link'],
             language: 'en'
         })

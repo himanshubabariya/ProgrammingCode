@@ -82,7 +82,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
             {
                 DBConfig.dbTopic.Update(Obj_MST_Topic);
             }
-            return Content(null);
+            return RedirectToAction("Index");
         }
         #endregion
 

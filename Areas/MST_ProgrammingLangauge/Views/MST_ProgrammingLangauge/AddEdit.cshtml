@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                     <label class="col-form-label"> Short Description</label>
-                    <textarea type="text" asp-for="ProgrammingLangaugeShortDescription" class="form-control" placeholder="Enter short Description"></textarea>
+                    <textarea type="text" id="editor1" asp-for="ProgrammingLangaugeShortDescription" class="form-control" placeholder="Enter short Description"></textarea>
                        
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     
                     <div class="col-md-12">
                         <label class="col-form-label"> Detailed Description</label>
-                        <textarea type="text" asp-for="ProgrammingLangaugeDetailedDescription" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                        <textarea type="text" id="editor2" asp-for="ProgrammingLangaugeDetailedDescription" class="form-control" placeholder="Enter Detailed Description"></textarea>
                        
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                     <label class="col-form-label"> Description</label>
-                        <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                        <textarea type="text" id="editor3" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
                       
                     </div>
                 </div>
@@ -91,7 +91,11 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-12">
+                     <div class="col-md-6">
+                        <label class="col-form-label">Meta Og Title</label>
+                        <input type="text" asp-for="MetaOgTitle" class="form-control" placeholder="Meta Og Type"/>
+                    </div>
+                    <div class="col-md-6">
                         <label class="col-form-label">Meta Og type</label>
                         <input type="text" asp-for="MetaOgType" class="form-control" placeholder="Meta Og Type" />
 
@@ -125,3 +129,34 @@
     </div>
 </div>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor1'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor2'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor3'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

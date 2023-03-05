@@ -1,6 +1,6 @@
 ﻿@model ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel
 <div class="modal-header">
-    <h4 class="modal-title">Add/Edit Page</h4>
+    <h4 class="modal-title">@ViewBag.Action Page</h4>
     <button type="button" class="btn btn-danger btn-elevate btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
         <i class="fa fa-close"></i>
     </button>
@@ -31,7 +31,7 @@
         <div class="form-group row">
             <div class="col-md-12">
                 <label class="col-form-label"> Level Description</label>
-                <textarea type="text" asp-for="LevelDescription" class="form-control" placeholder="Enter Level Description"></textarea>
+                <textarea  id="editro1" asp-for="LevelDescription" class="form-control" placeholder="Enter Level Description"></textarea>
                 @Html.ValidationMessageFor(m => m.LevelDescription, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -39,7 +39,7 @@
         <div class="form-group row">
             <div class="col-md-12">
             <label class="col-form-label "> Description</label>
-               <textarea type="text" asp-for="Description" class="form-control" ></textarea>
+               <textarea  id="editro2" asp-for="Description" class="form-control" ></textarea>
                 @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -60,3 +60,25 @@
         </div>
     </form>
 </div>
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor1'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor2'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
+            language: 'en'
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
