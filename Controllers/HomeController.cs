@@ -5,7 +5,7 @@ using ProgrammingCode.BAL;
 
 namespace ProgrammingCode.Controllers
 {
-    [CheckAccess]
+  
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
