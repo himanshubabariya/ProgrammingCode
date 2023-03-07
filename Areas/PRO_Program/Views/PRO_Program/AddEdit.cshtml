@@ -34,10 +34,16 @@
              
 
                 <div class="form-group row">
-                    <label class=" required  col-md-4 col-form-label "> Level</label>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
 
-                        <select class="form-select mb-2 select2-hidden-accessible"
+                        <label class="col-md-4 col-form-label"> Program Number</label>
+
+                        <input type="text" asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number">
+                        @Html.ValidationMessageFor(m => m.ProgramNumber, "", new { @class = "form-text text-danger" })
+                    </div>
+                    <div class="col-md-4">
+                    <label class=" required  col-md-4 col-form-label "> Level</label>
+                   <select class="form-select mb-2 select2-hidden-accessible"
                                 data-control="select2" data-hide-search="true"   
                                 id="kt_ecommerce_add_product_store_template"
                                 data-select2-id="select2-data-kt_ecommerce_add_product_store_template"
@@ -47,171 +53,191 @@
                         </select>
                         @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
                     </div>
+                    <div class="col-md-4">
+                        <label class="required col-md-4 col-form-label">Topic</label>
 
-                </div>
-                <div class="form-group row">
-                    <label class="required col-md-4 col-form-label">Topic</label>
-                    <div class="col-md-5">
-													<select class="form-select  mb-2 select2-hidden-accessible"
-														data-control="select2" data-placeholder="Select Topic"
-														data-allow-clear="true" multiple=""
-														data-select2-id="select2-data-12-kpd1" tabindex="-1"
-														aria-hidden="true">
+                        <select class="form-select select2-hidden-accessible"
+                                data-control="select2" data-placeholder="Select Topic"
+                                data-allow-clear="true" multiple=""
+                                data-select2-id="select2-data-12-kpd1" tabindex="-1"
+                                aria-hidden="true">
                             <option>select Topic</option>
-														<option data-select2-id="select2-data-145-fc7n" class="">
-														</option>
-														<option value="Computers"
-															data-select2-id="select2-data-146-oeuf">IF
-															else</option>
-														<option value="Watches" data-select2-id="select2-data-147-slnj">
-															loop
-														</option>
-														<option value="Headphones"
-															data-select2-id="select2-data-148-n5vw">Stack
-														</option>
-														<option value="Footwear"
-															data-select2-id="select2-data-149-fwwg">Lists
-														</option>
-														<option value="Cameras" data-select2-id="select2-data-150-dvke">
-															Quqeue
-														</option>
-														<option value="Shirts" data-select2-id="select2-data-151-30c3">
-															Tree
-														</option>
-														<option value="Household"
-															data-select2-id="select2-data-152-2ikt">
-															hashing</option>
-													</select>
-                                                    </div>
-
+                            <option data-select2-id="select2-data-145-fc7n" class="">
+                            </option>
+                            <option value="Computers"
+                                    data-select2-id="select2-data-146-oeuf">
+                                IF
+                                else
+                            </option>
+                            <option value="Watches" data-select2-id="select2-data-147-slnj">
+                                loop
+                            </option>
+                            <option value="Headphones"
+                                    data-select2-id="select2-data-148-n5vw">
+                                Stack
+                            </option>
+                            <option value="Footwear"
+                                    data-select2-id="select2-data-149-fwwg">
+                                Lists
+                            </option>
+                            <option value="Cameras" data-select2-id="select2-data-150-dvke">
+                                Quqeue
+                            </option>
+                            <option value="Shirts" data-select2-id="select2-data-151-30c3">
+                                Tree
+                            </option>
+                            <option value="Household"
+                                    data-select2-id="select2-data-152-2ikt">
+                                hashing
+                            </option>
+                        </select>
+                    </div>
+                  
                 </div>
+   
                 <div class=" form-group row">
-                    <label class="required col-md-4 col-form-label p-4 "> Defination</label>
-                    <div class="col-md-5">
+                    <div class="col-md-12">
+                    <label class="required col-md-4 col-form-label"> Defination</label>
+                  
                         <textarea id="editor" asp-for="Defination" class="form-control" placeholder="Enter Defination" autofocus"></textarea>
                         @Html.ValidationMessageFor(m => m.Defination, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
+          
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 "> Program Number</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number"></input>
-                        @Html.ValidationMessageFor(m => m.ProgramNumber, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4"> Program Description</label>
-                    <div class="col-md-5">
-                        <textarea type="text" id="editor3" asp-for="ProgramDesecription" class="form-control" placeholder="Enter Program Description"></textarea>
+                    <div class="col-md-12">
+                    <label class="col-md-4 col-form-label"> Program Description</label>
+                  <textarea type="text" id="editor3" asp-for="ProgramDesecription" class="form-control" placeholder="Enter Program Description"></textarea>
                         @Html.ValidationMessageFor(m => m.ProgramDesecription , "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 pt-1"> Algoritham  </label>
-                    <div class="col-md-5">
+                    <div class="col-md-12">
+                    <label class="col-md-4 col-form-label"> Algoritham  </label>
+                  
                         <textarea id="editor2" asp-for="Algoritham" class="form-control" placeholder="Algoritham"></textarea>
                         @Html.ValidationMessageFor(m => m.Algoritham, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 pt-1"> Program url  </label>
-                    <div class="col-md-5">
+                   
+                    <div class="col-md-4">
+                        <label class="col-md-4 col-form-label">Sequence</label>
 
+                    <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
+                    </div>
+                    <div class="col-md-8">
+                        <label class="col-md-4 col-form-label"> Program url  </label>
                         <input type="text" asp-for="ProgramUrl" class="form-control" placeholder="ProgramUrl   " />
                         @Html.ValidationMessageFor(m => m.ProgramUrl, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
+               
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Sequence</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
-                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4"> Description</label>
-                    <div class="col-md-5">
-
-                        <textarea type="text" id="editor3" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                    <div class="col-md-12">
+                    <label class="col-md-4 col-form-label"> Description</label>
+                  <textarea type="text" id="editor3" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
                       
                     </div>
                 </div>
 
-               
-                <h4 class="title text-danger fw-bolder">Meta Details</h4>
+
+                <div class="model-header">
+                    <h5 class="modal-title"> Meta Section</h5>
+
+                </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Meta Title</label>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
 
-                        <input type="text" asp-for="MetaTitle" class="form-control" placeholder="Meta Title" />
-                        
+                        <input type="text" asp-for="MetaTitle" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaTitle, "", new { @class = "form-text text-danger" })
+                    </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4 ">Meta Keywords</label>
                     <div class="col-md-5">
 
-                        <input type="text" asp-for="MetaKeywords" class="form-control" placeholder="Meta Keywords"/>
-                      
+                        <input type="text" asp-for="MetaKeywords" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaKeywords, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Meta Description</label>
                     <div class="col-md-5">
 
-                        <input type="text" asp-for="MetaDescription" class="form-control" placeholder="Meta Decription" />
-                        
+                        <input type="text" asp-for="MetaDescription" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaDescription, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4" placeholder="Meta Author">Meta Author</label>
+                    <label class="col-md-4 col-form-label p-4">Meta Author</label>
                     <div class="col-md-5">
 
-                        <input type="text" asp-for="MetaAuthor" class="form-control" placeholder="Meta Author" />
-                       
+                        <input type="text" asp-for="MetaAuthor" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaAuthor, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4" placeholder="Meta Og Title">Meta Og Image</label>
+                    <label class="col-md-4 col-form-label p-4">Meta Og Image</label>
                     <div class="col-md-5">
 
-                            <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image " />
-                       
+                        <input type="text" asp-for="MetaOgImage" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaOgImage, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Meta Og Description</label>
                     <div class="col-md-5">
 
-                        <input type="text" asp-for="MetaOgDescription" class="form-control" placeholder="Meta Og Description" />
-                    
+                        <input type="text" asp-for="MetaOgDescription" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaOgDescription, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Meta Og Url</label>
                     <div class="col-md-5">
 
-                        <input type="text" asp-for="MetaOgUrl" class="form-control" placeholder="Meta Og Url" />
-                        
+                        <input type="text" asp-for="MetaOgUrl" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaOgUrl, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4">Meta Og Title</label>
+                    <div class="col-md-5">
+
+                        <input type="text" asp-for="MetaOgTitle" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaOgTitle, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label p-4">Meta Og type</label>
                     <div class="col-md-5">
 
-                        <input type="text" asp-for="MetaOgType" class="form-control" placeholder="Meta Og Type" />
-                       
+                        <input type="text" asp-for="MetaOgType" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.MetaOgType, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
+
+
+                @*<div class="form-group row">
+                <label class="col-md-4 col-form-label"> UserID</label>
+                <div class="col-md-5">
+
+                <input type="text" asp-for="UserID" class="form-control" />
+                @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "form-text text-danger" })
+                </div>
+                </div>*@
                 <hr class="form-button-divider" />
                 <div class="row">
                     <div class="offset-md-4 col-md-8">
-                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-form-submit" />
-                        <button type="button" class="btn btn-light btn-sm">Cancel</button>
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-modal-form-submit" />
+                        <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </form>
+        </div>
         </div>
     </div>
 </div>
