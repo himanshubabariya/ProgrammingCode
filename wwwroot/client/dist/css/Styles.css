@@ -1,0 +1,89 @@
+.ttl{
+    font-size: 25px;
+    font-weight: 500;
+}
+.lstrw{
+    font-size: 14px;
+    color: rgb(114, 114, 114);
+    padding: 10px;
+}
+.btnbg{
+  color: white;
+  background-color: rgb(47, 163, 61);
+  margin-left: 5px;
+  transition: 0.2s ease-in;
+}
+.btnbg:hover{
+  background-color: lightgray;
+  color: rgb(0, 64, 7);
+}
+table tr td .easy{
+  background-color: rgb(47, 163, 61);
+}
+.hard{
+  color: rgb(163, 47, 47);
+}
+.medium{
+  color: rgb(163, 144, 47);
+}
+.type{}
+.ttl1{
+    font-size:20px
+}
+.ctr{
+  background-color: white; 
+  padding-top: 20px; 
+  padding-bottom: 20px; 
+  border-radius: 10px; 
+  margin-bottom: 30px;
+  filter: drop-shadow(0 0 4px rgb(223, 223, 223));
+}
+.greybg{
+    background-color: rgb(231, 231, 231);
+    color: black;
+    padding: 10px;
+}
+.dta{
+    font-size:16px;
+    color: rgb(126, 126, 126);
+}
+.tag{
+    color: rgb(71, 71, 71);
+    border:2px solid rgb(47, 163, 61);
+    margin-top: 10px;
+    background-color: rgb(231, 231, 231);
+}
+.ProgramLink{
+  text-decoration: none;
+  color: rgb(114, 114, 114);
+ 
+  transition: 0.2s ease;
+}
+
+.ProgramLink:hover{
+  color: rgb(42, 42, 42);
+  
+  
+}
+
+.dta-sm{
+    font-size: 14px;
+}
+.fa-eye{
+  margin-right: 2px;
+}
+.highlight{
+    background-color: rgb(238, 238, 238);
+    color: rgb(81, 81, 81);
+    font-size: 16px;
+}
+
+.ftLink{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.ftLink a{
+    color: white;
+}
