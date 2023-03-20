@@ -1,4 +1,6 @@
-﻿@model List<ProgrammingCode.DAL.PRO.PRO_Program.SelectAll_Result>
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+@model List<ProgrammingCode.DAL.PRO.PRO_Program.SelectAll_Result>
 
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
@@ -40,7 +42,7 @@
                        
                  
                         <td class="text-center">@item.ProgramNumber</td>
-                        <td class="text-center">@item.Defination</td>
+                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
                         <td class="text-center">@item.Sequence</td>
                         <td class="text-center">@item.Created</td>
                         <td class="text-center">@item.Modified</td>

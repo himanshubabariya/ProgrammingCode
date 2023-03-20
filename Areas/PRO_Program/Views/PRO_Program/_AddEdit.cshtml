@@ -68,7 +68,7 @@
             <label class="col-md-4 col-form-label p-4">Sequence</label>
             <div class="col-md-5">
 
-                <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce"/>
                 @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -91,7 +91,6 @@
         <div class="form-group row">
             <label class="col-md-4 col-form-label p-4">Meta Description</label>
             <div class="col-md-5">
-
                 <input type="text" asp-for="MetaDescription" class="form-control"  />
                 @Html.ValidationMessageFor(m => m.MetaDescription, "", new { @class = "form-text text-danger" })
             </div>
@@ -156,7 +155,6 @@
   @*<div class="form-group row">
             <label class="col-md-4 col-form-label"> UserID</label>
             <div class="col-md-5">
-
                 <input type="text" asp-for="UserID" class="form-control" />
                 @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "form-text text-danger" })
             </div>

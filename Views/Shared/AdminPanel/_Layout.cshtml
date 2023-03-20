@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="shortcut icon" href="@Url.Content("~/AdminPanel/assets/media/logos/favicon.ico")" />
     <!--begin::Fonts-->
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
 	<!--begin::Vendor Stylesheets(used by this page)-->
@@ -121,7 +122,9 @@
     </script>
 
   
-
+    <!--CKEditor Build Bundles:: Only include the relevant bundles accordingly-->
+    <script src="@Url.Content("~/_m/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js")"></script>
+  
     <script src="@Url.Content("~/_m/plugins/global/plugins.bundle.js")"></script>
     <script src="@Url.Content("~/_m/js/scripts.bundle.js")"></script>
     <!--end::Global Javascript Bundle-->

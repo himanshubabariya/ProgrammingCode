@@ -4,17 +4,6 @@
     Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
    
 }
-<style>
-    #editor {
-        width: 100%;
-        height: 300px;
-        font-size: 16px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-    }
-</style>
 
 
 <div class="card  shadow-sm mt-5">
@@ -144,79 +133,53 @@
 
 
                 <div class="model-header">
-                    <h5 class="modal-title"> Meta Section</h5>
+                    <h5 class="modal-title"> Meta Detail</h5>
 
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Title</label>
                     <div class="col-md-4">
-
-                        <input type="text" asp-for="MetaTitle" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaTitle, "", new { @class = "form-text text-danger" })
+                        <label class="col-form-label">Meta Title</label>
+                        <input type="text" asp-for="MetaTitle" class="form-control" placeholder="Meta Title" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-4 col-form-label">Meta Keywords</label>
+                        <input type="text" asp-for="MetaKeywords" class="form-control" placeholder="Meta Keywords" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-form-label" placeholder="Meta Author">Meta Author</label>
+                        <input type="text" asp-for="MetaAuthor" class="form-control" placeholder="Meta Author" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 ">Meta Keywords</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaKeywords" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaKeywords, "", new { @class = "form-text text-danger" })
+                    <div class="col-md-6">
+                        <label class="col-form-label">Meta Description</label>
+                        <textarea type="text" asp-for="MetaDescription" class="form-control" placeholder="Meta Decription"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class=" col-form-label" placeholder="Meta Og Title">Meta Og Image</label>
+                        <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Description</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaDescription" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaDescription, "", new { @class = "form-text text-danger" })
+                    <div class="col-md-6">
+                        <label class="col-form-label">Meta Og Title</label>
+                        <input type="text" asp-for="MetaOgTitle" class="form-control" placeholder="Meta Og Type" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-form-label">Meta Og type</label>
+                        <input type="text" asp-for="MetaOgType" class="form-control" placeholder="Meta Og Type" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Author</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaAuthor" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaAuthor, "", new { @class = "form-text text-danger" })
+                    <div class="col-md-12">
+                        <label class="col-form-label">Meta Og Url</label>
+                        <input type="text" asp-for="MetaOgUrl" class="form-control" placeholder="Meta Og Url" />
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Og Image</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaOgImage" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaOgImage, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Og Description</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaOgDescription" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaOgDescription, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Og Url</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaOgUrl" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaOgUrl, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Og Title</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaOgTitle" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaOgTitle, "", new { @class = "form-text text-danger" })
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4">Meta Og type</label>
-                    <div class="col-md-5">
-
-                        <input type="text" asp-for="MetaOgType" class="form-control" />
-                        @Html.ValidationMessageFor(m => m.MetaOgType, "", new { @class = "form-text text-danger" })
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label class="col-form-label">Meta Og Description</label>
+                            <textarea type="text" asp-for="MetaOgDescription" class="form-control" placeholder="Meta Og Description"></textarea>
+                        </div>
                     </div>
                 </div>
 

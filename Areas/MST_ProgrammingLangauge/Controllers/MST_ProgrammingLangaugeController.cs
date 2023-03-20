@@ -7,7 +7,7 @@ using ProgrammingCode.DAL.MST.MST_ProgrammingLangauge;
 
 namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
 {
-    [CheckAccess]
+    //[CheckAccess]
 
     [Area("MST_ProgrammingLangauge")]
     public class MST_ProgrammingLangaugeController : Controller

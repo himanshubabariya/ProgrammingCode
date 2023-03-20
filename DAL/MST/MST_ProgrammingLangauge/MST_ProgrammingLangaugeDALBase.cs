@@ -123,7 +123,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
             {
                 var vExceptionHandler = ExceptionHandler(ex);
                 if (vExceptionHandler.IsToThrowAnyException)
-                    throw vExceptionHandler.ExceptionToThrow;
+                        throw vExceptionHandler.ExceptionToThrow;
                 return null;
             }
         }

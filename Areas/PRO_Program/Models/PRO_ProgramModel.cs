@@ -25,7 +25,6 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
 
         [Required, Display(Name = "LevelID")]
         public int LevelID { get; set; }
-
         [Required, Display(Name = "ProgramNumber")]
         public string? ProgramNumber { get; set; }
 
@@ -34,11 +33,11 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public string? Defination { get; set; }
 
 
-        [Required, Display(Name = "ProgramDescription")]
+        
         public string? ProgramDesecription { get; set; }
 
 
-        [Required, Display(Name = "Algoritham")]
+
         public string? Algoritham { get; set; }
 
 
@@ -50,58 +49,55 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public decimal Sequence { get; set; }
 
 
-        [Required, Display(Name = "User")]
+  
         public int UserID { get; set; }
 
-        [Required, Display(Name = "UserName")]
+       
         public string? UserName { get; set; }
 
 
-        [Required, Display(Name = "View")]
+      
         public int ProgramView { get; set; }
 
 
-        [Required, Display(Name = "Description")]
+     
         public string? Description { get; set; }
 
 
-        [Required, Display(Name = "MetaTitle")]
         public string? MetaTitle { get; set; }
 
 
-        [Required, Display(Name = "MetaKeywords")]
+
         public string? MetaKeywords { get; set; }
 
 
-        [Required, Display(Name = "MetaDescription")]
+       
         public string? MetaDescription { get; set; }
 
 
-        [Required, Display(Name = "MetaAuthor")]
+        
         public string? MetaAuthor { get; set; }
 
 
-        [Required, Display(Name = "MetaOgTitle")]
+       
         public string? MetaOgTitle { get; set; }
 
 
-        [Required, Display(Name = "MetaOgImage")]
+      
         public string? MetaOgImage { get; set; }
 
 
-        [Required, Display(Name = "MetaOgDescription")]
         public string? MetaOgDescription { get; set; }
 
 
-        [Required, Display(Name = "MetaOgUrl")]
         public string? MetaOgUrl { get; set; }
 
 
-        [Required, Display(Name = "MetaOgType")]
+       
         public string? MetaOgType { get; set; }
 
 
-        public IFormFile File2 { get; set; }    
+        public IFormFile? File2 { get; set; }    
 
 
         public DateTime Created { get; set; }

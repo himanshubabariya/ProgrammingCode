@@ -24,6 +24,10 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Models
         [Required, Display(Name = "ProgramID")]
         public int ProgramID { get; set; }
 
+       
+        public string? ProgramNumber { get; set; }
+        public string? Defination { get; set; }
+
 
         [Required, Display(Name = "TastCaseDescription")]
         public string? TastCaseDescription { get; set; }

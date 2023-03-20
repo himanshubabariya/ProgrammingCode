@@ -182,7 +182,8 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
         public string? TastCaseDescription { get; set; }
         public bool? IsPositive { get; set; }
         public decimal Sequence { get; set; }
-
+        public string? ProgramNumber { get; set; }
+        public string? Defination { get; set; }
         public string? Description { get; set; }
         public int? UserID { get; set; }
 
@@ -239,7 +240,8 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
         public string? TastCaseDescription { get; set; }
         public bool? IsPositive { get; set; }
         public decimal Sequence { get; set; }
-
+        public string? ProgramNumber { get; set; }
+        public string? Defination { get; set; }
         public string? Description { get; set; }
         public int? UserID { get; set; }
 
