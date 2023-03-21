@@ -211,9 +211,110 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
+        #region Method:SelectALL
+        public List<Program_List> PropgramList()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_List");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<Program_List>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region Method:SelectALL
+        public List<TopProgram_List> TopPropgramList()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_TopProgram_List");
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<TopProgram_List>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
     }
 
     #region All Entities
+    #region Entity: TopProgram_List
+    public partial class TopProgram_List : DALHelper
+    {
+        #region Properties
+
+
+        public string? Defination { get; set; }
+
+        public string? LevelName { get; set; }
+
+        public int ProgramView { get; set; }
+
+
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
+    #region Entity: Program_List
+    public partial class Program_List : DALHelper
+    {
+        #region Properties
+
+        public int ProgramID { get; set; }
+        public string? Defination { get; set; }
+
+        public string? LevelName { get; set; }
+
+        public int ProgramView { get; set; }
+
+
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
+
 
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper

@@ -10,7 +10,7 @@
 		<div class="row">
 			@foreach (var item in LangaugeList)
 			{
-				<div class="col-md-4 ">
+				<div class="col-md-4">
 					<div class="card card-flush">
 						<div class="card-header">
 							<h3 class="card-title">@item.ProgrammingLangaugeName</h3>
@@ -19,7 +19,7 @@
 							</div>
 						</div>
 						<div class="card-body dta dta-sm">
-						@Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeShortDescription.Length > 100 ? item.ProgrammingLangaugeShortDescription.Substring(0, 100) + "....." : item.ProgrammingLangaugeShortDescription))
+						@Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeShortDescription.Length > 200 ? item.ProgrammingLangaugeShortDescription.Substring(0, 200) + "....." : item.ProgrammingLangaugeShortDescription))
 						</div>
 						<div class="card-footer">
 							<div class="card-toolbar">

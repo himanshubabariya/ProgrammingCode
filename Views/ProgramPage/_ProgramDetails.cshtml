@@ -1,0 +1,47 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+@model List<ProgrammingCode.DAL.PRO.PRO_Program.SelectPk_Result>
+@foreach(var item in Model)
+{
+<div class="container ctr">
+    <div class="row">
+        <div class="col-md-12 ttl">
+                 @Html.Raw(WebUtility.HtmlDecode(item.Defination))
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 dta">
+                @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
+        </div>
+    </div>
+    <button type="button" class="btn btn-sm tag">
+        Loop
+    </button>
+    <button class="btn btn-sm tag">
+        Conditional
+    </button>
+
+</div>
+<div class="container ctr">
+    <div class="row">
+        <div class="col-md-12 ttl">
+            Algorithm
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 dta">
+                @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
+        </div>
+    </div>
+</div>
+}

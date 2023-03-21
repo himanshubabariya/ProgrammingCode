@@ -8,8 +8,9 @@ namespace ProgrammingCode.Controllers.LangaugePage
 		public IActionResult Index(int ProgrammingLangaugeID)
 		{
             var programresult = DBConfig.dbLangauge.SelectPk(ProgrammingLangaugeID).ToList();
-            return View(programresult);
-          
+			ViewBag.ProgramList = DBConfig.dbProgram.PropgramList().ToList();
+            ViewBag.TopProgramList = DBConfig.dbProgram.TopPropgramList().ToList();
+            return View(programresult);         
 		}
 	}
 }
