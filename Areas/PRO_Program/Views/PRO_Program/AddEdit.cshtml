@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
    
 }
-
-
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title fw-bolder">@ViewBag.Action Program</h3>
@@ -25,21 +23,16 @@
                 <div class="form-group row">
                     <div class="col-md-4">
 
-                        <label class="col-md-4 col-form-label"> Program Number</label>
+                        <label class="required col-md-4 col-form-label"> Program Number</label>
 
                         <input type="text" asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number">
                         @Html.ValidationMessageFor(m => m.ProgramNumber, "", new { @class = "form-text text-danger" })
                     </div>
                     <div class="col-md-4">
                     <label class=" required  col-md-4 col-form-label "> Level</label>
-                   <select class="form-select mb-2 select2-hidden-accessible"
-                                data-control="select2" data-hide-search="true"   
-                                id="kt_ecommerce_add_product_store_template"
-                                data-select2-id="select2-data-kt_ecommerce_add_product_store_template"
-                                tabindex="-1" aria-hidden="true" asp-for="LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level" autofocus>
-                            <option>select Level</option>
-
-                        </select>
+              
+                        @Html.DropDownList("LevelID", new SelectList(ViewBag.LevelcomboList,"LevelID","LevelName"), "select Level",  new {@class="form-select form-select-sm "})
+               
                         @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
                     </div>
                     <div class="col-md-4">
@@ -114,10 +107,10 @@
                         <label class="col-md-4 col-form-label">Sequence</label>
 
                     <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
-                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
+                       
                     </div>
                     <div class="col-md-8">
-                        <label class="col-md-4 col-form-label"> Program url  </label>
+                        <label class="required col-md-4 col-form-label"> Program url  </label>
                         <input type="text" asp-for="ProgramUrl" class="form-control" placeholder="ProgramUrl   " />
                         @Html.ValidationMessageFor(m => m.ProgramUrl, "", new { @class = "form-text text-danger" })
                     </div>
@@ -138,8 +131,9 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-md-4">
-                        <label class="col-form-label">Meta Title</label>
+                        <label class="required col-form-label">Meta Title</label>
                         <input type="text" asp-for="MetaTitle" class="form-control" placeholder="Meta Title" />
+                        @Html.ValidationMessageFor(m => m.MetaTitle, "", new { @class = "form-text text-danger" })
                     </div>
                     <div class="col-md-4">
                         <label class="col-md-4 col-form-label">Meta Keywords</label>

@@ -32,7 +32,7 @@ namespace ProgrammingCode.Areas.MST_Level.Models
     
         public string? LevelDescription { get; set; }
 
-        public decimal Sequence { get; set; }
+        public decimal? Sequence { get; set; }
 
         public string? Description { get; set; }
 

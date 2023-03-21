@@ -19,22 +19,20 @@
             <div class="col-md-5">
                 
                
-                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program" autofocus>
-                    <option>select Program</option>
-            </select>
+               
+                @Html.DropDownList("ProgramID", new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"), "select Program",  new {@class="form-select form-select-sm "})
                 @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
             </div>
         </div>
         <div class="form-group row">
             <label class="col-md-4 col-form-label p-4 ">Programming Langauge </label>
             <div class="col-md-5">
-
-                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgrammingLangaugeID" asp-items="@(new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"))" data-control="select2" data-placeholder="Select Programming Langauge" >
-                    <option>select Langauge</option>
-                </select>
+                @Html.DropDownList("ProgrammingLangaugeID", new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"), "select Language",  new {@class="form-select form-select-sm "})
+                @Html.ValidationMessageFor(m => m.ProgrammingLangaugeID, "", new { @class = "form-text text-danger" })
+               
 
             
-                @Html.ValidationMessageFor(m => m.ProgrammingLangaugeID, "", new { @class = "form-text text-danger" })
+               
             </div>
         </div>
         <div class="form-group row">

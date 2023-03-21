@@ -43,10 +43,10 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
 
         [Required, Display(Name = "ProgramUrl")]
         public string? ProgramUrl { get; set; }
+        
 
-
-        [Required, Display(Name = "Sequence")]
-        public decimal Sequence { get; set; }
+        
+        public decimal? Sequence { get; set; }
 
 
   

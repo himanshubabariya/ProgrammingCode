@@ -35,13 +35,13 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Models
         [Required, Display(Name = "IsPositive")]
         public int IsPositive { get; set; }
 
-        [Required, Display(Name = "Sequence")]
-        public decimal Sequence { get; set; }
+       
+        public decimal?Sequence { get; set; }
 
-        [Required, Display(Name = "Description")]
+       
         public string? Description { get; set; }
 
-        [Required, Display(Name = "UserID")]
+
         public int UserID { get; set; }
 
 

@@ -43,7 +43,7 @@ namespace ProgrammingCode.Areas.SEC_User.Models
         public string? DisplayName { get; set; }
         [Required, Display(Name = "CreatedUser")]
         public string? CreatedUser { get; set; }
-        [Required, Display(Name = "Description")]
+        
         public string? Description { get; set; }
 
         [Required, Display(Name = "CreatedUserID")]

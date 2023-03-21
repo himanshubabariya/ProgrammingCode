@@ -27,8 +27,9 @@
                     </div>
       
                     <div class="col-md-4">
-                        <label class="required col-form-label">Sequence</label>
+                        <label class="col-form-label">Sequence</label>
                         <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                      
                     </div>
                
                     <div class="col-md-4">
@@ -66,8 +67,9 @@
                 <h4 class="title text-danger fw-bolder">Meta Details</h4>
                 <div class="form-group row">
                     <div class="col-md-4">
-                        <label class="col-form-label">Meta Title</label>
+                        <label class="required col-form-label">Meta Title</label>
                         <input type="text" asp-for="MetaTitle" class="form-control" placeholder="Meta Title" />
+                        @Html.ValidationMessageFor(m => m.MetaTitle, "", new { @class = "form-text text-danger" })
                 </div>
                     <div class="col-md-4">
                         <label class="col-md-4 col-form-label">Meta Keywords</label>
@@ -96,6 +98,7 @@
                      <div class="col-md-6">
                         <label class="col-form-label">Meta Og Title</label>
                         <input type="text" asp-for="MetaOgTitle" class="form-control" placeholder="Meta Og Type"/>
+                        @Html.ValidationMessageFor(m => m.MetaOgTitle, "", new { @class = "form-text text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label">Meta Og type</label>

@@ -32,8 +32,8 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
 
 
 
-        [Display(Name = "TopicName")]
-        public decimal Sequence { get; set; }
+       
+        public decimal? Sequence { get; set; }
 
 
         
@@ -51,7 +51,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
         public string? Description { get; set; }
 
 
-        
+        [Required, Display(Name = "MetaTitle")]
         public string? MetaTitle { get; set; }
 
 

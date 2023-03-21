@@ -36,8 +36,8 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
 
         public string? ProgrammingLangaugeLogo { get; set; }
 
-        [Required, Display(Name = "Sequence")]
-        public decimal Sequence { get; set; }
+   
+        public decimal? Sequence { get; set; }
 
 
         public int UserID { get; set; }
@@ -50,7 +50,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
 
         public string? Description { get; set; }
 
-
+        [Required, Display(Name = "MetaTitle")]
         public string? MetaTitle { get; set; }
 
 
