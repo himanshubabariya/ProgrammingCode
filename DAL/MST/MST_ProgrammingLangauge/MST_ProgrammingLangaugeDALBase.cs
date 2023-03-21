@@ -416,7 +416,8 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
 
     #region Entity: SelectPK_Result
     public partial class SelectPk_Result : DALHelper
-    {
+    { 
+     
         #region Properties
         public int ProgrammingLangaugeID { get; set; }
 

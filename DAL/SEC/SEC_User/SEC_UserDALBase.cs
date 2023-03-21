@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.SEC_User.Models;
+using ProgrammingCode.BAL;
 using System.Data;
 using System.Data.Common;
 using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
@@ -154,7 +155,7 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
                 sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_SEC_User.MobileNo) ? null : Obj_SEC_User.MobileNo.Trim());
                 sqlDB.AddInParameter(dbCMD, "DisplayName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_SEC_User.DisplayName) ? null : Obj_SEC_User.DisplayName.Trim());
                   sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_SEC_User.Description) ? null : Obj_SEC_User.Description.Trim());
-                  sqlDB.AddInParameter(dbCMD, "CreatedUserID", SqlDbType.Int, 1);
+                  sqlDB.AddInParameter(dbCMD, "CreatedUserID", SqlDbType.Int, CV.UserID());
                   var vResult = sqlDB.ExecuteScalar(dbCMD);
                   if (vResult == null)
                       return null;  
@@ -185,7 +186,7 @@ namespace ProgrammingCode.DAL.SEC.SEC_User
                 sqlDB.AddInParameter(dbCMD, "MobileNo", SqlDbType.NVarChar, Obj_SEC_User.MobileNo);
                 sqlDB.AddInParameter(dbCMD, "DisplayName", SqlDbType.NVarChar, Obj_SEC_User.DisplayName);
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, Obj_SEC_User.Description);
-                sqlDB.AddInParameter(dbCMD, "CreatedUserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "CreatedUserID", SqlDbType.Int, CV.UserID());
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                   return vReturnValue == -1 ? false : true;
               }

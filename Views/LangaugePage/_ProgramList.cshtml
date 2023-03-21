@@ -1,0 +1,43 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+@model List<ProgrammingCode.DAL.PRO.PRO_Program.SelectAll_Result>
+@{
+	var ProgramList = Model;
+}
+<div class="container ctr">
+
+
+    <div class="row">
+        <div class="col-md-12 ttl">
+            All Programs
+        </div>
+
+        <Div class="row">
+            <div class="py-5">
+                <div class="table-responsive">
+                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                        <tbody>
+                            @{
+                                var i = 0;
+                            }
+
+                            @foreach (var item in ProgramList)
+			{
+                            <tr class="">
+                                <td>@i++</td>
+                                <td>
+                                        <a class="ProgramLink" href="#">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                </td>
+                                <td class="hard">Hard</td>
+                                <td class="type">Loop</td>
+                                <td><i class="fa fa-eye"></i>512</td>
+                            </tr>
+                            }
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </Div>
+    </div>
+</div>
