@@ -5,9 +5,9 @@ namespace ProgrammingCode.Controllers.LangaugePage
 {
 	public class LangaugePageController : Controller
 	{
-		public IActionResult Index()
+		public IActionResult Index(int ProgrammingLangaugeID)
 		{
-            var programresult = DBConfig.dbProgram.SelectAll().ToList();
+            var programresult = DBConfig.dbLangauge.SelectPk(ProgrammingLangaugeID).ToList();
             return View(programresult);
           
 		}

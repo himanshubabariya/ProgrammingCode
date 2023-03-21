@@ -84,7 +84,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
        
         public string? MetaOgType { get; set; }
 
-        public IFormFile File2 { get; set; }
+        public IFormFile? File2 { get; set; }
 
 
         public DateTime Created { get; set; }

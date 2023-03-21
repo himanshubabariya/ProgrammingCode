@@ -1,10 +1,12 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.PRO_Program.Models;
 using System.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.Common;
 using System.Data.SqlClient;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
+using Newtonsoft.Json.Linq;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
@@ -140,11 +142,25 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaOgUrl) ? null : Obj_PRO_Program.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.Description) ? null : Obj_PRO_Program.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                SqlParameter newIDParam = new SqlParameter("@pid", SqlDbType.Int);
+                newIDParam.Direction = ParameterDirection.Output;
+                dbCMD.Parameters.Add(newIDParam);
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
-                if (vResult == null)
-                    return null;
+               
+				int newID = (int)dbCMD.Parameters["@pid"].Value;
 
-                return (decimal)Convert.ChangeType(vResult, vResult.GetType());
+  
+                foreach (var item in Obj_PRO_Program.topics_Selected)
+                {
+                    DbCommand dbCMD2 = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_Insert");
+                    sqlDB.AddInParameter(dbCMD2, "TopicID", SqlDbType.Int, item.TopicID);
+                    sqlDB.AddInParameter(dbCMD2, "ProgramID", SqlDbType.Int, newID);
+                    sqlDB.AddInParameter(dbCMD2, "UserID", SqlDbType.Int, 1);
+                    sqlDB.ExecuteNonQuery(dbCMD);
+                }
+                    if (vResult == null)
+					return null;
+				return (decimal)Convert.ChangeType(vResult, vResult.GetType());
             }
             catch (Exception ex)
             {

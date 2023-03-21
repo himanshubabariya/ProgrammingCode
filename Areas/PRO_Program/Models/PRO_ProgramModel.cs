@@ -1,5 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Contracts;
 using System.Xml.Linq;
+using static ProgrammingCode.Areas.MST_Topic.Models.MST_TopicModel;
 
 namespace ProgrammingCode.Areas.PRO_Program.Models
 {
@@ -32,8 +35,8 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         [Required, Display(Name = "Defination")]
         public string? Defination { get; set; }
 
+        public List<MST_TopicComboboxModel>? topics_Selected { get; set; }
 
-        
         public string? ProgramDesecription { get; set; }
 
 

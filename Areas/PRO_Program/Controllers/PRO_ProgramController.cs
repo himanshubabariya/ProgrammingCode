@@ -44,9 +44,10 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
             ViewBag.Action = "Add";
 
             
-            ViewBag.levelcomboList = DBConfig.dbLevel.SelectComboBoxLevel().ToList(); ;
+            ViewBag.levelcomboList = DBConfig.dbLevel.SelectComboBoxLevel().ToList();
+			ViewBag.topiccomboList = DBConfig.dbTopic.SelectComboBoxTopic().ToList(); 
 
-            if (ProgramID != null)
+			if (ProgramID != null)
             {
                 ViewBag.Action = "Edit";
 

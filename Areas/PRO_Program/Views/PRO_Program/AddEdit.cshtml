@@ -41,37 +41,8 @@
                         <select class="form-select select2-hidden-accessible"
                                 data-control="select2" data-placeholder="Select Topic"
                                 data-allow-clear="true" multiple=""
-                                data-select2-id="select2-data-12-kpd1" tabindex="-1"
-                                aria-hidden="true">
-                            <option>select Topic</option>
-                            <option data-select2-id="select2-data-145-fc7n" class="">
-                            </option>
-                            <option value="Computers"
-                                    data-select2-id="select2-data-146-oeuf">
-                                IF
-                                else
-                            </option>
-                            <option value="Watches" data-select2-id="select2-data-147-slnj">
-                                loop
-                            </option>
-                            <option value="Headphones"
-                                    data-select2-id="select2-data-148-n5vw">
-                                Stack
-                            </option>
-                            <option value="Footwear"
-                                    data-select2-id="select2-data-149-fwwg">
-                                Lists
-                            </option>
-                            <option value="Cameras" data-select2-id="select2-data-150-dvke">
-                                Quqeue
-                            </option>
-                            <option value="Shirts" data-select2-id="select2-data-151-30c3">
-                                Tree
-                            </option>
-                            <option value="Household"
-                                    data-select2-id="select2-data-152-2ikt">
-                                hashing
-                            </option>
+                                data-select2-id="select2-data-12-kpd1" tabindex="-1" asp-for="topics_Selected"
+                                aria-hidden="true" asp-items="@(new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"))">           
                         </select>
                     </div>
                   
