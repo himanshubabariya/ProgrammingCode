@@ -149,7 +149,6 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                
 				int newID = (int)dbCMD.Parameters["@pid"].Value;
 
-  
                 foreach (var item in Obj_PRO_Program.topics_Selected)
                 {
                     DbCommand dbCMD2 = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_Insert");
@@ -212,13 +211,14 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method:SelectALL
-        public List<Program_List> PropgramList()
+        public List<Program_List> PropgramList(int ProgrammingLangaugeID)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_List");
+                sqlDB.AddInParameter(dbMST, "ProgrammingLangaugeID", SqlDbType.Int,ProgrammingLangaugeID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
@@ -237,19 +237,72 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method:SelectALL
-        public List<TopProgram_List> TopPropgramList()
+        public List<TopProgram_List> TopPropgramList(int ProgrammingLangaugeID)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_TopProgram_List");
+                sqlDB.AddInParameter(dbMST, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
                     dt.Load(dr);
                 }
                 return ConvertDataTableToEntity<TopProgram_List>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region TopPropgramNavList
+        public List<TopProgram_List> TopPropgramNavList()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_TopProgram_Nav_List");
+                
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<TopProgram_List>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region PropgramNavList
+        public List<Program_List> PropgramNavList()
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Nav_List");
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<Program_List>(dt);
 
             }
             catch (Exception ex)

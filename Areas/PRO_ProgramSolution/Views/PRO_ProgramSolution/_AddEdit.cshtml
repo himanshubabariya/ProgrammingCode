@@ -39,7 +39,7 @@
             <label class="required col-md-4 col-form-label ">Progarm Solution</label>
             <div class="col-md-5">
                 
-                <textarea asp-for="ProgramSolution" class="form-control" placeholder="Enter Solution" id="kt_docs_ckeditor_classic">
+                <textarea asp-for="ProgramSolution" class="form-control" placeholder="Enter Solution" >
               
                 </textarea>
                 @Html.ValidationMessageFor(m => m.ProgramSolution, "", new { @class = "form-text text-danger" })

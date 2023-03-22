@@ -38,10 +38,10 @@
                     <div class="col-md-4">
                         <label class="required col-md-4 col-form-label">Topic</label>
 
-                        <select class="form-select select2-hidden-accessible"
+                        <select class="form-select select2-hidden-accessible" id="mtp"
                                 data-control="select2" data-placeholder="Select Topic"
                                 data-allow-clear="true" multiple=""
-                                data-select2-id="select2-data-12-kpd1" tabindex="-1" asp-for="topics_Selected"
+                                data-select2-id="select2-data-12-kpd1" tabindex="-1" asp-for="topics_Selected" onchange="tp()"
                                 aria-hidden="true" asp-items="@(new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"))">           
                         </select>
                     </div>
@@ -172,6 +172,17 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <script>
+    function tp() {
+        var dropdown = document.getElementById("mtp");
+        for (var i = 0; i < dropdown.options.length; i++) {
+            if (selectedValues.includes(parseInt(dropdown.options[i].value))) {
+                dropdown.options[i].selected = true;
+                console.log(dropdown.options[i]);
+            }
+           
+        }
+        console.log(j);
+    }
     ClassicEditor
         .create(document.querySelector('#editor'), {
             toolbar: ['heading', '|', 'bold', 'italic', 'link'],

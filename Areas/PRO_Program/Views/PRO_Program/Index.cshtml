@@ -15,7 +15,11 @@
         $(document).ready(function () { 
             $("#filterForm").submit(); 
         });
-
+        function tp(){
+            var i=document.getElementById("mtp");
+            var j = i.value;
+            console.log(j);
+        }
         function initDataTable(tableSelector) {
             $(tableSelector).DataTable({
                 "scrollY": "300px",

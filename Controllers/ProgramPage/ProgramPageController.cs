@@ -12,10 +12,10 @@ namespace ProgrammingCode.Controllers.ProgramPage
             return View(ProgramDetails);
         }
         public IActionResult Programs_Nav()
-        {
-            ViewBag.ProgramList = DBConfig.dbProgram.PropgramList().ToList();
-            ViewBag.TopProgramList = DBConfig.dbProgram.TopPropgramList().ToList();
-            return View("Programs");
+       {
+           ViewBag.ProgramList = DBConfig.dbProgram.PropgramNavList().ToList();
+           ViewBag.TopProgramList = DBConfig.dbProgram.TopPropgramNavList().ToList();
+           return View();
         }
     }
 }
