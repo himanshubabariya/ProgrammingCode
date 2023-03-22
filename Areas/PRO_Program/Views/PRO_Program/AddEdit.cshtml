@@ -37,13 +37,13 @@
                     </div>
                     <div class="col-md-4">
                         <label class="required col-md-4 col-form-label">Topic</label>
-
-                        <select class="form-select select2-hidden-accessible" id="mtp"
+                        @Html.ListBoxFor(m => m.arrtopic, new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"),  new {@class="form-select form-select-sm "})
+                       @* <select class="form-select select2-hidden-accessible"
                                 data-control="select2" data-placeholder="Select Topic"
-                                data-allow-clear="true" multiple=""
-                                data-select2-id="select2-data-12-kpd1" tabindex="-1" asp-for="topics_Selected" onchange="tp()"
+                                data-allow-clear="true" multiple="" id="myDropdown"
+                                data-select2-id="select2-data-12-kpd1" tabindex="-1" asp-for="topics_Selected"
                                 aria-hidden="true" asp-items="@(new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"))">           
-                        </select>
+                        </select>*@
                     </div>
                   
                 </div>
@@ -160,7 +160,7 @@
                 <hr class="form-button-divider" />
                 <div class="row">
                     <div class="offset-md-4 col-md-8">
-                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-modal-form-submit" />
+                        <input type="submit" value="Save" onclick="addtopic()" class="btn btn-primary btn-sm js-btn-modal-form-submit" />
                         <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -172,16 +172,22 @@
 
 <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <script>
-    function tp() {
-        var dropdown = document.getElementById("mtp");
-        for (var i = 0; i < dropdown.options.length; i++) {
-            if (selectedValues.includes(parseInt(dropdown.options[i].value))) {
-                dropdown.options[i].selected = true;
-                console.log(dropdown.options[i]);
-            }
-           
+    function onSubmit() {
+        // Get the selected options from the dropdown list
+        var selectedOptions = document.getElementsById('myDropdown')[0].selectedOptions;
+
+        // Create an empty array to store the selected values
+        var myArray = [];
+
+        // Loop through the selected options and add their values to the array
+        for (var i = 0; i < selectedOptions.length; i++) {
+            myArray.push(selectedOptions[i].value);
         }
-        console.log(j);
+
+        // Set the value of the hidden input field to the selected values as a JSON string
+        document.getElementById('myArray').value = JSON.stringify(myArray);
+
+        // Submit the form
     }
     ClassicEditor
         .create(document.querySelector('#editor'), {

@@ -4,6 +4,7 @@ using ProgrammingCode.Areas.PRO_ProgramTestCase.Models;
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.PRO.PRO_ProgramTestCase;
 using ProgrammingCode.BAL;
+using System.Web;
 
 namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
 {
@@ -15,8 +16,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
         #region index
         public IActionResult Index()
         {
-            ViewBag.ProgramcomboList = DBConfig.dbProgram.SelectComboBoxProgram().ToList();
-           
+            ViewBag.ProgramcomboList = DBConfig.dbProgram.SelectComboBoxProgram().ToList();     
             return View();
         }
         #endregion

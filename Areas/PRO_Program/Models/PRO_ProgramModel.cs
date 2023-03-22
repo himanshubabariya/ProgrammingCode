@@ -35,7 +35,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         [Required, Display(Name = "Defination")]
         public string? Defination { get; set; }
 
-        public List<MST_TopicComboboxModel>? topics_Selected { get; set; }
+        public int[] arrtopic { get; set; }
 
         public string? ProgramDesecription { get; set; }
 

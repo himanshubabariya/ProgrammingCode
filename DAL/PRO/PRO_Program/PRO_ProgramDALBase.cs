@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
 using Newtonsoft.Json.Linq;
+using System.Web;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
@@ -130,6 +131,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.ProgramDesecription) ? null : Obj_PRO_Program.ProgramDesecription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.Algoritham) ? null : Obj_PRO_Program.Algoritham.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.ProgramUrl) ? null : Obj_PRO_Program.ProgramUrl.Trim());
+                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.Description) ? null : Obj_PRO_Program.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_PRO_Program.Sequence);
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaTitle) ? null : Obj_PRO_Program.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaKeywords) ? null : Obj_PRO_Program.MetaKeywords.Trim());
@@ -152,10 +154,10 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 foreach (var item in Obj_PRO_Program.topics_Selected)
                 {
                     DbCommand dbCMD2 = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_Insert");
-                    sqlDB.AddInParameter(dbCMD2, "TopicID", SqlDbType.Int, item.TopicID);
+                    sqlDB.AddInParameter(dbCMD2, "TopicID", SqlDbType.Int, item);
                     sqlDB.AddInParameter(dbCMD2, "ProgramID", SqlDbType.Int, newID);
                     sqlDB.AddInParameter(dbCMD2, "UserID", SqlDbType.Int, 1);
-                    sqlDB.ExecuteNonQuery(dbCMD);
+                    sqlDB.ExecuteNonQuery(dbCMD2);
                 }
                     if (vResult == null)
 					return null;
