@@ -77,6 +77,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeDetailedDescription", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeDetailedDescription) ? null : Obj_MST_ProgrammingLangauge.ProgrammingLangaugeDetailedDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo) ? null : Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
+                sqlDB.AddInParameter(dbCMD, "LanguageUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.LanguageUrl) ? null : Obj_MST_ProgrammingLangauge.LanguageUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaTitle) ? null : Obj_MST_ProgrammingLangauge.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaKeywords) ? null : Obj_MST_ProgrammingLangauge.MetaKeywords.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaDescription) ? null : Obj_MST_ProgrammingLangauge.MetaDescription.Trim());
@@ -197,6 +198,8 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo) ? null : Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaTitle) ? null : Obj_MST_ProgrammingLangauge.MetaTitle.Trim());
+                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
+                sqlDB.AddInParameter(dbCMD, "LangaugeUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.LanguageUrl) ? null : Obj_MST_ProgrammingLangauge. LanguageUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaKeywords) ? null : Obj_MST_ProgrammingLangauge.MetaKeywords.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaDescription) ? null : Obj_MST_ProgrammingLangauge.MetaDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaAuthor) ? null : Obj_MST_ProgrammingLangauge.MetaAuthor.Trim());
@@ -259,7 +262,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
 
         public decimal Sequence { get; set; }
 
-
+        public string? LangaugeUrl { get; set; }
 
         public int UserID { get; set; }
 
@@ -350,7 +353,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public decimal Sequence { get; set; }
 
 
-
+        public string? LangaugeUrl { get; set; }
         public int UserID { get; set; }
 
 
@@ -441,7 +444,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public decimal Sequence { get; set; }
 
 
-
+        public string? LangaugeUrl { get; set; }
         public int UserID { get; set; }
 
 

@@ -54,12 +54,12 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
             {
                 DBConfig.dbProgramTestCase.Update(obj_PRO_ProgramTestCase);
             }
-            return Content(null);
+            return RedirectToAction("Index");
         }
         #endregion     
 
         #region _AddEdit
-        public IActionResult _AddEdit(int? ProgramTestCaseID)
+        public IActionResult AddEdit(int? ProgramTestCaseID)
         {
             ViewBag.Action = "Add";
             ViewBag.ProgramcomboList = DBConfig.dbProgram.SelectComboBoxProgram().ToList();

@@ -31,7 +31,7 @@
                         <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
                       
                     </div>
-               
+                   
                     <div class="col-md-4">
                         <label class="col-form-label"> Logo For Langauge</label>
                         <input type="file" asp-for="File" class="form-control" placeholder="uplod Logo " />
@@ -58,12 +58,16 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                     <label class="col-form-label"> Description</label>
-                        <textarea type="text" id="editor3" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
-                      
+                        <textarea type="text" id="editor3" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>                      
                     </div>
                 </div>
-
-               
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label class="required col-form-label"> LangaugeUrl</label>
+                        <input type="text" asp-for="LanguageUrl" class="form-control" placeholder="Enter Langauge Url" />
+                        @Html.ValidationMessageFor(m => m.LanguageUrl, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>               
                 <h4 class="title text-danger fw-bolder">Meta Details</h4>
                 <div class="form-group row">
                     <div class="col-md-4">

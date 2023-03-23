@@ -40,7 +40,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         }
         #endregion
         #region _AddEdit
-        public IActionResult _AddEdit(int? ProgramSolutionID)
+        public IActionResult AddEdit(int? ProgramSolutionID)
         {
             ViewBag.Action = "Add";
             ViewBag.ProgramcomboList = DBConfig.dbProgram.SelectComboBoxProgram().ToList();
@@ -64,7 +64,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult _Save(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
-        {
+        {   
             if (Obj_PRO_ProgramSolution.ProgramSolutionID == 0)
             {
                 var vReturn = DBConfig.dbSolution.Insert(Obj_PRO_ProgramSolution);
@@ -73,7 +73,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
             {
                 DBConfig.dbSolution.Update(Obj_PRO_ProgramSolution);
             }
-            return Content(null);
+            return RedirectToAction("Index");
         }
         #endregion*/
         

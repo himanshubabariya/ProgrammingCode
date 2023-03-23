@@ -384,7 +384,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public string? ProgramDesecription { get; set; }
 
 
-
+        public int[] arrtopic { get; set; }
         public string? Algoritham { get; set; }
 
 
@@ -474,7 +474,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public string? ProgramDesecription { get; set; }
 
 
-
+        public int[] arrtopic { get; set; }
         public string? Algoritham { get; set; }
 
 

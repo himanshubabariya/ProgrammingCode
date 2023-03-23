@@ -35,14 +35,14 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
 
 
         public string? ProgrammingLangaugeLogo { get; set; }
+        public string? LanguageUrl { get; set; }
 
-   
         public decimal? Sequence { get; set; }
 
 
         public int UserID { get; set; }
 
-        public String? UserName { get; set; }
+        public string? UserName { get; set; }
 
 
         public int ProgrammingLangaugeView { get; set; }
