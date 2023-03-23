@@ -109,13 +109,13 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
         }
         #endregion
         #region Method: SelectbyProgramID
-        public List<SelectPk_Result> SelectTestCaseByProgramID(int? ProgramID)
+        public List<SelectPk_Result> SelectTestCaseByProgramUrl(string? ProgramUrl)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_SelectbyProgramID");
-                sqlDB.AddInParameter(dbMST, "ProgramID", SqlDbType.Int, ProgramID);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_SelectbyProgramUrl");
+                sqlDB.AddInParameter(dbMST, "ProgramUrl", SqlDbType.NVarChar, ProgramUrl);
 
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))

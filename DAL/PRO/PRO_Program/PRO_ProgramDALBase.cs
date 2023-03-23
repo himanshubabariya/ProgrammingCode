@@ -116,9 +116,35 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 return null;
             }
         }
-        #endregion
-        #region Method: Insert
-        public decimal? Insert(PRO_ProgramModel Obj_PRO_Program)
+		#endregion
+		#region Method: SelectPk
+		public List<SelectByProgramUrl_Result> SelectByProgramUrl(string? ProgramUrl)
+		{
+			try
+			{
+				SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+				DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByProgramUrl");
+				sqlDB.AddInParameter(dbMST, "ProgramUrl", SqlDbType.NVarChar, ProgramUrl);
+
+				DataTable dt = new DataTable();
+				using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+				{
+					dt.Load(dr);
+				}
+
+				return ConvertDataTableToEntity<SelectByProgramUrl_Result>(dt);
+			}
+			catch (Exception ex)
+			{
+				var vExceptionHandler = ExceptionHandler(ex);
+				if (vExceptionHandler.IsToThrowAnyException)
+					throw vExceptionHandler.ExceptionToThrow;
+				return null;
+			}
+		}
+		#endregion
+		#region Method: Insert
+		public decimal? Insert(PRO_ProgramModel Obj_PRO_Program)
 
         {
             try
@@ -211,21 +237,21 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
-        #region Method:SelectALL
-        public List<Program_List> PropgramList(int ProgrammingLangaugeID)
+        #region Method:PropgramList
+        public List<SelectByLanagueUrl_Result> PropgramList(string? LanguageUrl)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_List");
-                sqlDB.AddInParameter(dbMST, "ProgrammingLangaugeID", SqlDbType.Int,ProgrammingLangaugeID);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByLanguageUrl");
+                sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
                     dt.Load(dr);
                 }
-                return ConvertDataTableToEntity<Program_List>(dt);
+                return ConvertDataTableToEntity<SelectByLanagueUrl_Result>(dt);
 
             }
             catch (Exception ex)
@@ -237,21 +263,21 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
-        #region Method:SelectALL
-        public List<TopProgram_List> TopPropgramList(int ProgrammingLangaugeID)
+        #region Method:TopPropgramList
+        public List<SelectByLanagueUrlTop_Result> TopPropgramList(string? LanguageUrl)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_TopProgram_List");
-                sqlDB.AddInParameter(dbMST, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByLanguageUrlTop");
+                sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
                     dt.Load(dr);
                 }
-                return ConvertDataTableToEntity<TopProgram_List>(dt);
+                return ConvertDataTableToEntity<SelectByLanagueUrlTop_Result>(dt);
 
             }
             catch (Exception ex)
@@ -264,20 +290,20 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region TopPropgramNavList
-        public List<TopProgram_List> TopPropgramNavList()
+        public List<SelectByProgramUrl_Result> TopPropgramNavList()
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_TopProgram_Nav_List");
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectAllByTopView");
                 
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
                     dt.Load(dr);
                 }
-                return ConvertDataTableToEntity<TopProgram_List>(dt);
+                return ConvertDataTableToEntity<SelectByProgramUrl_Result>(dt);
 
             }
             catch (Exception ex)
@@ -290,20 +316,20 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region PropgramNavList
-        public List<Program_List> PropgramNavList()
+        public List<SelectByProgramUrl_Result> PropgramNavList()
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Nav_List");
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectAll");
 
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
                     dt.Load(dr);
                 }
-                return ConvertDataTableToEntity<Program_List>(dt);
+                return ConvertDataTableToEntity<SelectByProgramUrl_Result>(dt);
 
             }
             catch (Exception ex)
@@ -318,18 +344,83 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
     }
 
     #region All Entities
-    #region  TopProgram_List
-    public partial class TopProgram_List : DALHelper
+    #region Entity: SelectByLanagueUrlTop_Result
+    public partial class SelectByLanagueUrlTop_Result : DALHelper
     {
         #region Properties
+
         public int ProgramID { get; set; }
 
+        public int LevelID { get; set; }
+        public string? ProgramNumber { get; set; }
         public string? Defination { get; set; }
 
-        public string? LevelName { get; set; }
+        public string? ProgramDesecription { get; set; }
+
+		public string? LevelName { get; set; }
+		public int[] arrtopic { get; set; }
+        public string? Algoritham { get; set; }
+
+
+        public string? ProgramUrl { get; set; }
+
+
+
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
 
         public int ProgramView { get; set; }
 
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+        public string? UserName { get; set; }
+
+        public string? MetaOgType { get; set; }
+
+
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
 
 
 
@@ -343,18 +434,85 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         #endregion
     }
     #endregion
-    #region Entity: Program_List
-    public partial class Program_List : DALHelper
+    
+   
+    #region Entity: SelectByLanagueUrl_Result
+    public partial class SelectByLanagueUrl_Result : DALHelper
     {
         #region Properties
 
         public int ProgramID { get; set; }
+
+        public int LevelID { get; set; }
+        public string? ProgramNumber { get; set; }
         public string? Defination { get; set; }
 
-        public string? LevelName { get; set; }
+        public string? ProgramDesecription { get; set; }
+
+		public string? LevelName { get; set; }
+		public int[] arrtopic { get; set; }
+        public string? Algoritham { get; set; }
+
+
+        public string? ProgramUrl { get; set; }
+
+
+
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
 
         public int ProgramView { get; set; }
 
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+        public string? UserName { get; set; }
+
+        public string? MetaOgType { get; set; }
+
+
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
 
 
 
@@ -368,7 +526,6 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         #endregion
     }
     #endregion
-
 
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper
@@ -382,7 +539,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         public string? Defination { get; set; }
 
         public string? ProgramDesecription { get; set; }
-
+        public string? LevelName { get; set; }
 
         public int[] arrtopic { get; set; }
         public string? Algoritham { get; set; }
@@ -545,7 +702,92 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
     }
-    #endregion
+	#endregion
+	#region Entity: SelectByProgramUrl_Result
+	public partial class SelectByProgramUrl_Result : DALHelper
+	{
+		#region Properties
+		public int ProgramID { get; set; }
 
-    #endregion
+		public int LevelID { get; set; }
+		public string? ProgramNumber { get; set; }
+		public string? Defination { get; set; }
+        public string? LevelName { get; set; }
+        public string? ProgramDesecription { get; set; }
+
+
+		public int[] arrtopic { get; set; }
+		public string? Algoritham { get; set; }
+
+
+		public string? ProgramUrl { get; set; }
+
+
+
+
+
+
+		public decimal Sequence { get; set; }
+
+
+
+		public int UserID { get; set; }
+
+
+		public int ProgramView { get; set; }
+
+
+		public string? Description { get; set; }
+
+
+
+		public string? MetaTitle { get; set; }
+
+
+
+		public string? MetaKeywords { get; set; }
+
+
+
+		public string? MetaDescription { get; set; }
+
+
+
+		public string? MetaAuthor { get; set; }
+
+
+
+		public string? MetaOgTitle { get; set; }
+
+
+
+		public string? MetaOgImage { get; set; }
+
+
+
+		public string? MetaOgDescription { get; set; }
+
+
+		public string? MetaOgUrl { get; set; }
+
+		public string? UserName { get; set; }
+
+		public string? MetaOgType { get; set; }
+		public DateTime Created { get; set; }
+
+
+		public DateTime Modified { get; set; }
+
+		#endregion
+
+		#region Convert Entity to String
+		public override string ToString()
+		{
+			return EntityToString(this);
+		}
+		#endregion
+	}
+	#endregion
+
+	#endregion
 }

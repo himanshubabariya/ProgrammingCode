@@ -184,6 +184,33 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
             }
         }
         #endregion
+
+        #region Method: SelectPk
+        public List<SelectByLanguageUrl_Result> SelectByLanguageUrl(string? LanguageUrl)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectByLanguageUrl");
+                sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectByLanguageUrl_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method: Update
         public bool? Update(MST_ProgrammingLangaugeModel Obj_MST_ProgrammingLangauge)
         {
@@ -196,10 +223,10 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeShortDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeShortDescription) ? null : Obj_MST_ProgrammingLangauge.ProgrammingLangaugeShortDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeDetailedDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeDetailedDescription) ? null : Obj_MST_ProgrammingLangauge.ProgrammingLangaugeDetailedDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeLogo", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo) ? null : Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo.Trim());
-                sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
+               
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaTitle) ? null : Obj_MST_ProgrammingLangauge.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_ProgrammingLangauge.Sequence);
-                sqlDB.AddInParameter(dbCMD, "LangaugeUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.LanguageUrl) ? null : Obj_MST_ProgrammingLangauge. LanguageUrl.Trim());
+                sqlDB.AddInParameter(dbCMD, "LanguageUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.LanguageUrl) ? null : Obj_MST_ProgrammingLangauge. LanguageUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaKeywords) ? null : Obj_MST_ProgrammingLangauge.MetaKeywords.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaDescription) ? null : Obj_MST_ProgrammingLangauge.MetaDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaAuthor", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaAuthor) ? null : Obj_MST_ProgrammingLangauge.MetaAuthor.Trim());
@@ -262,7 +289,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
 
         public decimal Sequence { get; set; }
 
-        public string? LangaugeUrl { get; set; }
+        public string? LanguageUrl { get; set; }
 
         public int UserID { get; set; }
 
@@ -353,7 +380,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public decimal Sequence { get; set; }
 
 
-        public string? LangaugeUrl { get; set; }
+        public string? LanguageUrl { get; set; }
         public int UserID { get; set; }
 
 
@@ -444,7 +471,92 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         public decimal Sequence { get; set; }
 
 
-        public string? LangaugeUrl { get; set; }
+        public string? LanguageUrl { get; set; }
+        public int UserID { get; set; }
+
+
+        public int ProgrammingLangaugeView { get; set; }
+
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+        public string? UserName { get; set; }
+
+        public string? MetaOgType { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
+    #region Entity: SelectByLanguageUrl_Result
+    public partial class SelectByLanguageUrl_Result : DALHelper
+    {
+
+        #region Properties
+        public int ProgrammingLangaugeID { get; set; }
+
+
+
+        public string? ProgrammingLangaugeName { get; set; }
+
+
+
+        public string? ProgrammingLangaugeShortDescription { get; set; }
+
+
+        public string? ProgrammingLangaugeDetailedDescription { get; set; }
+
+
+
+        public string? ProgrammingLangaugeLogo { get; set; }
+
+
+
+        public decimal Sequence { get; set; }
+
+
+        public string? LanguageUrl { get; set; }
         public int UserID { get; set; }
 
 

@@ -27,8 +27,8 @@
                             <tr class="">
                                 <td>@i</td>
                                 <td>
-                                        <a class="ProgramLink" asp-route-ProgramID="@item.ProgramID" asp-action="Index" asp-controller="ProgramPage">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                        <input type="hidden" name="ProgramID" value="@item.ProgramID" />
+                                        <a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="Index" asp-controller="ProgramPage">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                 </td>
                                 <td class="hard">@item.LevelName</td>
                                 <td class="type">Loop</td>

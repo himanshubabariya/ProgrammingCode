@@ -9,7 +9,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
     public class PRO_ProgramModel
     {
 
-        // ModelName: PRO_ProgramModel
+        // ModelName: PRO_PrografarrzzfmModel
 
         /*******************************************************************
          *	FILTERS
@@ -46,10 +46,10 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
 
         [Required, Display(Name = "ProgramUrl")]
         public string? ProgramUrl { get; set; }
-        
 
-        
-        public decimal? Sequence { get; set; }
+		public string? LevelName { get; set; }
+
+		public decimal? Sequence { get; set; }
 
 
   

@@ -5,12 +5,12 @@ namespace ProgrammingCode.Controllers.ProgramPage
 {
     public class ProgramPageController : Controller
     {
-        public IActionResult Index(int ProgramID)
+        public IActionResult Index(string? ProgramUrl)
         {
-            ViewBag.Solution= DBConfig.dbProgram.SelectPk(ProgramID).ToList();
-            ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramID(ProgramID).ToList();
-            var ProgramDetails = DBConfig.dbProgram.SelectPk(ProgramID).ToList();
-            return View(ProgramDetails);
+            //ViewBag.Solution= DBConfig.dbProgram.SelectPk(ProgramID).ToList();
+            ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramUrl(ProgramUrl).ToList();
+            var ProgramDetails = DBConfig.dbProgram.SelectByProgramUrl(ProgramUrl).ToList();
+            return View(ProgramDetails); 
         }
         public IActionResult Programs_Nav()
        {
