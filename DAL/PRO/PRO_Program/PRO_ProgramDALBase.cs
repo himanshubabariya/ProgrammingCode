@@ -131,7 +131,6 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 sqlDB.AddInParameter(dbCMD, "ProgramDesecription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.ProgramDesecription) ? null : Obj_PRO_Program.ProgramDesecription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Algoritham", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.Algoritham) ? null : Obj_PRO_Program.Algoritham.Trim());
                 sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.ProgramUrl) ? null : Obj_PRO_Program.ProgramUrl.Trim());
-                sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.Description) ? null : Obj_PRO_Program.Description.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_PRO_Program.Sequence);
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaTitle) ? null : Obj_PRO_Program.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaKeywords) ? null : Obj_PRO_Program.MetaKeywords.Trim());
@@ -151,7 +150,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                
 				int newID = (int)dbCMD.Parameters["@pid"].Value;
 
-                foreach (var item in Obj_PRO_Program.topics_Selected)
+                foreach (var item in Obj_PRO_Program.arrtopic)
                 {
                     DbCommand dbCMD2 = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_Insert");
                     sqlDB.AddInParameter(dbCMD2, "TopicID", SqlDbType.Int, item);
@@ -319,11 +318,11 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
     }
 
     #region All Entities
-    #region Entity: TopProgram_List
+    #region  TopProgram_List
     public partial class TopProgram_List : DALHelper
     {
         #region Properties
-
+        public int ProgramID { get; set; }
 
         public string? Defination { get; set; }
 

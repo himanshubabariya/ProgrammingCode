@@ -1,0 +1,25 @@
+﻿<div class="container ctr">
+    
+    <div class="row">
+        <div class="col-md-12 ttl">
+            Test Case
+        </div>
+    </div>
+    @foreach (var item in ViewBag.TestCase)
+    {
+    <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+        <div class="col-md-12 dta">
+            @item.IsPositive
+        </div>
+    <div class="row">
+        <div class="col-md-12 dta">
+            <ul style="text-align: justify;">
+                    @item.TastCaseDescription
+            </ul>
+        </div>
+    </div>
+
+    }
+</div>  

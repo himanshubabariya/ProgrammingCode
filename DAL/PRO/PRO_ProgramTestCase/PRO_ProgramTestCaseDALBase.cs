@@ -108,6 +108,32 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
             }
         }
         #endregion
+        #region Method: SelectbyProgramID
+        public List<SelectPk_Result> SelectTestCaseByProgramID(int? ProgramID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_SelectbyProgramID");
+                sqlDB.AddInParameter(dbMST, "ProgramID", SqlDbType.Int, ProgramID);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectPk_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method: Insert
         public decimal? Insert(PRO_ProgramTestCaseModel objProgramTestCaseModel)
 

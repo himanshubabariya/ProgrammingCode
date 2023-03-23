@@ -8,14 +8,15 @@ namespace ProgrammingCode.Controllers.ProgramPage
         public IActionResult Index(int ProgramID)
         {
             ViewBag.Solution= DBConfig.dbProgram.SelectPk(ProgramID).ToList();
-			var ProgramDetails = DBConfig.dbProgram.SelectPk(ProgramID).ToList();
+            ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramID(ProgramID).ToList();
+            var ProgramDetails = DBConfig.dbProgram.SelectPk(ProgramID).ToList();
             return View(ProgramDetails);
         }
         public IActionResult Programs_Nav()
        {
-           ViewBag.ProgramList = DBConfig.dbProgram.PropgramNavList().ToList();
-           ViewBag.TopProgramList = DBConfig.dbProgram.TopPropgramNavList().ToList();
-           return View();
+           ViewBag.ProgramNavList = DBConfig.dbProgram.PropgramNavList().ToList();
+           ViewBag.TopProgramNavList = DBConfig.dbProgram.TopPropgramNavList().ToList();
+           return View("Programs");
         }
     }
 }
