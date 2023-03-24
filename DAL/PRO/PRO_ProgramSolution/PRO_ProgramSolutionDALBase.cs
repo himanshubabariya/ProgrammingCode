@@ -113,9 +113,36 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
                 return null;
             }
         }
-        #endregion
-        #region Method: Insert
-        public decimal? Insert(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
+		#endregion
+		#region Method: SelectPk
+		public List<SelectPk_Result> SelectByProgramUrlLangaugeUrl(string? ProgramUrlForsolution,string? LanguageUrl)
+		{
+			try
+			{
+				SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+				DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectByProgramUrlLangaugeUrl");
+				sqlDB.AddInParameter(dbMST, "ProgramUrl", SqlDbType.NVarChar, ProgramUrlForsolution);
+				sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
+
+				DataTable dt = new DataTable();
+				using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+				{
+					dt.Load(dr);
+				}
+
+				return ConvertDataTableToEntity<SelectPk_Result>(dt);
+			}
+			catch (Exception ex)
+			{
+				var vExceptionHandler = ExceptionHandler(ex);
+				if (vExceptionHandler.IsToThrowAnyException)
+					throw vExceptionHandler.ExceptionToThrow;
+				return null;
+			}
+		}
+		#endregion
+		#region Method: Insert
+		public decimal? Insert(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
 
         {
             try
