@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="required col-md-4 col-form-label">Topic</label>
-                        @Html.ListBoxFor(m => m.arrtopic, new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"),  new {@class="form-select form-select-sm" , multiple = "multiple"})
+                        @Html.ListBoxFor(m => m.arrtopic, new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"),  new {@class="form-select select2-accessible",  multiple = "multiple"})
                        @* <select class="form-select select2-hidden-accessible"
                                 data-control="select2" data-placeholder="Select Topic"
                                 data-allow-clear="true" multiple="" id="myDropdown"
