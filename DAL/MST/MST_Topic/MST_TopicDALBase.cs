@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.MST_Topic.Models;
+using ProgrammingCode.BAL;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 using static ProgrammingCode.Areas.MST_Topic.Models.MST_TopicModel;
 
@@ -84,7 +85,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgDescription) ? null : Obj_MST_Topic.MetaOgDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgUrl) ? null : Obj_MST_Topic.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.Description) ? null : Obj_MST_Topic.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
                     return null;
@@ -124,9 +125,34 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 return null;
             }
         }
-        #endregion
-        #region Method: SelectForSearch
-        public List<SelectForSearch_Result> SelectForSearch(string? F_TopicName) { 
+		#endregion
+		#region Method: SelectAllByProgramUrl
+		public List<SelectAll_Result> SelectAllByProgramUrl(string? ProgramUrl)
+		{
+			try
+			{
+				SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+				DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_SelectAllByProgramUrl");
+				sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar, ProgramUrl);
+				DataTable dt = new DataTable();
+				using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+				{
+					dt.Load(dr);
+				}
+
+				return ConvertDataTableToEntity<SelectAll_Result>(dt);
+			}
+			catch (Exception ex)
+			{
+				var vExceptionHandler = ExceptionHandler(ex);
+				if (vExceptionHandler.IsToThrowAnyException)
+					throw vExceptionHandler.ExceptionToThrow;
+				return null;
+			}
+		}
+		#endregion
+		#region Method: SelectForSearch
+		public List<SelectForSearch_Result> SelectForSearch(string? F_TopicName) { 
        
             try
             {
@@ -198,7 +224,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgDescription) ? null : Obj_MST_Topic.MetaOgDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaOgUrl) ? null : Obj_MST_Topic.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.Description) ? null : Obj_MST_Topic.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

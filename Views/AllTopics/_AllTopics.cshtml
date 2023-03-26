@@ -1,0 +1,44 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+@*@model List<ProgrammingCode.DAL.PRO.PRO_Program.SelectAll_Result>
+@{
+	var ProgramList = Model;
+}*@
+<div class="container ctr">
+
+
+    <div class="row">
+        <div class="col-md-12 ttl">
+            All Topics
+        </div>
+
+        <Div class="row">
+            <div class="py-5">
+                <div class="table-responsive">
+                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                        <tbody>
+                            @{
+                                int i = 0;
+                            }
+
+                            @foreach (var item in ViewBag.TopicList)
+                            {
+                                i++;
+                                <tr class="">
+                                    <td>@i</td>
+                                    <td>
+                                        <a class="ProgramLink" asp-route-TopicID="@item.TopicID" asp-action="Index"  asp-controller="TopicPage">@item.TopicName</a>
+                                        <input type="hidden" name="TopicID" value="@item.TopicID" />
+                                    </td>
+                                 
+                                    <td><i class="fa fa-eye"></i>@item.TopicView</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </Div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿<!--begin::User menu-->
+﻿@using ProgrammingCode.BAL
+<!--begin::User menu-->
 <div class="app-navbar-item ms-5 ms-lg-10" id="kt_header_user_menu_toggle">
     <!--begin::Menu wrapper-->
     <div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
@@ -17,12 +18,7 @@
                 <!--begin::Username-->
                 <div class="d-flex flex-column">
                     <div class="fw-bold d-flex align-items-center fs-5">
-                        @{
-                            if (TempData.Peek("Message") != null)
-                            {
-                                @TempData.Peek("Message")
-                            }
-                        }
+                        @CV.UserName()
                     </div>
                     <span class="fw-semibold text-primary fs-7">#J00012</span>
                 </div>

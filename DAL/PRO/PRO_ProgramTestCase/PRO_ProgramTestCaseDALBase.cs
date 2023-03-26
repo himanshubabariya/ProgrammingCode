@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.PRO_ProgramTestCase.Models;
+using ProgrammingCode.BAL;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -148,7 +149,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
                 sqlDB.AddInParameter(dbCMD, "IsPositive", SqlDbType.Bit, objProgramTestCaseModel.IsPositive);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgramTestCaseModel.Sequence);
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(objProgramTestCaseModel.Description) ? null: objProgramTestCaseModel.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
@@ -179,7 +180,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
                 sqlDB.AddInParameter(dbCMD, "IsPositive", SqlDbType.Bit, objProgramTestCaseModel.IsPositive);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, objProgramTestCaseModel.Sequence);
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(objProgramTestCaseModel.Description) ? null : objProgramTestCaseModel.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

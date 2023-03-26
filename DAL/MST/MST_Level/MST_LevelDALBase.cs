@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.MST_Level.Models;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
+using ProgrammingCode.BAL;
 using System.Data;
 using System.Data.Common;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
@@ -123,7 +124,7 @@ namespace ProgrammingCode.DAL.MST.MST_Level
                 sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_Level.LevelDescription) ? null:  Obj_MST_Level.LevelDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Level.Sequence);
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.Description) ? null: Obj_MST_Level.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,CV.UserID());
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
                     return null;
@@ -179,7 +180,7 @@ namespace ProgrammingCode.DAL.MST.MST_Level
                 sqlDB.AddInParameter(dbCMD, "LevelDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.LevelDescription) ? null : Obj_MST_Level.LevelDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Level.Sequence);
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Level.Description) ? null : Obj_MST_Level.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

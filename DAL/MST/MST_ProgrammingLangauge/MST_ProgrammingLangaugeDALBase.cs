@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
+using ProgrammingCode.BAL;
 using static ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel;
 
 namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
@@ -88,7 +89,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
                 sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaOgDescription) ? null : Obj_MST_ProgrammingLangauge.MetaOgDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaOgUrl) ? null : Obj_MST_ProgrammingLangauge.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.Description) ? null : Obj_MST_ProgrammingLangauge.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int,1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
                     return null;
@@ -236,7 +237,7 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
                 sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaOgDescription) ? null : Obj_MST_ProgrammingLangauge.MetaOgDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.MetaOgUrl) ? null : Obj_MST_ProgrammingLangauge.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_ProgrammingLangauge.Description) ? null : Obj_MST_ProgrammingLangauge.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;

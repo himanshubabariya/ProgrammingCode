@@ -20,13 +20,17 @@
                 @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
         </div>
     </div>
-    <button type="button" class="btn btn-sm tag">
-        Loop
-    </button>
-    <button class="btn btn-sm tag">
-        Conditional
-    </button>
+        @foreach (var item2 in ViewBag.TopicOnProgramUrl)
+        {
 
+                <a class="btn btn-sm tag"
+           asp-route-TopicId="@item2.TopicID" asp-action="Index" asp-controller="TopicPage">
+                    @item2.TopicName
+                    <input type="hidden" name="TopicID" value="@item2.TopicID" />
+                </a>
+    
+        }
+ 
 </div>
 <div class="container ctr">
     <div class="row">

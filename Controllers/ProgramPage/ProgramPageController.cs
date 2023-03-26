@@ -13,7 +13,8 @@ namespace ProgrammingCode.Controllers.ProgramPage
             ProgramUrlForsolution = ProgramUrl;
 
 		   ViewBag.LanguagesForslider= DBConfig.dbLangauge.SelectAll().ToList();
-            ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramUrl(ProgramUrl).ToList();
+            ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(ProgramUrl).ToList();
+			ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramUrl(ProgramUrl).ToList();
             ViewBag.Solution = DBConfig.dbSolution.SelectByProgramUrlLangaugeUrl(ProgramUrlForsolution, LaqnguageUrlForsolution).ToList();
             var ProgramDetails = DBConfig.dbProgram.SelectByProgramUrl(ProgramUrl).ToList();
             return View(ProgramDetails); 
@@ -27,7 +28,7 @@ namespace ProgrammingCode.Controllers.ProgramPage
         public IActionResult SolutionByProgramUrlLangaugeUrl(string? LanguageUrl)
         {
             ViewBag.Solution = DBConfig.dbSolution.SelectByProgramUrlLangaugeUrl(ProgramUrlForsolution, LanguageUrl).ToList();
-            return View("_SolutionByLangauge");
+            return PartialView("_SolutionByLangauge");
         }
     }
 }

@@ -9,7 +9,8 @@ namespace ProgrammingCode.Controllers.HomePage
         public IActionResult Index()
         {
 			var Langauge = DBConfig.dbLangauge.SelectAll().ToList();
-			return View(Langauge);
+            ViewBag.Langaugelist = DBConfig.dbLangauge.SelectAll().ToList();
+            return View(Langauge);
 		
         }
 

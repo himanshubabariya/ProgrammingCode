@@ -8,6 +8,8 @@ using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
 using Newtonsoft.Json.Linq;
 using System.Web;
+using Microsoft.VisualStudio.Web.CodeGeneration.Design;
+using ProgrammingCode.BAL;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
@@ -17,9 +19,10 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         #region Method:SelectComboBoxProgram
         public List<PRO_ProgramComboboxModel> SelectComboBoxProgram()
         {
+			try
+			{
 
-            try
-            {
+
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectComboBox");
                 DataTable dt = new DataTable();
@@ -116,9 +119,9 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 return null;
             }
         }
-		#endregion
-		#region Method: SelectPk
-		public List<SelectByProgramUrl_Result> SelectByProgramUrl(string? ProgramUrl)
+        #endregion
+        #region Method: SelectByProgramUrl
+        public List<SelectByProgramUrl_Result> SelectByProgramUrl(string? ProgramUrl)
 		{
 			try
 			{
@@ -142,9 +145,35 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
 				return null;
 			}
 		}
-		#endregion
-		#region Method: Insert
-		public decimal? Insert(PRO_ProgramModel Obj_PRO_Program)
+        #endregion
+        #region Method: SelectByTopicID
+        public List<SelectByProgramUrl_Result> SelectByTopicID(int? TopicID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByTopicID");
+                sqlDB.AddInParameter(dbMST, "TopicID", SqlDbType.Int, TopicID);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectByProgramUrl_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region Method: Insert
+        public decimal? Insert(PRO_ProgramModel Obj_PRO_Program)
 
         {
             try
@@ -168,7 +197,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaOgDescription) ? null : Obj_PRO_Program.MetaOgDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaOgUrl) ? null : Obj_PRO_Program.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar,string.IsNullOrWhiteSpace(Obj_PRO_Program.Description) ? null : Obj_PRO_Program.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
                 SqlParameter newIDParam = new SqlParameter("@pid", SqlDbType.Int);
                 newIDParam.Direction = ParameterDirection.Output;
                 dbCMD.Parameters.Add(newIDParam);
@@ -203,7 +232,11 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         {
             try
             {
-                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+				SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+				DbCommand dbMSTDelete = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_DeleteByProgramID");
+				sqlDB.AddInParameter(dbMSTDelete, "ProgramID", SqlDbType.Int, Obj_PRO_Program.ProgramID);
+				sqlDB.ExecuteNonQuery(dbMSTDelete);
+
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_Update");
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, Obj_PRO_Program.ProgramID);
                 sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, Obj_PRO_Program.LevelID);
@@ -223,10 +256,21 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 sqlDB.AddInParameter(dbCMD, "MetaOgDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaOgDescription) ? null : Obj_PRO_Program.MetaOgDescription.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaOgUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.MetaOgUrl) ? null : Obj_PRO_Program.MetaOgUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_Program.Description) ? null : Obj_PRO_Program.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
 
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
+
+                foreach (var item in Obj_PRO_Program.arrtopic)
+                {
+                    DbCommand dbCMD2 = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_Insert");
+                    sqlDB.AddInParameter(dbCMD2, "TopicID", SqlDbType.Int, item);
+                    sqlDB.AddInParameter(dbCMD2, "ProgramID", SqlDbType.Int, Obj_PRO_Program.ProgramID);
+                    sqlDB.AddInParameter(dbCMD2, "UserID", SqlDbType.Int, 1);
+                    sqlDB.ExecuteNonQuery(dbCMD2);
+                }
                 return vReturnValue == -1 ? false : true;
+
+                
             }
             catch (Exception ex)
             {

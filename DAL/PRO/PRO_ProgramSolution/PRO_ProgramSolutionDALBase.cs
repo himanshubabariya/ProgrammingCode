@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.PRO_ProgramSolution.Models;
+using ProgrammingCode.BAL;
 using System.Data;
 using System.Data.Common;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
@@ -155,7 +156,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgrammingLangaugeID);
        
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace( Obj_PRO_ProgramSolution.Description) ? null : Obj_PRO_ProgramSolution.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
                 var vResult = sqlDB.ExecuteScalar(dbCMD);
                 if (vResult == null)
                     return null;
@@ -186,7 +187,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, Obj_PRO_ProgramSolution.ProgrammingLangaugeID);
 
                 sqlDB.AddInParameter(dbCMD, "Description", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_PRO_ProgramSolution.Description) ? null : Obj_PRO_ProgramSolution.Description.Trim());
-                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, 1);
+                sqlDB.AddInParameter(dbCMD, "UserID", SqlDbType.Int, CV.UserID());
                 int vReturnValue = sqlDB.ExecuteNonQuery(dbCMD);
                 return vReturnValue == -1 ? false : true;
             }

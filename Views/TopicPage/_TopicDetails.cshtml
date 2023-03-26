@@ -1,0 +1,26 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+
+
+@foreach (var item in ViewBag.TopicDetails)
+{
+    <div class="container ctr">
+        <div class="row">
+            <div class="col-md-12 ttl">
+              @item.TopicName
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 dta">
+                @Html.Raw(WebUtility.HtmlDecode(item.TopicDescription))
+            </div>
+        </div>
+
+    </div>
+}
+ 

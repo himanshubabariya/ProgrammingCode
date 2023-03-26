@@ -9,9 +9,11 @@
 
     <div class="row">
         <div class="col-md-12 ttl">
-            All Programs
+            Topic Related Program
         </div>
-
+        <div class="row">
+            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+        </div>
         <Div class="row">
             <div class="py-5">
                 <div class="table-responsive">
@@ -21,21 +23,21 @@
                                 int i = 0;
                             }
 
-                            @foreach (var item in ViewBag.ProgramNavList)
-			              {
+                            @foreach (var item in ViewBag.TopicRelatedProgramList)
+                            {
                                 i++;
-                            <tr class="">
-                                <td>@i</td>
-                                <td>
+                                <tr class="">
+                                    <td>@i</td>
+                                    <td>
                                         <a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="Index" asp-controller="ProgramPage">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
-                                </td>
-                                <td class="hard">@item.LevelName</td>   
-                                <td class="type">Loop</td>
+                                    </td>
+                                    <td class="hard">@item.LevelName</td>
+                                    
                                     <td><i class="fa fa-eye"></i>@item.ProgramView</td>
-                            </tr>
+                                </tr>
                             }
-                          
+
                         </tbody>
                     </table>
                 </div>

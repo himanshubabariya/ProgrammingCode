@@ -13,13 +13,20 @@
 		@foreach (var item in ViewBag.LanguagesForslider)
 		{
 			<li class="nav-item">
-				
-				<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
-				<input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
+				<form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
+		  data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+				  asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage">
+					@Html.AntiForgeryToken()
+					<input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
+					<input type="submit" class="nav-link" value="@item.ProgrammingLangaugeName" />
+					
+					
+				</form>
+				@*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
+				<input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
 			</li>
 		}		
 	</ul>
-
+	<div id="solutionByLanguage"></div>
 	
-					<partial name="/Views/ProgramPage/_SolutionByLangauge.cshtml" />
-			</div>
+</div>
