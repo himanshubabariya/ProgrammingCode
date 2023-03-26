@@ -63,20 +63,14 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create(document.querySelector('#editor1'), {
-            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
-            language: 'en'
-        })
+        .create(document.querySelector('#editor1'))
         .catch(error => {
             console.error(error);
         });
 </script>
 <script>
     ClassicEditor
-        .create(document.querySelector('#editor2'), {
-            toolbar: ['heading', '|', 'bold', 'italic', 'link'],
-            language: 'en'
-        })
+        .create(document.querySelector('#editor2'))
         .catch(error => {
             console.error(error);
         });
