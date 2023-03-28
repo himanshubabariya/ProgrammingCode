@@ -1,0 +1,160 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+
+@foreach (var item in ViewBag.ProgramDetails)
+{
+    <div class="container ctr">
+        <div class="row">
+            <div class="col-md-12 ttl">
+                @Html.Raw(WebUtility.HtmlDecode(item.Defination))
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 dta">
+                @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
+            </div>
+        </div>
+        @foreach (var item2 in ViewBag.TopicOnProgramUrl)
+        {
+
+            <a class="btn btn-sm tag"
+       asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">
+                @item2.TopicName
+                <input type="hidden" name="TopicID" value="@item2.TopicID" />
+            </a>
+
+        }
+
+    </div>
+    <div class="container ctr">
+        <div class="row">
+            <div class="col-md-12 ttl">
+                Algorithm
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 dta">
+                @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
+            </div>
+        </div>
+    </div>
+}
+<div class="container ctr">
+
+    <div class="row">
+        <div class="col-md-12 ttl">
+            Test Case
+        </div>
+    </div>
+    <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    @{
+        var i = 0;
+    }
+    @foreach (var item in ViewBag.TestCase)
+    {
+        i++;
+        <div class="row">
+        </div>
+        <div class="col-md-12 dta" style="color: black;">
+            @* @item.IsPositive*@
+            Example @i
+        </div>
+        <div class="row">
+            <div class="col-md-12 dta">
+                <ul style="text-align: justify;">
+                    @Html.Raw(WebUtility.HtmlDecode(item.TastCaseDescription))
+                </ul>
+            </div>
+        </div>
+
+    }
+</div> 
+<div class="container ctr">
+    <div class="row">
+        <div class="col-md-12 ttl">
+            Program
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+
+    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+        @foreach (var item in ViewBag.LanguagesForslider)
+        {
+            <li class="nav-item">
+                <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
+                      data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                  asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
+                    <input type="submit" class="nav-link" value="@item.ProgrammingLangaugeName" />
+
+
+                </form>
+                @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
+            <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
+            </li>
+        }
+    </ul>
+    <div id="solutionByLanguage"></div>
+
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#Solution").submit();
+        });
+
+        function initDataTable(tableSelector) {
+            $(tableSelector).DataTable({
+                "scrollY": "300px",
+                "scrollCollapse": true,
+                "paging": false,
+                "order": [],
+                //"scroller": true,
+                //"stateSave": true,
+                "scrollX": true
+            });
+        }
+
+        function OnSuccess(formID) {
+            if (formID === "Solution") {
+                initDataTable("#answer");
+            }
+
+            if (formID === "formAdd_UMS") {
+            }
+
+
+            if (formID === "formEdit_UMS") {
+            }
+
+            if (formID === "formAddEditSave_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record saved successfully..!");
+            }
+
+            if (formID === "formAddEditMultiSave_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record saved successfully..!");
+            }
+
+            if (formID === "formDelete_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record deleted successfully..!");
+            }
+        }
+    </script>
+}

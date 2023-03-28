@@ -1,0 +1,71 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+@{
+	ViewData["Title"] = "HomePage";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container " style="margin-bottom: 30px;">
+	<div class="row d-flex align-items-center">
+		<div class="col-lg-6">
+			<img src="~/client/assets/media/slider/developer-activity-concept-illustration/4136916.png" height="500px" width="500px">
+		</div>
+		<div class="col-lg-6 d-flex align-items-center " style="height: 500px;">
+			<div class="container ">
+				<div class="row">
+					<div class="col-lg-12" style="font-size: 30px; font-weight: 600; color: rgb(47, 163, 61);">
+						Welcome, Anonymous!
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12" style="font-size: 14px;">
+						Welcome to the Programming-Code; Here you will get the best of complex programs, Logic Programs; We focus on sharpening of minds. There are few Examples and Introduction of Languages we will cover up during the journey
+					</div>
+				</div>
+				<div class="separator border-2 my-10"></div>
+				<div class="row">
+					<div class="col-lg-12" style="font-size: 14px;">
+						<a asp-action="AllLanguages" asp-controller="ClientPanel" class="btn btnbg">View Languages</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container ctr">
+	<div class="row">
+		@foreach (var item in ViewBag.LanguageList)
+		{
+			<div class="col-md-4">
+				<div class="card card-flush">
+					<div class="card-header">
+						<h3 class="card-title">@item.ProgrammingLangaugeName</h3>
+						<div class="card-toolbar">
+							512 Solutions
+						</div>
+					</div>
+					<div class="card-body dta dta-sm">
+						@Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeShortDescription.Length > 200 ? item.ProgrammingLangaugeShortDescription.Substring(0, 200) + "....." : item.ProgrammingLangaugeShortDescription))
+					</div>
+					<div class="card-footer">
+						<div class="card-toolbar">
+							@*<button type="button" class="">*@
+							<a class="btn btn-sm btnbg"
+						   asp-route-LanguageUrl="@item.LanguageUrl" asp-action="LanguageDetails" asp-controller="ClientPanel">
+								Visit Langauge
+								<input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
+							</a>
+							@*</button>*@
+						</div>
+					</div>
+
+				</div>
+			</div>
+		}
+	</div>
+
+</div>
+
+

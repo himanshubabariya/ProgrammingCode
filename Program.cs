@@ -26,6 +26,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=HomePage}/{action=Index}/{id?}");
+    pattern: "{controller=ClientPanel}/{action=Index}/{id?}");
 
 app.Run();
