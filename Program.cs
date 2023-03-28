@@ -28,4 +28,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=ClientPanel}/{action=Index}/{id?}");
 
+//app.MapControllerRoute(
+//    name: "my",
+//    pattern: "Lan");
+
+
 app.Run();
