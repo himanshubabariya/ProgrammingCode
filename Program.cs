@@ -29,8 +29,47 @@ app.MapControllerRoute(
     pattern: "{controller=ClientPanel}/{action=Index}/{id?}");
 
 //app.MapControllerRoute(
-//    name: "my",
-//    pattern: "Lan");
+//    name: "one",
+//    pattern: "Languages/{LanguageUrl}",
+//    defaults:new {Controller="ClientPanel",action="LanguageDetails"}
+//    );
+
+//app.MapControllerRoute(
+//    name: "ProgramLanguage",
+//    pattern: "Languages/{LanguageUrl}/Programs/{ProgramUrl}",
+//    defaults: new { Controller = "ClientPanel", action = "ProgramDetails" }
+//    );
+//app.MapControllerRoute(
+//	name: "two",
+//	pattern: "Programs/{ProgramUrl}",
+//	defaults: new { Controller = "ClientPanel", action = "ProgramDetails"}
+//	);
+
+//app.MapControllerRoute(
+//    name: "Topics",
+//    pattern: "Topics",
+//    defaults: new { Controller = "ClientPanel", action = "AllTopics" });
+
+//app.MapControllerRoute(
+//    name: "TopicsDetails",
+//    pattern: "Topics/{TopicID}",
+//    defaults: new { Controller = "ClientPanel", action = "TopicDetails" });
+
+//app.MapControllerRoute(
+//    name: "ProgramByTopic",
+//    pattern: "Topics/{TopicID}/Programs/{ProgramUrl}",
+//    defaults: new { Controller = "ClientPanel", action = "ProgramDetails" });
+
+//app.MapControllerRoute(
+//    name: "Programs",
+//    pattern: "Programs",
+//    defaults: new { Controller = "ClientPanel", action = "AllPrograms" });
+//app.MapControllerRoute(
+//    name: "Languages",
+//    pattern: "Languages",
+//    defaults: new { Controller = "ClientPanel", action = "AllLanguages" });
+
+
 
 
 app.Run();

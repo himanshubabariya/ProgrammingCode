@@ -27,7 +27,8 @@
                                 <tr class="">
                                     <td>@i</td>
                                     <td>
-                                        <a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
+                                        <a class="ProgramLink" href="/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                     </td>
                                     <td class="hard">@item.LevelName</td>
@@ -67,7 +68,8 @@
                             <tr class="">
                                 <td>@j</td>
                                 <td>
-                                    <a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                    @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
+                                    <a class="ProgramLink" href="/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                     <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                 </td>
                                 <td class="hard">@item.LevelName</td>

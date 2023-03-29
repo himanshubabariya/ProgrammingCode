@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.DAL;
+using System.Net.NetworkInformation;
 
 namespace ProgrammingCode.Controllers.ClientPanel
 {
@@ -14,8 +15,10 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region LanguagePage
+        [Route("Languages/{LanguageUrl}")]
         public IActionResult LanguageDetails(string? LanguageUrl)
         {
+            ViewBag.LanguageUrl= LanguageUrl;
             ViewBag.LanguageDetails = DBConfig.dbLangauge.SelectByLanguageUrl(LanguageUrl).ToList();
             ViewBag.ProgramList = DBConfig.dbProgram.PropgramList(LanguageUrl).ToList();
             ViewBag.TopProgramList = DBConfig.dbProgram.TopPropgramList(LanguageUrl).ToList();
@@ -23,6 +26,9 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region ProgramPage
+        [Route("Languages/{LanguageUrl}/Programs/{ProgramUrl}")]
+        [Route("Programs/{ProgramUrl}")]
+        [Route("Topics/{TopicID}/Programs/{ProgramUrl}")]
         public IActionResult ProgramDetails(string? ProgramUrl, string? LangaugeUrl)
         {
             
@@ -43,6 +49,8 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region AllLanguages
+        [Route("Languages")]
+        
         public IActionResult AllLanguages()
         {
             ViewBag.AllLanguages = DBConfig.dbLangauge.SelectAll().ToList();
@@ -50,6 +58,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region AllPrograms
+        [Route("Programs")]
         public IActionResult AllPrograms()
         {
             ViewBag.ProgramNavList = DBConfig.dbProgram.PropgramNavList().ToList();
@@ -58,6 +67,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region AllTopics
+        [Route("Topics")]
         public IActionResult AllTopics()
         {
             ViewBag.TopicList = DBConfig.dbTopic.SelectAll().ToList();
@@ -65,8 +75,10 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region TopicDetails
+        [Route("Topics/{TopicID}")]
         public IActionResult TopicDetails(int? TopicID)
         {
+            ViewBag.TopicID=TopicID;
             ViewBag.TopicDetails = DBConfig.dbTopic.SelectPk(TopicID).ToList();
             ViewBag.TopicRelatedProgramList = DBConfig.dbProgram.SelectByTopicID(TopicID).ToList();
             return View("TopicDetails");

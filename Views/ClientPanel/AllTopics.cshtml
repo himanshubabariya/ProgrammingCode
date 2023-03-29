@@ -27,7 +27,7 @@
                                 <tr class="">
                                     <td>@i</td>
                                     <td>
-                                        <a class="ProgramLink" asp-route-TopicID="@item.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">@item.TopicName</a>
+                                        <a class="ProgramLink" href="/Topics/@item.TopicID">@item.TopicName</a>
                                         <input type="hidden" name="TopicID" value="@item.TopicID" />
                                     </td>
 
