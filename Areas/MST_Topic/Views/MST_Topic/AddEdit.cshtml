@@ -42,6 +42,12 @@
                         <textarea type="text" id="editor2" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label class="required col-form-label">TopiCUrl</label>
+                        <input type="text" id="editor2" asp-for="TopicUrl" class="form-control" placeholder="Enter TopicUrl"/>
+                    </div>
+                </div>
                 <h4 class="title text-danger fw-bolder">Meta Details</h4>
                 <div class="form-group row">
                     <div class="col-md-4">
@@ -101,18 +107,19 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor1'))
-        .catch(error => {
-            console.error(error);
-        });
+    CKEDITOR.replace('editor1', {
+        height: 260,
+      
+
+        removeButtons: 'PasteFromWord'
+    });
 </script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor2'))
-        .catch(error => {
-            console.error(error);
-        });
+    CKEDITOR.replace('editor2', {
+        height: 260,
+        
+        removeButtons: 'PasteFromWord'
+    });
 </script>

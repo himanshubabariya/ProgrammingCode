@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using ProgrammingCode.Areas.PRO_Program.Models;
 using ProgrammingCode.Areas.SEC_User.Models;
+using ProgrammingCode.BAL;
 using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.SEC.SEC_User;
 using System.Data;
 
 namespace ProgrammingCode.Areas.SEC_User.Controllers
 {
-  
+    [CheckAccess]
     [Area("SEC_User")]
     public class SEC_UserController : Controller
     {

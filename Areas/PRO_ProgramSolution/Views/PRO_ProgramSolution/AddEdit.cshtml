@@ -72,17 +72,16 @@
     </div>
 </div>
 </div>
-
-<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor_data'))
-        .catch(error => {
-            console.error(error);
-        });
-    ClassicEditor
-        .create(document.querySelector('#editor_data2'))
-        .catch(error => {
-            console.error(error);
-        });
+    CKEDITOR.replace('editor_data', {
+        height: 260,
+       
+        removeButtons: 'PasteFromWord'
+    });
+    CKEDITOR.replace('editor_data2', {
+        height: 260,
+        width: 700,
+        removeButtons: 'PasteFromWord'
+    });
 </script>

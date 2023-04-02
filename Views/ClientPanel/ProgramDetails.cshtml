@@ -6,7 +6,7 @@
     <div class="container ctr">
         <div class="row">
             <div class="col-md-12 ttl">
-                @Html.Raw(WebUtility.HtmlDecode(item.Defination))
+                  @Html.Raw(WebUtility.HtmlDecode(item.Defination))
             </div>
         </div>
 
@@ -24,9 +24,9 @@
 
             @*<a class="btn btn-sm tag"
        asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
-       <a class="btn btn-sm tag" href="/Topics/@item2.TopicID">
+       <a class="btn btn-sm tag" href="/Topics/@item2.TopicUrl">
                 @item2.TopicName
-                <input type="hidden" name="TopicID" value="@item2.TopicID" />
+                <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
             </a>
 
         }
@@ -90,7 +90,9 @@
     <div class="row">
         <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
     </div>
-
+    @{
+        string selected = "C Language";
+    }
     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
         @foreach (var item in ViewBag.LanguagesForslider)
         {
@@ -98,9 +100,17 @@
                 <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
                       data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                   asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
-                    @Html.AntiForgeryToken()
+                    @Html.AntiForgeryToken()    
                     <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
-                    <input type="submit" class="nav-link" value="@item.ProgrammingLangaugeName" />
+                    @if (selected == @item.ProgrammingLangaugeName)
+                    {
+                        <input type="submit" class="nav-link active" value="@item.ProgrammingLangaugeName" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="nav-link" value="@item.ProgrammingLangaugeName" />
+                    }
+
 
 
                 </form>

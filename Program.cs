@@ -22,11 +22,16 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
         name: "Area",
-        pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+        pattern: "{Area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=ClientPanel}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "Dashboard",
+    defaults: new { Controller = "Dashboard", action = "Index" });
 
 //app.MapControllerRoute(
 //    name: "one",

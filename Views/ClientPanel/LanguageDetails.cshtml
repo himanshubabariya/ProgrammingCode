@@ -56,6 +56,7 @@
                                        @* <a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
                                             <a class="ProgramLink" href="@ViewBag.LanguageUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
+                                        <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
                                     </td>
                                     <td class="hard">@item.LevelName</td>
                                     <td class="type">Loop</td>
@@ -94,7 +95,7 @@
                             <tr class="">
                                 <td>@j</td>
                                 <td>
-                                    <a class="ProgramLink" href="@ViewBag.LanguageUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                    <a class="ProgramLink" href="@ViewBag.LanguageUrl/programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                     <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                 </td>
                                 <td class="hard">@item.LevelName</td>

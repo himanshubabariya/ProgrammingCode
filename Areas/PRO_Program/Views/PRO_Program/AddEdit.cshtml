@@ -17,9 +17,6 @@
                   asp-area="PRO_Program" asp-action="_Save" asp-controller="PRO_Program">
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.ProgramID)
-
-             
-
                 <div class="form-group row">
                     <div class="col-md-4">
 
@@ -170,42 +167,18 @@
     </div>
 </div>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
-    function onSubmit() {
-        // Get the selected options from the dropdown list
-        var selectedOptions = document.getElementsById('myDropdown')[0].selectedOptions;
-
-        // Create an empty array to store the selected values
-        var myArray = [];
-
-        // Loop through the selected options and add their values to the array
-        for (var i = 0; i < selectedOptions.length; i++) {
-            myArray.push(selectedOptions[i].value);
-        }
-
-        // Set the value of the hidden input field to the selected values as a JSON string
-        document.getElementById('myArray').value = JSON.stringify(myArray);
-
-        // Submit the form
-    }
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor2'))
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor3'))
-        .catch(error => {
-            console.error(error);
-        });
+    CKEDITOR.replace('editor', {
+        height: 260,
+        removeButtons: 'PasteFromWord'
+    });
+    CKEDITOR.replace('editor2', {
+        height: 260,
+        removeButtons: 'PasteFromWord'
+    });
+    CKEDITOR.replace('editor3', {
+        height: 260,
+        removeButtons: 'PasteFromWord'
+    });
 </script>

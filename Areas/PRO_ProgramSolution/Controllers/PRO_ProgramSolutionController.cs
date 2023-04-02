@@ -8,7 +8,7 @@ using System.Data;
 
 namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
 {
-    //[CheckAccess]
+    [CheckAccess]
     [Area("PRO_ProgramSolution")]
     public class PRO_ProgramSolutionController : Controller
     {

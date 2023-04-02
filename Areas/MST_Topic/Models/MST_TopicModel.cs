@@ -34,9 +34,9 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
 
        
         public decimal? Sequence { get; set; }
+        [Required, Display(Name = "TopicUrl")]
+        public string? TopicUrl { get; set; }
 
-
-        
         public int UserID { get; set; }
 
       

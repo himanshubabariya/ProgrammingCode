@@ -1,5 +1,6 @@
 ﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramSolution.SelectForSearch_Result>
-
+@using System.Net;
+@using Microsoft.AspNetCore.Html
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title">
@@ -41,9 +42,9 @@
                 {
                     i++;
                     <tr>
-                       
-                        
-                        <td class="text-center">&nbsp;@item.Defination</td>
+
+
+                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
                         
                         <td class="text-center">@item.ProgrammingLangaugeName</td>
                     

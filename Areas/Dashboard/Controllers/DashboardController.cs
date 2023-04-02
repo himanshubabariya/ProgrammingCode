@@ -4,6 +4,7 @@ using ProgrammingCode.BAL;
 namespace ProgrammingCode.Areas.Dashboard.Controllers7
 {
     [CheckAccess]
+    [Route("Admin/Dashboard")]
     [Area("Dashboard")]
     public class DashboardController : Controller
     {

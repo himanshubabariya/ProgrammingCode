@@ -147,13 +147,13 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
 		}
         #endregion
         #region Method: SelectByTopicID
-        public List<SelectByProgramUrl_Result> SelectByTopicID(int? TopicID)
+        public List<SelectByProgramUrl_Result> SelectByTopicUrl(string? TopicUrl)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByTopicID");
-                sqlDB.AddInParameter(dbMST, "TopicID", SqlDbType.Int, TopicID);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByTopicUrl");
+                sqlDB.AddInParameter(dbMST, "TopicUrl", SqlDbType.NVarChar, TopicUrl);
 
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))

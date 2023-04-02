@@ -1,5 +1,6 @@
 ﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramTestCase.SelectForSearch_Result>
-
+@using System.Net;
+@using Microsoft.AspNetCore.Html
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title ">
@@ -38,7 +39,7 @@
                       
           
                         <td class="text-center">@item.ProgramNumber</td>
-                        <td class="text-center">@item.Defination</td>
+                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
                         <td class="text-center">@item.IsPositive</td>
                          <td class="text-center">@item.Sequence</td>
                         <td class="text-center">@item.Created</td>

@@ -15,6 +15,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region LanguagePage
+        [Route("{LanguageUrl}")]
         [Route("Languages/{LanguageUrl}")]
         public IActionResult LanguageDetails(string? LanguageUrl)
         {
@@ -27,11 +28,11 @@ namespace ProgrammingCode.Controllers.ClientPanel
         #endregion
         #region ProgramPage
         [Route("Languages/{LanguageUrl}/Programs/{ProgramUrl}")]
+        [Route("{LanguageUrl}/Programs/{ProgramUrl}")]
         [Route("Programs/{ProgramUrl}")]
-        [Route("Topics/{TopicID}/Programs/{ProgramUrl}")]
+        [Route("Topics/{TopicUrl}/Programs/{ProgramUrl}")] 
         public IActionResult ProgramDetails(string? ProgramUrl, string? LangaugeUrl)
         {
-            
             V_ProgramUrl = ProgramUrl;
             ViewBag.LanguagesForslider = DBConfig.dbLangauge.SelectAll().ToList();
             ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(ProgramUrl).ToList();
@@ -75,12 +76,12 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region TopicDetails
-        [Route("Topics/{TopicID}")]
-        public IActionResult TopicDetails(int? TopicID)
+        [Route("Topics/{TopicUrl}")]
+        public IActionResult TopicDetails(string TopicUrl)
         {
-            ViewBag.TopicID=TopicID;
-            ViewBag.TopicDetails = DBConfig.dbTopic.SelectPk(TopicID).ToList();
-            ViewBag.TopicRelatedProgramList = DBConfig.dbProgram.SelectByTopicID(TopicID).ToList();
+            ViewBag.TopicUrl=TopicUrl;
+            ViewBag.TopicDetails = DBConfig.dbTopic.SelectByTopicUrl(TopicUrl).ToList();
+            ViewBag.TopicRelatedProgramList = DBConfig.dbProgram.SelectByTopicUrl(TopicUrl).ToList();
             return View("TopicDetails");
         }
         #endregion

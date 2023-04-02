@@ -8,7 +8,7 @@ using ProgrammingCode.DAL.MST.MST_Topic;
 
 namespace ProgrammingCode.Areas.MST_Topic.Controllers
 {
-   // [CheckAccess]
+    [CheckAccess]
     [Area("MST_Topic")]
     public class MST_TopicController : Controller
     {

@@ -75,6 +75,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicName) ? null : Obj_MST_Topic.TopicName.Trim());
                 sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar,Obj_MST_Topic.TopicDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Topic.Sequence);
+                sqlDB.AddInParameter(dbCMD, "TopicUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicUrl) ? null : Obj_MST_Topic.TopicUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaTitle) ? null : Obj_MST_Topic.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaKeywords) ? null : Obj_MST_Topic.MetaKeywords.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaDescription) ? null : Obj_MST_Topic.MetaDescription.Trim());
@@ -203,6 +204,32 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
             }
         }
         #endregion
+        #region Method: SelectPk
+        public List<SelectByTopicUrl_Result> SelectByTopicUrl(string TopicUrl)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_MST_Topic_SelectByTopicUrl");
+                sqlDB.AddInParameter(dbMST, "TopicUrl", SqlDbType.NVarChar, TopicUrl);
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectByTopicUrl_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region Method: Update
         public bool? Update(MST_TopicModel Obj_MST_Topic)
         {
@@ -214,6 +241,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
                 sqlDB.AddInParameter(dbCMD, "TopicName", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicName) ? null : Obj_MST_Topic.TopicName.Trim());
                 sqlDB.AddInParameter(dbCMD, "TopicDescription", SqlDbType.NVarChar, Obj_MST_Topic.TopicDescription);
                 sqlDB.AddInParameter(dbCMD, "Sequence", SqlDbType.Decimal, Obj_MST_Topic.Sequence);
+                sqlDB.AddInParameter(dbCMD, "TopicUrl", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.TopicUrl) ? null : Obj_MST_Topic.TopicUrl.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaTitle", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaTitle) ? null : Obj_MST_Topic.MetaTitle.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaKeywords", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaKeywords) ? null : Obj_MST_Topic.MetaKeywords.Trim());
                 sqlDB.AddInParameter(dbCMD, "MetaDescription", SqlDbType.NVarChar, string.IsNullOrWhiteSpace(Obj_MST_Topic.MetaDescription) ? null : Obj_MST_Topic.MetaDescription.Trim());
@@ -261,6 +289,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
 
 
         public string? TopicName { get; set; }
+        public string? TopicUrl { get; set; }
 
 
 
@@ -349,7 +378,7 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
 
         public int TopicID { get; set; }
 
-
+        public string? TopicUrl { get; set; }
 
         public string? TopicName { get; set; }
 
@@ -448,11 +477,96 @@ namespace ProgrammingCode.DAL.MST.MST_Topic
         public string? TopicDescription { get; set; }
 
 
-        
 
 
 
-       
+        public string? TopicUrl { get; set; }
+
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
+
+        public int TopicView { get; set; }
+
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+        public string? UserName { get; set; }
+
+        public string? MetaOgType { get; set; }
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
+
+    #region Entity: SelectByTopicUrl_Result
+    public partial class SelectByTopicUrl_Result : DALHelper
+    {
+        #region Properties
+        public int TopicID { get; set; }
+
+
+
+        public string? TopicName { get; set; }
+
+
+
+        public string? TopicDescription { get; set; }
+
+
+
+
+
+        public string? TopicUrl { get; set; }
+
 
 
 
