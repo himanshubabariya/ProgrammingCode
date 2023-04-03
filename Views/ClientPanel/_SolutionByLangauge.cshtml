@@ -4,20 +4,20 @@
 <div class="col-md-12" id="answer">
 
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="kt_tab_pane_4" role="tabpanel">
-            <div class="p">
+        <div class="tab-pane fade show active" id="kt_tab_pane_4" role="tabpanel" >
+            <div class="p" >
                 <!--begin::Highlight-->
                 @foreach (var item in ViewBag.Solution)
                 {
                     <div class="highlight">
                         <button class="highlight-copy btn" data-bs-toggle="tooltip" title="Copy code">copy</button>
                         <div class="highlight-code">
-                            <pre class="language-html" style="height:400px; font-size: 30px;">
-                            <code class="language-html" style="font-size: 200%;">
+                            <pre class="language-javascript" style="height:400px; font-size: 30px;">
+                            <code class="language-javascript" style="font-size: 200%;font-weight:900">
                                @Html.Raw(WebUtility.HtmlDecode(item.ProgramSolution))   
                             </code>
                          </pre>
-                       </div>
+                        </div>
                     </div>
                 }
                 <!--end::Highlight-->
@@ -29,5 +29,8 @@
     </div>
 
 </div>	<!--begin::Highlight-->
-               
-				
+
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.28.0/prism.js"></script>
+<script>
+    Prism.highlightAll();
+</script>   

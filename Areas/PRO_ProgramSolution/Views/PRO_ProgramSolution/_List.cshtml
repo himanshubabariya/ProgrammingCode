@@ -18,19 +18,10 @@
         <table class="secondary table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
             <thead class="bg-gray-300">
                 <tr>
-               
-                    <th class="text-center">Defination</th>
-                   
+                    <th class="text-center">Defination</th>         
                     <th class="text-center">Langauge</th>
-                    
-
                      <th class="text-center">Created</th>
-                      <th class="text-center">Modified</th>
-
-                  
-                   
-                   
-                    
+                      <th class="text-center">Modified</th>      
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -42,19 +33,10 @@
                 {
                     i++;
                     <tr>
-
-
-                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
-                        
-                        <td class="text-center">@item.ProgrammingLangaugeName</td>
-                    
-                            <td class="text-center">@item.Created</td>
-                              <td class="text-center">@item.Modified</td>
-                       
-                    
-                        
-                        
-                     
+                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>                       
+                        <td class="text-center">@item.ProgrammingLangaugeName</td>                    
+                        <td class="text-center">@item.Created</td>
+                        <td class="text-center">@item.Modified</td>                     
                         <td class="text-center">
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
@@ -63,12 +45,11 @@
                                     <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
                                 </a>
                             </span>
-
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
                                   data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                               asp-area="PRO_ProgramSolution" asp-action="_Delete" asp-controller="PRO_ProgramSolution" style="display: inline;">
                                 @Html.AntiForgeryToken()
-                                <input type="hidden" name="ProgramTestCaseID" value="@item.ProgramSolutionID" />
+                                <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>

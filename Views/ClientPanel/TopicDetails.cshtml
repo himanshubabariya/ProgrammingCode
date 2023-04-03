@@ -1,16 +1,20 @@
 ﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
+@using ProgrammingCode.DAL;
 
 
 @foreach (var item in ViewBag.TopicDetails)
 {
     <div class="container ctr">
         <div class="row">
-            <div class="col-md-12 ttl">
+            <div class="col-md-6 d-flex ttl">
                 @item.TopicName
             </div>
+       
+        <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
+            @TempData["ProgramCountonTopic"] Programs
         </div>
-
+        </div>
         <div class="row">
             <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
         </div>
@@ -50,11 +54,12 @@
                                     <td>@i</td>
                                     <td>
                                         @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                        <a class="ProgramLink" href="@ViewBag.TopicUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                       @* <a class="ProgramLink" href="@ViewBag.TopicUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>*@
+                                        <a class="ProgramLink" href="/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                     </td>
                                     <td class="hard">@item.LevelName</td>
-
+                                  
                                     <td><i class="fa fa-eye"></i>@item.ProgramView</td>
                                 </tr>
                             }

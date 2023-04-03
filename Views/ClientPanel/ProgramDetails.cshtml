@@ -90,9 +90,6 @@
     <div class="row">
         <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
     </div>
-    @{
-        string selected = "C Language";
-    }
     <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
         @foreach (var item in ViewBag.LanguagesForslider)
         {
@@ -101,18 +98,8 @@
                       data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                   asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
                     @Html.AntiForgeryToken()    
-                    <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
-                    @if (selected == @item.ProgrammingLangaugeName)
-                    {
-                        <input type="submit" class="nav-link active" value="@item.ProgrammingLangaugeName" />
-                    }
-                    else
-                    {
-                        <input type="submit" class="nav-link" value="@item.ProgrammingLangaugeName" />
-                    }
-
-
-
+                    <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />                
+                        <input type="submit" class="nav-link " value="@item.ProgrammingLangaugeName" />            
                 </form>
                 @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
             <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
@@ -123,6 +110,7 @@
 
 </div>
 @section scripts {
+
     <script>
         $(document).ready(function () {
             $("#Solution").submit();

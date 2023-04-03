@@ -114,9 +114,9 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
                 return null;
             }
         }
-		#endregion
-		#region Method: SelectPk
-		public List<SelectPk_Result> SelectByProgramUrlLangaugeUrl(string? ProgramUrlForsolution,string? LanguageUrl)
+        #endregion
+        #region Method: LangaugeUrl
+        public List<SelectPk_Result> SelectByProgramUrlLangaugeUrl(string? ProgramUrlForsolution,string? LanguageUrl)
 		{
 			try
 			{
@@ -141,9 +141,30 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
 				return null;
 			}
 		}
-		#endregion
-		#region Method: Insert
-		public decimal? Insert(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
+        #endregion
+        #region Method: SelectSolutionCount
+        public int SelectSolutionCount(string? LanguageUrl)
+        {
+           
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectSolutionCount");
+                sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
+                int count = (int)sqlDB.ExecuteScalar(dbMST);
+                return count; 
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return 0;
+            }
+        }
+        #endregion
+        #region Method: Insert
+        public decimal? Insert(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
 
         {
             try

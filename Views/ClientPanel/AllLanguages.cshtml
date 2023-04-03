@@ -1,16 +1,22 @@
 ﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
+@using ProgrammingCode.DAL;
 
-<div class="container ctr">
+<div class="container">
 	<div class="row">
 		@foreach (var item in ViewBag.AllLanguages)
 		{
-			<div class="col-md-4">
+			<div class="col-md-4 pt-3">
 				<div class="card card-flush">
 					<div class="card-header">
-						<h3 class="card-title">@item.ProgrammingLangaugeName</h3>
+						@**@
+						<span class="card-title"><img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="30px" width="30px"> <span class="p-1">@item.ProgrammingLangaugeName</span></span>
+						@{
+							int SolutionCount = DBConfig.dbSolution.SelectSolutionCount(@item.LanguageUrl);
+						}
+
 						<div class="card-toolbar">
-							512 Solutions
+							@SolutionCount Solutions
 						</div>
 					</div>
 					<div class="card-body dta dta-sm">
@@ -20,8 +26,9 @@
 						<div class="card-toolbar">
 							@*<button type="button" class="">*@
 							@*<a class="btn btn-sm btnbg"
-						   asp-route-LanguageUrl="@item.LanguageUrl" asp-action="LanguageDetails" asp-controller="ClientPanel">*@
-							<a class="btn btn-sm btnbg" href="/Languages/@item.LanguageUrl">
+						asp-route-LanguageUrl="@item.LanguageUrl" asp-action="LanguageDetails" asp-controller="ClientPanel">*@
+							<a class="btn btn-sm btnbg"
+							   href="@item.LanguageUrl">
 								Visit Langauge
 								<input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
 							</a>

@@ -5,6 +5,7 @@ using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.MST_ProgrammingCode.Models;
 using ProgrammingCode.BAL;
+using ProgrammingCode.DAL.PRO.PRO_Program;
 using static ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel;
 
 namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
@@ -44,7 +45,6 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
             }
         }
         #endregion
-
         #region Method: Delete
         public bool? Delete(int? ProgrammingLangaugeID)
         {
@@ -130,6 +130,58 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
             }
         }
         #endregion
+
+        #region Method: SelectForHomePage
+        public List<SelectForHomePage_Result> SelectForHomePage()
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectForHomePage");
+
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForHomePage_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region Method: SelectByProgramUrl
+        public List<SelectByProgramUrl_Result> SelectByProgramUrl(string? ProgramUrl)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_MST_ProgrammingLangauge_SelectByProgramUrl");
+                sqlDB.AddInParameter(dbCMD, "ProgramUrl", SqlDbType.NVarChar, ProgramUrl);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectByProgramUrl_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+
 
         #region Method: SelectForSearch
         public List<SelectByProgrammingLangaugeName_Result> SelectForSearch(string L_ProgramminglangaugeName)
@@ -264,6 +316,59 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
 
 
     #region All Entities
+    #region Entity: SelectComboBoxForClientLanguage_Result
+    public partial class SelectComboBoxForClientLanguage : DALHelper
+    {
+        #region Properties
+
+        public int ProgrammingLangaugeID { get; set;}
+
+
+
+        public string? LanguageUrl { get; set; }
+
+
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
+    #region Entity: SelectByProgramUrl_Result
+    public partial class SelectByProgramUrl_Result : DALHelper
+    {
+        #region Properties
+
+        public int ProgrammingLangaugeID { get; set; }
+
+
+
+        public string? ProgrammingLangaugeName { get; set; }
+
+
+
+       
+        public string? LanguageUrl { get; set; }
+
+      
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
     #region Entity: SelectByProgrammingLangaugeName_Result
     public partial class SelectByProgrammingLangaugeName_Result : DALHelper
     {
@@ -353,7 +458,45 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         #endregion
     }
     #endregion
+    #region Entity: SelectForHomePage_Result
+    public partial class SelectForHomePage_Result : DALHelper
+    {
+        #region Properties
 
+        public int ProgrammingLangaugeID { get; set; }
+
+
+
+        public string? ProgrammingLangaugeName { get; set; }
+
+
+
+        public string? ProgrammingLangaugeShortDescription { get; set; }
+
+
+        public string? ProgrammingLangaugeDetailedDescription { get; set; }
+
+
+
+        public string? ProgrammingLangaugeLogo { get; set; }
+
+
+
+        public decimal Sequence { get; set; }
+
+
+        public string? LanguageUrl { get; set; }
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
     #region Entity: SelectAll_Result
     public partial class SelectAll_Result : DALHelper
     {
@@ -444,7 +587,6 @@ namespace ProgrammingCode.DAL.MST.MST_ProgrammingLangauge
         #endregion
     }
     #endregion
-
     #region Entity: SelectPK_Result
     public partial class SelectPk_Result : DALHelper
     { 

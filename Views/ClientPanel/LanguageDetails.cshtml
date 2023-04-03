@@ -1,5 +1,6 @@
 ﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
+@using ProgrammingCode.DAL;
 
 @foreach (var item in ViewBag.LanguageDetails)
 {
@@ -10,9 +11,12 @@
                 <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
                 <span class="p-2">@item.ProgrammingLangaugeName</span>
             </div>
-            <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
-                515 Solutions
-            </div>
+          
+                <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
+                @TempData["SelectSolutionCount"] Solutions
+                </div>
+            
+           
         </div>
         <div class="row">
             <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
@@ -54,12 +58,26 @@
                                     <td>@i</td>
                                     <td>
                                        @* <a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                            <a class="ProgramLink" href="@ViewBag.LanguageUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        <a class="ProgramLink" href="@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                         <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
                                     </td>
                                     <td class="hard">@item.LevelName</td>
-                                    <td class="type">Loop</td>
+
+                                    @{
+                                        ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
+                                    }
+                                    <td class="type">
+                                       
+                                            @foreach (var item2 in ViewBag.TopicOnProgramUrl)
+                                            {
+                                                
+                                                    @item2.TopicName<span><br/> </span>
+                                                
+                                            }
+                                       
+                                    
+                                    </td>
                                     <td><i class="fa fa-eye"></i>@item.ProgramView</td>
                                 </tr>
                             }
@@ -95,7 +113,7 @@
                             <tr class="">
                                 <td>@j</td>
                                 <td>
-                                    <a class="ProgramLink" href="@ViewBag.LanguageUrl/programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                    <a class="ProgramLink" href="@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                     <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                 </td>
                                 <td class="hard">@item.LevelName</td>

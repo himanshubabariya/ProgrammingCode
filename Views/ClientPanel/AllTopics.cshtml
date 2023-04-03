@@ -1,5 +1,6 @@
 ﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
+@using ProgrammingCode.DAL;
 @*@model List<ProgrammingCode.DAL.PRO.PRO_Program.SelectAll_Result>
 @{
 	var ProgramList = Model;
@@ -24,13 +25,20 @@
                             @foreach (var item in ViewBag.TopicList)
                             {
                                 i++;
-                                <tr class="">
+                                <tr>
                                     <td>@i</td>
                                     <td>
                                         <a class="ProgramLink" href="/Topics/@item.TopicUrl">@item.TopicName</a>
                                         <input type="hidden" name="TopicID" value="@item.TopicID" />
                                     </td>
-
+                                    @{
+                                        int SelectCountByTopicUrl = DBConfig.dbProgram.SelectCountByTopicUrl(@item.TopicUrl);
+                                    }
+                                    <td class="type">
+                                
+                                        @SelectCountByTopicUrl Programs
+                                  
+                                    </td>
                                     <td><i class="fa fa-eye"></i>@item.TopicView</td>
                                 </tr>
                             }

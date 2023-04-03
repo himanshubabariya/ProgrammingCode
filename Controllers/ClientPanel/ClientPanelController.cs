@@ -8,9 +8,10 @@ namespace ProgrammingCode.Controllers.ClientPanel
     {
         static string? V_ProgramUrl;
         #region Index/HomePage
+
         public IActionResult Index()
         {
-            ViewBag.LanguageList = DBConfig.dbLangauge.SelectAll().ToList();
+            ViewBag.LanguageList = DBConfig.dbLangauge.SelectForHomePage().ToList();
             return View("HomePage");
         }
         #endregion
@@ -19,28 +20,27 @@ namespace ProgrammingCode.Controllers.ClientPanel
         [Route("Languages/{LanguageUrl}")]
         public IActionResult LanguageDetails(string? LanguageUrl)
         {
+            TempData["SelectSolutionCount"] = DBConfig.dbSolution.SelectSolutionCount(LanguageUrl);
             ViewBag.LanguageUrl= LanguageUrl;
             ViewBag.LanguageDetails = DBConfig.dbLangauge.SelectByLanguageUrl(LanguageUrl).ToList();
-            ViewBag.ProgramList = DBConfig.dbProgram.PropgramList(LanguageUrl).ToList();
-            ViewBag.TopProgramList = DBConfig.dbProgram.TopPropgramList(LanguageUrl).ToList();
+            ViewBag.ProgramList = DBConfig.dbProgram.SelectByLanagueUrl(LanguageUrl).ToList();
+            ViewBag.TopProgramList = DBConfig.dbProgram.SelectByLanagueUrlTop(LanguageUrl).ToList();
             return View("LanguageDetails");
         }
         #endregion
         #region ProgramPage
-        [Route("Languages/{LanguageUrl}/Programs/{ProgramUrl}")]
-        [Route("{LanguageUrl}/Programs/{ProgramUrl}")]
-        [Route("Programs/{ProgramUrl}")]
-        [Route("Topics/{TopicUrl}/Programs/{ProgramUrl}")] 
+        [Route("{LanguageUrl}/{ProgramUrl}/ProgramDetails")]
+        [Route("Programs/{ProgramUrl}/ProgramDetails")]
         public IActionResult ProgramDetails(string? ProgramUrl, string? LangaugeUrl)
         {
             V_ProgramUrl = ProgramUrl;
-            ViewBag.LanguagesForslider = DBConfig.dbLangauge.SelectAll().ToList();
+            ViewBag.LanguagesForslider = DBConfig.dbLangauge.SelectByProgramUrl(ProgramUrl).ToList();
             ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(ProgramUrl).ToList();
             ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramUrl(ProgramUrl).ToList();
             ViewBag.Solution = DBConfig.dbSolution.SelectByProgramUrlLangaugeUrl(ProgramUrl, "Java").ToList();
             ViewBag.ProgramDetails = DBConfig.dbProgram.SelectByProgramUrl(ProgramUrl).ToList();
             return View("ProgramDetails");
-        }
+        }   
         #endregion
         #region SolutionByProgramUrlLangaugeUrl
         public IActionResult SolutionByProgramUrlLangaugeUrl(string? LanguageUrl)
@@ -54,7 +54,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         
         public IActionResult AllLanguages()
         {
-            ViewBag.AllLanguages = DBConfig.dbLangauge.SelectAll().ToList();
+            ViewBag.AllLanguages = DBConfig.dbLangauge.SelectForHomePage().ToList();
             return View("AllLanguages");
         }
         #endregion
@@ -62,8 +62,8 @@ namespace ProgrammingCode.Controllers.ClientPanel
         [Route("Programs")]
         public IActionResult AllPrograms()
         {
-            ViewBag.ProgramNavList = DBConfig.dbProgram.PropgramNavList().ToList();
-            ViewBag.TopProgramNavList = DBConfig.dbProgram.TopPropgramNavList().ToList();
+            ViewBag.ProgramNavList = DBConfig.dbProgram.SelectAllProgramForClientPanel().ToList();
+            ViewBag.TopProgramNavList = DBConfig.dbProgram.SelectAllTopProgramForClientPanel().ToList();
             return View("AllPrograms");
         }
         #endregion
@@ -79,7 +79,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         [Route("Topics/{TopicUrl}")]
         public IActionResult TopicDetails(string TopicUrl)
         {
-            ViewBag.TopicUrl=TopicUrl;
+            TempData["ProgramCountonTopic"] = DBConfig.dbProgram.SelectCountByTopicUrl(TopicUrl);
             ViewBag.TopicDetails = DBConfig.dbTopic.SelectByTopicUrl(TopicUrl).ToList();
             ViewBag.TopicRelatedProgramList = DBConfig.dbProgram.SelectByTopicUrl(TopicUrl).ToList();
             return View("TopicDetails");
