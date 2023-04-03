@@ -7,6 +7,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
     public class ClientPanelController : Controller
     {
         static string? V_ProgramUrl;
+        static string? V_LanguageUrl;
         #region Index/HomePage
 
         public IActionResult Index()
@@ -22,6 +23,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         {
             TempData["SelectSolutionCount"] = DBConfig.dbSolution.SelectSolutionCount(LanguageUrl);
             ViewBag.LanguageUrl= LanguageUrl;
+            V_LanguageUrl = LanguageUrl;
             ViewBag.LanguageDetails = DBConfig.dbLangauge.SelectByLanguageUrl(LanguageUrl).ToList();
             ViewBag.ProgramList = DBConfig.dbProgram.SelectByLanagueUrl(LanguageUrl).ToList();
             ViewBag.TopProgramList = DBConfig.dbProgram.SelectByLanagueUrlTop(LanguageUrl).ToList();
@@ -37,7 +39,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
             ViewBag.LanguagesForslider = DBConfig.dbLangauge.SelectByProgramUrl(ProgramUrl).ToList();
             ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(ProgramUrl).ToList();
             ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramUrl(ProgramUrl).ToList();
-            ViewBag.Solution = DBConfig.dbSolution.SelectByProgramUrlLangaugeUrl(ProgramUrl, "Java").ToList();
+            ViewBag.Solution = DBConfig.dbSolution.SelectByProgramUrlLangaugeUrl(ProgramUrl, V_LanguageUrl).ToList();
             ViewBag.ProgramDetails = DBConfig.dbProgram.SelectByProgramUrl(ProgramUrl).ToList();
             return View("ProgramDetails");
         }   
