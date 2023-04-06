@@ -5,7 +5,18 @@
 @{
 	var ProgramList = Model;
 }*@
-<div class="container ctr">
+@{
+    ViewData["MetaTitle"] = "ProgrammingCode Topics";
+    ViewData["MetaKeywords"] = "ProgrammingCode Topics";
+    ViewData["MetaDescription"] = "ProgrammingCode Topics";
+    ViewData["MetaAuthor"] = "ProgrammingCode Topics";
+    ViewData["MetaOgTitle"] = "ProgrammingCode Topics";
+    ViewData["MetaOgImage"] = "ProgrammingCode Topics";
+    ViewData["MetaOgDescription"] = "ProgrammingCode Topics";
+    ViewData["MetaOgUrl"] = "ProgrammingCode Topics";
+    ViewData["MetaOgType"] = "ProgrammingCode Topics";
+}
+@*<div class="container ctr">
 
 
     <div class="row">
@@ -48,5 +59,66 @@
                 </div>
             </div>
         </Div>
+    </div>
+</div>*@
+<div class="container ctr">
+
+    <div class="row">
+        <div class="col-md-12 ttl" style="margin-bottom: 10px;">
+            Top Performing Programs
+        </div>
+    </div>
+    <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+    <div class="row lstrw">
+        <div class="py-5">
+            <div class="col-md-12">
+                @{
+                    int j = 0;
+                }
+                @foreach (var item in ViewBag.TopicList)
+                {
+
+                    j++;
+                    <div class="row ">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-1" style="font-weight:900">@j</div>
+                                <div class="col-11 ">
+                                    <a class="ProgramLink" href="/Topics/@item.TopicUrl">@item.TopicName</a>
+                                    <input type="hidden" name="TopicID" value="@item.TopicID" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-2 pt-2">
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                @{
+                                    int SelectCountByTopicUrl = DBConfig.dbProgram.SelectCountByTopicUrl(@item.TopicUrl);
+                                }
+                                <div class="hard col-7 " style="color:green"> @SelectCountByTopicUrl Programs</div>
+                            
+
+                          
+                                <div class="col-3"><i class="fa fa-eye"></i>@item.TopicView</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <hr class="dashed" />
+
+                }
+
+
+
+            </div>
+        </div>
     </div>
 </div>

@@ -1,7 +1,17 @@
 ﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
 @using ProgrammingCode.DAL;
-
+@{
+	ViewData["MetaTitle"] = "ProgrammingCode Languages";
+	ViewData["MetaKeywords"] = "ProgrammingCode Languages";
+	ViewData["MetaDescription"] = "ProgrammingCode Languages";
+	ViewData["MetaAuthor"] = "ProgrammingCode Languages";
+	ViewData["MetaOgTitle"] = "ProgrammingCode Languages";
+	ViewData["MetaOgImage"] = "ProgrammingCode Languages";
+	ViewData["MetaOgDescription"] = "ProgrammingCode Languages";
+	ViewData["MetaOgUrl"] = "ProgrammingCode Languages";
+	ViewData["MetaOgType"] = "ProgrammingCode Languages";
+}
 <div class="container">
 	<div class="row">
 		@foreach (var item in ViewBag.AllLanguages)

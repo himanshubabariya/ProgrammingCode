@@ -32,7 +32,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         #endregion
         #region ProgramPage
         [Route("{LanguageUrl}/{ProgramUrl}/ProgramDetails")]
-        [Route("Programs/{ProgramUrl}/ProgramDetails")]
+        [Route("{ProgramUrl}/ProgramDetails")]
         public IActionResult ProgramDetails(string? ProgramUrl, string? LangaugeUrl)
         {
             V_ProgramUrl = ProgramUrl;

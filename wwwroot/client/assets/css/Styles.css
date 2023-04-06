@@ -1,11 +1,14 @@
-.ttl{
+.ttl {
     font-size: 25px;
+    font-weight: 500;
+}
+.ttl2 {
+    font-size: 18px;
     font-weight: 500;
 }
 .lstrw{
     font-size: 14px;
     color: rgb(114, 114, 114);
-    padding: 10px;
 }
 .btnbg{
   color: white;
@@ -43,27 +46,27 @@ table tr td .easy{
     color: black;
     padding: 10px;
 }
-.dta{
-    font-size:16px;
+.dta {
+    font-size: 16px;
     color: rgb(126, 126, 126);
 }
 .tag{
     color: rgb(71, 71, 71);
+    margin-top:-4px;
     border:2px solid rgb(47, 163, 61);
-    margin-top: 10px;
     background-color: rgb(231, 231, 231);
 }
-.ProgramLink{
-  text-decoration: none;
-  color: rgb(114, 114, 114);
- 
-  transition: 0.2s ease;
+.ProgramLink {
+    text-decoration: none;
+    color: rgb(114, 114, 114);
+    transition: 0.2s ease;
 }
 
-.ProgramLink:hover{
-  color: rgb(42, 42, 42);
-  
-  
+    .ProgramLink:hover {
+        color: rgb(42, 42, 42);
+    }
+.dashed {
+    border-bottom: dashed 1px #000000;
 }
 
 .dta-sm{

@@ -5,6 +5,15 @@
 
 @foreach (var item in ViewBag.TopicDetails)
 {
+    ViewData["MetaTitle"] = item.MetaTitle;
+    ViewData["MetaKeywords"] = item.MetaKeywords;
+    ViewData["MetaDescription"] = item.MetaDescription;
+    ViewData["MetaAuthor"] = item.MetaAuthor;
+    ViewData["MetaOgTitle"] = item.MetaOgTitle;
+    ViewData["MetaOgImage"] = item.MetaOgImage;
+    ViewData["MetaOgDescription"] = item.MetaOgDescription;
+    ViewData["MetaOgUrl"] = item.MetaOgUrl;
+    ViewData["MetaOgType"] = item.MetaOgType;
     <div class="container ctr">
         <div class="row">
             <div class="col-md-6 d-flex ttl">
@@ -28,7 +37,7 @@
     </div>
 }
 
-<div class="container ctr">
+@*<div class="container ctr">
 
 
     <div class="row">
@@ -55,7 +64,7 @@
                                     <td>
                                         @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
                                        @* <a class="ProgramLink" href="@ViewBag.TopicUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>*@
-                                        <a class="ProgramLink" href="/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        @*<a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                     </td>
                                     <td class="hard">@item.LevelName</td>
@@ -69,5 +78,78 @@
                 </div>
             </div>
         </Div>
+    </div>
+</div>*@
+
+<div class="container ctr">
+
+    <div class="row">
+        <div class="col-md-12 ttl" style="margin-bottom: 10px;">
+            Topic Related Program
+        </div>
+    </div>
+    <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+    <div class="row lstrw ">
+        <div class="py-5">
+            <div class="col-md-12">
+                @{
+                    int j = 0;
+                }
+                @foreach (var item in ViewBag.TopicRelatedProgramList)
+                {
+
+                    j++;
+                    <div class="row ">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-1" style="font-weight:900">@j</div>
+                                <div class="col-11 ">
+                                    @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
+                                    <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                    <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                @if (@item.LevelName == "hard")
+                                {
+                                    <div class="hard col-7 " style="color:firebrick">@item.LevelName</div>
+                                }
+                                else if (@item.LevelName == "Easy")
+                                {
+                                    <div class="hard col-7 " style="color:green">@item.LevelName</div>
+                                }
+                                else
+                                {
+                                    <div class="hard col-7 " style="color:darkgoldenrod">@item.LevelName</div>
+                                }
+
+                                @{
+                                    ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
+                                }
+
+                                <div class="col-3"><i class="fa fa-eye"></i>@item.ProgramView</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <hr class="dashed" />
+
+                }
+
+
+
+            </div>
+        </div>
     </div>
 </div>

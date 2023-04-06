@@ -5,59 +5,100 @@
 @{
 	var ProgramList = Model;
 }*@
+@{
+    ViewData["MetaTitle"] = "ProgrammingCode Programs";
+    ViewData["MetaKeywords"] = "ProgrammingCode Programs";
+    ViewData["MetaDescription"] = "ProgrammingCode Programs";
+    ViewData["MetaAuthor"] = "ProgrammingCode Programs";
+    ViewData["MetaOgTitle"] = "ProgrammingCode Programs";
+    ViewData["MetaOgImage"] = "ProgrammingCode Programs";
+    ViewData["MetaOgDescription"] = "ProgrammingCode Programs";
+    ViewData["MetaOgUrl"] = "ProgrammingCode Programs";
+    ViewData["MetaOgType"] = "ProgrammingCode Programs";
+}
+
+
+
+   
 <div class="container ctr">
-
-
     <div class="row">
         <div class="col-md-12 ttl">
             All Programs
         </div>
-
-        <Div class="row">
-            <div class="py-5">
-                <div class="table-responsive">
-                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
-                        <tbody>
-                            @{
-                                int i = 0;
-                            }
-
-                            @foreach (var item in ViewBag.ProgramNavList)
+        <div class="row">
+            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+        </div>
+        <div class="row lstrw">
+            <div class="py-5">  
+                <div class="col-md-12">      
+                    @{
+                        int k = 0;
+                    }
+                   @foreach (var item in ViewBag.ProgramNavList)
                             {
-                                i++;
-                                <tr class="">
-                                    <td>@i</td>
-                                    <td>
+
+                       k++;
+                        <div class="row ">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-1 " style="font-weight:900">@k</div>
+                                    <div class="col-11 ">
                                         @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                        <a class="ProgramLink" href="/Programs/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
-                                    </td>
-                                    <td class="hard">@item.LevelName</td>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-1">
+                                        </div>
+                                    @if(@item.LevelName=="hard")
+                                    {
+                                        <div class="hard col-3 " style="color:firebrick">@item.LevelName</div>
+                                    }
+                                    else if (@item.LevelName == "Easy")
+                                    {
+                                        <div class="hard col-3 " style="color:green">@item.LevelName</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="hard col-3 " style="color:darkgoldenrod">@item.LevelName</div>
+                                    }
+
                                     @{
                                         ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
                                     }
-                                    <td class="type">
-
+                                    <div class="col-6 pl-2">
                                         @foreach (var item2 in ViewBag.TopicOnProgramUrl)
                                         {
-
-                                            @item2.TopicName
-
-                                            <span><br /> </span>
-
+                                            <a class="badge badge-success" href="/Topics/@item2.TopicUrl">
+                                                @item2.TopicName
+                                                <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
+                                            </a>
                                         }
 
 
-                                    </td>
-                                    <td><i class="fa fa-eye"></i>@item.ProgramView</td>
-                                </tr>
+                                    </div>
+                                    <div class="col-2 "><i class="fa fa-eye"></i>@item.ProgramView</div>
+                                            </div>
+                             
+
+                            </div>
+                                    </div>
+                                
+                    <hr class="dashed" />
+                               
                             }
 
-                        </tbody>
-                    </table>
+                       
+        
                 </div>
             </div>
-        </Div>
+        </div>
     </div>
 </div>
 <div class="container ctr">
@@ -68,34 +109,67 @@
         </div>
     </div>
     <div class="row">
+        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+    </div>
+    <div class="row lstrw">
         <div class="py-5">
-            <div class="table-responsive">
-                <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
-                    <tbody>
+            <div class="col-md-12">
+                @{
+                    int j = 0;
+                }
+                @foreach (var item in ViewBag.TopProgramNavList)
+                {
 
-
-                        @{
-                            int j = 0;
-                        }
-
-                        @foreach (var item in ViewBag.TopProgramNavList)
-                        {
-                            j++;
-                            <tr class="">
-                                <td>@j</td>
-                                <td>
+                    j++;
+                    <div class="row ">
+                        <div class="col-md-10">
+                            <div class="row">
+                                <div class="col-1" style="font-weight:900">@j</div>
+                                <div class="col-11 ">
                                     @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                    <a class="ProgramLink" href="/Programs/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                    <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                     <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
-                                </td>
-                                <td class="hard">@item.LevelName</td>
-                                <td><i class="fa fa-eye"></i>@item.ProgramView</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                @if (@item.LevelName == "hard")
+                                {
+                                    <div class="hard col-7 " style="color:firebrick">@item.LevelName</div>
+                                }
+                                else if (@item.LevelName == "Easy")
+                                {
+                                    <div class="hard col-7 " style="color:green">@item.LevelName</div>
+                                }
+                                else
+                                {
+                                    <div class="hard col-7 " style="color:darkgoldenrod">@item.LevelName</div>
+                                }
+
+                                @{
+                                    ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
+                                }
+
+                                <div class="col-3"><i class="fa fa-eye"></i>@item.ProgramView</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <hr class="dashed" />
+
+                }
+
+
+
             </div>
         </div>
-
     </div>
 </div>

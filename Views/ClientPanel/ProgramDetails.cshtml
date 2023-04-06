@@ -3,10 +3,25 @@
 
 @foreach (var item in ViewBag.ProgramDetails)
 {
+   
+        ViewData["MetaTitle"]= item.MetaTitle;
+    ViewData["MetaKeywords"] = item.MetaKeywords;
+    ViewData["MetaDescription"] = item.MetaDescription;
+    ViewData["MetaAuthor"] = item.MetaAuthor;
+    ViewData["MetaOgTitle"] = item.MetaOgTitle;
+    ViewData["MetaOgImage"] = item.MetaOgImage;
+    ViewData["MetaOgDescription"] = item.MetaOgDescription;
+    ViewData["MetaOgUrl"] = item.MetaOgUrl;
+    ViewData["MetaOgType"] = item.MetaOgType;
+     
+    
     <div class="container ctr">
         <div class="row">
-            <div class="col-md-12 ttl">
-                  @Html.Raw(WebUtility.HtmlDecode(item.Defination))
+            <div class="col-auto ttl2">
+                @item.ProgramNumber .
+            </div>
+            <div class="col-md-11 ttl2">
+                 @Html.Raw(WebUtility.HtmlDecode(item.Defination))
             </div>
         </div>
 
@@ -15,21 +30,29 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 dta">
+            <div class="col-auto ">
+             </div>
+            <div class="col-md-11 dta">
                 @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
             </div>
         </div>
-        @foreach (var item2 in ViewBag.TopicOnProgramUrl)
-        {
+        <div class="row">
+            <div class="col-auto">
+            </div>
+            <div class="col-md-11 dta">
+                @foreach (var item2 in ViewBag.TopicOnProgramUrl)
+                {
 
-            @*<a class="btn btn-sm tag"
-       asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
-       <a class="btn btn-sm tag" href="/Topics/@item2.TopicUrl">
-                @item2.TopicName
-                <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
-            </a>
+                    @*<a class="btn btn-sm tag"
+            asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
+                    <a class="badge badge-success" href="/Topics/@item2.TopicUrl">
+                        @item2.TopicName
+                        <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
+                    </a>
 
-        }
+                }
+            </div>
+        </div>
 
     </div>
     <div class="container ctr">
@@ -40,11 +63,14 @@
         </div>
 
         <div class="row">
+
             <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
         </div>
 
         <div class="row">
-            <div class="col-md-12 dta">
+            <div class="col-auto">
+            </div>
+            <div class="col-md-11 dta">
                 @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
             </div>
         </div>
@@ -70,7 +96,7 @@
             @* @item.IsPositive*@
             Example @i
         </div>
-        <div class="row">
+        <div class="row pt-2">
             <div class="col-md-12 dta">
                 <ul style="text-align: justify;">
                     @Html.Raw(WebUtility.HtmlDecode(item.TastCaseDescription))
