@@ -40,7 +40,6 @@
         </main>
     </div>
     <partial name="partials/_footer" />
-  
     <script src="@Url.Content("~/client/dist/jquery.min.js")"></script>
     <script src="@Url.Content("~/client/js/bootstrap.bundle.min.js")"></script>
     <script src="@Url.Content("~/client/js/site.js")"></script>
@@ -48,11 +47,9 @@
     <script src="@Url.Content("~/_m/js/scripts.bundle.js")"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used by this page)-->
-
     <script src="@Url.Content("~/_m/plugins/mvc-jquery-ajax/jquery.unobtrusive-ajax.js")"></script>
     <script src="@Url.Content("~/_m/plugins/mvc-jquery-validate/jquery.validate.js")"></script>
     <script src="@Url.Content("~/_m/plugins/mvc-jquery-validate/jquery.validate.unobtrusive.js")"></script>
-
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
