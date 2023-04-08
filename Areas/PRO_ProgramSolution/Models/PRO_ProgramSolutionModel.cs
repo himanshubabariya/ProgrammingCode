@@ -37,7 +37,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Models
         [Required, Display(Name = "ProgrammingLangaugeName")]
         public string? ProgrammingLangaugeName { get; set; }
 
-        [Required, Display(Name = "UesrName")]
+
         public string? UserName { get; set; }
 
         [Required, Display(Name = "UserID")]

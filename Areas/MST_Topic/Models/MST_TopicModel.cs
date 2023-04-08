@@ -37,7 +37,9 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
         [Required, Display(Name = "TopicUrl")]
         public string? TopicUrl { get; set; }
 
-        public int UserID { get; set; }
+
+        [Required, Display(Name = "UserID")]
+         public int UserID { get; set; }
 
       
         public String? UserName { get; set; }

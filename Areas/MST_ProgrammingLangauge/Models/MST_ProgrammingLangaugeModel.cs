@@ -20,7 +20,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
         /*******************************************************************
          *	ADDEDIT FORM
          *******************************************************************/
-        [Required, Display(Name = "ProgrammingLangauge")]
+        [Required, Display(Name = "ProgrammingLangaugeID")]
         public int ProgrammingLangaugeID { get; set; }
 
 
@@ -35,6 +35,8 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
 
 
         public string? ProgrammingLangaugeLogo { get; set; }
+        [Required, Display(Name = "LanguageUrl")]
+
         public string? LanguageUrl { get; set; }
 
         public decimal? Sequence { get; set; }

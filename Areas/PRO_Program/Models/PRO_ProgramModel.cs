@@ -66,7 +66,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
      
         public string? Description { get; set; }
 
-
+        [Required, Display(Name = "MetaTitle")]
         public string? MetaTitle { get; set; }
 
 

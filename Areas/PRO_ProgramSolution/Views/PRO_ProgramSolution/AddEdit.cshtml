@@ -20,22 +20,26 @@
 
 
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 "> Program </label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
+                    <label class="col-form-label "> Program </label>
+                    
                         @Html.DropDownList("ProgramID", new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"), "select Program",  new {@class="form-select form-select-sm "})
                         @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4 ">Programming Langauge </label>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
+                        <label class="col-form-label">Programming Langauge </label>
+                   
                         @Html.DropDownList("ProgrammingLangaugeID", new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"), "select Language",  new {@class="form-select form-select-sm "})
                         @Html.ValidationMessageFor(m => m.ProgrammingLangaugeID, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="required col-md-4 col-form-label ">Progarm Solution</label>
-                    <div class="col-md-5">
+                    
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                    <label class="require  col-form-label ">Progarm Solution</label>
+                   
 
                         <textarea asp-for="ProgramSolution" id="editor_data" class="form-control" placeholder="Enter Solution">
 
@@ -45,9 +49,8 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-md-4 col-form-label p-4"> Description</label>
-                    <div class="col-md-5">
-
+                    <div class="col-md-12">
+                    <label class="col-form-label"> Description</label>
                         <textarea type="text" id="editor_data2" asp-for="Description" class="form-control"></textarea>
                         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
                     </div>
@@ -75,13 +78,12 @@
 <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor_data', {
-        height: 260,
+        
        
         removeButtons: 'PasteFromWord'
     });
     CKEDITOR.replace('editor_data2', {
-        height: 260,
-        width: 700,
+       
         removeButtons: 'PasteFromWord'
     });
 </script>
