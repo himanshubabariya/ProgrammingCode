@@ -51,7 +51,7 @@
             All Programs
         </div>
         <div class="row">
-            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+            <div class="separator border-2 my-2" style="color: rgb(47,163,61);"></div>
         </div>
         <div class="row lstrw">
             <div class="py-5">
@@ -81,18 +81,23 @@
                                 <div class="row">
                                     <div class="col-1">
                                     </div>
-                                    @if (@item.LevelName == "hard")
+                                    @if (@item.LevelName == "Hard")
                                     {
-                                        <div class="hard col-3 " style="color:firebrick">@item.LevelName</div>
+                                        <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
                                     }
                                     else if (@item.LevelName == "Easy")
                                     {
-                                        <div class="hard col-3 " style="color:green">@item.LevelName</div>
+                                        <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
+                                    }
+                                    else if (@item.LevelName == "School")
+                                    {
+                                        <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
                                     }
                                     else
                                     {
-                                        <div class="hard col-3 " style="color:darkgoldenrod">@item.LevelName</div>
+                                        <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
                                     }
+
 
                                     @{
                                         ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
@@ -164,18 +169,24 @@
                             <div class="row">
                                 <div class="col-1">
                                 </div>
-                                @if (@item.LevelName == "hard")
+                                @if (@item.LevelName == "Hard")
                                 {
-                                    <div class="hard col-7 " style="color:firebrick">@item.LevelName</div>
+                                    <div class="col-7 "><span class="badge badge-danger">@item.LevelName</span></div>
                                 }
                                 else if (@item.LevelName == "Easy")
                                 {
-                                    <div class="hard col-7 " style="color:green">@item.LevelName</div>
+                                    <div class=" col-7 "><span class="badge badge-primary">@item.LevelName</span></div>
+                                }
+                                else if (@item.LevelName == "School")
+                                {
+                                    <div class=" col-7 "><span class="badge badge-dark">@item.LevelName</span></div>
                                 }
                                 else
                                 {
-                                    <div class="hard col-7 " style="color:darkgoldenrod">@item.LevelName</div>
+                                    <div class=" col-7 "><span class="badge badge-warning">@item.LevelName</span></div>
                                 }
+
+
                                
                                 <div class="col-3"><i class="fa fa-eye"></i>@item.ProgramView</div>
                             </div>

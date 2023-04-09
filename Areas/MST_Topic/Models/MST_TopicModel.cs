@@ -27,7 +27,7 @@ namespace ProgrammingCode.Areas.MST_Topic.Models
         public string? TopicName { get; set; }
 
 
-       
+        [Required, Display(Name = "TopicDescription")]
         public string? TopicDescription { get; set; }
 
 

@@ -73,8 +73,9 @@
                    
                     <div class="col-md-4">
                         <label class="col-md-4 col-form-label">Sequence</label>
-
+                       
                     <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
                        
                     </div>
                     <div class="col-md-8">

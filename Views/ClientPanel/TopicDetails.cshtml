@@ -119,18 +119,23 @@
                             <div class="row">
                                 <div class="col-1">
                                 </div>
-                                @if (@item.LevelName == "hard")
+                                @if (@item.LevelName == "Hard")
                                 {
-                                    <div class="hard col-7 " style="color:firebrick">@item.LevelName</div>
+                                    <div class="col-7 "><span class="badge badge-danger">@item.LevelName</span></div>
                                 }
                                 else if (@item.LevelName == "Easy")
                                 {
-                                    <div class="hard col-7 " style="color:green">@item.LevelName</div>
+                                    <div class=" col-7 "><span class="badge badge-primary">@item.LevelName</span></div>
+                                }
+                                else if (@item.LevelName == "School")
+                                {
+                                    <div class=" col-7 "><span class="badge badge-dark">@item.LevelName</span></div>
                                 }
                                 else
                                 {
-                                    <div class="hard col-7 " style="color:darkgoldenrod">@item.LevelName</div>
+                                    <div class=" col-7 "><span class="badge badge-warning">@item.LevelName</span></div>
                                 }
+
 
                                 @{
                                     ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);

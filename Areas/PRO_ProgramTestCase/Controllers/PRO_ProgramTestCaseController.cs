@@ -8,7 +8,7 @@ using System.Web;
 
 namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
 {
-    //[CheckAccess]
+    [CheckAccess]
     [Area("PRO_ProgramTestCase")]
    
     public class PRO_ProgramTestCase : Controller

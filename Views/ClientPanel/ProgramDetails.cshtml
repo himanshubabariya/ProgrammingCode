@@ -4,7 +4,7 @@
 @foreach (var item in ViewBag.ProgramDetails)
 {
    
-        ViewData["MetaTitle"]= item.MetaTitle;
+    ViewData["MetaTitle"] = item.MetaTitle;
     ViewData["MetaKeywords"] = item.MetaKeywords;
     ViewData["MetaDescription"] = item.MetaDescription;
     ViewData["MetaAuthor"] = item.MetaAuthor;
@@ -17,29 +17,26 @@
     
     <div class="container ctr">
         <div class="row">
-            <div class="col-auto ttl2">
-                @item.ProgramNumber .
-            </div>
-            <div class="col-md-11 ttl2">
+           
+            <div class="col-md-12 ttl2">
                  @Html.Raw(WebUtility.HtmlDecode(item.Defination))
             </div>
         </div>
-
         <div class="row">
-            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+
+            <div class="separator border-2 my-2" style="color: rgb(47,163,61);"></div>
         </div>
+       
 
         <div class="row">
-            <div class="col-auto ">
-             </div>
-            <div class="col-md-11 dta">
+            
+            <div class="col-md-12 dta">
                 @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
             </div>
         </div>
         <div class="row">
-            <div class="col-auto">
-            </div>
-            <div class="col-md-11 dta">
+            
+            <div class="col-md-12 dta">
                 @foreach (var item2 in ViewBag.TopicOnProgramUrl)
                 {
 
@@ -55,86 +52,110 @@
         </div>
 
     </div>
+   
+   
+}
+@{
+    int count2 = ViewBag.LanguagesForslider.Count;
+}
+@if (count2 > 0)
+{
     <div class="container ctr">
         <div class="row">
             <div class="col-md-12 ttl">
-                Algorithm
+                Program
             </div>
         </div>
 
         <div class="row">
-
             <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
         </div>
+        <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+            @foreach (var item in ViewBag.LanguagesForslider)
+            {
+                <li class="nav-item">
+                    <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                  asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
+                        <input type="submit" class="nav-link active" value="@item.ProgrammingLangaugeName" />
+                    </form>
+                    @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
+            <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
+                </li>
+            }
+        </ul>
+        <div id="solutionByLanguage"></div>
 
-        <div class="row">
-            <div class="col-auto">
-            </div>
-            <div class="col-md-11 dta">
-                @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
-            </div>
-        </div>
     </div>
 }
-<div class="container ctr">
 
-    <div class="row">
-        <div class="col-md-12 ttl">
-            Test Case
-        </div>
-    </div>
-    <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-    @{
-        var i = 0;
-    }
-    @foreach (var item in ViewBag.TestCase)
+@foreach (var item in ViewBag.ProgramDetails)
+{
+
+    @if (item.Algoritham != null)
     {
-        i++;
-        <div class="row">
-        </div>
-        <div class="col-md-12 dta" style="color: black;">
-            @* @item.IsPositive*@
-            Example @i
-        </div>
-        <div class="row pt-2">
-            <div class="col-md-12 dta">
-                <ul style="text-align: justify;">
-                    @Html.Raw(WebUtility.HtmlDecode(item.TastCaseDescription))
-                </ul>
+        <div class="container ctr">
+            <div class="row">
+                <div class="col-md-12 ttl">
+                    Algorithm
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-auto">
+                </div>
+                <div class="col-md-11 dta">
+                    @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
+                </div>
             </div>
         </div>
-
     }
-</div> 
-<div class="container ctr">
-    <div class="row">
-        <div class="col-md-12 ttl">
-            Program
+
+}
+@{
+    int count = ViewBag.TestCase.Count;
+}
+@if (count>0)
+{
+    <div class="container ctr">
+
+        <div class="row">
+            <div class="col-md-12 ttl">
+                Test Case
+            </div>
         </div>
-    </div>
-
-    <div class="row">
         <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-    </div>
-    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-        @foreach (var item in ViewBag.LanguagesForslider)
-        {
-            <li class="nav-item">
-                <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
-                      data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-                  asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
-                    @Html.AntiForgeryToken()    
-                    <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />                
-                        <input type="submit" class="nav-link " value="@item.ProgrammingLangaugeName" />            
-                </form>
-                @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
-            <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
-            </li>
+        @{
+            var i = 0;
         }
-    </ul>
-    <div id="solutionByLanguage"></div>
+        @foreach (var item in ViewBag.TestCase)
+        {
+            i++;
+            <div class="row">
+            </div>
+            <div class="col-md-12 dta" style="color: black;">
+                @* @item.IsPositive*@
+                Example @i
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-12 dta">
+                    <ul style="text-align: justify;">
+                        @Html.Raw(WebUtility.HtmlDecode(item.TastCaseDescription))
+                    </ul>
+                </div>
+            </div>
 
-</div>
+        }
+    </div>
+}
+
 @section scripts {
 
     <script>

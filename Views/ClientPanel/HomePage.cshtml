@@ -52,7 +52,8 @@
 				<div class="card card-flush">
 					<div class="card-header">
 						@**@
-						<span class="card-title"><img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="30px" width="30px"> <span class="p-1">@item.ProgrammingLangaugeName</span></span>
+						<a href="@item.LanguageUrl">
+							<span class="card-title"><img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="30px" width="30px"> <span class="p-1">@item.ProgrammingLangaugeName</span></span></a>
 						@{
 							int SolutionCount = DBConfig.dbSolution.SelectSolutionCount(@item.LanguageUrl);
 						}
@@ -71,7 +72,7 @@
 						   asp-route-LanguageUrl="@item.LanguageUrl" asp-action="LanguageDetails" asp-controller="ClientPanel">*@
 							<a class="btn btn-sm btnbg"
 						   href="@item.LanguageUrl">
-								Visit Langauge
+								more..
 								<input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
 							</a>
 							@*</button>*@
