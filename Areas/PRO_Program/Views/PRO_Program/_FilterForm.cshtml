@@ -24,48 +24,52 @@
                         </div>
                         
                     </div>
-                </div>
-                 <div class="col-md-4" autofocus>
-                    <label > Topic</label>
-                    <div class="input-group" >
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                        <div class="overflow-hidden flex-grow-1">
-                         <select class="form-select form-select-sm  "
-														data-control="select2" data-placeholder="Select Topic"
-														data-allow-clear="true" multiple=""
-														data-select2-id="select2-data-12-kpd1" tabindex="-1"
-														aria-hidden="true">
-                            <option>select Topic</option>
-														<option data-select2-id="select2-data-145-fc7n" class="">
-														</option>
-														<option value="Computers"
-															data-select2-id="select2-data-146-oeuf">IF
-															else</option>
-														<option value="Watches" data-select2-id="select2-data-147-slnj">
-															loop
-														</option>
-														<option value="Headphones"
-															data-select2-id="select2-data-148-n5vw">Stack
-														</option>
-														<option value="Footwear"
-															data-select2-id="select2-data-149-fwwg">Lists
-														</option>
-														<option value="Cameras" data-select2-id="select2-data-150-dvke">
-															Quqeue
-														</option>
-														<option value="Shirts" data-select2-id="select2-data-151-30c3">
-															Tree
-														</option>
-														<option value="Household"
-															data-select2-id="select2-data-152-2ikt">
-															hashing</option>
-													</select>
+                    </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="text-dark">Program Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <input type="text" asp-for="F_ProgramNumber" class="form-control" placeholder="Enter ProgramNumber" autofocus />
                         </div>
+
                     </div>
                 </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label> Level</label>
+                            <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                <div class="overflow-hidden flex-grow-1">
+                                    <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="F_LevelID" asp-items="@(new SelectList(ViewBag.levelcomboList,"LevelID","LevelName"))" data-control="select2" data-placeholder="Select Level">
+                                        <option>Select Level</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label> Topic</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            <div class="overflow-hidden flex-grow-1">
+                                <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="F_TopicID" asp-items="@(new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"))" data-control="select2" data-placeholder="Select Topic">
+                                    <option>Select Topic</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+
  
                  
-            </div>
+           
 
             <hr />
             

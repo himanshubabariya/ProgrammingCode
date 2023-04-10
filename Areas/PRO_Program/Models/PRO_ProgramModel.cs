@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Contracts;
+using System.Net;
 using System.Xml.Linq;
 using static ProgrammingCode.Areas.MST_Topic.Models.MST_TopicModel;
 
@@ -17,6 +18,10 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         public string? F_ProgramID { get; set; }
 
         public string? F_Defination { get; set; }
+        public string? F_ProgramNumber { get; set; }
+        public int F_LevelID{ get; set; }
+        public int F_TopicID { get; set; }
+
 
 
 
@@ -115,6 +120,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Models
         {
             public int ProgramID { get; set; }
             public string? Defination { get; set; }
+            public string? SimpleDefination { get; set; }
         }
 
     }

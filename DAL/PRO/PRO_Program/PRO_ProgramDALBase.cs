@@ -1,15 +1,17 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using ProgrammingCode.Areas.PRO_Program.Models;
 using System.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.Common;
 using System.Data.SqlClient;
-using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
-using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
-using Newtonsoft.Json.Linq;
 using System.Web;
-using Microsoft.VisualStudio.Web.CodeGeneration.Design;
 using ProgrammingCode.BAL;
+using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
+using System.Text.Encodings.Web;
+using System.Net;
+using System.Collections.Generic;
+using System.Text;
+using System;
+using System.Text.RegularExpressions;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 {
@@ -35,9 +37,10 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 {
                     PRO_ProgramComboboxModel vlst = new PRO_ProgramComboboxModel();
                     vlst.ProgramID = Convert.ToInt32(dr["ProgramID"]);
-                    vlst.Defination = dr["Defination"].ToString();
+                    vlst.Defination = WebUtility.HtmlDecode(dr["Defination"].ToString());
+                    vlst.SimpleDefination = Regex.Replace(vlst.Defination, "<.*?>", string.Empty);
                     list.Add(vlst);
-                }
+                }    
                 return list;
 
             }
@@ -50,6 +53,13 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
+     
+
+
+
+
+
+
         #region Method:SelectALL
         public List<SelectAll_Result> SelectAll()
         {
@@ -74,6 +84,34 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
+        #region SelectForSearch
+        public List<SelectForSearch_Result> SelectForSearch(string? F_ProgramNumber, int F_LevelID,int F_TopicID, string? F_Defination)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "TopicID", SqlDbType.Int, F_TopicID);
+                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, F_LevelID);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, F_ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, F_Defination);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+#endregion
         #region Method:Delete
         public bool? Delete(int ProgramID)
         {
@@ -740,6 +778,96 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
 
         public DateTime Modified { get; set; }
      
+
+
+        #endregion
+
+        #region Convert Entity to String
+        public override string ToString()
+        {
+            return EntityToString(this);
+        }
+        #endregion
+    }
+    #endregion
+    #region Entity: SelectForSearch_Result
+    public partial class SelectForSearch_Result : DALHelper
+    {
+        #region Properties
+
+        public int ProgramID { get; set; }
+
+        public int LevelID { get; set; }
+        public string? ProgramNumber { get; set; }
+        public string? Defination { get; set; }
+
+        public string? ProgramDesecription { get; set; }
+        public string? LevelName { get; set; }
+
+        public int[] arrtopic { get; set; }
+        public string? Algoritham { get; set; }
+
+
+        public string? ProgramUrl { get; set; }
+
+
+
+
+
+
+        public decimal Sequence { get; set; }
+
+
+
+        public int UserID { get; set; }
+
+
+        public int ProgramView { get; set; }
+
+
+        public string? Description { get; set; }
+
+
+
+        public string? MetaTitle { get; set; }
+
+
+
+        public string? MetaKeywords { get; set; }
+
+
+
+        public string? MetaDescription { get; set; }
+
+
+
+        public string? MetaAuthor { get; set; }
+
+
+
+        public string? MetaOgTitle { get; set; }
+
+
+
+        public string? MetaOgImage { get; set; }
+
+
+
+        public string? MetaOgDescription { get; set; }
+
+
+        public string? MetaOgUrl { get; set; }
+
+        public string? UserName { get; set; }
+
+        public string? MetaOgType { get; set; }
+
+
+        public DateTime Created { get; set; }
+
+
+        public DateTime Modified { get; set; }
+
 
 
         #endregion

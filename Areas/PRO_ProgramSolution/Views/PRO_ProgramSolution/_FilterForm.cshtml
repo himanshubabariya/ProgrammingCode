@@ -16,19 +16,19 @@
 
             <div class="row">
  
-                <div class="col-md-4" autofocus>
+                <div class="col-md-6" autofocus>
                     <label > Program</label>
                     <div class="input-group" >
                         <span class="input-group-text"><i class="bi bi-code-slash fs-4"></i></span>
                         <div class="overflow-hidden flex-grow-1">
-                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","Defination"))" data-control="select2" data-placeholder="Select Program" autofocus>
-                            <option> Select Program</option>
-                        </select>
+                            <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","SimpleDefination"))" data-control="select2" data-placeholder="Select Program" autofocus>
+                                <option> Select Program</option>
+                            </select>
                         </div>
                     </div>
                 </div>
          
-                <div class="col-md-4">
+                <div class="col-md-4    ">
                     <div class="form-group">
                         <label > Langauge</label>
                         <div class="input-group">
@@ -43,17 +43,7 @@
                         
                     </div>
                 </div>
-              @*  <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="">Program Number</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            <input type="text" asp-for="F_ProgramNumber" class="form-control" placeholder="Enter Program Number " />
-                        </div>
-                        @Html.ValidationMessageFor(m => m.F_ProgramNumber,"", new { @class = "form-text text-danger" })
-                    </div>
-                </div>*@
-               
+            
             </div>
 
             <hr />

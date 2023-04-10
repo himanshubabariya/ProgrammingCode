@@ -18,6 +18,8 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region Index 
         public IActionResult Index()
         {
+            ViewBag.levelcomboList = DBConfig.dbLevel.SelectComboBoxLevel().ToList();
+            ViewBag.topiccomboList = DBConfig.dbTopic.SelectComboBoxTopic().ToList();
             return View();
         }
         #endregion
@@ -26,7 +28,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(PRO_ProgramModel Obj_PRO_Program)
         {
-            var vModel = DBConfig.dbProgram.SelectAll().ToList();
+            var vModel = DBConfig.dbProgram.SelectForSearch(Obj_PRO_Program.F_ProgramNumber, Obj_PRO_Program.F_LevelID, Obj_PRO_Program. F_TopicID, Obj_PRO_Program.F_Defination).ToList();
             return PartialView("_List", vModel);
         }
         #endregion

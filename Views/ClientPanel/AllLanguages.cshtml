@@ -19,16 +19,20 @@
 			<div class="col-md-4 pt-3">
 				<div class="card card-flush">
 					<div class="card-header">
-						@**@
-						<a href="@item.LanguageUrl"><span class="card-title"><img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="30px" width="30px"> <span class="p-1">@item.ProgrammingLangaugeName</span></span></a>
+						<h3 class="card-title"><a href="@item.LanguageUrl" style="color:black;font-weight:500"><span><img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="30px" width="30px"> @item.ProgrammingLangaugeName</span></a></h3>
+						
+							
 						@{
 							int SolutionCount = DBConfig.dbSolution.SelectSolutionCount(@item.LanguageUrl);
 						}
 
+						
+						
 						<div class="card-toolbar">
 							@SolutionCount Solutions
 						</div>
 					</div>
+
 					<div class="card-body dta dta-sm">
 						@Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeShortDescription.Length > 200 ? item.ProgrammingLangaugeShortDescription.Substring(0, 200) + "....." : item.ProgrammingLangaugeShortDescription))
 					</div>
