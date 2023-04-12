@@ -11,12 +11,11 @@
                 {
                     <div class="highlight">
                         <button class="highlight-copy btn" data-bs-toggle="tooltip" title="Copy code">copy</button>
-                        <div class="highlight-code">
-                        <pre class="language-javascript" style="font-size: 30px;font-weight:900">
-                            <code class="language-javascript" style="font-size: 200%;font-weight:900">
-                                
-                                   
-                               @Html.Raw(WebUtility.HtmlDecode(item.ProgramSolution))   
+                        <div class="highlight-code ">
+                       
+                        <pre class="language-javascript" style="font-size:30px;font-weight:900">
+                            <code class="language-javascript"  style="font-size: 250%;font-weight:900;">   
+                                @Html.Raw(item.ProgramSolution);
                             </code>
                          </pre> 
                         </div>
