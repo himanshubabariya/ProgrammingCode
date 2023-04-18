@@ -1,0 +1,54 @@
+﻿@model ProgrammingCode.BAL.PagedListPagerModel;
+
+<div class="row">
+    <div class="col-md-12">
+        <!-- pager -->
+        <script>
+            console.log(@Model.EndPageNo)
+        </script>
+        @if (Model.EndPageNo >= 1)
+        {
+            <div class="btn-group btn-group-sm">
+                <script>console.log(@Model.CurrentPageNo)</script>
+                @if (Model.CurrentPageNo > 1)
+                {
+                    <a type="button" class="pager-item btn g-py-4 "
+                       href="//@ViewBag.LanguageUrl/PN=1">
+                        <i class="la la-angle-double-left pt-3"></i>
+                    </a>
+
+                    <a type="button" class="pager-item btn g-py-4 "
+                       href="/@ViewBag.LanguageUrl/PN=@(Model.CurrentPageNo-1)">
+                        <i class="la la-angle-left pt-3"></i>
+                    </a>
+                }
+
+
+                @for (int pageNo = Model.StartPageNo; pageNo <= Model.EndPageNo; pageNo++)
+                {
+                    <a type="button" class="pager-item btn g-py-4 @(pageNo == Model.CurrentPageNo ? " btn-brand" : "btn-secondary" )"
+                       href="/@ViewBag.LanguageUrl/PN=@pageNo">
+                        @pageNo
+                    </a>
+                }
+
+                @if (Model.CurrentPageNo < Model.TotalPages)
+                {
+                    <a type="button" class="ager-item btn g-py-4"
+                       href="/@ViewBag.LanguageUrl/PN=@(Model.CurrentPageNo+1)">
+                        <i class="la la-angle-right pt-3"></i>
+                    </a>
+
+                    <a type="button" class="ager-item btn g-py-4 "
+                       href="/@ViewBag.LanguageUrl/PN=@Model.TotalPages">
+                        <i class="la la-angle-double-right pt-3"></i>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</div>@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

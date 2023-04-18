@@ -69,7 +69,7 @@
                                     <div class="col-1 " style="font-weight:900">@k</div>
                                     <div class="col-11 ">
                                         @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                        <a class="ProgramLink" href="@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        <a class="ProgramLink" href="/@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
                                     </div>
                                 </div>
@@ -127,6 +127,9 @@
 
 
                 </div>
+            </div>
+            <div class="col-md-12" style="text-align:center">
+                <partial name="/Views/ClientPanel/ProgramByLanguageUrl_Generater.cshtml" />
             </div>
         </div>
     </div>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProgrammingCode.BAL;
 using ProgrammingCode.DAL;
-using System.Net.NetworkInformation;
-
 namespace ProgrammingCode.Controllers.ClientPanel
 {
     public class ClientPanelController : Controller
@@ -17,17 +16,28 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region LanguagePage
-        [Route("{LanguageUrl}")]
+        [Route("{LanguageUrl}/PN={PN}")]
         [Route("Languages/{LanguageUrl}")]
-        public IActionResult LanguageDetails(string? LanguageUrl)
+        public IActionResult LanguageDetails(string? LanguageUrl,int?  PN)
         {
             TempData["SelectSolutionCount"] = DBConfig.dbSolution.SelectSolutionCount(LanguageUrl);
             ViewBag.LanguageUrl= LanguageUrl;
-            V_LanguageUrl = LanguageUrl;
+            
             ViewBag.LanguageDetails = DBConfig.dbLangauge.SelectByLanguageUrl(LanguageUrl).ToList();
-            ViewBag.ProgramList = DBConfig.dbProgram.SelectByLanagueUrl(LanguageUrl).ToList();
+            int? vPageNo = Convert.ToInt32(PN);
+
+            if (vPageNo == null)
+            {
+                vPageNo = 1;
+            }
+            ViewBag.LanguageUrl = LanguageUrl;
+            ViewBag.ProgramList = DBConfig.dbProgram.SelectPageForProhrambyLanguageUrl(LanguageUrl, vPageNo,10).ToList();
+            ViewBag.allprogram = DBConfig.dbProgram.SelectByLanagueUrl(LanguageUrl);
+            int? vTotalRecords = ViewBag.allprogram.Count;
+
+            var Vmodel = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
             ViewBag.TopProgramList = DBConfig.dbProgram.SelectByLanagueUrlTop(LanguageUrl).ToList();
-            return View("LanguageDetails");
+            return View("LanguageDetails", Vmodel);
         }
         #endregion
         #region ProgramPage
@@ -62,11 +72,23 @@ namespace ProgrammingCode.Controllers.ClientPanel
         #endregion
         #region AllPrograms
         [Route("Programs")]
-        public IActionResult AllPrograms()
+        [Route("Programs/PN={PN}")]
+        public IActionResult AllPrograms(int? PN)
         {
-            ViewBag.ProgramNavList = DBConfig.dbProgram.SelectAllProgramForClientPanel().ToList();
+            int vPageNo = Convert.ToInt32(PN);
+
+            if (vPageNo == null)
+            {
+                vPageNo = 1;
+            }
+
+            ViewBag.ProgramNavList = DBConfig.dbProgram.SelectAllProgramForClientPanel(vPageNo, 10).ToList();
+           ViewBag.allprogram = DBConfig.dbProgram.SelectAll();
+            int? vTotalRecords=ViewBag.allprogram.Count;
+
+            var Vmodel = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
             ViewBag.TopProgramNavList = DBConfig.dbProgram.SelectAllTopProgramForClientPanel().ToList();
-            return View("AllPrograms");
+            return View("AllPrograms",Vmodel);
         }
         #endregion
         #region AllTopics

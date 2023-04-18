@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.Text.RegularExpressions;
+using System.Drawing.Printing;
 
 namespace ProgrammingCode.DAL.PRO.PRO_Program
 { 
@@ -320,6 +321,35 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region Method:PropgramList
+        public List<SelectByLanagueUrl_Result> SelectPageForProhrambyLanguageUrl(string? LanguageUrl,int? PageNo, int? PageSize)
+        
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectPageForProhrambyLanguageUrl");
+                sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
+                sqlDB.AddInParameter(dbMST, "PageNo", SqlDbType.Int, PageNo);
+                sqlDB.AddInParameter(dbMST, "PageSize", SqlDbType.Int, PageSize);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<SelectByLanagueUrl_Result>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region Method:PropgramList
         public List<SelectByLanagueUrl_Result> SelectByLanagueUrl(string? LanguageUrl)
         {
 
@@ -328,6 +358,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectByLanguageUrl");
                 sqlDB.AddInParameter(dbMST, "LanguageUrl", SqlDbType.NVarChar, LanguageUrl);
+
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
@@ -398,14 +429,15 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
         }
         #endregion
         #region PropgramNavList
-        public List<SelectAllProgramForClientPanel_Result> SelectAllProgramForClientPanel()
+        public List<SelectAllProgramForClientPanel_Result> SelectAllProgramForClientPanel(int? PageNo,int? PageSize)
         {
 
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectAllProgramForClientPanel");
-
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectPageProgramForClientPanel");
+                sqlDB.AddInParameter(dbMST, "PageNo", SqlDbType.Int, PageNo);
+                sqlDB.AddInParameter(dbMST, "PageSize", SqlDbType.Int, PageSize);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
                 {
