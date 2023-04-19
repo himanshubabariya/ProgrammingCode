@@ -100,13 +100,24 @@ namespace ProgrammingCode.Controllers.ClientPanel
         }
         #endregion
         #region TopicDetails
-        [Route("Topics/{TopicUrl}")]
-        public IActionResult TopicDetails(string TopicUrl)
+        [Route("Topics/{TopicUrl}/PN={PN}")]
+        public IActionResult TopicDetails(string TopicUrl, int? PN)
         {
+            int vPageNo = Convert.ToInt32(PN);
+
+            if (vPageNo == null)
+            {
+                vPageNo = 1;
+            }
+            @ViewBag.TopicUrl= TopicUrl;
             TempData["ProgramCountonTopic"] = DBConfig.dbProgram.SelectCountByTopicUrl(TopicUrl);
             ViewBag.TopicDetails = DBConfig.dbTopic.SelectByTopicUrl(TopicUrl).ToList();
-            ViewBag.TopicRelatedProgramList = DBConfig.dbProgram.SelectByTopicUrl(TopicUrl).ToList();
-            return View("TopicDetails");
+            ViewBag.TopicRelatedProgram = DBConfig.dbProgram.SelectByTopicUrl(TopicUrl).ToList();
+            ViewBag.TopicRelatedProgramList = DBConfig.dbProgram.SelectPageForProgramByTopicUrl(TopicUrl,vPageNo,10).ToList();
+            int? vTotalRecords = ViewBag.TopicRelatedProgram.Count;
+
+            var Vmodel = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
+            return View("TopicDetails",Vmodel);
         }
         #endregion
     }

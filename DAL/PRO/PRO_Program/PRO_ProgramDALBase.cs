@@ -320,7 +320,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
-        #region Method:PropgramList
+        #region Method:SelectPageForProhrambyLanguageUrl
         public List<SelectByLanagueUrl_Result> SelectPageForProhrambyLanguageUrl(string? LanguageUrl,int? PageNo, int? PageSize)
         
         {
@@ -436,6 +436,34 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
                 DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectPageProgramForClientPanel");
+                sqlDB.AddInParameter(dbMST, "PageNo", SqlDbType.Int, PageNo);
+                sqlDB.AddInParameter(dbMST, "PageSize", SqlDbType.Int, PageSize);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    dt.Load(dr);
+                }
+                return ConvertDataTableToEntity<SelectAllProgramForClientPanel_Result>(dt);
+
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region SelectPageForProgramByTopicUrl
+        public List<SelectAllProgramForClientPanel_Result> SelectPageForProgramByTopicUrl(string? TopicUrl,int? PageNo, int? PageSize)
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_SelectPageForProgramByTopicUrl");
+                sqlDB.AddInParameter(dbMST, "TopicUrl", SqlDbType.NVarChar, TopicUrl);
                 sqlDB.AddInParameter(dbMST, "PageNo", SqlDbType.Int, PageNo);
                 sqlDB.AddInParameter(dbMST, "PageSize", SqlDbType.Int, PageSize);
                 DataTable dt = new DataTable();

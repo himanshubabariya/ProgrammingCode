@@ -42,7 +42,7 @@
 
                     @*<a class="btn btn-sm tag"
             asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
-                    <a class="badge badge-success" href="/Topics/@item2.TopicUrl">
+                    <a class="badge badge-success" href="/Topics/@item2.TopicUrl/PN=1">
                         @item2.TopicName
                         <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
                     </a>
