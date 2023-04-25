@@ -8,10 +8,8 @@ namespace ProgrammingCode.Controllers.ClientPanel
         static string? V_ProgramUrl;
         static string? V_LanguageUrl;
         #region Index/HomePage
-
         public IActionResult Index()
         {
-           
             ViewBag.LanguageList = DBConfig.dbLangauge.SelectForHomePage().ToList();
             return View("HomePage");
         }
