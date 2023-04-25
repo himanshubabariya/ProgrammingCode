@@ -25,8 +25,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult _SearchResult(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
-        {
-            
+        {   
             var vModel = DBConfig.dbSolution.SelectBySolutionName(Obj_PRO_ProgramSolution.ProgramID,Obj_PRO_ProgramSolution.ProgrammingLangaugeID).ToList();
             return PartialView("_List", vModel);
         }

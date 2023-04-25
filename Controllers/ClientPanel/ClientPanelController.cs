@@ -11,11 +11,13 @@ namespace ProgrammingCode.Controllers.ClientPanel
 
         public IActionResult Index()
         {
+           
             ViewBag.LanguageList = DBConfig.dbLangauge.SelectForHomePage().ToList();
             return View("HomePage");
         }
         #endregion
         #region LanguagePage
+        [Route("{LanguageUrl}")]
         [Route("{LanguageUrl}/PN={PN}")]
         [Route("Languages/{LanguageUrl}")]
         public IActionResult LanguageDetails(string? LanguageUrl,int?  PN)
@@ -26,7 +28,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
             ViewBag.LanguageDetails = DBConfig.dbLangauge.SelectByLanguageUrl(LanguageUrl).ToList();
             int? vPageNo = Convert.ToInt32(PN);
 
-            if (vPageNo == null)
+            if (!PN.HasValue)
             {
                 vPageNo = 1;
             }
@@ -77,7 +79,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         {
             int vPageNo = Convert.ToInt32(PN);
 
-            if (vPageNo == null)
+            if (!PN.HasValue)
             {
                 vPageNo = 1;
             }
@@ -105,7 +107,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         {
             int vPageNo = Convert.ToInt32(PN);
 
-            if (vPageNo == null)
+            if (!PN.HasValue)
             {
                 vPageNo = 1;
             }
