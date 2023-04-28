@@ -2,60 +2,71 @@
     font-size: 25px;
     font-weight: 500;
 }
-.ttl2 {
-    font-size: 18px;
-    font-weight: 500;
-}
-.lstrw{
+
+.lstrw {
     font-size: 14px;
     color: rgb(114, 114, 114);
+    padding: 10px;
 }
-.btnbg{
-  color: white;
-  background-color: rgb(47, 163, 61);
-  margin-left: 5px;
-  transition: 0.2s ease-in;
+
+.btnbg {
+    color: white;
+    background-color: rgb(47, 163, 61);
+    margin-left: 5px;
+    transition: 0.2s ease-in;
 }
-.btnbg:hover{
-  background-color: lightgray;
-  color: rgb(0, 64, 7);
+
+    .btnbg:hover {
+        background-color: lightgray;
+        color: rgb(0, 64, 7);
+    }
+
+table tr td .easy {
+    background-color: rgb(47, 163, 61);
 }
-table tr td .easy{
-  background-color: rgb(47, 163, 61);
+
+.hard {
+    color: rgb(163, 47, 47);
 }
-.hard{
-  color: rgb(163, 47, 47);
+
+.medium {
+    color: rgb(163, 144, 47);
 }
-.medium{
-  color: rgb(163, 144, 47);
+
+.type {
 }
-.type{}
-.ttl1{
-    font-size:20px
+
+.ttl1 {
+    font-size: 20px
 }
-.ctr{
-  background-color: white; 
-  padding-top: 20px; 
-  padding-bottom: 20px; 
-  border-radius: 10px; 
-  margin-bottom: 30px;
-  filter: drop-shadow(0 0 4px rgb(223, 223, 223));
+
+.ctr {
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 4px rgb(223, 223, 223));
 }
-.greybg{
+
+.greybg {
     background-color: rgb(231, 231, 231);
     color: black;
     padding: 10px;
 }
+
 .dta {
     font-size: 16px;
     color: rgb(126, 126, 126);
 }
-.tag{
+
+.tag {
     color: rgb(71, 71, 71);
-    margin-top:-4px;
-    border:2px solid rgb(47, 163, 61);
+    border: 2px solid rgb(47, 163, 61);
+    margin-top: 10px;
     background-color: rgb(231, 231, 231);
 }
+
 .ProgramLink {
     text-decoration: none;
     color: rgb(114, 114, 114);
@@ -65,28 +76,27 @@ table tr td .easy{
     .ProgramLink:hover {
         color: rgb(42, 42, 42);
     }
-.dashed {
-    border-bottom: dashed 1px #000000;
-}
 
-.dta-sm{
+.dta-sm {
     font-size: 14px;
 }
-.fa-eye{
-  margin-right: 2px;
+
+.fa-eye {
+    margin-right: 2px;
 }
-.highlight{
+
+.highlight {
     background-color: rgb(238, 238, 238);
     color: rgb(81, 81, 81);
     font-size: 16px;
 }
 
-.ftLink{
+.ftLink {
     padding: 10px;
     text-decoration: none;
     color: white;
 }
 
-.ftLink a{
-    color: white;
-}
+    .ftLink a {
+        color: white;
+    }

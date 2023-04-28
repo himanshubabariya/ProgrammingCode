@@ -18,7 +18,7 @@
     <div class="container ctr">
         <div class="row">
            
-            <div class="col-md-12 ttl2">
+            <div class="col-md-12 ttl">
                  @Html.Raw(WebUtility.HtmlDecode(item.Defination))
             </div>
         </div>
@@ -26,14 +26,13 @@
 
             <div class="separator border-2 my-2" style="color: rgb(47,163,61);"></div>
         </div>
-       
-
-        <div class="row">
+    <div class="row">
             
             <div class="col-md-12 dta">
                 @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
             </div>
         </div>
+     
         <div class="row">
             
             <div class="col-md-12 dta">
@@ -42,13 +41,14 @@
 
                     @*<a class="btn btn-sm tag"
             asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
-                    <a class="badge badge-success" href="/Topics/@item2.TopicUrl/PN=1">
+                    <a class="btn btn-sm tag" href="/Topics/@item2.TopicUrl/PN=1">
                         @item2.TopicName
                         <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
                     </a>
 
                 }
             </div>
+           
         </div>
 
     </div>

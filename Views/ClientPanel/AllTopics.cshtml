@@ -63,62 +63,47 @@
 </div>*@
 <div class="container ctr">
 
+
     <div class="row">
-        <div class="col-md-12 ttl" style="margin-bottom: 10px;">
-            Top Performing Programs
+        <div class="col-md-12 ttl">
+            All Topics
         </div>
-    </div>
-    <div class="row">
-        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-    </div>
-    <div class="row lstrw">
-        <div class="py-5">
-            <div class="col-md-12">
-                @{
-                    int j = 0;
-                }
-                @foreach (var item in ViewBag.TopicList)
-                {
 
-                    j++;
-                    <div class="row ">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-1" style="font-weight:900">@j</div>
-                                <div class="col-11 ">
-                                    <a class="ProgramLink" href="/Topics/@item.TopicUrl/">@item.TopicName</a>
-                                    <input type="hidden" name="TopicID" value="@item.TopicID" />
-                                </div>
-                            </div>
+        <Div class="row">
+            <div class="py-5">
+                <div class="table-responsive">
+                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                        <tbody>
+                            @{
+                                int i = 0;
+                            }
+                            @foreach (var item in ViewBag.TopicList)
+                            {
 
-                        </div>
+                                i++;
+                                <tr class=>
+                                    <td>@i</td>
+                                    <td>
+                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/">@item.TopicName</a>
+                                       
 
 
-                        <div class="col-md-2 pt-2">
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                @{
-                                    int SelectCountByTopicUrl = DBConfig.dbProgram.SelectCountByTopicUrl(@item.TopicUrl);
-                                }
-                                <div class="hard col-7 " style="color:green"> @SelectCountByTopicUrl Programs</div>
-                            
+                                    </td>
+                                    <td></td>
 
-                          
-                                <div class="col-3"><i class="fa fa-eye"></i>@item.TopicView</div>
-                            </div>
+                                    @{
+                                        int SelectCountByTopicUrl = DBConfig.dbProgram.SelectCountByTopicUrl(@item.TopicUrl);
+                                    }
+                                    <td>@SelectCountByTopicUrl Programs</td>
+                                </tr>
+                            }
+                        </tbody>
 
+                    </table>
 
-                        </div>
-                    </div>
-
-                    <hr class="dashed" />
-
-                }
-
-
-
+                </div>
+               
             </div>
-        </div>
+        </Div>
     </div>
 </div>
