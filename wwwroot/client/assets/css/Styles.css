@@ -1,6 +1,7 @@
 .ttl {
-    font-size: 25px;
-    font-weight: 500;
+    font-size: 25px !important;
+    font-weight: 400 !important;
+   
 }
 
 .lstrw {
@@ -80,11 +81,9 @@ table tr td .easy {
 .dta-sm {
     font-size: 14px;
 }
-
 .fa-eye {
     margin-right: 2px;
 }
-
 .highlight {
     background-color: rgb(238, 238, 238);
     color: rgb(81, 81, 81);

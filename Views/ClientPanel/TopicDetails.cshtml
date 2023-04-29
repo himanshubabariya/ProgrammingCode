@@ -83,81 +83,78 @@
 
 <div class="container ctr">
 
+
     <div class="row">
-        <div class="col-md-12 ttl" style="margin-bottom: 10px;">
-            Topic Related Program
+        <div class="col-md-12 ttl">
+           Topic Related Programs
         </div>
-    </div>
-    <div class="row">
-        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-    </div>
-    <div class="row lstrw ">
-        <div class="py-5">
-            <div class="col-md-12">
-                @{
-                    int j = 0;
-                }
-                @foreach (var item in ViewBag.TopicRelatedProgramList)
-                {
 
-                    j++;
-                    <div class="row ">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-1" style="font-weight:900">@j</div>
-                                <div class="col-11 ">
-                                    @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                    <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                    <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
-                                </div>
-                            </div>
+        <Div class="row">
+            <div class="py-5">
+                <div class="table-responsive">
+                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                        <tbody>
+                            @{
+                                int l = 0;
+                            }
+                            @foreach (var item in ViewBag.TopicRelatedProgramList)
+                            {
 
-                        </div>
+                                l++;
+                                <tr>
+                                    <span class="row">
+                                        <span class="col-md-12">
+                                    <td>@l</td>
+                                    <td>
+                                        <div class="">
+                                            <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                        </div>
+                                        <span class="row">
+                                            <span class="col-2">
+                                                        @if (@item.LevelName == "Hard")
+                                                        {
+                                                    <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
+                                                        }
+                                                        else if (@item.LevelName == "Easy")
+                                                        {
+                                                    <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
+                                                        }
+                                                        else if (@item.LevelName == "School")
+                                                        {
+                                                    <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
+                                                        }
+                                                        else
+                                                        {
+                                                    <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
+                                                        }
+                                                            
 
-
-                        <div class="col-md-2">
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                @if (@item.LevelName == "Hard")
-                                {
-                                    <div class="col-7 "><span class="badge badge-danger">@item.LevelName</span></div>
-                                }
-                                else if (@item.LevelName == "Easy")
-                                {
-                                    <div class=" col-7 "><span class="badge badge-primary">@item.LevelName</span></div>
-                                }
-                                else if (@item.LevelName == "School")
-                                {
-                                    <div class=" col-7 "><span class="badge badge-dark">@item.LevelName</span></div>
-                                }
-                                else
-                                {
-                                    <div class=" col-7 "><span class="badge badge-warning">@item.LevelName</span></div>
-                                }
+                                                    @* <span class="col-2">
+                                        <i class="fa fa-eye"></i>@item.ProgramView
+                                        </span>*@
 
 
-                                @{
-                                    ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
-                                }
-
-                                <div class="col-3"><i class="fa fa-eye"></i>@item.ProgramView</div>
-                            </div>
+                                        </span>
+                                    </td>
 
 
-                        </div>
-                    </div>
-
-                    <hr class="dashed" />
-
-                }
+                                    <td></td>
+                                    </span>
+                                    </span>
+                                </tr>
 
 
 
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <div class="col-md-12" style="text-align:center">
+                    <partial name="/Views/ClientPanel/AllProgramByTopicGeneraterPager.cshtml" />
+                </div>
             </div>
-        </div>
-        <div class="col-md-12" style="text-align:center">
-            <partial name="/Views/ClientPanel/AllProgramByTopicGeneraterPager.cshtml" />
-        </div>
+        </Div>
     </div>
 </div>

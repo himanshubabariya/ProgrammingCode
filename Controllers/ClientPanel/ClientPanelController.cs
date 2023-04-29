@@ -101,6 +101,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
         #endregion
         #region TopicDetails
         [Route("Topics/{TopicUrl}/PN={PN}")]
+        [Route("Topics/{TopicUrl}/")]
         public IActionResult TopicDetails(string TopicUrl, int? PN)
         {
             int vPageNo = Convert.ToInt32(PN);

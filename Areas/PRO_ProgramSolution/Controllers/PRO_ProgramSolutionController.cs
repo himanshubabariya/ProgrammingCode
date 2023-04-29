@@ -24,9 +24,19 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution)
-        {   
+        public IActionResult _SearchResult(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution,int? PN)
+        {
+            int vPageNo = Convert.ToInt32(PN);
+
+            if (!PN.HasValue)
+            {
+                vPageNo = 1;
+            }
             var vModel = DBConfig.dbSolution.SelectBySolutionName(Obj_PRO_ProgramSolution.ProgramID,Obj_PRO_ProgramSolution.ProgrammingLangaugeID).ToList();
+            ViewBag.AllPrograms = DBConfig.dbProgram.SelectAll().ToList();
+            int? vTotalRecords = ViewBag.AllPrograms.Count;
+
+            //ViewBag.PagedListPager = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
             return PartialView("_List", vModel);
         }
         #endregion
