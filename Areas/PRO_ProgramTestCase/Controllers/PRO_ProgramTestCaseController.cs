@@ -5,6 +5,7 @@ using ProgrammingCode.DAL;
 using ProgrammingCode.DAL.PRO.PRO_ProgramTestCase;
 using ProgrammingCode.BAL;
 using System.Web;
+using System.Reflection;
 
 namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
 {
@@ -13,7 +14,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
    
     public class PRO_ProgramTestCase : Controller
     {
-       
+        PRO_ProgramTestCaseModel model = new PRO_ProgramTestCaseModel();
         #region index
         public IActionResult Index()
         {
@@ -25,9 +26,20 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramTestCaseModel ObjProgramTestCase)
+        public IActionResult _SearchResult(PRO_ProgramTestCaseModel ObjProgramTestCase,int? PN)
         {
-            var vModel = DBConfig.dbProgramTestCase.SelectByTestCase(ObjProgramTestCase.ProgramID).ToList();
+            model = ObjProgramTestCase;
+            int vPageNo = Convert.ToInt32(PN);
+
+            if (!PN.HasValue)
+            {
+                vPageNo = 1;
+            }
+            var vModel = DBConfig.dbProgramTestCase.PageSelectForSearch(model.ProgramID, vPageNo, 10).ToList();
+            ViewBag.SelectForSearchresult = DBConfig.dbProgramTestCase.SelectForSearch(model.ProgramID).ToList();
+            int? vTotalRecords = ViewBag.SelectForSearchresult.Count;
+
+            ViewBag.PagerModel = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
             return PartialView("_List", vModel);
         }
         #endregion

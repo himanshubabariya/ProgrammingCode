@@ -1,6 +1,7 @@
 ﻿@model List<ProgrammingCode.DAL.PRO.PRO_ProgramSolution.SelectForSearch_Result>
 @using System.Net;
 @using Microsoft.AspNetCore.Html
+
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title">
@@ -15,13 +16,13 @@
         </div>
     </div>
     <div class="card-body ">
-        <table class="secondary table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
-            <thead class="bg-gray-300">
-                <tr>
+        <div class="table-responsive">
+        <table class="secondry table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
+            <thead class="bg-gray-300" >
+                <tr >
                     <th class="text-center">Defination</th>         
-                    <th class="text-center">Langauge</th>
-                     <th class="text-center">Created</th>
-                      <th class="text-center">Modified</th>      
+                    <th class="text">Langauge</th>
+                          
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -33,11 +34,10 @@
                 {
                     i++;
                     <tr>
-                        <td class="pl-2">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
-                        <td class="pl-2">@item.ProgrammingLangaugeName</td>
-                        <td class=" text-center">@item.Created</td>
-                        <td class="text-center">@item.Modified</td>                     
-                        <td class="text-center">
+                        <td class="pl-2 col-8">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
+                        <td class="pl-2 col-2">@item.ProgrammingLangaugeName</td>
+                                           
+                        <td class="text-center col-2">
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
                                asp-route-ProgramSolutionID="@item.ProgramSolutionID" asp-area="PRO_ProgramSolution" asp-action="AddEdit" asp-controller="PRO_ProgramSolution">
@@ -56,10 +56,11 @@
                     </tr>
                 }
             </tbody>
-            @*<div class="col-md-12" style="text-align:center">
-                <partial name="/Areas/pro_programsolution/views/pro_programsolution/SelectForPage.cshtml" />
-            </div>*@
+          
         </table>
-        
+        </div>
+        <div class="col-md-12" style="text-align:center">
+            <partial name="/Areas/PRO_ProgramSolution/Views/PRO_ProgramSolution/SelectForPage.cshtml" />
+        </div>
     </div>
 </div>

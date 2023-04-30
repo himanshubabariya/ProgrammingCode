@@ -4,6 +4,7 @@ using ProgrammingCode.BAL;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 
 
 namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
@@ -11,8 +12,8 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
     public class PRO_ProgramTestCaseDALBase : DALHelper
     {
 
-        #region Method: SelectByTestCase
-        public List<SelectForSearch_Result> SelectByTestCase(int ProgramID)
+        #region Method: SelectForSearch
+        public List<SelectForSearch_Result> SelectForSearch(int ProgramID)
         {
 
             try
@@ -21,6 +22,34 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
                 DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_SelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, ProgramID);
                
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+        #region Method: PageSelectForSearch
+        public List<SelectForSearch_Result> PageSelectForSearch(int ProgramID, int PageNo, int PageSize)
+        {
+
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTestCase_PageSelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, ProgramID);
+                sqlDB.AddInParameter(dbCMD, "PageNo", SqlDbType.Int, PageNo);
+                sqlDB.AddInParameter(dbCMD, "PageSize", SqlDbType.Int, PageSize);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {

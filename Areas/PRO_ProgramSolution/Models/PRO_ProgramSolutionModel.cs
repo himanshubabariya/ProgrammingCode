@@ -53,4 +53,5 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Models
 
         public DateTime Modified { get; set; }
     }
+
 }

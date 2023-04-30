@@ -2,13 +2,23 @@
 @using Microsoft.AspNetCore.Html
 @using ProgrammingCode.DAL;
 
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="container col-md-9">
+         @*  *@
 <div class="container ctr">
 
 
     <div class="row">
         <div class="col-md-12 ttl">
-           All Programs
+                        @foreach (var item in ViewBag.LanguageDetails)
+                        {
+                            <div class="col-md-6 d-flex align-items-center ttl">
+                                <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
+                                <span class="p-2">@item.ProgrammingLangaugeName / <span class="dta">All Programs</span></span>
+                            </div>
+                        }
+            
         </div>
 
         <Div class="row">
@@ -29,7 +39,7 @@
                                     <td>@i</td>
                                     <td>
                                         <div class="">
-                                            <a class="ProgramLink" href="/@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                            <a class="ProgramLink " href="/@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         </div>
                                         <span class="row">
                                             <span class="col-auto">
@@ -92,7 +102,6 @@
         </Div>
     </div>
 </div>
-
 <div class="container ctr">
 
 
@@ -119,7 +128,7 @@
                                     <td>@k</td>
                                     <td>
                                         <div class="">
-                                            <a class="ProgramLink" href="/@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                                        <a class="ProgramLink " href="/@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
                                         </div>
                                         <span class="row">
                                             <span class="col-2">
@@ -171,119 +180,102 @@
         </Div>
     </div>
 </div>
-@foreach (var item in ViewBag.LanguageDetails)
-{
-    ViewData["MetaTitle"] = item.MetaTitle;
-    ViewData["MetaKeywords"] = item.MetaKeywords;
-    ViewData["MetaDescription"] = item.MetaDescription;
-    ViewData["MetaAuthor"] = item.MetaAuthor;
-    ViewData["MetaOgTitle"] = item.MetaOgTitle;
-    ViewData["MetaOgImage"] = item.MetaOgImage;
-    ViewData["MetaOgDescription"] = item.MetaOgDescription;
-    ViewData["MetaOgUrl"] = item.MetaOgUrl;
-    ViewData["MetaOgType"] = item.MetaOgType;
-    <div class="container ctr">
-        <div class="row d-flex align-items-center">
+</div>
+        <div class="container col-md-3">
+            <div class="container ctr">
+                <div class="row">
+                    <div class="ttl">
+                        Other Languages
+                    </div>
 
-            <div class="col-md-6 d-flex align-items-center ttl">
-                <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
-                <span class="p-2">@item.ProgrammingLangaugeName</span>
-            </div>
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+                                <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                                    <tbody>
 
-            <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
-                @TempData["SelectSolutionCount"] Solutions
-            </div>
+                                        @foreach (var item in ViewBag.AllLanguages)
+                                        {
 
 
-        </div>
-        <div class="row">
-            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-        </div>
-        <div class="row">
+                                            <tr class=>
 
-            <div class="col-md-12 dta">
-                @Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeShortDescription))
 
-            </div>
-            <div class="col-md-12 dta">
-                @Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeDetailedDescription))
+                                                @if (ViewBag.LanguageUrl == item.LanguageUrl)
+                                                {
+                                                    <td>
+                                                        <a class="ProgramLink" href="/@item.LanguageUrl/PN=1">@item.ProgrammingLangaugeName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <a class="ProgramLink" href="/@item.LanguageUrl/PN=1">@item.ProgrammingLangaugeName</a>
+                                                    </td>
+                                                }
 
-            </div>
-        </div>
-    </div>
-}
 
-@*<div class="container ctr">
 
-    <div class="row">
-        <div class="col-md-12 ttl" style="margin-bottom: 10px;">
-            Top Performing Programs
-        </div>
-    </div>
-    <div class="row">
-        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-    </div>
-    <div class="row lstrw">
-        <div class="py-5">
-            <div class="col-md-12">
-                @{
-                    int j = 0;
-                }
-                @foreach (var item in ViewBag.TopProgramList)
-                {
+                                            </tr>
+                                        }
+                                    </tbody>
 
-                    j++;
-                    <div class="row ">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-1" style="font-weight:900">@j</div>
-                                <div class="col-11 ">
-                                    @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                   @* <a class="ProgramLink" href="/@ViewBag.LanguageUrl/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                    <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
-                                </div>
+                                </table>
+
                             </div>
 
                         </div>
+                    </Div>
+                </div>
+            </div>
+</div>
 
 
-                        <div class="col-md-2">
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                @if (@item.LevelName == "Hard")
-                                {
-                                    <div class="col-7 "><span class="badge badge-danger">@item.LevelName</span></div>
-                                }
-                                else if (@item.LevelName == "Easy")
-                                {
-                                    <div class=" col-7 "><span class="badge badge-primary">@item.LevelName</span></div>
-                                }
-                                else if (@item.LevelName == "School")
-                                {
-                                    <div class=" col-7 "><span class="badge badge-dark">@item.LevelName</span></div>
-                                }
-                                else
-                                {
-                                    <div class=" col-7 "><span class="badge badge-warning">@item.LevelName</span></div>
-                                }
+    </div>
+
+    <div class="row container">
+            @foreach (var item in ViewBag.LanguageDetails)
+            {
+                ViewData["MetaTitle"] = item.MetaTitle;
+                ViewData["MetaKeywords"] = item.MetaKeywords;
+                ViewData["MetaDescription"] = item.MetaDescription;
+                ViewData["MetaAuthor"] = item.MetaAuthor;
+                ViewData["MetaOgTitle"] = item.MetaOgTitle;
+                ViewData["MetaOgImage"] = item.MetaOgImage;
+                ViewData["MetaOgDescription"] = item.MetaOgDescription;
+                ViewData["MetaOgUrl"] = item.MetaOgUrl;
+                ViewData["MetaOgType"] = item.MetaOgType;
+                <div class="container ctr">
+                    <div class="row d-flex align-items-center">
+
+                        <div class="col-md-6 d-flex align-items-center ttl">
+                            <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
+                            <span class="p-2">@item.ProgrammingLangaugeName</span>
+                        </div>
+
+                        <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
+                            @TempData["SelectSolutionCount"] Solutions
+                        </div>
 
 
-                               
-                                <div class="col-3"><i class="fa fa-eye"></i>@item.ProgramView</div>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+                    </div>
+                    <div class="row">
 
+                        <div class="col-md-12 dta">
+                            @Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeShortDescription))
+
+                        </div>
+                        <div class="col-md-12 dta">
+                            @Html.Raw(WebUtility.HtmlDecode(item.ProgrammingLangaugeDetailedDescription))
 
                         </div>
                     </div>
-
-                    <hr class="dashed" />
-
-                }
-
-
-
-            </div>
+                </div>
+            }
         </div>
     </div>
-</div>*@
+    
+

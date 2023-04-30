@@ -3,6 +3,7 @@ using ProgrammingCode.Areas.PRO_ProgramSolution.Models;
 using ProgrammingCode.BAL;
 using System.Data;
 using System.Data.Common;
+using System.Drawing.Printing;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
 using static ProgrammingCode.Areas.MST_ProgrammingCode.Models.MST_ProgrammingLangaugeModel;
 using static ProgrammingCode.Areas.PRO_Program.Models.PRO_ProgramModel;
@@ -61,16 +62,16 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
         }
         #endregion
         #region Method: SelectBySolutionName
-        public List<SelectForSearch_Result> SelectBySolutionName(int ProgramID, int ProgrammingLangaugeID)
+        public List<SelectForSearch_Result> SelectBySolutionName(int ProgramID, int ProgrammingLangaugeID,int PageNo, int PageSize)
         {
             try
             {
                 SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
-                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectForSearch");
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_PageSelectForSearch");
                 sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int,ProgramID);
-              
-               
                 sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
+                sqlDB.AddInParameter(dbCMD, "PageNo", SqlDbType.Int, PageNo);
+                sqlDB.AddInParameter(dbCMD, "PageSize", SqlDbType.Int, PageSize);
                 DataTable dt = new DataTable();
                 using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
                 {
@@ -88,7 +89,34 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramSolution
             }
         }
         #endregion
-    
+        #region Method: SelectForSearch
+        public List<SelectForSearch_Result> SelectForSearch(int ProgramID, int ProgrammingLangaugeID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramSolution_SelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "ProgramID", SqlDbType.Int, ProgramID);
+                sqlDB.AddInParameter(dbCMD, "ProgrammingLangaugeID", SqlDbType.Int, ProgrammingLangaugeID);
+                
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
+
         #region Method: SelectPk
         public List<SelectPk_Result> SelectPk(int? ProgramSolutionID)
         {

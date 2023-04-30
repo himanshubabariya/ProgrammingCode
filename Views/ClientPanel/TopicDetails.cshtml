@@ -1,160 +1,176 @@
 ﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
 @using ProgrammingCode.DAL;
-
-
-@foreach (var item in ViewBag.TopicDetails)
-{
-    ViewData["MetaTitle"] = item.MetaTitle;
-    ViewData["MetaKeywords"] = item.MetaKeywords;
-    ViewData["MetaDescription"] = item.MetaDescription;
-    ViewData["MetaAuthor"] = item.MetaAuthor;
-    ViewData["MetaOgTitle"] = item.MetaOgTitle;
-    ViewData["MetaOgImage"] = item.MetaOgImage;
-    ViewData["MetaOgDescription"] = item.MetaOgDescription;
-    ViewData["MetaOgUrl"] = item.MetaOgUrl;
-    ViewData["MetaOgType"] = item.MetaOgType;
-    <div class="container ctr">
-        <div class="row">
-            <div class="col-md-6 d-flex ttl">
-                @item.TopicName
-            </div>
-       
-        <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
-            @TempData["ProgramCountonTopic"] Programs
-        </div>
-        </div>
-        <div class="row">
-            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 dta">
-                @Html.Raw(WebUtility.HtmlDecode(item.TopicDescription))
-            </div>
-        </div>
-
-    </div>
-}
-
-@*<div class="container ctr">
-
-
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 ttl">
-            Topic Related Program
-        </div>
-        <div class="row">
-            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-        </div>
-        <Div class="row">
-            <div class="py-5">
-                <div class="table-responsive">
-                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
-                        <tbody>
-                            @{
-                                int i = 0;
-                            }
+        <div class="container col-md-9">
+            @foreach (var item in ViewBag.TopicDetails)
+            {
+                ViewData["MetaTitle"] = item.MetaTitle;
+                ViewData["MetaKeywords"] = item.MetaKeywords;
+                ViewData["MetaDescription"] = item.MetaDescription;
+                ViewData["MetaAuthor"] = item.MetaAuthor;
+                ViewData["MetaOgTitle"] = item.MetaOgTitle;
+                ViewData["MetaOgImage"] = item.MetaOgImage;
+                ViewData["MetaOgDescription"] = item.MetaOgDescription;
+                ViewData["MetaOgUrl"] = item.MetaOgUrl;
+                ViewData["MetaOgType"] = item.MetaOgType;
+                <div class="container ctr">
+                    <div class="row">
+                        <div class="col-md-6 d-flex ttl">
+                            @item.TopicName
+                        </div>
 
-                            @foreach (var item in ViewBag.TopicRelatedProgramList)
-                            {
-                                i++;
-                                <tr class="">
-                                    <td>@i</td>
-                                    <td>
-                                        @*<a class="ProgramLink" asp-route-ProgramUrl="@item.ProgramUrl" asp-action="ProgramDetails" asp-controller="ClientPanel">*@
-                                       @* <a class="ProgramLink" href="@ViewBag.TopicUrl/Programs/@item.ProgramUrl">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>*@
-                                        @*<a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                        <input type="hidden" name="ProgramUrl" value="@item.ProgramUrl" />
-                                    </td>
-                                    <td class="hard">@item.LevelName</td>
-                                  
-                                    <td><i class="fa fa-eye"></i>@item.ProgramView</td>
-                                </tr>
-                            }
+                        <div class="col-md-6 d-flex justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
+                            @TempData["ProgramCountonTopic"] Programs
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+                    </div>
 
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-12 dta">
+                            @Html.Raw(WebUtility.HtmlDecode(item.TopicDescription))
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+            <div class="container ctr">
+
+
+                <div class="row">
+                    @foreach (var item in ViewBag.TopicDetails)
+                    {
+                        <div class="col-md-12 ttl">
+                            @item.TopicName Related Programs
+                        </div>
+                    }
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+                                <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                                    <tbody>
+                                        @{
+                                            int l = 0;
+                                        }
+                                        @foreach (var item in ViewBag.TopicRelatedProgramList)
+                                        {
+
+                                            l++;
+                                            <tr>
+                                                <span class="row">
+                                                    <span class="col-md-12">
+                                                <td>@l</td>
+                                                <td>
+                                                    <div class="">
+                                                        <a class="ProgramLink " href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                                    </div>
+                                                    <span class="row">
+                                                        <span class="col-2">
+                                                                    @if (@item.LevelName == "Hard")
+                                                                    {
+                                                                <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
+                                                                    }
+                                                                    else if (@item.LevelName == "Easy")
+                                                                    {
+                                                                <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
+                                                                    }
+                                                                    else if (@item.LevelName == "School")
+                                                                    {
+                                                                <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
+                                                                    }
+
+
+                                                                    @* <span class="col-2">
+                                                        <i class="fa fa-eye"></i>@item.ProgramView
+                                                        </span>*@
+
+
+                                                        </span>
+                                                </td>
+
+
+                                                <td></td>
+                                                </span>
+                                                </span>
+                                            </tr>
+
+
+
+                                        }
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                            <div class="col-md-12" style="text-align:center">
+                                <partial name="/Views/ClientPanel/AllProgramByTopicGeneraterPager.cshtml" />
+                            </div>
+                        </div>
+                    </Div>
                 </div>
             </div>
-        </Div>
-    </div>
-</div>*@
 
-<div class="container ctr">
-
-
-    <div class="row">
-        <div class="col-md-12 ttl">
-           Topic Related Programs
         </div>
-
-        <Div class="row">
-            <div class="py-5">
-                <div class="table-responsive">
-                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
-                        <tbody>
-                            @{
-                                int l = 0;
-                            }
-                            @foreach (var item in ViewBag.TopicRelatedProgramList)
-                            {
-
-                                l++;
-                                <tr>
-                                    <span class="row">
-                                        <span class="col-md-12">
-                                    <td>@l</td>
-                                    <td>
-                                        <div class="">
-                                            <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                        </div>
-                                        <span class="row">
-                                            <span class="col-2">
-                                                        @if (@item.LevelName == "Hard")
-                                                        {
-                                                    <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
-                                                        }
-                                                        else if (@item.LevelName == "Easy")
-                                                        {
-                                                    <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
-                                                        }
-                                                        else if (@item.LevelName == "School")
-                                                        {
-                                                    <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
-                                                        }
-                                                        else
-                                                        {
-                                                    <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
-                                                        }
-                                                            
-
-                                                    @* <span class="col-2">
-                                        <i class="fa fa-eye"></i>@item.ProgramView
-                                        </span>*@
-
-
-                                        </span>
-                                    </td>
-
-
-                                    <td></td>
-                                    </span>
-                                    </span>
-                                </tr>
+        <div class="container col-md-3">
 
 
 
-                            }
-                        </tbody>
+            <div class="container ctr">
+                <div class="row">
+                    <div class="ttl">
+                        Topics
+                    </div>
 
-                    </table>
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+                                <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                                    <tbody>
 
-                </div>
-                <div class="col-md-12" style="text-align:center">
-                    <partial name="/Views/ClientPanel/AllProgramByTopicGeneraterPager.cshtml" />
+                                        @foreach (var item in ViewBag.TopicList)
+                                        {
+
+
+                                            <tr class=>
+
+
+                                                @if (ViewBag.TopicUrl == @item.TopicUrl)
+                                                {
+                                                    <td>
+                                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/PN=1">@item.TopicName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/PN=1">@item.TopicName</a>
+                                                    </td>
+                                                }
+
+
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </Div>
                 </div>
             </div>
-        </Div>
+
+        </div>
+
     </div>
 </div>

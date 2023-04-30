@@ -15,15 +15,15 @@
                 @if (pagerModel.CurrentPageNo > 1)
                 {
                     <form id="filterForm2" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_ProgramSolution" asp-action="_SearchResult" asp-controller="PRO_ProgramSolution" style="display: inline;">
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_Program" asp-action="_SearchResult" asp-controller="PRO_Program" style="display: inline;">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PN" value="" />
-                        <button type="submit" class="pager-item btn  g-py-4 ">
+                        <button type="submit" class="pager-item btn g-py-4 ">
                             <i class="la la-angle-double-left pt-3"></i>
                         </button>
                     </form>
                     <form id="filterForm2" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_ProgramSolution" asp-action="_SearchResult" asp-controller="PRO_ProgramSolution" style="display: inline;">
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_Program" asp-action="_SearchResult" asp-controller="PRO_Program" style="display: inline;">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PN" value="@(pagerModel.CurrentPageNo-1)" />
                         <button type="submit" class="pager-item btn g-py-4 "     >
@@ -38,7 +38,7 @@
                 {
 
                     <form id="filterForm2" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_ProgramSolution" asp-action="_SearchResult" asp-controller="PRO_ProgramSolution" style="display: inline;">
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_Program" asp-action="_SearchResult" asp-controller="PRO_Program" style="display: inline;">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PN" value="@pageNo" />
                         <button type="submit" class="pager-item btn g-py-4 @(pageNo == pagerModel.CurrentPageNo ? " btn-brand" : "btn-secondary" )"
@@ -51,7 +51,7 @@
                 @if (pagerModel.CurrentPageNo < pagerModel.TotalPages)
                 {
                     <form id="filterForm2" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_ProgramSolution" asp-action="_SearchResult" asp-controller="PRO_ProgramSolution" style="display: inline;">
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_Program" asp-action="_SearchResult" asp-controller="PRO_Program" style="display: inline;">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PN" value="@(pagerModel.CurrentPageNo+1)" />
                         <button type="submit" class="pager-item btn g-py-4 ">
@@ -59,7 +59,7 @@
                         </button>
                     </form>
                     <form id="filterForm2" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_ProgramSolution" asp-action="_SearchResult" asp-controller="PRO_ProgramSolution" style="display: inline;">
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-area="PRO_Program" asp-action="_SearchResult" asp-controller="PRO_Program" style="display: inline;">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="PN" value="@pagerModel.TotalPages" />
                         <button type="submit" class="pager-item btn g-py-4 ">

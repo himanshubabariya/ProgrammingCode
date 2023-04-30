@@ -7,6 +7,7 @@ using ProgrammingCode.DAL.PRO.PRO_Program;
 using System.Data;
 using System.Data.SqlClient;
 using static ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel;
+using ProgrammingCode.Areas.PRO_ProgramSolution.Models;
 
 namespace ProgrammingCode.Areas.PRO_Program.Controllers
 {
@@ -14,7 +15,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
     [Area("PRO_Program")]
     public class PRO_ProgramController : Controller
     {
-       
+        PRO_ProgramModel model = new PRO_ProgramModel();
         #region Index 
         public IActionResult Index()
         {
@@ -26,9 +27,21 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult _SearchResult(PRO_ProgramModel Obj_PRO_Program)
+       
+        public IActionResult _SearchResult(PRO_ProgramModel Obj_PRO_Program, int? PN)
         {
-            var vModel = DBConfig.dbProgram.SelectForSearch(Obj_PRO_Program.F_ProgramNumber, Obj_PRO_Program.F_LevelID, Obj_PRO_Program. F_TopicID, Obj_PRO_Program.F_Defination).ToList();
+            model = Obj_PRO_Program;
+            int vPageNo = Convert.ToInt32(PN);
+
+            if (!PN.HasValue)
+            {
+                vPageNo = 1;
+            }
+            var vModel = DBConfig.dbProgram.PageSelectForSearch(model.F_ProgramNumber, model.F_LevelID, model.F_TopicID, model.F_Defination, vPageNo, 10).ToList();
+            ViewBag.SelectForSearchresult = DBConfig.dbProgram.SelectForSearch(Obj_PRO_Program.F_ProgramNumber, Obj_PRO_Program.F_LevelID, Obj_PRO_Program. F_TopicID, Obj_PRO_Program.F_Defination).ToList();
+            int? vTotalRecords = ViewBag.SelectForSearchresult.Count;
+
+            ViewBag.PagerModel = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
             return PartialView("_List", vModel);
         }
         #endregion

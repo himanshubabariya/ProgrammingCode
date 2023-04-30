@@ -5,6 +5,7 @@ using ProgrammingCode.DAL;
 using ProgrammingCode.BAL;
 using ProgrammingCode.DAL.PRO.PRO_ProgramSolution;
 using System.Data;
+using System.Drawing.Printing;
 
 namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
 {
@@ -12,6 +13,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
     [Area("PRO_ProgramSolution")]
     public class PRO_ProgramSolutionController : Controller
     {
+        PRO_ProgramSolutionModel model=new PRO_ProgramSolutionModel();
         #region Index 
         public IActionResult Index()
         {
@@ -24,19 +26,21 @@ namespace ProgrammingCode.Areas.PRO_ProgramSolution.Controllers
         #region _SearchResult
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public IActionResult _SearchResult(PRO_ProgramSolutionModel Obj_PRO_ProgramSolution,int? PN)
         {
+            model=Obj_PRO_ProgramSolution;
             int vPageNo = Convert.ToInt32(PN);
 
             if (!PN.HasValue)
             {
                 vPageNo = 1;
             }
-            var vModel = DBConfig.dbSolution.SelectBySolutionName(Obj_PRO_ProgramSolution.ProgramID,Obj_PRO_ProgramSolution.ProgrammingLangaugeID).ToList();
-            ViewBag.AllPrograms = DBConfig.dbProgram.SelectAll().ToList();
-            int? vTotalRecords = ViewBag.AllPrograms.Count;
+            var vModel = DBConfig.dbSolution.SelectBySolutionName(model.ProgramID, model.ProgrammingLangaugeID, vPageNo, 10).ToList();
+            ViewBag.SelectForSearchList = DBConfig.dbSolution.SelectForSearch(model.ProgramID, model.ProgrammingLangaugeID).ToList();
+            int? vTotalRecords = ViewBag.SelectForSearchList.Count;
 
-            //ViewBag.PagedListPager = new PagedListPagerModel(vTotalRecords, vPageNo, 10);
+           ViewBag.PagerModel= new PagedListPagerModel(vTotalRecords, vPageNo, 10);
             return PartialView("_List", vModel);
         }
         #endregion

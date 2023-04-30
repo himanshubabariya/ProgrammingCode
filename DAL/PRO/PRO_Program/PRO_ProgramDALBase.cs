@@ -85,6 +85,36 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
+        #region PageSelectForSearch
+        public List<SelectForSearch_Result> PageSelectForSearch(string? F_ProgramNumber, int F_LevelID, int F_TopicID, string? F_Defination, int PageNo, int PageSize)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbCMD = sqlDB.GetStoredProcCommand("dbo.PR_PRO_Program_PageSelectForSearch");
+                sqlDB.AddInParameter(dbCMD, "TopicID", SqlDbType.Int, F_TopicID);
+                sqlDB.AddInParameter(dbCMD, "LevelID", SqlDbType.Int, F_LevelID);
+                sqlDB.AddInParameter(dbCMD, "ProgramNumber", SqlDbType.NVarChar, F_ProgramNumber);
+                sqlDB.AddInParameter(dbCMD, "Defination", SqlDbType.NVarChar, F_Defination);
+                sqlDB.AddInParameter(dbCMD, "PageNo", SqlDbType.Int, PageNo);
+                sqlDB.AddInParameter(dbCMD, "PageSize", SqlDbType.Int, PageSize);
+                DataTable dt = new DataTable();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbCMD))
+                {
+                    dt.Load(dr);
+                }
+
+                return ConvertDataTableToEntity<SelectForSearch_Result>(dt);
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
+        #endregion
         #region SelectForSearch
         public List<SelectForSearch_Result> SelectForSearch(string? F_ProgramNumber, int F_LevelID,int F_TopicID, string? F_Defination)
         {
