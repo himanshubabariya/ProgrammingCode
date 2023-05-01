@@ -1,163 +1,264 @@
-﻿    @using System.Net;
+﻿@using System.Net;
 @using Microsoft.AspNetCore.Html
-
-@foreach (var item in ViewBag.ProgramDetails)
-{
-   
-    ViewData["MetaTitle"] = item.MetaTitle;
-    ViewData["MetaKeywords"] = item.MetaKeywords;
-    ViewData["MetaDescription"] = item.MetaDescription;
-    ViewData["MetaAuthor"] = item.MetaAuthor;
-    ViewData["MetaOgTitle"] = item.MetaOgTitle;
-    ViewData["MetaOgImage"] = item.MetaOgImage;
-    ViewData["MetaOgDescription"] = item.MetaOgDescription;
-    ViewData["MetaOgUrl"] = item.MetaOgUrl;
-    ViewData["MetaOgType"] = item.MetaOgType;
-     
-    
-    <div class="container ctr">
-        <div class="row">
-           
-            <div class="col-md-12 ttl">
-                 @Html.Raw(WebUtility.HtmlDecode(item.Defination))
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="separator border-2 my-2" style="color: rgb(47,163,61);"></div>
-        </div>
+<div class="container-fluid">
     <div class="row">
-            
-            <div class="col-md-12 dta">
-                @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
-            </div>
-        </div>
-     
-        <div class="row">
-            
-            <div class="col-md-12 dta">
-                @foreach (var item2 in ViewBag.TopicOnProgramUrl)
-                {
-
-                    @*<a class="btn btn-sm tag"
-            asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
-                    <a class="btn btn-sm tag" href="/Topics/@item2.TopicUrl/PN=1">
-                        @item2.TopicName
-                        <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
-                    </a>
-
-                }
-            </div>
-           
-        </div>
-
-    </div>
-   
-   
-}
-@{
-    int count2 = ViewBag.LanguagesForslider.Count;
-}
-@if (count2 > 0)
-{
-    <div class="container ctr">
-        <div class="row">
-            <div class="col-md-12 ttl">
-                Program
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-        </div>
-        <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-            @foreach (var item in ViewBag.LanguagesForslider)
+        <div class="col-md-9">
+            @foreach (var item in ViewBag.ProgramDetails)
             {
-                <li class="nav-item">
-                    <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
-                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-                  asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
-                        <input type="submit" class="nav-link active" value="@item.ProgrammingLangaugeName" />
-                    </form>
-                    @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
-            <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
-                </li>
+
+                ViewData["MetaTitle"] = item.MetaTitle;
+                ViewData["MetaKeywords"] = item.MetaKeywords;
+                ViewData["MetaDescription"] = item.MetaDescription;
+                ViewData["MetaAuthor"] = item.MetaAuthor;
+                ViewData["MetaOgTitle"] = item.MetaOgTitle;
+                ViewData["MetaOgImage"] = item.MetaOgImage;
+                ViewData["MetaOgDescription"] = item.MetaOgDescription;
+                ViewData["MetaOgUrl"] = item.MetaOgUrl;
+                ViewData["MetaOgType"] = item.MetaOgType;
+
+
+                <div class="container ctr">
+                    <div class="row">
+
+                        <div class="col-md-12 ttl" style="font-size:20px !important">
+                            @Html.Raw(WebUtility.HtmlDecode(item.Defination))
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="separator border-2 my-2" style="color: rgb(47,163,61);"></div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12 dta">
+                            @Html.Raw(WebUtility.HtmlDecode(item.ProgramDesecription))
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <span class="col-auto dta" style="color:rgb(47,163,61);align-content:center">Topic:</span>
+                        <div class="col-11 dta">
+                            @foreach (var item2 in ViewBag.TopicOnProgramUrl)
+                            {
+
+                                @*<a class="btn btn-sm tag"
+                        asp-route-TopicId="@item2.TopicID" asp-action="TopicDetails" asp-controller="ClientPanel">*@
+                                <a class="btn btn-sm tag" href="/Topics/@item2.TopicUrl/PN=1">
+                                    @item2.TopicName
+                                    <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
+                                </a>
+
+                            }
+                        </div>
+                         
+                    </div>
+
+                </div>
+
+
             }
-        </ul>
-        <div id="solutionByLanguage"></div>
+            @{
+                int count2 = ViewBag.LanguagesForslider.Count;
+            }
+            @if (count2 > 0)
+            {
+                <div class="container ctr">
+                    <div class="row">
+                        <div class="col-md-12 ttl">
+                            Program
+                        </div>
+                    </div>
 
-    </div>
-}
-
-@foreach (var item in ViewBag.ProgramDetails)
-{
-
-    @if (item.Algoritham != null)
-    {
-        <div class="container ctr">
-            <div class="row">
-                <div class="col-md-12 ttl">
-                    Algorithm
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-auto">
-                </div>
-                <div class="col-md-11 dta">
-                    @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
-                </div>
-            </div>
-        </div>
-    }
-
-}
-@{
-    int count = ViewBag.TestCase.Count;
-}
-@if (count>0)
-{
-    <div class="container ctr">
-
-        <div class="row">
-            <div class="col-md-12 ttl">
-                Test Case
-            </div>
-        </div>
-        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
-        @{
-            var i = 0;
-        }
-        @foreach (var item in ViewBag.TestCase)
-        {
-            i++;
-            <div class="row">
-            </div>
-            <div class="col-md-12 dta" style="color: black;">
-                @* @item.IsPositive*@
-                Example @i
-            </div>
-            <div class="row pt-2">
-                <div class="col-md-12 dta">
-                    <ul style="text-align: justify;">
-                        @Html.Raw(WebUtility.HtmlDecode(item.TastCaseDescription))
+                    <div class="row">
+                        <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+                    </div>
+                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                        @foreach (var item in ViewBag.LanguagesForslider)
+                        {
+                            <li class="nav-item">
+                                <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
+                                      data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                              asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
+                                     @Html.AntiForgeryToken()
+                                    <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
+                                    <input type="submit" class="nav-link active" value="@item.ProgrammingLangaugeName" />
+                                </form>
+                                @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
+                        <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
+                            </li>
+                        }
                     </ul>
+                    <div id="solutionByLanguage"></div>
+
+                </div>
+            }
+
+            @foreach (var item in ViewBag.ProgramDetails)
+            {
+
+                @if (item.Algoritham != null)
+                {
+                    <div class="container ctr">
+                        <div class="row">
+                            <div class="col-md-12 ttl">
+                                Algorithm
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-auto">
+                            </div>
+                            <div class="col-md-11 dta">
+                                @Html.Raw(WebUtility.HtmlDecode(item.Algoritham))
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+            @{
+                int count = ViewBag.TestCase.Count;
+            }
+            @if (count > 0)
+            {
+                <div class="container ctr">
+
+                    <div class="row">
+                        <div class="col-md-12 ttl">
+                            Test Case
+                        </div>
+                    </div>
+                    <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
+                    @{
+                        var i = 0;
+                    }
+                    @foreach (var item in ViewBag.TestCase)
+                    {
+                        i++;
+                        <div class="row">
+                        </div>
+                        <div class="col-md-12 dta" style="color: black;">
+                            @* @item.IsPositive*@
+                            Example @i
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-md-12 dta">
+                                <ul style="text-align: justify;">
+                                    @Html.Raw(WebUtility.HtmlDecode(item.TastCaseDescription))
+                                </ul>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            }
+        </div>
+        <div class="container col-md-3">
+            <div class="container ctr">
+                <div class="row">
+                    <div class="ttl">
+                        Language
+                    </div>
+
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+
+                                <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                @if (ViewBag.LanguageUrl == null)
+                                                {
+                                                    <a class="ProgramLink" href="/Programs/PN=1">All Programs <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="ProgramLink" href="/Programs/PN=1">All Programs </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                        @foreach (var item in ViewBag.AllLanguages)
+                                        {
+                                            <tr>
+                                                @if (ViewBag.LanguageUrl == item.LanguageUrl)
+                                                {
+                                                    <td>
+                                                        <a class="ProgramLink" href="/@item.LanguageUrl/PN=1" style="color:rgb(47, 163, 61)">@item.ProgrammingLangaugeName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        <a class="ProgramLink" href="/@item.LanguageUrl/PN=1">@item.ProgrammingLangaugeName</a>
+                                                    </td>
+                                                }
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+
+                        </div>
+                    </Div>
                 </div>
             </div>
+            <div class="container ctr">
+                <div class="row">
+                    <div class="ttl">
+                        Share
+                    </div>
 
-        }
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+
+                                <div class="social-sharing-links">
+                                    </a>
+
+                                    <button type="button" class="btn btn-success"><a href="#" class="whatsapp" style="padding-top:1"><i class="fab fa-whatsapp"> </i></a></button>
+                                    <button type="button" class="btn btn-danger"><a href="#" class="instagram"><i class="fab fa-instagram"> </i></a></button>
+                                    <button type="button" class="btn btn-primary"><a href="#" class="facebook"><i class="fab fa-facebook"> </i></a></button>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </Div>
+                </div>
+            </div>
+        </div>
     </div>
-}
+</div>
 
 @section scripts {
+    <script>
+        const whatsappLink = document.querySelector(".whatsapp");
+        const instagramLink = document.querySelector(".instagram");
+        const facebookLink = document.querySelector(".facebook");
 
+        whatsappLink.addEventListener("click", function () {
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(window.location.href));
+        });
+
+        instagramLink.addEventListener("click", function () {
+            window.open("https://www.instagram.com/share?url=" + encodeURIComponent(window.location.href));
+        });
+
+        facebookLink.addEventListener("click", function () {
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href));
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $("#Solution").submit();

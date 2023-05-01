@@ -64,7 +64,7 @@ table tr td .easy {
 .tag {
     color: rgb(71, 71, 71);
     border: 2px solid rgb(47, 163, 61);
-    margin-top: 10px;
+    
     background-color: rgb(231, 231, 231);
 }
 
@@ -72,10 +72,12 @@ table tr td .easy {
     text-decoration: none;
     color: rgb(114, 114, 114);
     transition: 0.2s ease;
+    font-size: 16px;
 }
 
     .ProgramLink:hover {
         color: rgb(42, 42, 42);
+        font-size:16px;
     }
 
 .dta-sm {
@@ -85,6 +87,8 @@ table tr td .easy {
     margin-right: 2px;
 }
 .highlight {
+    max-height: 400px; /* set the maximum height of the div */
+    overflow-y: auto; /* add a vertical scrollbar */
     background-color: rgb(238, 238, 238);
     color: rgb(81, 81, 81);
     font-size: 16px;

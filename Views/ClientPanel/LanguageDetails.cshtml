@@ -5,19 +5,51 @@
 <div class="container-fluid">
     <div class="row">
         <div class="container col-md-9">
-         @*  *@
+            <div class="container ctr">
+
+
+                <div class="row">
+                    
+                        @* @foreach (var item in ViewBag.LanguageDetails)
+                        {
+                        <div class="col-md-6 d-flex align-items-center ttl">
+                        <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
+                        <span class="p-2">@item.ProgrammingLangaugeName / <span class="dta">All Programs</span></span>
+                        </div>
+                        }*@
+                        <div class="col-md-6 ttl">
+                             @foreach (var item in ViewBag.LanguageDetails)
+                            {
+                                <div class="col-md-6 d-flex align-items-center ">
+                                    <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
+                                    <span class="p-2">@item.ProgrammingLangaugeName </span>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-6 d-flex align-items-center justify-content-end" style="color: rgb(47, 163, 61); font-size: 16px;">
+                            @TempData["SelectSolutionCount"] Solutions
+                        </div>
+
+                    </div>
+
+                   
+                
+            </div>
 <div class="container ctr">
 
 
     <div class="row">
         <div class="col-md-12 ttl">
-                        @foreach (var item in ViewBag.LanguageDetails)
+                       @* @foreach (var item in ViewBag.LanguageDetails)
                         {
                             <div class="col-md-6 d-flex align-items-center ttl">
                                 <img src="@Url.Content(item.ProgrammingLangaugeLogo)" height="40px" width="40px">
                                 <span class="p-2">@item.ProgrammingLangaugeName / <span class="dta">All Programs</span></span>
                             </div>
-                        }
+                        }*@
+                        <div class="col-md-12 ttl">
+                            All Programs
+                        </div>
             
         </div>
 
@@ -191,6 +223,7 @@
                     <Div class="row">
                         <div class="py-5">
                             <div class="table-responsive">
+                                 
                                 <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
                                     <tbody>
 
@@ -204,7 +237,7 @@
                                                 @if (ViewBag.LanguageUrl == item.LanguageUrl)
                                                 {
                                                     <td>
-                                                        <a class="ProgramLink" href="/@item.LanguageUrl/PN=1">@item.ProgrammingLangaugeName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                        <a class="ProgramLink" style="color:rgb(47, 163, 61)"  href="/@item.LanguageUrl/PN=1">@item.ProgrammingLangaugeName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
                                                     </td>
                                                 }
                                                 else
@@ -221,6 +254,32 @@
                                     </tbody>
 
                                 </table>
+                                
+                            </div>
+
+                        </div>
+                    </Div>
+                </div>
+            </div>
+            <div class="container ctr">
+                <div class="row">
+                    <div class="ttl">
+                        Share
+                    </div>
+
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+
+                                <div class="social-sharing-links">
+                                    </a>
+
+                                    <button type="button" class="btn btn-success"><a href="#" class="whatsapp" style="padding-top:1"><i class="fab fa-whatsapp"> </i></a></button>
+                                    <button type="button" class="btn btn-danger"><a href="#" class="instagram"><i class="fab fa-instagram"> </i></a></button>
+                                    <button type="button" class="btn btn-primary"><a href="#" class="facebook"><i class="fab fa-facebook"> </i></a></button>
+
+                                </div>
+
 
                             </div>
 
@@ -277,5 +336,21 @@
             }
         </div>
     </div>
-    
 
+<script>
+    const whatsappLink = document.querySelector(".whatsapp");
+    const instagramLink = document.querySelector(".instagram");
+    const facebookLink = document.querySelector(".facebook");
+
+    whatsappLink.addEventListener("click", function () {
+        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(window.location.href));
+    });
+
+    instagramLink.addEventListener("click", function () {
+        window.open("https://www.instagram.com/direct/inbox?url=" + encodeURIComponent(window.location.href));
+    });
+
+    facebookLink.addEventListener("click", function () {
+        window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href));
+    });
+</script>

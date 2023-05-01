@@ -43,9 +43,11 @@ namespace ProgrammingCode.Controllers.ClientPanel
         #region ProgramPage
         [Route("{LanguageUrl}/{ProgramUrl}/ProgramDetails")]
         [Route("{ProgramUrl}/ProgramDetails")]
-        public IActionResult ProgramDetails(string? ProgramUrl, string? LangaugeUrl)
+        public IActionResult ProgramDetails(string? ProgramUrl, string? LanguageUrl)
         {
             V_ProgramUrl = ProgramUrl;
+            ViewBag.LanguageUrl = LanguageUrl;
+            ViewBag.AllLanguages = DBConfig.dbLangauge.SelectForHomePage().ToList();
             ViewBag.LanguagesForslider = DBConfig.dbLangauge.SelectByProgramUrl(ProgramUrl).ToList();
             ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(ProgramUrl).ToList();
             ViewBag.TestCase = DBConfig.dbProgramTestCase.SelectTestCaseByProgramUrl(ProgramUrl).ToList();
