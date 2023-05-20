@@ -84,7 +84,7 @@
                                 <tr class=>
                                     <td>@i</td>
                                     <td>
-                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/PN=1">@item.TopicName</a>
+                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/">@item.TopicName</a>
                                        
 
 
@@ -94,7 +94,7 @@
                                     @{
                                         int SelectCountByTopicUrl = DBConfig.dbProgram.SelectCountByTopicUrl(@item.TopicUrl);
                                     }
-                                    <td>@SelectCountByTopicUrl Programs</td>
+                                    <td style="color:rgb(47, 163, 61)">@SelectCountByTopicUrl Programs</td>
                                 </tr>
                             }
                         </tbody>

@@ -2,53 +2,69 @@
 @if(ViewBag.TopicUrl==null)
 {
     <div class="row">
-        <div class="col-md-12">
-            <!-- pager -->
-            <script>
-                console.log(@Model.EndPageNo)
-            </script>
+    <div class="col-md-12">
+        <!-- pager -->
+        <script>
+            console.log(@Model.EndPageNo)
+        </script>
             @if (Model.EndPageNo >= 1)
-            {
-                <div class="btn-group btn-group-sm">
+        {
+            <div class="btn-group btn-group-sm">
                     <script>console.log(@Model.CurrentPageNo)</script>
                     @if (Model.CurrentPageNo > 1)
-                    {
-                        <a type="button" class="pager-item btn g-py-4 "
-                           href="/Programs/PN=1">
+                {
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PN" value="1" />
+                        <button type="submit" class="pager-item btn btn-primary g-py-4 ">
                             <i class="la la-angle-double-left pt-3"></i>
-                        </a>
-
-                        <a type="button" class="pager-item btn g-py-4 "
-                           href="/Programs/PN=@(Model.CurrentPageNo-1)">
+                        </button>
+                    </form>
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="@(Model.CurrentPageNo-1)" />
+                        <button type="submit" class="pager-item btn g-py-4">
                             <i class="la la-angle-left pt-3"></i>
-                        </a>
-                    }
-
-
+                        </button>
+                    </form>   
+                }
                     @for (int pageNo = Model.StartPageNo; pageNo <= Model.EndPageNo; pageNo++)
-                    {
-                        <a type="button" class="pager-item btn g-py-4 @(pageNo == Model.CurrentPageNo ? " btn-brand" : "btn-secondary" )"
-                           href="/Programs/PN=@pageNo">
+                {
+
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PN" value="@pageNo" />
+                            <button type="submit" class="pager-item btn g-py-4 @(pageNo == Model.CurrentPageNo ? " btn-brand" : "btn-secondary" )">
                             @pageNo
-                        </a>
-                    }
-
+                        </button>
+                    </form>
+                }
                     @if (Model.CurrentPageNo < Model.TotalPages)
-                    {
-                        <a type="button" class="ager-item btn g-py-4"
-                           href="/Programs/PN=@(Model.CurrentPageNo+1)">
+                {
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="@(Model.CurrentPageNo+1)" />
+                        <button type="submit" class="pager-item btn g-py-4 ">
                             <i class="la la-angle-right pt-3"></i>
-                        </a>
-
-                        <a type="button" class="ager-item btn g-py-4 "
-                           href="/Programs/PN=@Model.TotalPages">
+                        </button>
+                    </form>
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="@Model.TotalPages" />
+                        <button type="submit" class="pager-item btn g-py-4 ">
                             <i class="la la-angle-double-right pt-3"></i>
-                        </a>
-                    }
-                </div>
-            }
-        </div>
+                        </button>
+                    </form>
+                }
+            </div>
+        }
     </div>
+</div>
 }
 else
 {
@@ -64,37 +80,62 @@ else
                     <script>console.log(@Model.CurrentPageNo)</script>
                     @if (Model.CurrentPageNo > 1)
                     {
-                        <a type="button" class="pager-item btn g-py-4 "
-                           href="/Programs/@ViewBag.TopicUrl/PN=1">
-                            <i class="la la-angle-double-left pt-3"></i>
-                        </a>
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="1" />
+                            <input type="hidden" name="TopicUrl" value="@ViewBag.TopicUrl" />
+                            <button type="submit" class="pager-item btn btn-primary g-py-4 ">
+                                <i class="la la-angle-double-left pt-3"></i>
+                            </button>
+                        </form>
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="TopicUrl" value="@ViewBag.TopicUrl" />
+                            <input type="hidden" name="PN" value="@(Model.CurrentPageNo-1)" />
+                            <button type="submit" class="pager-item btn g-py-4 ">
+                                <i class="la la-angle-left pt-3"></i>
+                            </button>
+                        </form>
 
-                        <a type="button" class="pager-item btn g-py-4 "
-                           href="/Programs/@ViewBag.TopicUrl/PN=@(Model.CurrentPageNo-1)">
-                            <i class="la la-angle-left pt-3"></i>
-                        </a>
                     }
 
 
                     @for (int pageNo = Model.StartPageNo; pageNo <= Model.EndPageNo; pageNo++)
                     {
-                        <a type="button" class="pager-item btn g-py-4 @(pageNo == Model.CurrentPageNo ? " btn-brand" : "btn-secondary" )"
-                           href="/Programs/@ViewBag.TopicUrl/PN=@pageNo">
-                            @pageNo
-                        </a>
+
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="@pageNo" />
+                            <input type="hidden" name="TopicUrl" value="@ViewBag.TopicUrl" />
+                            <button type="submit" class="pager-item btn g-py-4 btn-secondary" )">
+                                @pageNo
+                            </button>
+                        </form>
                     }
 
                     @if (Model.CurrentPageNo < Model.TotalPages)
                     {
-                        <a type="button" class="ager-item btn g-py-4"
-                           href="/Programs/@ViewBag.TopicUrl/PN=@(Model.CurrentPageNo+1)">
-                            <i class="la la-angle-right pt-3"></i>
-                        </a>
-
-                        <a type="button" class="ager-item btn g-py-4 "
-                           href="/Programs/@ViewBag.TopicUrl/PN=@Model.TotalPages">
-                            <i class="la la-angle-double-right pt-3"></i>
-                        </a>
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="@(Model.CurrentPageNo+1)" />
+                            <input type="hidden" name="TopicUrl" value="@ViewBag.TopicUrl" />
+                            <button type="submit" class="pager-item btn g-py-4 ">
+                                <i class="la la-angle-right pt-3"></i>
+                            </button>
+                        </form>
+                        <form id="List" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList"
+                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListAllProgram" asp-controller="ClientPanel" style="display: inline;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="PN" value="@Model.TotalPages" />
+                            <input type="hidden" name="TopicUrl" value="@ViewBag.TopicUrl" />
+                            <button type="submit" class="pager-item btn g-py-4 ">
+                                <i class="la la-angle-double-right pt-3"></i>
+                            </button>
+                        </form>
                     }
                 </div>
             }

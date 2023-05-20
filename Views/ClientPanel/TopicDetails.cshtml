@@ -48,73 +48,10 @@
                             @item.TopicName Related Programs
                         </div>
                     }
-                    <Div class="row">
-                        <div class="py-5">
-                            <div class="table-responsive">
-                                <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
-                                    <tbody>
-                                        @{
-                                            int l = 0;
-                                        }
-                                        @foreach (var item in ViewBag.TopicRelatedProgramList)
-                                        {
-
-                                            l++;
-                                            <tr>
-                                                <span class="row">
-                                                    <span class="col-md-12">
-                                                <td>@l</td>
-                                                <td>
-                                                    <div class="">
-                                                        <a class="ProgramLink " href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                                    </div>
-                                                    <span class="row">
-                                                        <span class="col-2">
-                                                                    @if (@item.LevelName == "Hard")
-                                                                    {
-                                                                <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
-                                                                    }
-                                                                    else if (@item.LevelName == "Easy")
-                                                                    {
-                                                                <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
-                                                                    }
-                                                                    else if (@item.LevelName == "School")
-                                                                    {
-                                                                <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
-                                                                    }
-
-
-                                                                    @* <span class="col-2">
-                                                        <i class="fa fa-eye"></i>@item.ProgramView
-                                                        </span>*@
-
-
-                                                        </span>
-                                                </td>
-
-
-                                                <td></td>
-                                                </span>
-                                                </span>
-                                            </tr>
-
-
-
-                                        }
-                                    </tbody>
-
-                                </table>
-
-                            </div>
-                            <div class="col-md-12" style="text-align:center">
-                                <partial name="/Views/ClientPanel/AllProgramByTopicGeneraterPager.cshtml" />
-                            </div>
-                        </div>
-                    </Div>
+                    <div id="ProgramList2"></div>
+                </div>
+                <div class="col-md-12" style="text-align:center">
+                    <partial name="/Views/ClientPanel/AllProgramByTopicGeneraterPager.cshtml" />
                 </div>
             </div>
 
@@ -146,13 +83,13 @@
                                                 @if (ViewBag.TopicUrl == @item.TopicUrl)
                                                 {
                                                     <td>
-                                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/PN=1">@item.TopicName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                            <a class="ProgramLink" style="color:rgb(47, 163, 61)" href="/Topics/@item.TopicUrl">@item.TopicName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
                                                     </td>
                                                 }
                                                 else
                                                 {
                                                     <td>
-                                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl/PN=1">@item.TopicName</a>
+                                                        <a class="ProgramLink" href="/Topics/@item.TopicUrl">@item.TopicName</a>
                                                     </td>
                                                 }
 
@@ -171,8 +108,100 @@
                     </Div>
                 </div>
             </div>
+            <div class="container ctr">
+                <div class="row">
+                    <div class="ttl">
+                        Share
+                    </div>
+
+                    <Div class="row">
+                        <div class="py-5">
+                            <div class="table-responsive">
+
+                                <div class="social-sharing-links">
+                                    </a>
+
+                                    <button type="button" class="btn btn-success"><a href="#" class="whatsapp" style="padding-top:1"><i class="fab fa-whatsapp"> </i></a></button>
+                                    <button type="button" class="btn btn-danger"><a href="#" class="instagram"><i class="fab fa-instagram"> </i></a></button>
+                                    <button type="button" class="btn btn-primary"><a href="#" class="facebook"><i class="fab fa-facebook"> </i></a></button>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </Div>
+                </div>
+            </div>
 
         </div>
 
     </div>
 </div>
+@section scripts {
+    <script>
+        const whatsappLink = document.querySelector(".whatsapp");
+        const instagramLink = document.querySelector(".instagram");
+        const facebookLink = document.querySelector(".facebook");
+
+        whatsappLink.addEventListener("click", function () {
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(window.location.href));
+        });
+
+        instagramLink.addEventListener("click", function () {
+            window.open("https://www.instagram.com/share?url=" + encodeURIComponent(window.location.href));
+        });
+
+        facebookLink.addEventListener("click", function () {
+            window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.href));
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#List2").submit();
+        });
+
+        function initDataTable(tableSelector) {
+            $(tableSelector).DataTable({
+                "scrollY": "300px",
+                "scrollCollapse": true,
+                "paging": false,
+                "order": [],
+                //"scroller": true,
+                //"stateSave": true,
+                "scrollX": true
+            });
+        }
+
+        function OnSuccess(formID) {
+            if (formID === "List2") {
+                initDataTable("#answer2");
+            }
+
+            if (formID === "formAdd_UMS") {
+            }
+
+
+            if (formID === "formEdit_UMS") {
+            }
+
+            if (formID === "formAddEditSave_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record saved successfully..!");
+            }
+
+            if (formID === "formAddEditMultiSave_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record saved successfully..!");
+            }
+
+            if (formID === "formDelete_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record deleted successfully..!");
+            }
+        }
+    </script>
+}

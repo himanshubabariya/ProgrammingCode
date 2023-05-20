@@ -1,5 +1,6 @@
 ﻿@model ProgrammingCode.BAL.PagedListPagerModel;
 
+
 <div class="row">
     <div class="col-md-12">
         <!-- pager -->
@@ -12,43 +13,64 @@
                 <script>console.log(@Model.CurrentPageNo)</script>
                 @if (Model.CurrentPageNo > 1)
                 {
-                    <a type="button" class="pager-item btn g-py-4 "
-                       href="/@ViewBag.LanguageUrl/PN=1">
-                        <i class="la la-angle-double-left pt-3"></i>
-                    </a>
+                    <form id="List3" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList3"
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListForLanguageDetails" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PN" value="1" />
+                        <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
+                        <button type="submit" class="pager-item btn btn g-py-4 ">
+                            <i class="la la-angle-double-left pt-3"></i>
+                        </button>
+                    </form>
+                    <form id="List3" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList3"
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListForLanguageDetails" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
+                        <input type="hidden" name="PN" value="@(Model.CurrentPageNo-1)" />
+                        <button type="submit" class="pager-item btn g-py-4 ">
+                            <i class="la la-angle-left pt-3"></i>
+                        </button>
+                    </form>
 
-                    <a type="button" class="pager-item btn g-py-4 "
-                       href="/@ViewBag.LanguageUrl/PN=@(Model.CurrentPageNo-1)">
-                        <i class="la la-angle-left pt-3"></i>
-                    </a>
                 }
 
 
                 @for (int pageNo = Model.StartPageNo; pageNo <= Model.EndPageNo; pageNo++)
                 {
-                    <a type="button" class="pager-item btn g-py-4 @(pageNo == Model.CurrentPageNo ? " btn-brand" : "btn-secondary" )"
-                       href="/@ViewBag.LanguageUrl/PN=@pageNo">
-                        @pageNo
-                    </a>
+
+                    <form id="List3" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList3"
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListForLanguageDetails" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PN" value="@pageNo" />
+                        <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
+                        <button type="submit" class="pager-item btn g-py-4 btn-secondary" )">
+                            @pageNo
+                        </button>
+                    </form>
                 }
 
                 @if (Model.CurrentPageNo < Model.TotalPages)
                 {
-                    <a type="button" class="ager-item btn g-py-4"
-                       href="/@ViewBag.LanguageUrl/PN=@(Model.CurrentPageNo+1)">
-                        <i class="la la-angle-right pt-3"></i>
-                    </a>
-
-                    <a type="button" class="ager-item btn g-py-4 "
-                       href="/@ViewBag.LanguageUrl/PN=@Model.TotalPages">
-                        <i class="la la-angle-double-right pt-3"></i>
-                    </a>
+                    <form id="List3" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList3"
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListForLanguageDetails" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PN" value="@(Model.CurrentPageNo+1)" />
+                        <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
+                        <button type="submit" class="pager-item btn g-py-4 ">
+                            <i class="la la-angle-right pt-3"></i>
+                        </button>
+                    </form>
+                    <form id="List3" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#ProgramList3"
+                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);" asp-action="ProgramListForLanguageDetails" asp-controller="ClientPanel" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PN" value="@Model.TotalPages" />
+                        <input type="hidden" name="LanguageUrl" value="@ViewBag.LanguageUrl" />
+                        <button type="submit" class="pager-item btn g-py-4 ">
+                            <i class="la la-angle-double-right pt-3"></i>
+                        </button>
+                    </form>
                 }
             </div>
         }
     </div>
-</div>@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+</div>

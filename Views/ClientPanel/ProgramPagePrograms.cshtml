@@ -1,0 +1,80 @@
+﻿@using System.Net;
+@using Microsoft.AspNetCore.Html
+@using ProgrammingCode.DAL;
+<Div class="row" id="answer">
+    <div class="py-5">
+        <div class="table-responsive">
+            <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
+                <tbody>
+                    @{
+                        int i = 0;  
+                    }
+                    @foreach (var item in ViewBag.ProgramNavList)
+                    {
+
+                        i++;
+                        <tr>
+                            <span class="row">
+                                <span class="col-md-12">
+                            <td>@i</td>
+                            <td>
+                                <div class="">
+                                    <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
+                                </div>
+                                <span class="row">
+                                    <span class="col-auto">
+                                                @if (@item.LevelName == "Hard")
+                                                {
+                                            <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
+                                                }
+                                                else if (@item.LevelName == "Easy")
+                                                {
+                                            <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
+                                                }
+                                                else if (@item.LevelName == "School")
+                                                {
+                                            <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
+                                                }
+                                                else
+                                                {
+                                            <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
+                                                }
+                                                @{
+                                                    ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
+                                                }
+                                    </span>
+                                    <span class="col-6">
+                                                @foreach (var item2 in ViewBag.TopicOnProgramUrl)
+                                                {
+                                            <a class="type" href="/Topics/@item2.TopicUrl">
+                                                <span class="badge badge-success"> @item2.TopicName</span>
+                                                        @*style="color: rgb(114, 114, 114)"*/*@
+                                                <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
+                                            </a>
+                                                }
+                                    </span>
+                                            @*<span class="col-2">
+                                <i class="fa fa-eye"></i>@item.ProgramView
+                                </span>*@
+
+
+                                </span>
+                            </td>
+
+
+                            <td></td>
+                            </span>
+                            </span>
+                        </tr>
+
+
+
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+      
+    </div>
+</Div>

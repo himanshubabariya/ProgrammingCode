@@ -41,88 +41,11 @@
                             </div>
                         }
                     }
-
-
-        <Div class="row">
-            <div class="py-5">
-                <div class="table-responsive">
-                    <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
-                        <tbody>
-                            @{
-                                int i = 0;
-                            }
-                            @foreach (var item in ViewBag.ProgramNavList)
-                            {
-
-                                i++;
-                                <tr>
-                                    <span class="row">
-                                        <span class="col-md-12">
-                                    <td>@i</td>
-                                    <td>
-                                        <div class="">
-                                            <a class="ProgramLink" href="/@item.ProgramUrl/ProgramDetails">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</a>
-                                        </div>
-                                        <span class="row">
-                                            <span class="col-auto">
-                                                        @if (@item.LevelName == "Hard")
-                                                        {
-                                                    <div class="col-3 "><span class="badge badge-danger">@item.LevelName</span></div>
-                                                        }
-                                                        else if (@item.LevelName == "Easy")
-                                                        {
-                                                    <div class=" col-3 "><span class="badge badge-primary">@item.LevelName</span></div>
-                                                        }
-                                                        else if (@item.LevelName == "School")
-                                                        {
-                                                    <div class=" col-3 "><span class="badge badge-dark">@item.LevelName</span></div>
-                                                        }
-                                                        else
-                                                        {
-                                                    <div class=" col-3 "><span class="badge badge-warning">@item.LevelName</span></div>
-                                                        }
-                                                        @{
-                                                            ViewBag.TopicOnProgramUrl = DBConfig.dbTopic.SelectAllByProgramUrl(@item.ProgramUrl);
-                                                        }
-                                            </span>
-                                            <span class="col-6">
-                                                        @foreach (var item2 in ViewBag.TopicOnProgramUrl)
-                                                        {
-                                                    <a class="type" href="/Topics/@item2.TopicUrl">
-                                                        <span class="badge badge-success"> @item2.TopicName</span>
-                                                                @*style="color: rgb(114, 114, 114)"*/*@
-                                                        <input type="hidden" name="TopicID" value="@item2.TopicUrl" />
-                                                    </a>
-                                                        }
-                                            </span>
-                                                    @*<span class="col-2">
-                                        <i class="fa fa-eye"></i>@item.ProgramView
-                                        </span>*@
-
-
-                                        </span>
-                                    </td>
-
-
-                                    <td></td>
-                                    </span>
-                                    </span>
-                                </tr>
-
-
-
-                            }
-                        </tbody>
-
-                    </table>
-
-                </div>
+                    <div id="ProgramList"></div>
+                    </div>
                 <div class="col-md-12" style="text-align:center">
                     <partial name="/Views/ClientPanel/AllProgram_GeneratePager.cshtml" />
                 </div>
-            </div>
-        </Div>
-    </div>
 </div>
 <div class="container ctr">
 
@@ -210,24 +133,24 @@
             <div class="container ctr">
                 <div class="row">
                     <div class="ttl">
-                        Oher Topics
+                       Topic
                     </div>
 
                     <Div class="row">
                         <div class="py-5">
                             <div class="table-responsive">
-                                 <div style="height: 200px; overflow-y: scroll;">
+                                @* <div style="height: 200px; overflow-y: scroll;">*@
                                 <table class="table table-row-dashed table-row-gray-300 gy-3 lstrw">
                                     <tbody>
                                         <tr>
                                             <td>
                                                 @if (ViewBag.TopicUrl==null)
                                                 {
-                                                    <a class="ProgramLink" href="/Programs/PN=1">All Programs <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                        <a class="ProgramLink" style="color:rgb(47, 163, 61)" href="/Programs">All Programs <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
                                                 }
                                                 else
                                                 {
-                                                    <a class="ProgramLink" href="/Programs/PN=1">All Programs </a>
+                                                    <a class="ProgramLink" href="/Programs/">All Programs </a>
                                                 }
 
                                             </td>
@@ -242,14 +165,14 @@
                                                 @if (ViewBag.TopicUrl == @item.TopicUrl)
                                                 {
                                                     <td>
-                                                        <a class="ProgramLink" href="/Programs/@item.TopicUrl/PN=1">@item.TopicName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
+                                                        <a class="ProgramLink" style="color:rgb(47, 163, 61)"  href="/Programs/@item.TopicUrl">@item.TopicName <i class="fa fa-check-circle" style="color:rgb(47, 163, 61)" aria-hidden="true"></i></a>
                                                     </td>
                                                 }
                                    
                                                 else
                                                 {
                                                     <td>
-                                                        <a class="ProgramLink" href="/Programs/@item.TopicUrl/PN=1">@item.TopicName</a>
+                                                        <a class="ProgramLink" href="/Programs/@item.TopicUrl">@item.TopicName</a>
                                                     </td>
                                                 }
 
@@ -260,7 +183,7 @@
                                     </tbody>
 
                                 </table>
-                                </div>
+                                @*</div>*@
 
                             </div>
 
@@ -273,3 +196,52 @@
 
     </div>
 </div></div>
+
+@section scripts {
+   
+    <script>
+        $(document).ready(function () {
+            $("#List").submit();
+        });
+
+        function initDataTable(tableSelector) {
+            $(tableSelector).DataTable({
+                "scrollY": "300px",
+                "scrollCollapse": true,
+                "paging": false,
+                "order": [],
+                //"scroller": true,
+                //"stateSave": true,
+                "scrollX": true
+            });
+        }
+
+        function OnSuccess(formID) {
+            if (formID === "List") {
+                initDataTable("#answer");
+            }
+
+            if (formID === "formAdd_UMS") {
+            }
+
+
+            if (formID === "formEdit_UMS") {
+            }
+
+            if (formID === "formAddEditSave_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record saved successfully..!");
+            }
+
+            if (formID === "formAddEditMultiSave_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record saved successfully..!");
+            }
+
+            if (formID === "formDelete_UMS") {
+                $("#Solution").submit();
+                toastr.success("Record deleted successfully..!");
+            }
+        }
+    </script>
+}

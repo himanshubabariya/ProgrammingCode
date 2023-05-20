@@ -1,39 +1,27 @@
-﻿@using System.Net;
-@using Microsoft.AspNetCore.Html
-
-<div class="col-md-12" id="answer">
+﻿<div class="col-md-12" id="answer">
 
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="kt_tab_pane_4" role="tabpanel" >
-          
-                <!--begin::Highlight-->
-                @foreach (var item in ViewBag.Solution)
-                {
-                    <div class="highlight">
-             
-                        <button class="highlight-copy btn" data-bs-toggle="tooltip" title="Copy code">copy</button>
-                        <div class="highlight-code ">
-                        
-                        <span class="" >
-                      
-                                <pre class="language-javascript" style="font-weight:900;font-size:17px"> 
-                            <code class="language-javascript" style="font-weight:900;font-size:17px">@Html.Raw(item.ProgramSolution) </code> 
-                               </pre> 
-                           
-                         </span> 
-                        </div>
-                    </div>
-                }
-                <!--end::Highlight-->
-            
+        <div class="tab-pane fade show active" id="kt_tab_pane_4" role="tabpanel">
 
+            @foreach (var item in ViewBag.Solution)
+            {
+                <div class="highlight">
+                    <button class="highlight-copy btn" data-bs-toggle="tooltip" title="Copy code">copy</button>
+                    <div class="highlight-code">
+                        <pre class="language-javascript" style="font-weight:900;font-size:17px">
+                        <code class="language-javascript" style="font-weight:900;font-size:17px">@Html.Raw(item.ProgramSolution)</code> 
+                            </pre>
+                    </div>
+                </div>
+            }
 
         </div>
-
     </div>
 
-</div>	<!--begin::Highlight-->
+</div>
+
+<!--begin::Highlight-->
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.28.0/prism.js"></script>
 <script>
     Prism.highlightAll();
-</script>   
+</script>
