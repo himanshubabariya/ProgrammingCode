@@ -20,10 +20,11 @@
         <table class="secondry table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
             <thead class="bg-gray-300" >
                 <tr >
+                        <th class="text-center">Actions</th>
                     <th class="text-center">Defination</th>         
                     <th class="text">Langauge</th>
                           
-                    <th class="text-center">Actions</th>
+                   
                 </tr>
             </thead>
             <tbody>
@@ -34,25 +35,26 @@
                 {
                     i++;
                     <tr>
+                            <td class="text-center col-2">
+                                <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
+                                    <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
+                                   asp-route-ProgramSolutionID="@item.ProgramSolutionID" asp-area="PRO_ProgramSolution" asp-action="AddEdit" asp-controller="PRO_ProgramSolution">
+                                        <i class="la la-edit"></i>
+                                        <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
+                                    </a>
+                                </span>
+                                <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
+                                      data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                                  asp-area="PRO_ProgramSolution" asp-action="_Delete" asp-controller="PRO_ProgramSolution" style="display: inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
+                                    <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
+                                </form>
+                            </td>
                         <td class="pl-2 col-8">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
                         <td class="pl-2 col-2">@item.ProgrammingLangaugeName</td>
                                            
-                        <td class="text-center col-2">
-                            <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
-                               asp-route-ProgramSolutionID="@item.ProgramSolutionID" asp-area="PRO_ProgramSolution" asp-action="AddEdit" asp-controller="PRO_ProgramSolution">
-                                    <i class="la la-edit"></i>
-                                    <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
-                                </a>
-                            </span>
-                            <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                                  data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-                              asp-area="PRO_ProgramSolution" asp-action="_Delete" asp-controller="PRO_ProgramSolution" style="display: inline;">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
-                                <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
-                            </form>
-                        </td>
+                      
                     </tr>
                 }
             </tbody>

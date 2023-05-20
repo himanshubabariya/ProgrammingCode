@@ -17,17 +17,16 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="secondary table-bordered  table-hover" id="tblList"  cellspacing="0" width="100%">
-            <thead class="bg-gray-300 ">
+        <table class="secondery table-bordered responsive table-hover" id="tblList" cellspacing="0" width="100%">
+            <thead class="bg-gray-300 " >
                 <tr>
-                
-                
+
+                    <th class="text-center">Actions</th>
                     <th class="text-center">ProgramNumber </th>
                     <th class="text-center">Defination </th>
                     <th class="text-center">Sequence</th>
-                    <th class="text-center">Created</th>
-                    <th class="text-center">Modified</th>                 
-                    <th class="text-center">Actions</th>
+                                 
+                    
                 </tr>
             </thead>
             <tbody>
@@ -38,13 +37,6 @@
                 {
                     i++;
                     <tr>
-                       
-                 
-                        <td class="text-center">@item.ProgramNumber</td>
-                        <td class="pl-2">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
-                        <td class="pl-2">@item.Sequence</td>
-                        <td class="pl-2">@item.Created</td>
-                        <td class="pl-2">@item.Modified</td>
                         <td class="text-center">
 
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
@@ -56,13 +48,19 @@
                             </span>
 
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                                  data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                               asp-area="PRO_Program" asp-action="_Delete" asp-controller="PRO_Program" style="display: inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="ProgramID" value="@item.ProgramID" />
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>
+                 
+                        <td class="text-center">@item.ProgramNumber</td>
+                        <td class="pl-2 ">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
+                        <td class="pl-2 text-center">@item.Sequence</td>
+          
+                       
                     </tr>
                 }
             </tbody>

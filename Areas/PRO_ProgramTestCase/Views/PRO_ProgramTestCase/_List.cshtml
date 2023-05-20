@@ -19,13 +19,13 @@
         <table class="secondary table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
             <thead class="bg-gray-300 ">
                 <tr>
+                    <th class="text-center">Actions</th>
                      <th class="text-center" >Program Number</th>
                      <th class="text-center">defination</th>
                     <th class="text-center">Type</th>
                     <th class="text-center">Sequence</th>
-                    <th class="text-center">Created</th>
-                    <th class="text-center">Modified</th>
-                    <th class="text-center">Actions</th>
+                  
+                    
                 </tr>
             </thead>
             <tbody>
@@ -36,14 +36,7 @@
                 {
                     i++;
                     <tr>
-                      
-          
-                        <td class="text-center">@item.ProgramNumber</td>
-                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
-                        <td class="text-center">@item.IsPositive</td>
-                         <td class="text-center">@item.Sequence</td>
-                        <td class="text-center">@item.Created</td>
-                        <td class="text-center">@item.Modified</td>
+
                         <td class="text-center">
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
@@ -61,6 +54,12 @@
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>
+                        <td class="text-center">@item.ProgramNumber</td>
+                        <td class="text-center">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
+                        <td class="text-center">@item.IsPositive</td>
+                         <td class="text-center">@item.Sequence</td>
+                       
+                       
                     </tr>
                 }
             </tbody>

@@ -18,14 +18,13 @@
         <table class="secondary table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
             <thead class="bg-gray-300 ">
                 <tr>
+                    <th class="text-center">Actions</th>
                    
                     <th class="text-center">Topic Name </th>
                   
                     <th class="text-center">Sequence</th>
 
-                     <th class="text-center">Created</th>
-                      <th class="text-center">Modified</th>
-                    <th class="text-center">Actions</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -36,17 +35,6 @@
                 {
                     i++;
                     <tr>
-
-                        <td class="pl-2">@item.TopicName</td>
-
-                        <td class="pl-2">@item.Sequence</td>
-                        <td class="pl-2">@item.Created</td>
-                        <td class="pl-2">@item.Modified</td>
-         
-                       
-                        
-           
-
                         <td class="text-center">
 
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
@@ -58,13 +46,24 @@
                             </span>
 
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                                  data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                               asp-area="MST_Topic" asp-action="_Delete" asp-controller="MST_Topic" style="display: inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="TopicID" value="@item.TopicID" />
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>
+
+                        <td class="pl-2">@item.TopicName</td>
+
+                        <td class="pl-2">@item.Sequence</td>
+                       
+         
+                       
+                        
+           
+
+                      
                     </tr>
                 }
             </tbody>

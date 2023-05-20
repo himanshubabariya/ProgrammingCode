@@ -21,21 +21,20 @@
             <thead class="bg-gray-300 ">
                 <tr>
                    
-                    
+                    <th class="text-center">Actions</th>
                     <th class="text-center">UserName </th>
                     <th class="text-center">Password </th>
                     <th class="text-center">Email </th>
                     <th class="text-center">DisplayName</th>
                     <th class="text-center">MobileNo</th>
-                     <th class="text-center">Created</th>
-                      <th class="text-center">Modified</th>
+                  
                     
                     
                     
          
              
                   
-                    <th class="text-center">Actions</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -46,39 +45,38 @@
                 {
                     i++;
                     <tr>
-                        
-              
-                        <td class="text-center">@item.UserName</td>
-                        <td class="text-center">@item.Password</td>
-                        <td class="text-center">@item.Email</td>
-                        <td class="text-center">@item.DisplayName</td>
-                        <td class="text-center">@item.MobileNo</td>
-                           <td class="text-center">@item.Created</td>
-                                  <td class="text-center">@item.Modified</td>
- 
-                  
-                   
-                 
-
                         <td class="text-center">
 
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <button class="btn btn-primary btn-icon btn-elevate btn-sm js-stkModal-btn"
-                                    data-form-id="formEdit_UMS"
-                                    data-url='@Url.Action("_AddEdit", "SEC_User", new {Area = "SEC_User", UserID = item.UserID})'
-                                    data-modal-size="lg">
+                                        data-form-id="formEdit_UMS"
+                                        data-url='@Url.Action("_AddEdit", "SEC_User", new {Area = "SEC_User", UserID = item.UserID})'
+                                        data-modal-size="lg">
                                     <i class="la la-edit"></i>
                                 </button>
                             </span>
 
                             <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                              data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                                  data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                               asp-area="SEC_User" asp-action="_Delete" asp-controller="SEC_User" style="display: inline;">
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="UserID" value="@item.UserID" />
                                 <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
                             </form>
                         </td>
+              
+                        <td class="text-center">@item.UserName</td>
+                        <td class="text-center">@item.Password</td>
+                        <td class="text-center">@item.Email</td>
+                        <td class="text-center">@item.DisplayName</td>
+                        <td class="text-center">@item.MobileNo</td>
+                           
+ 
+                  
+                   
+                 
+
+                        
                     </tr>
                 }
             </tbody>
