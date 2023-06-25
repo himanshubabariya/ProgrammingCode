@@ -1,64 +1,70 @@
-﻿@model List<ProgrammingCode.DAL.MST.MST_ProgrammingLangauge.SelectByProgrammingLangaugeName_Result>
+﻿        @model List<ProgrammingCode.DAL.MST.MST_ProgrammingLangauge.SelectByProgrammingLangaugeName_Result>
 
-<div class="card  shadow-sm mt-5">
-    <div class="card-header">
-        <h3 class="card-title">
-          Search Result
-        </h3>
-        <div class="card-toolbar">
-            <a class="btn btn-sm btn-success js-stkModal-btn ms-1"
-               asp-area="MST_ProgrammingLangauge" asp-action="AddEdit" asp-controller="MST_ProgrammingLangauge">
-                <i class="la la-plus"></i> Add New
-            </a>
-        </div>
-    </div>
-    <div class="card-body">
-        <table class="secondary table-bordered  table-hover" style="width:100%" cellspacing="0" >
-            <thead class="bg-gray-300 ">
-                <tr>
-                    <th class="text-center">Actions</th>
-                    <th class="text-center">LOGO</th>
-                    <th class="text-center">ProgrammingLangauge </th>
-                     <th class="text-center">Sequence </th>
+        <div class="card  shadow-sm mt-5">
+            <div class="card-header">
+                <h3 class="card-title">
+                  Search Result
+                </h3>
+                <div class="card-toolbar">
+                    <a class="btn btn-sm btn-success js-stkModal-btn ms-1"
+                       asp-area="MST_ProgrammingLangauge" asp-action="AddEdit" asp-controller="MST_ProgrammingLangauge">
+                        <i class="la la-plus"></i> Add New
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+        <table class="table table-hover" cellspacing="0" width="100%" style="border: 1px solid #ccc;">
+
+                    <thead class="bg-gray-300 ">
+                        <tr>
+                    <th class="text-center" style="border: 1px solid #ccc;">Actions</th>
+                    <th class="text-center" style="border: 1px solid #ccc;">LOGO</th>
+                    <th class="text-center" style="border: 1px solid #ccc;">ProgrammingLangauge </th>
+                    <th class="text-center" style="border: 1px solid #ccc;">Sequence </th>
+                    <td class="text-center" style="border: 1px solid #ccc;">Created User</td>
+                    <th class="text-center" style="border: 1px solid #ccc;">Modified</th>
                      
                                       
                     
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    int i = 0;
-                }
-                @foreach (var item in Model)
-                {
-                    i++;
-                    <tr>
-                        <td class="text-center">
-                            <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
-                                <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
-                               asp-route-ProgrammingLangaugeID="@item.ProgrammingLangaugeID" asp-area="MST_ProgrammingLangauge" asp-action="AddEdit" asp-controller="MST_ProgrammingLangauge">
-                                    <i class="la la-edit"></i>
-                                    <input type="hidden" name="ProgrammingLangaugeID" value="@item.ProgrammingLangaugeID" />
-                                </a>
-                            </span>
-                            <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
-                                  data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
-                              asp-area="MST_ProgrammingLangauge" asp-action="_Delete" asp-controller="MST_ProgrammingLangauge" style="display: inline;">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="ProgrammingLangaugeID" value="@item.ProgrammingLangaugeID" />
-                                <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
-                            </form>
-                        </td>
-                        <td class="text-center p-1"><img src="@Url.Content(@item.ProgrammingLangaugeLogo)" alt="hb" style="height:50px;width:50px" /></td>
-                        <td class="text-center">@item.ProgrammingLangaugeName</td>
-                        <td class="text-center">@item.Sequence</td>
-                        
-                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                        <td class="text-center" style="border: 1px solid #ccc;">
+                                    <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
+                                        <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
+                                       asp-route-ProgrammingLangaugeID="@item.ProgrammingLangaugeID" asp-area="MST_ProgrammingLangauge" asp-action="AddEdit" asp-controller="MST_ProgrammingLangauge">
+                                            <i class="la la-edit"></i>
+                                            <input type="hidden" name="ProgrammingLangaugeID" value="@item.ProgrammingLangaugeID" />
+                                        </a>
+                                    </span>
+                                    <form id="formDelete_UMS" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#SearchResult"
+                                          data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                                      asp-area="MST_ProgrammingLangauge" asp-action="_Delete" asp-controller="MST_ProgrammingLangauge" style="display: inline;">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="ProgrammingLangaugeID" value="@item.ProgrammingLangaugeID" />
+                                        <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
+                                    </form>
+                                </td>
+                        <td class="text-center p-1" style="border: 1px solid #ccc;"><img src="@Url.Content(@item.ProgrammingLangaugeLogo)" alt="hb" style="height:50px;width:50px" /></td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.ProgrammingLangaugeName</td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.Sequence</td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.UserName</td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.Modified</td>
 
-                        
+
+
+
+
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>

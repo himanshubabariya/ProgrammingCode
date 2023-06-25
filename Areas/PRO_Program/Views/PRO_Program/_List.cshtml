@@ -17,14 +17,17 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="secondery table-bordered responsive table-hover" id="tblList" cellspacing="0" width="100%">
+        <table class="table table-hover" id="tblList" cellspacing="0" width="100%" style="border: 1px solid #ccc;">
+
             <thead class="bg-gray-300 " >
                 <tr>
 
-                    <th class="text-center">Actions</th>
-                    <th class="text-center">ProgramNumber </th>
-                    <th class="text-center">Defination </th>
-                    <th class="text-center">Sequence</th>
+                    <th class="text-center" style="border: 1px solid #ccc;">Actions</th>
+                    <th class="text-center" style="border: 1px solid #ccc;">ProgramNumber </th>
+                    <th class="text-center" style="border: 1px solid #ccc;">Defination </th>
+                    <th class="text-center" style="border: 1px solid #ccc;">Sequence</th>
+                    <td class="text-center" style="border: 1px solid #ccc;">Created User</td>
+                    <th class="text-center" style="border: 1px solid #ccc;">Modified</th>
                                  
                     
                 </tr>
@@ -37,7 +40,7 @@
                 {
                     i++;
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center" style="border: 1px solid #ccc;">
 
                             <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                 <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
@@ -56,9 +59,11 @@
                             </form>
                         </td>
                  
-                        <td class="text-center">@item.ProgramNumber</td>
-                        <td class="pl-2 ">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
-                        <td class="pl-2 text-center">@item.Sequence</td>
+                        <td class="text-center"  style="border: 1px solid #ccc;">@item.ProgramNumber</td>
+                        <td class="pl-2 " style="border: 1px solid #ccc;">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.Sequence</td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.UserName</td>
+                        <td class="text-center" style="border: 1px solid #ccc;">@item.Modified</td>
           
                        
                     </tr>

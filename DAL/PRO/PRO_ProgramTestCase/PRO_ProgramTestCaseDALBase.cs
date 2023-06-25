@@ -242,6 +242,7 @@ namespace ProgrammingCode.DAL.PRO.PRO_ProgramTestCase
         public string? Defination { get; set; }
         public string? Description { get; set; }
         public int? UserID { get; set; }
+        public string? UserName { get; set; }
 
         public DateTime? Created { get; set; }
         public DateTime? Modified { get; set; }

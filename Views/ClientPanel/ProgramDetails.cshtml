@@ -73,19 +73,21 @@
                     <div class="row">
                         <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
                     </div>
-                    <ul  class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
-                        @foreach (var item in ViewBag.LanguagesForslider)
+                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                        @for (int i = 0; i < ViewBag.LanguagesForslider.Count; i++)
                         {
+                            var item = ViewBag.LanguagesForslider[i];
                             <li class="nav-item">
                                 <form method="post" id="Solution" data-ajax-mode="replace" data-ajax-update="#solutionByLanguage" data-ajax="true"
-                                      data-ajax-success="OnSuccess(this.id,data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
+                                      data-ajax-success="OnSuccess(this.id, data, status, xhr);" data-ajax-failure="OnFailure(xhr, status, error);"
                               asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
-                                     @Html.AntiForgeryToken()
+                                    @Html.AntiForgeryToken()
                                     <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
-                                    <input type="submit" class="nav-link " value="@item.ProgrammingLangaugeName" />
+                                    @{
+                                        string activeClass = i == 0 ? "active" : "";
+                                    }
+                                    <input type="submit" class="nav-link @activeClass" value="@item.ProgrammingLangaugeName" />
                                 </form>
-                                @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
-                        <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@
                             </li>
                         }
                     </ul>
@@ -306,3 +308,17 @@
         }
     </script>
 }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--begin::Highlight-->
+<script>
+    $(document).ready(function () {
+        // Add 'active' class to the selected language tab
+        $('.nav-link').click(function () {
+            $('.nav-link').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        Prism.highlightAll();
+    });
+</script>

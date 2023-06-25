@@ -40,7 +40,7 @@ namespace ProgrammingCode.Areas.PRO_ProgramTestCase.Models
 
        
         public string? Description { get; set; }
-
+        public string? UserName { get; set; }
 
         public int UserID { get; set; }
 

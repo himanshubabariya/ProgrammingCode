@@ -2,40 +2,39 @@
 @using System.Net;
 @using Microsoft.AspNetCore.Html
 
-<div class="card  shadow-sm mt-5">
+<div class="card shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title">
             Search Result
         </h3>
         <div class="card-toolbar">
-
             <a class="btn btn-sm btn-success js-stkModal-btn ms-1"
                asp-area="PRO_ProgramSolution" asp-action="AddEdit" asp-controller="PRO_ProgramSolution">
                 <i class="la la-plus"></i> Add New
             </a>
         </div>
     </div>
-    <div class="card-body ">
+    <div class="card-body">
         <div class="table-responsive">
-        <table class="secondry table-bordered table-hover" id="tblList" cellspacing="0" width="100%">
-            <thead class="bg-gray-300" >
-                <tr >
-                        <th class="text-center">Actions</th>
-                    <th class="text-center">Defination</th>         
-                    <th class="text">Langauge</th>
-                          
-                   
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    int i = 0;
-                }
-                @foreach (var item in Model)
-                {
-                    i++;
+            <table class="table table-hover" id="tblList" cellspacing="0" style="border: 1px solid #ccc;">
+                <thead class="bg-gray-300">
                     <tr>
-                            <td class="text-center col-2">
+                        <th class="text-center" style="border: 1px solid #ccc;">Actions</th>
+                        <th class="text-center" style="border: 1px solid #ccc;">Definition</th>
+                        <th class="text-center" style="border: 1px solid #ccc;">Language</th>
+                        <th class="text-center" style="border: 1px solid #ccc;">Created User</th>
+                        <th class="text-center" style="border: 1px solid #ccc;">Modified</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <td class="text-center" style="border: 1px solid #ccc;">
                                 <span data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                     <a class="btn btn-primary btn-icon btn-elevate btn-sm js-btn"
                                    asp-route-ProgramSolutionID="@item.ProgramSolutionID" asp-area="PRO_ProgramSolution" asp-action="AddEdit" asp-controller="PRO_ProgramSolution">
@@ -48,20 +47,21 @@
                                   asp-area="PRO_ProgramSolution" asp-action="_Delete" asp-controller="PRO_ProgramSolution" style="display: inline;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="ProgramSolutionID" value="@item.ProgramSolutionID" />
-                                    <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete"><i class="la la-trash"></i></a>
+                                    <a class="btn btn-danger btn-icon btn-elevate btn-sm js-bb-confirm-delete" data-bs-toggle="tooltip" data-bs-placement="left" title="Delete">
+                                        <i class="la la-trash"></i>
+                                    </a>
                                 </form>
                             </td>
-                        <td class="pl-2 col-8">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
-                        <td class="pl-2 col-2">@item.ProgrammingLangaugeName</td>
-                                           
-                      
-                    </tr>
-                }
-            </tbody>
-          
-        </table>
+                            <td class="mt-2 mt-sm-0" style="border: 1px solid #ccc;">@Html.Raw(WebUtility.HtmlDecode(item.Defination))</td>
+                            <td class="text-center" style="border: 1px solid #ccc;">@item.ProgrammingLangaugeName</td>
+                            <td class="text-center" style="border: 1px solid #ccc;">@item.UserName</td>
+                            <td class="text-center" style="border: 1px solid #ccc;">@item.Modified</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-        <div class="col-md-12" style="text-align:center">
+        <div class="col-md-12" style="text-align: center">
             <partial name="/Areas/PRO_ProgramSolution/Views/PRO_ProgramSolution/SelectForPage.cshtml" />
         </div>
     </div>
