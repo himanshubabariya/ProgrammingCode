@@ -23,13 +23,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
             ViewBag.LanguageUrl = LanguageUrl;
             ViewBag.AllLanguages = DBConfig.dbLangauge.SelectForHomePage().ToList();
             ViewBag.LanguageDetails = DBConfig.dbLangauge.SelectByLanguageUrl(LanguageUrl).ToList();
-            //int? vPageNo = Convert.ToInt32(PN);
-
-            //if (!PN.HasValue)
-            //{
-            //    vPageNo = 1;
-            //}
-         
+  
             ViewBag.ProgramList = DBConfig.dbProgram.SelectPageForProhrambyLanguageUrl(LanguageUrl, 1, 10).ToList();
             ViewBag.allprogram = DBConfig.dbProgram.SelectByLanagueUrl(LanguageUrl);
             int? vTotalRecords = ViewBag.allprogram.Count;
@@ -57,6 +51,7 @@ namespace ProgrammingCode.Controllers.ClientPanel
             return PartialView("ProgramListLanguageDetails", Vmodel);
         }
         #endregion
+        string str = null;
         #region ProgramPage
         [Route("{LanguageUrl}/{ProgramUrl}/ProgramDetails")]
         [Route("{ProgramUrl}/ProgramDetails")]

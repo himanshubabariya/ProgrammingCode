@@ -115,6 +115,9 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
+
+
+
         #region SelectForSearch
         public List<SelectForSearch_Result> SelectForSearch(string? F_ProgramNumber, int F_LevelID,int F_TopicID, string? F_Defination)
         {
@@ -241,6 +244,36 @@ namespace ProgrammingCode.DAL.PRO.PRO_Program
             }
         }
         #endregion
+        public List<int> GetPreselectedTopicIDs(int? ProgramID)
+        {
+            try
+            {
+                SqlDatabase sqlDB = new SqlDatabase(myConnectionString);
+                DbCommand dbMST = sqlDB.GetStoredProcCommand("dbo.PR_PRO_ProgramTopic_SelectTopicsProgramID");
+                sqlDB.AddInParameter(dbMST, "ProgramID", SqlDbType.NVarChar, ProgramID);
+
+                List<int> preselectedTopics = new List<int>();
+                using (IDataReader dr = sqlDB.ExecuteReader(dbMST))
+                {
+                    while (dr.Read())
+                    {
+                        int topicID = Convert.ToInt32(dr["TopicID"]);
+                        preselectedTopics.Add(topicID);
+                    }
+                }
+
+
+
+                return preselectedTopics;
+            }
+            catch (Exception ex)
+            {
+                var vExceptionHandler = ExceptionHandler(ex);
+                if (vExceptionHandler.IsToThrowAnyException)
+                    throw vExceptionHandler.ExceptionToThrow;
+                return null;
+            }
+        }
         #region Method: Insert
         public decimal? Insert(PRO_ProgramModel Obj_PRO_Program)
 

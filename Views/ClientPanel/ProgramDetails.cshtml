@@ -58,6 +58,7 @@
 
             }
             @{
+                string str = null;
                 int count2 = ViewBag.LanguagesForslider.Count;
             }
             @if (count2 > 0)
@@ -72,7 +73,7 @@
                     <div class="row">
                         <div class="separator border-2 my-5" style="color: rgb(47,163,61);"></div>
                     </div>
-                    <ul class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
+                    <ul  class="nav nav-tabs nav-line-tabs nav-line-tabs-2x mb-5 fs-6">
                         @foreach (var item in ViewBag.LanguagesForslider)
                         {
                             <li class="nav-item">
@@ -81,7 +82,7 @@
                               asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ClientPanel">
                                      @Html.AntiForgeryToken()
                                     <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />
-                                    <input type="submit" class="nav-link active" value="@item.ProgrammingLangaugeName" />
+                                    <input type="submit" class="nav-link " value="@item.ProgrammingLangaugeName" />
                                 </form>
                                 @*<a class="nav-link" asp-route-LanguageUrl="@item.LanguageUrl" asp-action="SolutionByProgramUrlLangaugeUrl" asp-controller="ProgramPage" data-bs-toggle="tab">@item.ProgrammingLangaugeName</a>
                         <input type="hidden" name="LanguageUrl" value="@item.LanguageUrl" />*@

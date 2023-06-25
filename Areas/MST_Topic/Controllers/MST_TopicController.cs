@@ -73,6 +73,14 @@ namespace ProgrammingCode.Areas.MST_Topic.Controllers
                 }
 
             }
+            else
+            {
+                ViewBag.topic = DBConfig.dbTopic.SelectAll().ToList();
+                if (ViewBag.topic.Count > 0)
+                {
+                    Obj_MST_Topic.MetaOgImage = ViewBag.topic[0].MetaOgImage;
+                }
+            }
             #endregion
             if (Obj_MST_Topic.TopicID == 0)
             {

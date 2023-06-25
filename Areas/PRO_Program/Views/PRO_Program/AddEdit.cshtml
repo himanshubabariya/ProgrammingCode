@@ -22,7 +22,7 @@
 
                         <label class="required col-md-4 col-form-label"> Program Number</label>
 
-                        <input type="text" asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number">
+                        <input type="number"  asp-for="ProgramNumber" class="form-control" placeholder="Enter Program Number" required>
                         @Html.ValidationMessageFor(m => m.ProgramNumber, "", new { @class = "form-text text-danger" })
                     </div>
                     <div class="col-md-4">
@@ -32,9 +32,31 @@
                
                         @Html.ValidationMessageFor(m => m.LevelID, "", new { @class = "form-text text-danger" })
                     </div>
+                     @if (Model != null && Model.ProgramID != 0)
+                    {
+                        var preselectedTopicIDs = ViewBag.PreselectedTopicIDs as List<int>;
+                        Model.arrtopic = preselectedTopicIDs.ToArray();
+                    }
+                  
+                 
                     <div class="col-md-4">
                         <label class="required col-md-4 col-form-label">Topic</label>
-                        @Html.ListBoxFor(m => m.arrtopic, new SelectList(ViewBag.topiccomboList,"TopicID","TopicName"),  new {@class="form-select form-select-sm select2-accessible",  data_control = "select2", data_placeholder = "Select Topic", data_allow_clear = "true", multiple = "multiple", data_select2_id = "select2-data-12-kpd1", tabindex = "-1", aria_hidden = "true"})
+                        @Html.ListBoxFor(
+                        m => m.arrtopic,
+                        new SelectList(ViewBag.topiccomboList, "TopicID", "TopicName"),
+                        new
+                        {
+                        @class = "form-select form-select-sm select2-accessible",
+                        data_control = "select2",
+                        data_placeholder = "Select Topic",
+                        data_allow_clear = "true",
+                        multiple = "multiple",
+                        data_select2_id = "select2-data-12-kpd1",
+                        tabindex = "-1",
+                        aria_hidden = "true",
+                        
+                        }
+                        )
                        @* <select class="form-select select2-hidden-accessible"
                                 data-control="select2" data-placeholder="Select Topic"
                                 data-allow-clear="true" multiple="" id="myDropdown"
@@ -49,7 +71,7 @@
                     <div class="col-md-12">
                     <label class="required col-md-4 col-form-label"> Defination</label>
                   
-                        <textarea id="editor" asp-for="Defination" class="form-control" placeholder="Enter Defination" autofocus"></textarea>
+                        <textarea id="editor" name="Defination" asp-for="Defination" class="form-control" placeholder="Enter Defination" autofocus"></textarea>
                         @Html.ValidationMessageFor(m => m.Defination, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
@@ -74,13 +96,13 @@
                     <div class="col-md-4">
                         <label class="col-md-4 col-form-label">Sequence</label>
                        
-                    <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                    <input type="number" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
                         @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
                        
                     </div>
                     <div class="col-md-8">
                         <label class="required col-md-4 col-form-label"> Program url  </label>
-                        <input type="text" asp-for="ProgramUrl" class="form-control" placeholder="ProgramUrl   " />
+                        <input type="text" name="ProgramUrl" asp-for="ProgramUrl" class="form-control" placeholder="ProgramUrl   " />
                         @Html.ValidationMessageFor(m => m.ProgramUrl, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
@@ -88,7 +110,7 @@
                 <div class="form-group row">
                     <div class="col-md-12">
                     <label class="col-md-4 col-form-label"> Description</label>
-                  <textarea type="text" id="editor3" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
+                  <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Detailed Description"></textarea>
                       
                     </div>
                 </div>
@@ -121,6 +143,16 @@
                     <div class="col-md-6">
                         <label class=" col-form-label" placeholder="Meta Og Title">Meta Og Image</label>
                         <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image" />
+
+                        @if (Model != null && Model.ProgramID != 0)
+                        {
+                            if (!string.IsNullOrEmpty(Model.MetaOgImage))
+                            {
+                                <div>
+                                    <a href="@Url.Content(Model.MetaOgImage)" class="btn btn-sm btn-primary mt-2" download>Download Old</a>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <div class="form-group row">
@@ -167,19 +199,49 @@
         </div>
     </div>
 </div>
-
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18'></script>
 <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor', {
         height: 260,
         removeButtons: 'PasteFromWord'
     });
+
+    CKEDITOR.instances.editor.on('change', function () {
+        // Get the value from the CKEditor instance and decode HTML entities
+        var value = CKEDITOR.instances.editor.getData().replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+
+        // Remove HTML tags
+        var strippedValue = value.replace(/<[^>]*>/g, '');
+
+        // Replace spaces with hyphens ("-")
+        var updatedValue = strippedValue.replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').trim();
+        updatedValue = updatedValue.toLowerCase();
+
+        // Update the value of the ProgramUrl field
+        document.querySelector('input[name="ProgramUrl"]').value = updatedValue;
+    });
+</script>
+<script>
     CKEDITOR.replace('editor2', {
         height: 260,
+
+
         removeButtons: 'PasteFromWord'
     });
+</script>
+<script>
     CKEDITOR.replace('editor3', {
         height: 260,
+
+        removeButtons: 'PasteFromWord'
+    });
+</script>
+
+<script>
+    CKEDITOR.replace('editor1', {
+        height: 260,
+
         removeButtons: 'PasteFromWord'
     });
 </script>

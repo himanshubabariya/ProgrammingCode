@@ -1,6 +1,6 @@
 ﻿@model ProgrammingCode.Areas.MST_Level.Models.MST_LevelModel
 <div class="modal-header">
-    <h4 class="modal-title">@ViewBag.Action Page</h4>
+    <h4 class="modal-title">@ViewBag.Action Level</h4>
     <button type="button" class="btn btn-danger btn-elevate btn-icon btn-sm" data-bs-dismiss="modal" aria-label="Close">
         <i class="fa fa-close"></i>
     </button>
@@ -18,12 +18,12 @@
             <div class="col-md-6">
                 <label class="required  col-form-label ">Level Name</label>
                 @*@Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", placeholder="Enter Category Name"})*@
-                <input type="text" asp-for="LevelName" class="form-control" placeholder="Enter Level Name" autofocus/>
+                <input type="text" asp-for="LevelName" class="form-control" placeholder="Enter Level Name" autofocus required/>
                 @Html.ValidationMessageFor(m => m.LevelName, "", new { @class = "form-text text-danger" })
             </div>
             <div class="col-md-6">
                 <label class="col-form-label">Sequence</label>
-                <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                <input type="number" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
                 @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="form-group row">
             <div class="col-md-12">
                 <label class="col-form-label"> Level Description</label>
-                <textarea  id="editro1" asp-for="LevelDescription" class="form-control" placeholder="Enter Level Description"></textarea>
+                <textarea  asp-for="LevelDescription" class="form-control" placeholder="Enter Level Description"></textarea>
                 @Html.ValidationMessageFor(m => m.LevelDescription, "", new { @class = "form-text text-danger" })
             </div>
         </div>
@@ -60,3 +60,4 @@
         </div>
     </form>
 </div>
+

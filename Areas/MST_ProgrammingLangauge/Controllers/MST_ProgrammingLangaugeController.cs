@@ -7,7 +7,7 @@ using ProgrammingCode.DAL.MST.MST_ProgrammingLangauge;
 
 namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
 {
-    [CheckAccess]
+    //[CheckAccess]
 
     [Area("MST_ProgrammingLangauge")]
     public class MST_ProgrammingLangaugeController : Controller
@@ -74,6 +74,14 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
                 }
 
             }
+            else
+            {
+                ViewBag.language = DBConfig.dbLangauge.SelectAll().ToList();
+                if (ViewBag.language.Count > 0)
+                {
+                    Obj_MST_ProgrammingLangauge.ProgrammingLangaugeLogo = ViewBag.language[0].ProgrammingLangaugeLogo;
+                }
+            }
             #endregion
             #region PhotoPath2 meta og Image
             if (Obj_MST_ProgrammingLangauge.File2 != null)
@@ -92,6 +100,14 @@ namespace ProgrammingCode.Areas.MST_ProgrammingLangauge.Controllers
                     Obj_MST_ProgrammingLangauge.File2.CopyTo(stream);
                 }
 
+            }
+            else
+            {
+                ViewBag.language = DBConfig.dbLangauge.SelectAll().ToList();
+                if (ViewBag.language.Count > 0)
+                {
+                    Obj_MST_ProgrammingLangauge.MetaOgImage = ViewBag.language[0].MetaOgImage;
+                }
             }
             #endregion
             if (Obj_MST_ProgrammingLangauge.ProgrammingLangaugeID == 0)

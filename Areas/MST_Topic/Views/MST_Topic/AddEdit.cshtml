@@ -21,12 +21,12 @@
                 <div class="form-group row">                    
                     <div class="col-md-6">
                         <label class="required col-form-label">Topic Name</label>
-                        <input type="text" id="textOne" asp-for="TopicName" class="form-control" placeholder="Enter Topic Name" autofocus/>
+                        <input type="text" id="textOne" name="TopicName" asp-for="TopicName" class="form-control" placeholder="Enter Topic Name" autofocus/>
                         @Html.ValidationMessageFor(m => m.TopicName, "", new { @class = "form-text text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label class="col-form-label">Sequence</label>
-                        <input type="text" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
+                        <input type="number" asp-for="Sequence" class="form-control" placeholder="Sequnce" />
                         @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>               
@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <div class="col-md-4">
                         <label class="required col-form-label">TopicUrl</label>
-                        <input type="text" id="editor2" asp-for="TopicUrl" class="form-control" placeholder="Enter TopicUrl"/>
+                        <input type="text" id="editor2" name="TopicUrl" asp-for="TopicUrl" class="form-control" placeholder="Enter TopicUrl"/>
                         @Html.ValidationMessageFor(m => m.TopicUrl, "", new { @class = "form-text text-danger" })
                     </div>
                 </div>
@@ -74,6 +74,16 @@
                     <div class="col-md-6">
                         <label class=" col-form-label" placeholder="Meta Og Title">Meta Og Image</label>
                         <input type="file" asp-for="File2" class="form-control" placeholder="uplod Og Image" />
+
+                        @if (Model != null && Model.TopicID != 0)
+                        {
+                            if (!string.IsNullOrEmpty(Model.MetaOgImage))
+                            {
+                                <div>
+                                    <a href="@Url.Content(Model.MetaOgImage)" class="btn btn-sm btn-primary mt-2" download>Download Old</a>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
                 <div class="form-group row">
@@ -109,6 +119,26 @@
         </div>
     </div>
 </div>
+<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18'></script>
+<script>
+    // Get references to the input fields
+    var firstField = document.querySelector('input[name="TopicName"]');
+    var secondField = document.querySelector('input[name="TopicUrl"]');
+
+
+    // Add event listener to the first input field
+    firstField.addEventListener('input', function () {
+        // Get the value from the first input field
+        var value = firstField.value;
+
+        // Replace spaces with hyphens ("-")
+        var updatedValue = value.replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').trim();
+        updatedValue = updatedValue.toLowerCase();
+        // Update the value of the second input field
+        secondField.value = updatedValue;
+       
+    });
+</script>
 <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor1', {

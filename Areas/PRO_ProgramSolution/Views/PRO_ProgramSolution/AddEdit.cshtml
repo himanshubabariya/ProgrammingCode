@@ -1,10 +1,10 @@
 ﻿@model ProgrammingCode.Areas.PRO_ProgramSolution.Models.PRO_ProgramSolutionModel
 @{
-    ViewBag.Header = "Program Solution -" + ViewBag.Action;
+    ViewBag.Header = "Program Solution - " + ViewBag.Action;
     Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
-
 }
-<div class="card  shadow-sm mt-5">
+
+<div class="card shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title fw-bolder">@ViewBag.Action Program Solution</h3>
         <div class="card-toolbar">
@@ -12,60 +12,42 @@
     </div>
     <div class="card-body">
         <h4 class="title text-danger fw-bolder">Solution Details</h4>
-        <div class="">
-            <form id="formAddEditSave_UMS" data-method="post" enctype="multipart/form-data"
+        <div>
+            <form id="formAddEditSave_UMS" method="post" enctype="multipart/form-data"
                   asp-area="PRO_ProgramSolution" asp-action="_Save" asp-controller="PRO_ProgramSolution">
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.ProgramSolutionID)
 
-
                 <div class="form-group row">
                     <div class="col-md-6">
-                    <label class="col-form-label required "> Program </label>
-                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","SimpleDefination"))" data-control="select2" data-placeholder="Select Program" autofocus>
-                            <option> Select Program</option>
+                        <label class="col-form-label required">Program</label>
+                        <select class="form-select form-select-sm" data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList, "ProgramID", "SimpleDefination"))" data-control="select2" data-placeholder="Select Program" autofocus>
+                            <option value="">Select Program</option>
                         </select>
-                        @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProgramID)</span>
                     </div>
                     <div class="col-md-6">
-                        <label class="col-form-label required">Programming Langauge </label>
-                   
-                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgrammingLangaugeID" asp-items="@(new SelectList(ViewBag.ProgrammingLangaugecomboList,"ProgrammingLangaugeID","ProgrammingLangaugeName"))" data-control="select2" data-placeholder="Select Programming Langauge">
-                            <option>Select Langauge</option>
+                        <label class="col-form-label required">Programming Language</label>
+                        <select class="form-select form-select-sm" data-allow-clear="true" tabindex="-1" asp-for="ProgrammingLangaugeID" asp-items="@(new SelectList(ViewBag.ProgrammingLangaugecomboList, "ProgrammingLangaugeID", "ProgrammingLangaugeName"))" data-control="select2" data-placeholder="Select Programming Language">
+                            <option value="">Select Language</option>
                         </select>
-                        @Html.ValidationMessageFor(m => m.ProgrammingLangaugeID, "", new { @class = "form-text text-danger" })
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProgrammingLangaugeID)</span>
                     </div>
-                </div>
-                <div class="form-group row">
-                    
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <label class="require  col-form-label required">Progarm Solution</label>
-                   
-
-                        <textarea asp-for="ProgramSolution" id="editor_data" class="form-control" placeholder="Enter Solution">
-
-                </textarea>
-                        @Html.ValidationMessageFor(m => m.ProgramSolution, "", new { @class = "form-text text-danger" })
+                        <label class="require col-form-label required">Program Solution</label>
+                        <textarea id="editor_data" class="form-control" placeholder="Enter Solution" asp-for="ProgramSolution"></textarea>
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.ProgramSolution)</span>
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <div class="col-md-12">
-                    <label class="col-form-label"> Description</label>
-                        <textarea type="text" id="editor_data2" asp-for="Description" class="form-control"></textarea>
-                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
+                        <label class="col-form-label">Description</label>
+                        <textarea id="editor_data2" class="form-control" asp-for="Description"></textarea>
+                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Description)</span>
                     </div>
                 </div>
-                @*<div class="form-group row">
-                <label class="col-md-4 col-form-label"> UserID</label>
-                <div class="col-md-5">
-
-                <input type="text" asp-for="UserID" class="form-control" />
-                @Html.ValidationMessageFor(m => m.UserID, "", new { @class = "form-text text-danger" })
-                </div>
-                </div>*@
                 <hr class="form-button-divider" />
                 <div class="row">
                     <div class="offset-md-4 col-md-8">
@@ -77,16 +59,12 @@
         </div>
     </div>
 </div>
-</div>
 <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor_data', {
-        
-       
         removeButtons: 'PasteFromWord'
     });
     CKEDITOR.replace('editor_data2', {
-       
         removeButtons: 'PasteFromWord'
     });
 </script>

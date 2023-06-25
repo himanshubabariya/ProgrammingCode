@@ -2,8 +2,8 @@
 @{
     ViewBag.Header = "Program TestCase -" + ViewBag.Action;
     Layout = "~/Views/Shared/AdminPanel/_Layout.cshtml";
-   
 }
+
 <div class="card  shadow-sm mt-5">
     <div class="card-header">
         <h3 class="card-title fw-bolder">@ViewBag.Action Program Test Case</h3>
@@ -15,69 +15,65 @@
         <div class="">
             <form id="formAddEditSave_UMS" data-method="post" enctype="multipart/form-data"
                   asp-area="PRO_ProgramTestCase" asp-action="_Save" asp-controller="PRO_ProgramTestCase">
-                  
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.ProgramTestCaseID)
-        <div class="form-group row">
-            <label class="required col-md-4 col-form-label p-4 "> Program </label>
-            <div class="col-md-5">
 
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.ProgramTestCaseID)
+                <div class="form-group row">
+                    <label class="required col-md-4 col-form-label p-4 "> Program </label>
+                    <div class="col-md-5">
+                        <select required class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","SimpleDefination"))" data-control="select2" data-placeholder="Select Program" autofocus>
+                            <option value="">Select Program</option>
+                        </select>
+                        @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="required col-md-4 col-form-label ">Test Case Description</label>
+                    <div class="col-md-6">
+                        <textarea id="editor_data" asp-for="TastCaseDescription" class="form-control" placeholder="Test Case Description"></textarea>
+                        @Html.ValidationMessageFor(m => m.TastCaseDescription, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="required col-md-4 col-form-label">IS Positive</label>
+                    <div class="col-md-5">
+                        <input type="radio" asp-for="IsPositive" value="1" required /><label>Positive</label>
+                        <input type="radio" asp-for="IsPositive" value="0" required /><label>Negative</label>
+                        @Html.ValidationMessageFor(m => m.IsPositive, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
 
-                        <select class="form-select form-select-sm " data-allow-clear="true" tabindex="-1" asp-for="ProgramID" asp-items="@(new SelectList(ViewBag.ProgramcomboList,"ProgramID","SimpleDefination"))" data-control="select2" data-placeholder="Select Program" autofocus>
-                            <option> Select Program</option>
-                        </select>   
-               
-                @Html.ValidationMessageFor(m => m.ProgramID, "", new { @class = "form-text text-danger" })
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="required col-md-4 col-form-label ">Test Case Description</label>
-            <div class="col-md-6">
-                <textarea id="editor_data" asp-for="TastCaseDescription" class="form-control" placeholder="Test Case Description"></textarea>
-                @Html.ValidationMessageFor(m => m.TastCaseDescription, "", new { @class = "form-text text-danger" })
-            </div>
-        </div>
-         <div class="form-group row">
-            <label class="required col-md-4 col-form-label">IS Positive</label>
-            <div class="col-md-5">
-                <input type="radio" asp-for="IsPositive" value="1" /><label>Positive</label>
-                <input type="radio" asp-for="IsPositive" value="0" /><label>Nagative</label>
-        </div>
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 ">Sequence</label>
+                    <div class="col-md-5">
+                        <input type="number" asp-for="Sequence" class="form-control" placeholder="Enter Sequence">
+                        @Html.ValidationMessageFor(m => m.Sequence, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 ">Sequence</label>
-            <div class="col-md-5">
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label p-4 ">Description</label>
+                    <div class="col-md-5">
+                        <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "form-text text-danger" })
+                    </div>
+                </div>
 
-                <input type="text" asp-for="Sequence" class="form-control" placeholder="Enter  Sequence">
-          
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-4 col-form-label p-4 ">Description</label>
-            <div class="col-md-5">
-
-                <textarea type="text" asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
-               
-            </div>
-        </div>      
-        <hr class="form-button-divider" />
-        <div class="row">
-            <div class="offset-md-4 col-md-8">
-                <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-modal-form-submit" />
-                <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
-            </div>
-        </div>
+                <hr class="form-button-divider" />
+                <div class="row">
+                    <div class="offset-md-4 col-md-8">
+                        <input type="submit" value="Save" class="btn btn-primary btn-sm js-btn-modal-form-submit" />
+                        <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
             </form>
-        </div>
         </div>
     </div>
 </div>
+
 <script src="https://cdn.ckeditor.com/4.21.0/standard-all/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('editor_data', {
-
-       
         removeButtons: 'PasteFromWord'
     });
 </script>

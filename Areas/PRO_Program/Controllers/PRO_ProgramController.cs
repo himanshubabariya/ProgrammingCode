@@ -57,7 +57,9 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
         public IActionResult AddEdit(int? ProgramID)
         {
             ViewBag.Action = "Add";
+            List<int> preselectedTopicIDs = DBConfig.dbProgram.GetPreselectedTopicIDs(ProgramID);
 
+            ViewBag.PreselectedTopicIDs = preselectedTopicIDs;
             
             ViewBag.levelcomboList = DBConfig.dbLevel.SelectComboBoxLevel().ToList();
 			ViewBag.topiccomboList = DBConfig.dbTopic.SelectComboBoxTopic().ToList(); 
@@ -66,7 +68,7 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
             {
                 ViewBag.Action = "Edit";
 
-                var objProgram = DBConfig.dbProgram.SelectPk(ProgramID).SingleOrDefault();
+                var objProgram = DBConfig.dbProgram.SelectPk(ProgramID).SingleOrDefault();  
 
                 Mapper.Initialize(config => config.CreateMap<SelectPk_Result, PRO_ProgramModel>());
                 var vModel = AutoMapper.Mapper.Map<SelectPk_Result, PRO_ProgramModel>(objProgram);
@@ -98,6 +100,14 @@ namespace ProgrammingCode.Areas.PRO_Program.Controllers
                     Obj_PRO_Program.File2.CopyTo(stream);
                 }
 
+            }
+            else
+            {
+                ViewBag.program = DBConfig.dbProgram.SelectAll().ToList();
+                if (ViewBag.program.Count > 0)
+                {
+                    Obj_PRO_Program.MetaOgImage = ViewBag.program[0].MetaOgImage;
+                }
             }
             #endregion
             if (Obj_PRO_Program.ProgramID == 0)

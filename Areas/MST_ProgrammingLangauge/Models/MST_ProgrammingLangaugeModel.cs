@@ -35,6 +35,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
 
 
         public string? ProgrammingLangaugeLogo { get; set; }
+
         [Required, Display(Name = "LanguageUrl")]
 
         public string? LanguageUrl { get; set; }
@@ -95,6 +96,7 @@ namespace ProgrammingCode.Areas.MST_ProgrammingCode.Models
         {
             public int ProgrammingLangaugeID { get; set; }
             public string? ProgrammingLangaugeName { get; set; }
+
         }
     }
 }
